@@ -1,0 +1,14 @@
+stages:
+  - build
+  
+before_script:
+  - export LC_ALL=en_US.UTF-8
+
+
+build_project:
+  stage: build
+  script:
+    - xcodebuild clean -project UofG-Hospitality-Order-Now/UofG-Hospitality-Order-Now.xcodeproj -scheme UofG-Hospitality-Order-Now | xcpretty
+    - xcodebuild test -project UofG-Hospitality-Order-Now/UofG-Hospitality-Order-Now.xcodeproj -scheme UofG-Hospitality-Order-Now -destination 'platform=iOS Simulator,name=iPhone XR,OS=13.0' | xcpretty -s
+  only:
+  - merge_requests

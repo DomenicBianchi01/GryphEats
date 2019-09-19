@@ -14,18 +14,10 @@
 		B0B205832333D45200694587 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0B205822333D45200694587 /* Assets.xcassets */; };
 		B0B205862333D45200694587 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B205842333D45200694587 /* LaunchScreen.storyboard */; };
 		B0B205912333D45200694587 /* UofG_Hospitality_Order_NowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B205902333D45200694587 /* UofG_Hospitality_Order_NowTests.swift */; };
-		B0B2059C2333D45200694587 /* UofG_Hospitality_Order_NowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B2059B2333D45200694587 /* UofG_Hospitality_Order_NowUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		B0B2058D2333D45200694587 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B0B2056E2333D45000694587 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B0B205752333D45000694587;
-			remoteInfo = "UofG-Hospitality-Order-Now";
-		};
-		B0B205982333D45200694587 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B0B2056E2333D45000694587 /* Project object */;
 			proxyType = 1;
@@ -46,9 +38,6 @@
 		B0B2058C2333D45200694587 /* UofG-Hospitality-Order-NowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UofG-Hospitality-Order-NowTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0B205902333D45200694587 /* UofG_Hospitality_Order_NowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UofG_Hospitality_Order_NowTests.swift; sourceTree = "<group>"; };
 		B0B205922333D45200694587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B0B205972333D45200694587 /* UofG-Hospitality-Order-NowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UofG-Hospitality-Order-NowUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B0B2059B2333D45200694587 /* UofG_Hospitality_Order_NowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UofG_Hospitality_Order_NowUITests.swift; sourceTree = "<group>"; };
-		B0B2059D2333D45200694587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,13 +55,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B0B205942333D45200694587 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -81,7 +63,6 @@
 			children = (
 				B0B205782333D45000694587 /* UofG-Hospitality-Order-Now */,
 				B0B2058F2333D45200694587 /* UofG-Hospitality-Order-NowTests */,
-				B0B2059A2333D45200694587 /* UofG-Hospitality-Order-NowUITests */,
 				B0B205772333D45000694587 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -91,7 +72,6 @@
 			children = (
 				B0B205762333D45000694587 /* UofG-Hospitality-Order-Now.app */,
 				B0B2058C2333D45200694587 /* UofG-Hospitality-Order-NowTests.xctest */,
-				B0B205972333D45200694587 /* UofG-Hospitality-Order-NowUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,15 +97,6 @@
 				B0B205922333D45200694587 /* Info.plist */,
 			);
 			path = "UofG-Hospitality-Order-NowTests";
-			sourceTree = "<group>";
-		};
-		B0B2059A2333D45200694587 /* UofG-Hospitality-Order-NowUITests */ = {
-			isa = PBXGroup;
-			children = (
-				B0B2059B2333D45200694587 /* UofG_Hospitality_Order_NowUITests.swift */,
-				B0B2059D2333D45200694587 /* Info.plist */,
-			);
-			path = "UofG-Hospitality-Order-NowUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,24 +137,6 @@
 			productReference = B0B2058C2333D45200694587 /* UofG-Hospitality-Order-NowTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		B0B205962333D45200694587 /* UofG-Hospitality-Order-NowUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B0B205A62333D45200694587 /* Build configuration list for PBXNativeTarget "UofG-Hospitality-Order-NowUITests" */;
-			buildPhases = (
-				B0B205932333D45200694587 /* Sources */,
-				B0B205942333D45200694587 /* Frameworks */,
-				B0B205952333D45200694587 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B0B205992333D45200694587 /* PBXTargetDependency */,
-			);
-			name = "UofG-Hospitality-Order-NowUITests";
-			productName = "UofG-Hospitality-Order-NowUITests";
-			productReference = B0B205972333D45200694587 /* UofG-Hospitality-Order-NowUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -198,10 +151,6 @@
 						CreatedOnToolsVersion = 11.0;
 					};
 					B0B2058B2333D45200694587 = {
-						CreatedOnToolsVersion = 11.0;
-						TestTargetID = B0B205752333D45000694587;
-					};
-					B0B205962333D45200694587 = {
 						CreatedOnToolsVersion = 11.0;
 						TestTargetID = B0B205752333D45000694587;
 					};
@@ -222,7 +171,6 @@
 			targets = (
 				B0B205752333D45000694587 /* UofG-Hospitality-Order-Now */,
 				B0B2058B2333D45200694587 /* UofG-Hospitality-Order-NowTests */,
-				B0B205962333D45200694587 /* UofG-Hospitality-Order-NowUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -239,13 +187,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B0B2058A2333D45200694587 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B0B205952333D45200694587 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -273,14 +214,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B0B205932333D45200694587 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B0B2059C2333D45200694587 /* UofG_Hospitality_Order_NowUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -288,11 +221,6 @@
 			isa = PBXTargetDependency;
 			target = B0B205752333D45000694587 /* UofG-Hospitality-Order-Now */;
 			targetProxy = B0B2058D2333D45200694587 /* PBXContainerItemProxy */;
-		};
-		B0B205992333D45200694587 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B0B205752333D45000694587 /* UofG-Hospitality-Order-Now */;
-			targetProxy = B0B205982333D45200694587 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -508,44 +436,6 @@
 			};
 			name = Release;
 		};
-		B0B205A72333D45200694587 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "UofG-Hospitality-Order-NowUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thesubwaysquad.UofG-Hospitality-Order-NowUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "UofG-Hospitality-Order-Now";
-			};
-			name = Debug;
-		};
-		B0B205A82333D45200694587 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "UofG-Hospitality-Order-NowUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thesubwaysquad.UofG-Hospitality-Order-NowUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "UofG-Hospitality-Order-Now";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -572,15 +462,6 @@
 			buildConfigurations = (
 				B0B205A42333D45200694587 /* Debug */,
 				B0B205A52333D45200694587 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B0B205A62333D45200694587 /* Build configuration list for PBXNativeTarget "UofG-Hospitality-Order-NowUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B0B205A72333D45200694587 /* Debug */,
-				B0B205A82333D45200694587 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

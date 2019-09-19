@@ -38,16 +38,6 @@
                ReferencedContainer = "container:UofG-Hospitality-Order-Now.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B0B205962333D45200694587"
-               BuildableName = "UofG-Hospitality-Order-NowUITests.xctest"
-               BlueprintName = "UofG-Hospitality-Order-NowUITests"
-               ReferencedContainer = "container:UofG-Hospitality-Order-Now.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
