@@ -1,0 +1,11 @@
+stages:
+  - build
+
+build_project:
+  stage: build
+  script:
+    - xcodebuild clean -project UofG-Hospitality-Order-Now.xcodeproj -scheme UofG-Hospitality-Order-Now | xcpretty
+    - xcodebuild test -project UofG-Hospitality-Order-Now.xcodeproj -scheme UofG-Hospitality-Order-Now -destination 'platform=iOS Simulator,name=iPhone XR,OS=12.0' | xcpretty -s
+  tags:
+    - ios_12-0
+    - xcode_11-0
