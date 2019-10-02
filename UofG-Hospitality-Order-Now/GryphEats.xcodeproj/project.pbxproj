@@ -27,7 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B0B205762333D45000694587 /* UofG-Hospitality-Order-Now.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UofG-Hospitality-Order-Now.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0B205762333D45000694587 /* GryphEats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GryphEats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0B205792333D45000694587 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0B2057B2333D45000694587 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B0B2057D2333D45000694587 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -35,7 +35,7 @@
 		B0B205822333D45200694587 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0B205852333D45200694587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0B205872333D45200694587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B0B2058C2333D45200694587 /* UofG-Hospitality-Order-NowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UofG-Hospitality-Order-NowTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0B2058C2333D45200694587 /* GryphEatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GryphEatsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0B205902333D45200694587 /* UofG_Hospitality_Order_NowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UofG_Hospitality_Order_NowTests.swift; sourceTree = "<group>"; };
 		B0B205922333D45200694587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,8 +61,8 @@
 		B0B2056D2333D45000694587 = {
 			isa = PBXGroup;
 			children = (
-				B0B205782333D45000694587 /* UofG-Hospitality-Order-Now */,
-				B0B2058F2333D45200694587 /* UofG-Hospitality-Order-NowTests */,
+				B0B205782333D45000694587 /* GryphEats */,
+				B0B2058F2333D45200694587 /* GryphEatsTests */,
 				B0B205772333D45000694587 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -70,13 +70,13 @@
 		B0B205772333D45000694587 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B0B205762333D45000694587 /* UofG-Hospitality-Order-Now.app */,
-				B0B2058C2333D45200694587 /* UofG-Hospitality-Order-NowTests.xctest */,
+				B0B205762333D45000694587 /* GryphEats.app */,
+				B0B2058C2333D45200694587 /* GryphEatsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B0B205782333D45000694587 /* UofG-Hospitality-Order-Now */ = {
+		B0B205782333D45000694587 /* GryphEats */ = {
 			isa = PBXGroup;
 			children = (
 				B0B205792333D45000694587 /* AppDelegate.swift */,
@@ -87,24 +87,24 @@
 				B0B205842333D45200694587 /* LaunchScreen.storyboard */,
 				B0B205872333D45200694587 /* Info.plist */,
 			);
-			path = "UofG-Hospitality-Order-Now";
+			path = GryphEats;
 			sourceTree = "<group>";
 		};
-		B0B2058F2333D45200694587 /* UofG-Hospitality-Order-NowTests */ = {
+		B0B2058F2333D45200694587 /* GryphEatsTests */ = {
 			isa = PBXGroup;
 			children = (
 				B0B205902333D45200694587 /* UofG_Hospitality_Order_NowTests.swift */,
 				B0B205922333D45200694587 /* Info.plist */,
 			);
-			path = "UofG-Hospitality-Order-NowTests";
+			path = GryphEatsTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B0B205752333D45000694587 /* UofG-Hospitality-Order-Now */ = {
+		B0B205752333D45000694587 /* GryphEats */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B0B205A02333D45200694587 /* Build configuration list for PBXNativeTarget "UofG-Hospitality-Order-Now" */;
+			buildConfigurationList = B0B205A02333D45200694587 /* Build configuration list for PBXNativeTarget "GryphEats" */;
 			buildPhases = (
 				B0B205722333D45000694587 /* Sources */,
 				B0B205732333D45000694587 /* Frameworks */,
@@ -114,14 +114,14 @@
 			);
 			dependencies = (
 			);
-			name = "UofG-Hospitality-Order-Now";
+			name = GryphEats;
 			productName = "UofG-Hospitality-Order-Now";
-			productReference = B0B205762333D45000694587 /* UofG-Hospitality-Order-Now.app */;
+			productReference = B0B205762333D45000694587 /* GryphEats.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B0B2058B2333D45200694587 /* UofG-Hospitality-Order-NowTests */ = {
+		B0B2058B2333D45200694587 /* GryphEatsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B0B205A32333D45200694587 /* Build configuration list for PBXNativeTarget "UofG-Hospitality-Order-NowTests" */;
+			buildConfigurationList = B0B205A32333D45200694587 /* Build configuration list for PBXNativeTarget "GryphEatsTests" */;
 			buildPhases = (
 				B0B205882333D45200694587 /* Sources */,
 				B0B205892333D45200694587 /* Frameworks */,
@@ -132,9 +132,9 @@
 			dependencies = (
 				B0B2058E2333D45200694587 /* PBXTargetDependency */,
 			);
-			name = "UofG-Hospitality-Order-NowTests";
+			name = GryphEatsTests;
 			productName = "UofG-Hospitality-Order-NowTests";
-			productReference = B0B2058C2333D45200694587 /* UofG-Hospitality-Order-NowTests.xctest */;
+			productReference = B0B2058C2333D45200694587 /* GryphEatsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -156,7 +156,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B0B205712333D45000694587 /* Build configuration list for PBXProject "UofG-Hospitality-Order-Now" */;
+			buildConfigurationList = B0B205712333D45000694587 /* Build configuration list for PBXProject "GryphEats" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -169,8 +169,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B0B205752333D45000694587 /* UofG-Hospitality-Order-Now */,
-				B0B2058B2333D45200694587 /* UofG-Hospitality-Order-NowTests */,
+				B0B205752333D45000694587 /* GryphEats */,
+				B0B2058B2333D45200694587 /* GryphEatsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -219,7 +219,7 @@
 /* Begin PBXTargetDependency section */
 		B0B2058E2333D45200694587 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B0B205752333D45000694587 /* UofG-Hospitality-Order-Now */;
+			target = B0B205752333D45000694587 /* GryphEats */;
 			targetProxy = B0B2058D2333D45200694587 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -278,6 +278,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				"DSTROOT[sdk=*]" = "/tmp/$(PROJECT_NAME).dst";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -363,13 +364,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "UofG-Hospitality-Order-Now/Info.plist";
+				INFOPLIST_FILE = GryphEats/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thesubwaysquad.UofG-Hospitality-Order-Now";
+				PRODUCT_BUNDLE_IDENTIFIER = com.thesubwaysquad.GryphEats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -381,13 +382,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "UofG-Hospitality-Order-Now/Info.plist";
+				INFOPLIST_FILE = GryphEats/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thesubwaysquad.UofG-Hospitality-Order-Now";
+				PRODUCT_BUNDLE_IDENTIFIER = com.thesubwaysquad.GryphEats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -411,7 +412,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UofG-Hospitality-Order-Now.app/UofG-Hospitality-Order-Now";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GryphEats.app/GryphEats";
 			};
 			name = Debug;
 		};
@@ -432,14 +433,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UofG-Hospitality-Order-Now.app/UofG-Hospitality-Order-Now";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GryphEats.app/GryphEats";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B0B205712333D45000694587 /* Build configuration list for PBXProject "UofG-Hospitality-Order-Now" */ = {
+		B0B205712333D45000694587 /* Build configuration list for PBXProject "GryphEats" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B0B2059E2333D45200694587 /* Debug */,
@@ -448,7 +449,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B0B205A02333D45200694587 /* Build configuration list for PBXNativeTarget "UofG-Hospitality-Order-Now" */ = {
+		B0B205A02333D45200694587 /* Build configuration list for PBXNativeTarget "GryphEats" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B0B205A12333D45200694587 /* Debug */,
@@ -457,7 +458,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B0B205A32333D45200694587 /* Build configuration list for PBXNativeTarget "UofG-Hospitality-Order-NowTests" */ = {
+		B0B205A32333D45200694587 /* Build configuration list for PBXNativeTarget "GryphEatsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B0B205A42333D45200694587 /* Debug */,
