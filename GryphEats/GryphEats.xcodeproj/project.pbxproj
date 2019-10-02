@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,7 +13,10 @@
 		B0B205812333D45000694587 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B2057F2333D45000694587 /* Main.storyboard */; };
 		B0B205832333D45200694587 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0B205822333D45200694587 /* Assets.xcassets */; };
 		B0B205862333D45200694587 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B205842333D45200694587 /* LaunchScreen.storyboard */; };
-		B0B205912333D45200694587 /* UofG_Hospitality_Order_NowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B205902333D45200694587 /* UofG_Hospitality_Order_NowTests.swift */; };
+		B0B205912333D45200694587 /* GryphEatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B205902333D45200694587 /* GryphEatsTests.swift */; };
+		B0CA76282345481B003E7FBD /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = B0CA76272345481B003E7FBD /* Apollo */; };
+		B0CA762C23454A38003E7FBD /* Sample.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0CA762B23454A38003E7FBD /* Sample.graphql */; };
+		B0CA762E23454B1F003E7FBD /* GraphAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CA762D23454B1F003E7FBD /* GraphAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,8 +39,10 @@
 		B0B205852333D45200694587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0B205872333D45200694587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0B2058C2333D45200694587 /* GryphEatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GryphEatsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B0B205902333D45200694587 /* UofG_Hospitality_Order_NowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UofG_Hospitality_Order_NowTests.swift; sourceTree = "<group>"; };
+		B0B205902333D45200694587 /* GryphEatsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GryphEatsTests.swift; sourceTree = "<group>"; };
 		B0B205922333D45200694587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0CA762B23454A38003E7FBD /* Sample.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Sample.graphql; sourceTree = "<group>"; };
+		B0CA762D23454B1F003E7FBD /* GraphAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0CA76282345481B003E7FBD /* Apollo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +85,7 @@
 		B0B205782333D45000694587 /* GryphEats */ = {
 			isa = PBXGroup;
 			children = (
+				B0CA762A23454A20003E7FBD /* GraphQL */,
 				B0B205792333D45000694587 /* AppDelegate.swift */,
 				B0B2057B2333D45000694587 /* SceneDelegate.swift */,
 				B0B2057D2333D45000694587 /* ViewController.swift */,
@@ -93,10 +100,19 @@
 		B0B2058F2333D45200694587 /* GryphEatsTests */ = {
 			isa = PBXGroup;
 			children = (
-				B0B205902333D45200694587 /* UofG_Hospitality_Order_NowTests.swift */,
+				B0B205902333D45200694587 /* GryphEatsTests.swift */,
 				B0B205922333D45200694587 /* Info.plist */,
 			);
 			path = GryphEatsTests;
+			sourceTree = "<group>";
+		};
+		B0CA762A23454A20003E7FBD /* GraphQL */ = {
+			isa = PBXGroup;
+			children = (
+				B0CA762D23454B1F003E7FBD /* GraphAPI.swift */,
+				B0CA762B23454A38003E7FBD /* Sample.graphql */,
+			);
+			path = GraphQL;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -106,6 +122,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B0B205A02333D45200694587 /* Build configuration list for PBXNativeTarget "GryphEats" */;
 			buildPhases = (
+				B0CA7629234548BF003E7FBD /* Generate Apollo GraphQL API */,
 				B0B205722333D45000694587 /* Sources */,
 				B0B205732333D45000694587 /* Frameworks */,
 				B0B205742333D45000694587 /* Resources */,
@@ -115,6 +132,9 @@
 			dependencies = (
 			);
 			name = GryphEats;
+			packageProductDependencies = (
+				B0CA76272345481B003E7FBD /* Apollo */,
+			);
 			productName = "UofG-Hospitality-Order-Now";
 			productReference = B0B205762333D45000694587 /* GryphEats.app */;
 			productType = "com.apple.product-type.application";
@@ -165,6 +185,9 @@
 				Base,
 			);
 			mainGroup = B0B2056D2333D45000694587;
+			packageReferences = (
+				B0CA76262345481B003E7FBD /* XCRemoteSwiftPackageReference "apollo-ios" */,
+			);
 			productRefGroup = B0B205772333D45000694587 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -181,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0B205862333D45200694587 /* LaunchScreen.storyboard in Resources */,
+				B0CA762C23454A38003E7FBD /* Sample.graphql in Resources */,
 				B0B205832333D45200694587 /* Assets.xcassets in Resources */,
 				B0B205812333D45000694587 /* Main.storyboard in Resources */,
 			);
@@ -195,12 +219,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B0CA7629234548BF003E7FBD /* Generate Apollo GraphQL API */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Apollo GraphQL API";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nAPOLLO_SCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${APOLLO_SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${APOLLO_SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" GraphQL/GraphAPI.swift\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B0B205722333D45000694587 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B0B2057E2333D45000694587 /* ViewController.swift in Sources */,
+				B0CA762E23454B1F003E7FBD /* GraphAPI.swift in Sources */,
 				B0B2057A2333D45000694587 /* AppDelegate.swift in Sources */,
 				B0B2057C2333D45000694587 /* SceneDelegate.swift in Sources */,
 			);
@@ -210,7 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0B205912333D45200694587 /* UofG_Hospitality_Order_NowTests.swift in Sources */,
+				B0B205912333D45200694587 /* GryphEatsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,14 +447,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "UofG-Hospitality-Order-NowTests/Info.plist";
+				INFOPLIST_FILE = GryphEats/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thesubwaysquad.UofG-Hospitality-Order-NowTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.thesubwaysquad.GryphEats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -422,14 +468,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "UofG-Hospitality-Order-NowTests/Info.plist";
+				INFOPLIST_FILE = GryphEats/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thesubwaysquad.UofG-Hospitality-Order-NowTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.thesubwaysquad.GryphEats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -468,6 +514,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B0CA76262345481B003E7FBD /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.16.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B0CA76272345481B003E7FBD /* Apollo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B0CA76262345481B003E7FBD /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = Apollo;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B0B2056E2333D45000694587 /* Project object */;
 }

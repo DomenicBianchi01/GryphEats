@@ -8,7 +8,7 @@ before_script:
 build_project:
   stage: build
   script:
-    - xcodebuild clean -project UofG-Hospitality-Order-Now/UofG-Hospitality-Order-Now.xcodeproj -scheme UofG-Hospitality-Order-Now | xcpretty
-    - xcodebuild test -project UofG-Hospitality-Order-Now/UofG-Hospitality-Order-Now.xcodeproj -scheme UofG-Hospitality-Order-Now -destination 'platform=iOS Simulator,name=iPhone XR,OS=13.0' | xcpretty -s
+    - xcodebuild clean -project GryphEats/GryphEats.xcodeproj -scheme GryphEats | xcpretty
+    - xcodebuild test -project GryphEats/GryphEats.xcodeproj -scheme GryphEats -destination 'platform=iOS Simulator,name=iPhone Xʀ,OS=13.0' | xcpretty -s
   only:
   - merge_requests

@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import UofG_Hospitality_Order_Now
+@testable import GryphEats
 
 class UofG_Hospitality_Order_NowTests: XCTestCase {
 
