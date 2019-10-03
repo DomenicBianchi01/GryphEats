@@ -7,13 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B01E01522346428500B021E3 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = B01E01512346428500B021E3 /* SnapshotTesting */; };
+		B01E0155234650EE00B021E3 /* StudentCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01E0154234650EE00B021E3 /* StudentCardTests.swift */; };
+		B01E01572346565700B021E3 /* MealPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01E01562346565700B021E3 /* MealPlan.swift */; };
+		B01E01582346568C00B021E3 /* MealPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01E01562346565700B021E3 /* MealPlan.swift */; };
+		B01E015A23465B0E00B021E3 /* OrderCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01E015923465B0E00B021E3 /* OrderCardTests.swift */; };
+		B051FF7A234588AA0093C0DC /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051FF78234588AA0093C0DC /* Order.swift */; };
+		B051FF7B234588AA0093C0DC /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051FF79234588AA0093C0DC /* Customer.swift */; };
+		B051FF7E234588BD0093C0DC /* OrderCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051FF7D234588BD0093C0DC /* OrderCard.swift */; };
+		B0A2D09123460C0C00391DD6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B2057D2333D45000694587 /* ViewController.swift */; };
+		B0A2D09323460C0C00391DD6 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051FF78234588AA0093C0DC /* Order.swift */; };
+		B0A2D09423460C0C00391DD6 /* OrderCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051FF7D234588BD0093C0DC /* OrderCard.swift */; };
+		B0A2D09523460C0C00391DD6 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051FF79234588AA0093C0DC /* Customer.swift */; };
+		B0A2D09623460C0C00391DD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B205792333D45000694587 /* AppDelegate.swift */; };
+		B0A2D09723460C0C00391DD6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B2057B2333D45000694587 /* SceneDelegate.swift */; };
+		B0A2D09B23460C0C00391DD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B205842333D45200694587 /* LaunchScreen.storyboard */; };
+		B0A2D09D23460C0C00391DD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0B205822333D45200694587 /* Assets.xcassets */; };
+		B0A2D09E23460C0C00391DD6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B2057F2333D45000694587 /* Main.storyboard */; };
+		B0A2D0A723462BE700391DD6 /* StudentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A2D0A623462BE700391DD6 /* StudentCard.swift */; };
+		B0A2D0A823462BF500391DD6 /* StudentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A2D0A623462BE700391DD6 /* StudentCard.swift */; };
 		B0B2057A2333D45000694587 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B205792333D45000694587 /* AppDelegate.swift */; };
 		B0B2057C2333D45000694587 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B2057B2333D45000694587 /* SceneDelegate.swift */; };
 		B0B2057E2333D45000694587 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B2057D2333D45000694587 /* ViewController.swift */; };
 		B0B205812333D45000694587 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B2057F2333D45000694587 /* Main.storyboard */; };
 		B0B205832333D45200694587 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0B205822333D45200694587 /* Assets.xcassets */; };
 		B0B205862333D45200694587 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B205842333D45200694587 /* LaunchScreen.storyboard */; };
-		B0B205912333D45200694587 /* GryphEatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B205902333D45200694587 /* GryphEatsTests.swift */; };
 		B0CA76282345481B003E7FBD /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = B0CA76272345481B003E7FBD /* Apollo */; };
 		B0CA762C23454A38003E7FBD /* Sample.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0CA762B23454A38003E7FBD /* Sample.graphql */; };
 		B0CA762E23454B1F003E7FBD /* GraphAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CA762D23454B1F003E7FBD /* GraphAPI.swift */; };
@@ -30,6 +48,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B01E0154234650EE00B021E3 /* StudentCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCardTests.swift; sourceTree = "<group>"; };
+		B01E01562346565700B021E3 /* MealPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPlan.swift; sourceTree = "<group>"; };
+		B01E015923465B0E00B021E3 /* OrderCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCardTests.swift; sourceTree = "<group>"; };
+		B051FF78234588AA0093C0DC /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		B051FF79234588AA0093C0DC /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		B051FF7D234588BD0093C0DC /* OrderCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCard.swift; sourceTree = "<group>"; };
+		B0A2D0A223460C0C00391DD6 /* GryphEatsSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GryphEatsSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0A2D0A323460C0C00391DD6 /* GryphEatsSwiftUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GryphEatsSwiftUI-Info.plist"; path = "/Users/workspace/cis-4250-the-subway-squad/GryphEats/GryphEatsSwiftUI/GryphEatsSwiftUI-Info.plist"; sourceTree = "<absolute>"; };
+		B0A2D0A623462BE700391DD6 /* StudentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCard.swift; sourceTree = "<group>"; };
 		B0B205762333D45000694587 /* GryphEats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GryphEats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0B205792333D45000694587 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0B2057B2333D45000694587 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,13 +66,19 @@
 		B0B205852333D45200694587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0B205872333D45200694587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0B2058C2333D45200694587 /* GryphEatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GryphEatsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B0B205902333D45200694587 /* GryphEatsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GryphEatsTests.swift; sourceTree = "<group>"; };
 		B0B205922333D45200694587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0CA762B23454A38003E7FBD /* Sample.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Sample.graphql; sourceTree = "<group>"; };
 		B0CA762D23454B1F003E7FBD /* GraphAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B0A2D09823460C0C00391DD6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B0B205732333D45000694587 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -58,17 +91,62 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B01E01522346428500B021E3 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B01E0153234650D200B021E3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B01E0154234650EE00B021E3 /* StudentCardTests.swift */,
+				B01E015923465B0E00B021E3 /* OrderCardTests.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		B051FF77234588AA0093C0DC /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				B051FF78234588AA0093C0DC /* Order.swift */,
+				B051FF79234588AA0093C0DC /* Customer.swift */,
+				B01E01562346565700B021E3 /* MealPlan.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		B051FF7C234588BD0093C0DC /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B051FF7D234588BD0093C0DC /* OrderCard.swift */,
+				B0A2D0A623462BE700391DD6 /* StudentCard.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		B0A2D0A423460ED800391DD6 /* GryphEatsSwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				B0A2D0A323460C0C00391DD6 /* GryphEatsSwiftUI-Info.plist */,
+			);
+			path = GryphEatsSwiftUI;
+			sourceTree = "<group>";
+		};
+		B0A2D0A52346107F00391DD6 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		B0B2056D2333D45000694587 = {
 			isa = PBXGroup;
 			children = (
 				B0B205782333D45000694587 /* GryphEats */,
 				B0B2058F2333D45200694587 /* GryphEatsTests */,
+				B0A2D0A423460ED800391DD6 /* GryphEatsSwiftUI */,
 				B0B205772333D45000694587 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -78,6 +156,7 @@
 			children = (
 				B0B205762333D45000694587 /* GryphEats.app */,
 				B0B2058C2333D45200694587 /* GryphEatsTests.xctest */,
+				B0A2D0A223460C0C00391DD6 /* GryphEatsSwiftUI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -86,6 +165,9 @@
 			isa = PBXGroup;
 			children = (
 				B0CA762A23454A20003E7FBD /* GraphQL */,
+				B051FF7C234588BD0093C0DC /* Components */,
+				B051FF77234588AA0093C0DC /* Entities */,
+				B0A2D0A52346107F00391DD6 /* Login */,
 				B0B205792333D45000694587 /* AppDelegate.swift */,
 				B0B2057B2333D45000694587 /* SceneDelegate.swift */,
 				B0B2057D2333D45000694587 /* ViewController.swift */,
@@ -100,7 +182,7 @@
 		B0B2058F2333D45200694587 /* GryphEatsTests */ = {
 			isa = PBXGroup;
 			children = (
-				B0B205902333D45200694587 /* GryphEatsTests.swift */,
+				B01E0153234650D200B021E3 /* Components */,
 				B0B205922333D45200694587 /* Info.plist */,
 			);
 			path = GryphEatsTests;
@@ -118,6 +200,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B0A2D08C23460C0C00391DD6 /* GryphEatsSwiftUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0A2D09F23460C0C00391DD6 /* Build configuration list for PBXNativeTarget "GryphEatsSwiftUI" */;
+			buildPhases = (
+				B0A2D09023460C0C00391DD6 /* Sources */,
+				B0A2D09823460C0C00391DD6 /* Frameworks */,
+				B0A2D09A23460C0C00391DD6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GryphEatsSwiftUI;
+			packageProductDependencies = (
+			);
+			productName = "UofG-Hospitality-Order-Now";
+			productReference = B0A2D0A223460C0C00391DD6 /* GryphEatsSwiftUI.app */;
+			productType = "com.apple.product-type.application";
+		};
 		B0B205752333D45000694587 /* GryphEats */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B0B205A02333D45200694587 /* Build configuration list for PBXNativeTarget "GryphEats" */;
@@ -153,6 +254,9 @@
 				B0B2058E2333D45200694587 /* PBXTargetDependency */,
 			);
 			name = GryphEatsTests;
+			packageProductDependencies = (
+				B01E01512346428500B021E3 /* SnapshotTesting */,
+			);
 			productName = "UofG-Hospitality-Order-NowTests";
 			productReference = B0B2058C2333D45200694587 /* GryphEatsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -187,18 +291,30 @@
 			mainGroup = B0B2056D2333D45000694587;
 			packageReferences = (
 				B0CA76262345481B003E7FBD /* XCRemoteSwiftPackageReference "apollo-ios" */,
+				B01E01502346428500B021E3 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = B0B205772333D45000694587 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				B0B205752333D45000694587 /* GryphEats */,
+				B0A2D08C23460C0C00391DD6 /* GryphEatsSwiftUI */,
 				B0B2058B2333D45200694587 /* GryphEatsTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B0A2D09A23460C0C00391DD6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0A2D09B23460C0C00391DD6 /* LaunchScreen.storyboard in Resources */,
+				B0A2D09D23460C0C00391DD6 /* Assets.xcassets in Resources */,
+				B0A2D09E23460C0C00391DD6 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B0B205742333D45000694587 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -241,12 +357,32 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B0A2D09023460C0C00391DD6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0A2D0A823462BF500391DD6 /* StudentCard.swift in Sources */,
+				B0A2D09123460C0C00391DD6 /* ViewController.swift in Sources */,
+				B0A2D09323460C0C00391DD6 /* Order.swift in Sources */,
+				B01E01582346568C00B021E3 /* MealPlan.swift in Sources */,
+				B0A2D09423460C0C00391DD6 /* OrderCard.swift in Sources */,
+				B0A2D09523460C0C00391DD6 /* Customer.swift in Sources */,
+				B0A2D09623460C0C00391DD6 /* AppDelegate.swift in Sources */,
+				B0A2D09723460C0C00391DD6 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B0B205722333D45000694587 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B0B2057E2333D45000694587 /* ViewController.swift in Sources */,
 				B0CA762E23454B1F003E7FBD /* GraphAPI.swift in Sources */,
+				B051FF7A234588AA0093C0DC /* Order.swift in Sources */,
+				B051FF7E234588BD0093C0DC /* OrderCard.swift in Sources */,
+				B051FF7B234588AA0093C0DC /* Customer.swift in Sources */,
+				B0A2D0A723462BE700391DD6 /* StudentCard.swift in Sources */,
+				B01E01572346565700B021E3 /* MealPlan.swift in Sources */,
 				B0B2057A2333D45000694587 /* AppDelegate.swift in Sources */,
 				B0B2057C2333D45000694587 /* SceneDelegate.swift in Sources */,
 			);
@@ -256,7 +392,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0B205912333D45200694587 /* GryphEatsTests.swift in Sources */,
+				B01E015A23465B0E00B021E3 /* OrderCardTests.swift in Sources */,
+				B01E0155234650EE00B021E3 /* StudentCardTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +427,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B0A2D0A023460C0C00391DD6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "GryphEatsSwiftUI/GryphEatsSwiftUI-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.thesubwaysquad.GryphEats;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B0A2D0A123460C0C00391DD6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "GryphEatsSwiftUI/GryphEatsSwiftUI-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.thesubwaysquad.GryphEats;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		B0B2059E2333D45200694587 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -411,7 +584,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = GryphEats/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -429,7 +602,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = GryphEats/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -486,6 +659,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B0A2D09F23460C0C00391DD6 /* Build configuration list for PBXNativeTarget "GryphEatsSwiftUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0A2D0A023460C0C00391DD6 /* Debug */,
+				B0A2D0A123460C0C00391DD6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B0B205712333D45000694587 /* Build configuration list for PBXProject "GryphEats" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -516,6 +698,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B01E01502346428500B021E3 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.6.0;
+			};
+		};
 		B0CA76262345481B003E7FBD /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
@@ -527,6 +717,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B01E01512346428500B021E3 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B01E01502346428500B021E3 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
 		B0CA76272345481B003E7FBD /* Apollo */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B0CA76262345481B003E7FBD /* XCRemoteSwiftPackageReference "apollo-ios" */;
