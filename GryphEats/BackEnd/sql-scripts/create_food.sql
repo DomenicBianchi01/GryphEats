@@ -1,1 +1,1 @@
-test
+create table food (foodid int primary key auto_increment, displayname varchar(255) not null, toppingtype int not null, price decimal not null, restaurantid int, isavailable int not null, description varchar(255), foodgroup int);
