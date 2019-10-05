@@ -1,1 +1,1 @@
-test
+drop table user;
