@@ -1,1 +1,1 @@
-test
+create table restaurant (restaurantid int primary key auto_increment, displayname varchar(255) not null, phonenumber varchar(10), openingtime varchar(255) not null, closingtime varchar(255) not null, description varchar(255), isactive int not null);
