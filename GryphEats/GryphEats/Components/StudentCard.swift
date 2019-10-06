@@ -26,7 +26,7 @@ struct StudentCard: View {
                 .fill(LinearGradient(
                     gradient: Gradient(
                         stops: [
-                            Gradient.Stop(color: Color(red: 191/255, green: 18/255, blue: 48/255), location: 0.5),
+                            Gradient.Stop(color: .guelphRed, location: 0.5),
                             Gradient.Stop(color: Color(red: 158/255, green: 15/255, blue: 39/255), location: 0.5)
                     ]),
                     startPoint: .topLeading,
@@ -47,16 +47,16 @@ struct StudentCard: View {
             }.padding(.leading, 30)
             VStack(alignment: .trailing) {
                 Spacer()
-                Text("$" + String(format: "%.2f", customer.mealPlan?.currentBalance ?? 0))
-                    .font(.largeTitle).bold()
-                    .multilineTextAlignment(.trailing)
-                    .foregroundColor(.white)
-                    .padding(.trailing, 30)
-                Text(customer.name + studentNumber)
-                    .multilineTextAlignment(.trailing)
-                    .lineLimit(2)
-                    .foregroundColor(.white)
-                    .padding([.trailing, .bottom], 30)
+                Group {
+                    Text("$" + String(format: "%.2f", customer.mealPlan?.currentBalance ?? 0))
+                        .font(.largeTitle).bold()
+                        .multilineTextAlignment(.trailing)
+                        .padding(.trailing, 30)
+                    Text(customer.name + studentNumber)
+                        .multilineTextAlignment(.trailing)
+                        .lineLimit(2)
+                        .padding([.trailing, .bottom], 30)
+                }.foregroundColor(.white)
             }
         }.frame(maxWidth: 400, maxHeight: 250)
             .aspectRatio(400/250, contentMode: .fit) //TODO: This is probably hacky

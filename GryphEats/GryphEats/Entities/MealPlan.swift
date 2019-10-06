@@ -6,7 +6,7 @@
 //  Copyright © 2019 The Subway Squad. All rights reserved.
 //
 
-// MARK: MealPlan
+// MARK: - MealPlan
 
 struct MealPlan {
     

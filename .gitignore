@@ -11,6 +11,7 @@
 build/
 builds/
 DerivedData/
+*.DS_Store
 
 ## Various settings
 *.pbxuser
