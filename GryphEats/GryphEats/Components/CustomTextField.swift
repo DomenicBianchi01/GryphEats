@@ -15,8 +15,8 @@ struct CustomTextField: View {
     // MARK: Lifecycle
     
     init(
-        header: Text,
-        placeholder: Text,
+        header: String,
+        placeholder: String,
         text: Binding<String>,
         isSecure: Bool = false,
         editingChanged: @escaping (Bool) -> Void = { _ in },
@@ -34,7 +34,7 @@ struct CustomTextField: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            header
+            Text(header.uppercased())
                 .font(.system(size: 12))
                 .padding(.bottom, 0)
             
@@ -42,7 +42,7 @@ struct CustomTextField: View {
             // to manually add a custom placeholder label when the text field is empty.
             ZStack(alignment: .leading) {
                 if text.isEmpty {
-                    placeholder
+                    Text(placeholder)
                 }
                 
                 if isSecure {
@@ -64,8 +64,8 @@ struct CustomTextField: View {
     
     @Binding var text: String
     
-    private let header: Text
-    private let placeholder: Text
+    private let header: String
+    private let placeholder: String
     private let isSecure: Bool
     
     private let editingChanged: (Bool) -> Void
@@ -76,8 +76,8 @@ struct CustomTextField: View {
 struct CustomTextField_Previews: PreviewProvider {
     static var previews: some View {
         CustomTextField(
-            header: Text("Email".uppercased()),
-            placeholder: Text("Placeholder"),
+            header: "Email".uppercased(),
+            placeholder: "Placeholder",
             text: .constant("Please enter your email"))
     }
 }

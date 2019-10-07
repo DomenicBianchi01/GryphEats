@@ -1,5 +1,5 @@
 //
-//  RegistrationState.swift
+//  LandingState.swift
 //  GryphEats
 //
 //  Created by Domenic Bianchi on 2019-10-04.
@@ -8,21 +8,24 @@
 
 import SwiftUI
 
-// MARK: - RegistrationState
+// MARK: - LandingState
 
-class RegistrationState: ObservableObject {
+class LandingState: ObservableObject {
     
     // MARK: State
     
     enum State {
-        case login
+        case answerQuestion
+        case forgotPassword
         case info
+        case login
+        case resetPassword
         case security
     }
     
-    // MARK: RegistrationError
+    // MARK: LandingError
     
-    enum RegistrationError: Error, LocalizedError {
+    enum LandingError: Error, LocalizedError {
         case emptyFields
         case invalidPassword
         
@@ -38,7 +41,7 @@ class RegistrationState: ObservableObject {
         }
         
         var errorDescription: String? {
-            return "Registration Error"
+            return "Unable To Continue"
         }
     }
     
@@ -56,10 +59,10 @@ class RegistrationState: ObservableObject {
             previousState = state
         }
     }
-
+    
     private(set) var previousState: State = .login
     
-    func validateBasicInfoInput() -> RegistrationError? {
+    func validateBasicInfoInput() -> LandingError? {
         if !basicInfoComplete {
             return .emptyFields
         } else if !isPasswordValid {
@@ -69,9 +72,41 @@ class RegistrationState: ObservableObject {
         return nil
     }
     
-    func validateSecurityQuestion() -> RegistrationError? {
+    func validateSecurityQuestion() -> LandingError? {
         if !securityQuestionComplete {
             return .emptyFields
+        }
+        
+        return nil
+    }
+    
+    func validateForgotPasswordInput() -> LandingError? {
+        if email.isEmpty {
+            return .emptyFields
+        }
+        
+        return nil
+    }
+    
+    func validateForgotPasswordAnswerInput() -> LandingError? {
+        if answer.isEmpty {
+            return .emptyFields
+        }
+        
+        return nil
+    }
+    
+    func validateResetPasswordInput() -> LandingError? {
+        if answer.isEmpty {
+            return .emptyFields
+        }
+        
+        return nil
+    }
+    
+    func validatePasswordInput() -> LandingError? {
+        if !isPasswordValid {
+            return .invalidPassword
         }
         
         return nil

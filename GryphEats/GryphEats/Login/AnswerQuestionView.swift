@@ -1,19 +1,19 @@
 //
-//  RegisterView.swift
+//  AnswerQuestionView.swift
 //  GryphEats
 //
-//  Created by Domenic Bianchi on 2019-10-04.
+//  Created by Domenic Bianchi on 2019-10-05.
 //  Copyright © 2019 The Subway Squad. All rights reserved.
 //
 
 import SwiftUI
 
-// MARK: - RegisterView
+// MARK: - AnswerQuestionView
 
-struct RegisterView: View {
+struct AnswerQuestionView: View {
     
     // MARK: Internal
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             BackButton {
@@ -22,31 +22,23 @@ struct RegisterView: View {
                 }
             }
             
-            HeaderView(title: "Basic Information", subtitle: "Please fill out all the fields below!")
+            HeaderView(
+                title: "Security Question",
+                subtitle: "You must answer the question below correctly in order to reset your password.")
                 .foregroundColor(.white)
+                .padding(.bottom, 10)
             
-            Group {
-                Group {
-                    CustomTextField(
-                        header: "Full Name",
-                        placeholder: "Please enter your first and last name",
-                        text: self.$state.name)
-                    
-                    CustomTextField(
-                        header: "Email",
-                        placeholder: "Please enter your email",
-                        text: self.$state.email)
-                }.keyboardType(.emailAddress)
-                    .padding(.bottom, 20)
-                
-                CustomTextField(
-                    header: "Password".uppercased(),
-                    placeholder: "Please enter a password",
-                    text: self.$state.password,
-                    isSecure: true)
-                
-                Text("Password must contain at least 6 characters").font(.caption)
-            }.foregroundColor(.white)
+            Text("Where was your first trip?")
+                .underline()
+                .bold()
+                .foregroundColor(.white)
+                .padding([.horizontal, .bottom], 40)
+            
+            CustomTextField(
+                header: "Answer".uppercased(),
+                placeholder: "Please enter the answer to the question",
+                text: self.$state.answer)
+                .foregroundColor(.white)
                 .padding(.horizontal, 40)
             
             Spacer()
@@ -57,11 +49,11 @@ struct RegisterView: View {
                     text: Text("Continue"),
                     backgroundColor: .white,
                     foregroundColor: .black) {
-                        if let error = self.state.validateBasicInfoInput() {
+                        if let error = self.state.validateForgotPasswordInput() {
                             self.error = error
                         } else {
                             withAnimation {
-                                self.state.state = .security
+                                self.state.state = .resetPassword
                             }
                         }
                 }.shadow(radius: 5).padding()
@@ -82,9 +74,9 @@ struct RegisterView: View {
 
 }
 
-struct RegisterView_Previews: PreviewProvider {
+struct AnswerQuestionView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterView()
+        AnswerQuestionView()
             .environmentObject(LandingState())
             .background(Color.gray)
     }

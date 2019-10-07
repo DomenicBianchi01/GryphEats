@@ -1,19 +1,19 @@
 //
-//  RegisterView.swift
+//  ResetPasswordView.swift
 //  GryphEats
 //
-//  Created by Domenic Bianchi on 2019-10-04.
+//  Created by Domenic Bianchi on 2019-10-06.
 //  Copyright © 2019 The Subway Squad. All rights reserved.
 //
 
 import SwiftUI
 
-// MARK: - RegisterView
+// MARK: - ResetPasswordView
 
-struct RegisterView: View {
+struct ResetPasswordView: View {
     
     // MARK: Internal
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             BackButton {
@@ -22,32 +22,20 @@ struct RegisterView: View {
                 }
             }
             
-            HeaderView(title: "Basic Information", subtitle: "Please fill out all the fields below!")
-                .foregroundColor(.white)
-            
             Group {
+                HeaderView(title: "Reset Password", subtitle: "")
+                
                 Group {
                     CustomTextField(
-                        header: "Full Name",
-                        placeholder: "Please enter your first and last name",
-                        text: self.$state.name)
+                        header: "Password".uppercased(),
+                        placeholder: "Please enter a new password",
+                        text: self.$state.password,
+                        isSecure: true)
                     
-                    CustomTextField(
-                        header: "Email",
-                        placeholder: "Please enter your email",
-                        text: self.$state.email)
-                }.keyboardType(.emailAddress)
-                    .padding(.bottom, 20)
-                
-                CustomTextField(
-                    header: "Password".uppercased(),
-                    placeholder: "Please enter a password",
-                    text: self.$state.password,
-                    isSecure: true)
-                
-                Text("Password must contain at least 6 characters").font(.caption)
+                    Text("Password must contain at least 6 characters")
+                        .font(.caption)
+                }.padding(.horizontal, 40)
             }.foregroundColor(.white)
-                .padding(.horizontal, 40)
             
             Spacer()
             
@@ -57,11 +45,11 @@ struct RegisterView: View {
                     text: Text("Continue"),
                     backgroundColor: .white,
                     foregroundColor: .black) {
-                        if let error = self.state.validateBasicInfoInput() {
+                        if let error = self.state.validatePasswordInput() {
                             self.error = error
                         } else {
                             withAnimation {
-                                self.state.state = .security
+                                self.state.reset()
                             }
                         }
                 }.shadow(radius: 5).padding()
@@ -82,10 +70,8 @@ struct RegisterView: View {
 
 }
 
-struct RegisterView_Previews: PreviewProvider {
+struct ResetPasswordView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterView()
-            .environmentObject(LandingState())
-            .background(Color.gray)
+        ResetPasswordView().environmentObject(LandingState())
     }
 }

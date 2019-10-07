@@ -20,14 +20,14 @@ struct LoginView: View {
                 
                 Group {
                     CustomTextField(
-                        header: Text("Email".uppercased()),
-                        placeholder: Text("Please enter your email"),
+                        header: "Email".uppercased(),
+                        placeholder: "Please enter your email",
                         text: self.$email)
                         .padding(.bottom, 20)
                     
                     CustomTextField(
-                        header: Text("Password".uppercased()),
-                        placeholder: Text("Please enter your password"),
+                        header: "Password".uppercased(),
+                        placeholder: "Please enter your password",
                         text: self.$password,
                         isSecure: true)
                         .padding(.bottom, 40)
@@ -56,7 +56,9 @@ struct LoginView: View {
                 }
                 Spacer()
                 Button(action: {
-                    print("Forgot password pressed")
+                    withAnimation {
+                        self.state.state = .forgotPassword
+                    }
                 }) {
                     Text("Forgot Password")
                         .foregroundColor(.white)
@@ -77,7 +79,7 @@ struct LoginView: View {
     @State private var password = ""
     @State private var error: LoginViewModel.LoginError? = nil
     
-    @EnvironmentObject private var state: RegistrationState
+    @EnvironmentObject private var state: LandingState
     @Environment(\.viewController) private var viewControllerHolder
     
     private let viewModel = LoginViewModel()
@@ -102,7 +104,7 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
-            .environmentObject(RegistrationState())
+            .environmentObject(LandingState())
             .background(Color.gray)
     }
 }

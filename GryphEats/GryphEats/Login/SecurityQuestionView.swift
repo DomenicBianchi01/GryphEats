@@ -26,14 +26,14 @@ struct SecurityQuestionView: View {
             
             Group {
                 CustomTextField(
-                    header: Text("Question".uppercased()),
-                    placeholder: Text("Please enter a question"),
+                    header: "Question".uppercased(),
+                    placeholder: "Please enter a question",
                     text: self.$state.question)
                     .padding(.bottom, 20)
                 
                 CustomTextField(
-                    header: Text("Answer".uppercased()),
-                    placeholder: Text("Please enter the answer to the question"),
+                    header: "Answer".uppercased(),
+                    placeholder: "Please enter the answer to the question",
                     text: self.$state.answer)
             }.foregroundColor(.white)
                 .padding(.horizontal, 40)
@@ -65,14 +65,16 @@ struct SecurityQuestionView: View {
     
     // MARK: Private
     
-    @State private var error: RegistrationState.RegistrationError? = nil
+    @State private var error: LandingState.LandingError? = nil
     
-    @EnvironmentObject private var state: RegistrationState
+    @EnvironmentObject private var state: LandingState
 
 }
 
 struct SecurityQuestionView_Previews: PreviewProvider {
     static var previews: some View {
-        SecurityQuestionView().environmentObject(RegistrationState())
+        SecurityQuestionView()
+            .environmentObject(LandingState())
+            .background(Color.gray)
     }
 }

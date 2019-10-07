@@ -23,10 +23,10 @@ struct HeaderView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(title)
+            Text(self.title)
                 .font(.largeTitle)
                 .bold()
-            Text(subtitle)
+            Text(self.subtitle)
                 .padding(.bottom, 30)
         }.padding(.leading, 30)
     }
@@ -40,6 +40,6 @@ struct HeaderView: View {
 
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderView(title: "Title", subtitle: "Subtitle")
+        HeaderView(title: "Title", subtitle: "A really really long subtitle that never ends and keeps going")
     }
 }

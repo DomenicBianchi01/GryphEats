@@ -1,5 +1,5 @@
 //
-//  SplashView.swift
+//  LandingView.swift
 //  GryphEats
 //
 //  Created by Domenic Bianchi on 2019-10-03.
@@ -8,9 +8,9 @@
 
 import SwiftUI
 
-// MARK: - SplashView
+// MARK: - LandingView
 
-struct SplashView: View {
+struct LandingView: View {
     
     // MARK: Internal
     
@@ -22,6 +22,12 @@ struct SplashView: View {
                 RegisterView().transition(state.previousState == .security ? .leftSlide : .rightSlide)
             } else if state.state == .security {
                 SecurityQuestionView().transition(.rightSlide)
+            } else if state.state == .forgotPassword {
+                ForgotPasswordView().transition(.rightSlide)
+            } else if state.state == .answerQuestion {
+                AnswerQuestionView().transition(.rightSlide)
+            } else if state.state == .resetPassword {
+                ResetPasswordView().transition(.rightSlide)
             }
         }.background(Rectangle()
             .fill(LinearGradient(
@@ -32,13 +38,13 @@ struct SplashView: View {
     }
     
     // MARK: Private
-
-    @EnvironmentObject private var state: RegistrationState
-
+    
+    @EnvironmentObject private var state: LandingState
+    
 }
 
-struct SplashView_Previews: PreviewProvider {
+struct LandingView_Previews: PreviewProvider {
     static var previews: some View {
-        SplashView().environmentObject(RegistrationState())
+        LandingView().environmentObject(LandingState())
     }
 }
