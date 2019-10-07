@@ -12,7 +12,7 @@ import SwiftUI
 
 struct SecurityQuestionView: View {
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: UIDevice.current.isPad ? .center : .leading) {
             BackButton {
                 withAnimation {
                     self.state.state = .info

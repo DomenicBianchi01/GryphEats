@@ -15,7 +15,7 @@ struct ResetPasswordView: View {
     // MARK: Internal
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: UIDevice.current.isPad ? .center : .leading) {
             BackButton {
                 withAnimation {
                     self.state.reset()

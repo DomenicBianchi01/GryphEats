@@ -77,6 +77,8 @@
 		B0CA76282345481B003E7FBD /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = B0CA76272345481B003E7FBD /* Apollo */; };
 		B0CA762C23454A38003E7FBD /* Sample.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0CA762B23454A38003E7FBD /* Sample.graphql */; };
 		B0CA762E23454B1F003E7FBD /* GraphAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CA762D23454B1F003E7FBD /* GraphAPI.swift */; };
+		B0FC1347234B9469000039D2 /* UIDeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC1346234B9469000039D2 /* UIDeviceExtensions.swift */; };
+		B0FC1348234B9559000039D2 /* UIDeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC1346234B9469000039D2 /* UIDeviceExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +137,7 @@
 		B0C9B197234A8EF700605D23 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		B0CA762B23454A38003E7FBD /* Sample.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Sample.graphql; sourceTree = "<group>"; };
 		B0CA762D23454B1F003E7FBD /* GraphAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphAPI.swift; sourceTree = "<group>"; };
+		B0FC1346234B9469000039D2 /* UIDeviceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,6 +301,7 @@
 				B0BBFDBD2347D27100FDEFA4 /* AnyTransitionExtensions.swift */,
 				B08F32122348D3C2009A0E61 /* ColorExtensions.swift */,
 				B06B514A23495BD90015E960 /* ViewExtensions.swift */,
+				B0FC1346234B9469000039D2 /* UIDeviceExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -494,6 +498,7 @@
 				B0BBFDB523479F2E00FDEFA4 /* UIViewControllerExtensions.swift in Sources */,
 				B0BBFDB223479EFD00FDEFA4 /* EnvironmentExtensions.swift in Sources */,
 				B08F32142348D3C2009A0E61 /* ColorExtensions.swift in Sources */,
+				B0FC1348234B9559000039D2 /* UIDeviceExtensions.swift in Sources */,
 				B0A2D09423460C0C00391DD6 /* OrderCard.swift in Sources */,
 				B046163E2346F3230033087B /* LoginViewModel.swift in Sources */,
 				B06B514E23495C960015E960 /* ForgotPasswordView.swift in Sources */,
@@ -521,6 +526,7 @@
 				B0C9B198234A8EF700605D23 /* ResetPasswordView.swift in Sources */,
 				B0CA762E23454B1F003E7FBD /* GraphAPI.swift in Sources */,
 				B0BBFDAE23477D3C00FDEFA4 /* HomeView.swift in Sources */,
+				B0FC1347234B9469000039D2 /* UIDeviceExtensions.swift in Sources */,
 				B0BBFDC12348053500FDEFA4 /* LoginView.swift in Sources */,
 				B051FF7A234588AA0093C0DC /* Order.swift in Sources */,
 				B06B513E2349552B0015E960 /* BackButton.swift in Sources */,

@@ -16,6 +16,7 @@ struct CustomTextField: View {
     
     init(
         header: String,
+        subtitle: String? = nil,
         placeholder: String,
         text: Binding<String>,
         isSecure: Bool = false,
@@ -23,6 +24,7 @@ struct CustomTextField: View {
         commit: @escaping () -> Void = { })
     {
         self.header = header
+        self.subtitle = subtitle
         self.placeholder = placeholder
         self.isSecure = isSecure
         self.editingChanged = editingChanged
@@ -54,9 +56,12 @@ struct CustomTextField: View {
                 }
             }
 
-            Rectangle()
-                .frame(height: 1)
-                .foregroundColor(.white)
+            Rectangle().frame(height: 1)
+            
+            //SwiftUI does not support `if-let` yet.
+            if subtitle != nil {
+                Text(subtitle!).font(.caption)
+            }
         }.frame(maxWidth: 400)
     }
     
@@ -65,6 +70,7 @@ struct CustomTextField: View {
     @Binding var text: String
     
     private let header: String
+    private let subtitle: String?
     private let placeholder: String
     private let isSecure: Bool
     

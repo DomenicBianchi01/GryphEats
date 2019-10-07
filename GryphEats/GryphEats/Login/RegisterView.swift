@@ -15,7 +15,7 @@ struct RegisterView: View {
     // MARK: Internal
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: UIDevice.current.isPad ? .center : .leading) {
             BackButton {
                 withAnimation {
                     self.state.reset()
@@ -41,11 +41,10 @@ struct RegisterView: View {
                 
                 CustomTextField(
                     header: "Password".uppercased(),
+                    subtitle: "Password must contain at least 6 characters",
                     placeholder: "Please enter a password",
                     text: self.$state.password,
                     isSecure: true)
-                
-                Text("Password must contain at least 6 characters").font(.caption)
             }.foregroundColor(.white)
                 .padding(.horizontal, 40)
             

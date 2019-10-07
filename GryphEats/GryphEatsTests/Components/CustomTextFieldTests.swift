@@ -34,6 +34,16 @@ class CustomTextFieldTests: XCTestCase {
         assertSnapshot(matching: CustomUIHostingController(rootView: textField), as: .image, record: record)
     }
     
+    func testTextFieldWithSubtitle() {
+        let textField = CustomTextField(
+            header: "A header",
+            subtitle: "A subtitle",
+            placeholder: "A placeholder",
+            text: .constant(""))
+        
+        assertSnapshot(matching: CustomUIHostingController(rootView: textField), as: .image, record: record)
+    }
+    
     func testSecureTextFieldText() {
         let textField = CustomTextField(
             header: "A header",

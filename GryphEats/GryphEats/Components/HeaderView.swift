@@ -22,7 +22,7 @@ struct HeaderView: View {
     // MARK: Internal
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: UIDevice.current.isPad ? .center : .leading) {
             Text(self.title)
                 .font(.largeTitle)
                 .bold()
