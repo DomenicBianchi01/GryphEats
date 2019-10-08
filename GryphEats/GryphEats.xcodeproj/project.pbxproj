@@ -45,6 +45,8 @@
 		B06B515123496B070015E960 /* AnswerQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B514F23496B070015E960 /* AnswerQuestionView.swift */; };
 		B06B515223496CA40015E960 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B513D2349552B0015E960 /* BackButton.swift */; };
 		B06B515323496CBE0015E960 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B514A23495BD90015E960 /* ViewExtensions.swift */; };
+		B0843373234CF20A00DD325E /* NavigationHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0843372234CF20A00DD325E /* NavigationHeaderView.swift */; };
+		B0843374234CF21600DD325E /* NavigationHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0843372234CF20A00DD325E /* NavigationHeaderView.swift */; };
 		B08F32132348D3C2009A0E61 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F32122348D3C2009A0E61 /* ColorExtensions.swift */; };
 		B08F32142348D3C2009A0E61 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F32122348D3C2009A0E61 /* ColorExtensions.swift */; };
 		B0A2D09323460C0C00391DD6 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051FF78234588AA0093C0DC /* Order.swift */; };
@@ -116,6 +118,7 @@
 		B06B514A23495BD90015E960 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		B06B514C23495C960015E960 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		B06B514F23496B070015E960 /* AnswerQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerQuestionView.swift; sourceTree = "<group>"; };
+		B0843372234CF20A00DD325E /* NavigationHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHeaderView.swift; sourceTree = "<group>"; };
 		B08F32122348D3C2009A0E61 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		B0A2D0A223460C0C00391DD6 /* GryphEatsSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GryphEatsSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A2D0A323460C0C00391DD6 /* GryphEatsSwiftUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GryphEatsSwiftUI-Info.plist"; path = "/Users/workspace/cis-4250-the-subway-squad/GryphEats/GryphEatsSwiftUI/GryphEatsSwiftUI-Info.plist"; sourceTree = "<absolute>"; };
@@ -202,6 +205,7 @@
 				B04616392346E5880033087B /* BasicButton.swift */,
 				B06B513D2349552B0015E960 /* BackButton.swift */,
 				B06B5145234958990015E960 /* HeaderView.swift */,
+				B0843372234CF20A00DD325E /* NavigationHeaderView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -498,6 +502,7 @@
 				B0BBFDB523479F2E00FDEFA4 /* UIViewControllerExtensions.swift in Sources */,
 				B0BBFDB223479EFD00FDEFA4 /* EnvironmentExtensions.swift in Sources */,
 				B08F32142348D3C2009A0E61 /* ColorExtensions.swift in Sources */,
+				B0843374234CF21600DD325E /* NavigationHeaderView.swift in Sources */,
 				B0FC1348234B9559000039D2 /* UIDeviceExtensions.swift in Sources */,
 				B0A2D09423460C0C00391DD6 /* OrderCard.swift in Sources */,
 				B046163E2346F3230033087B /* LoginViewModel.swift in Sources */,
@@ -521,6 +526,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0BBFDB423479F2E00FDEFA4 /* UIViewControllerExtensions.swift in Sources */,
+				B0843373234CF20A00DD325E /* NavigationHeaderView.swift in Sources */,
 				B05B3FDB2348257000547DD1 /* LandingState.swift in Sources */,
 				B04616332346BD5D0033087B /* CustomTextField.swift in Sources */,
 				B0C9B198234A8EF700605D23 /* ResetPasswordView.swift in Sources */,
