@@ -34,17 +34,16 @@ struct StudentCard: View {
                 .cornerRadius(10)
                 .padding()
             VStack {
-                HStack {
-                    GeometryReader { geometry in
+                GeometryReader { geometry in
+                    HStack {
                         Image("UofGLogo")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: geometry.size.width)
+                            .frame(width: geometry.size.width / 2)
                     }
                     Spacer()
                 }
-                Spacer()
-            }.padding(.leading, 30)
+            }.padding([.leading, .top], 30)
             VStack(alignment: .trailing) {
                 Spacer()
                 Group {
@@ -59,7 +58,7 @@ struct StudentCard: View {
                 }.foregroundColor(.white)
             }
         }.frame(maxWidth: 400, maxHeight: 250)
-            .aspectRatio(400/250, contentMode: .fit) //TODO: This is probably hacky
+            .aspectRatio(contentMode: .fit)
     }
     
     // MARK: Private
