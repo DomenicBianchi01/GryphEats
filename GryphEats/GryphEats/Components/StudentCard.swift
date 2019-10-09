@@ -34,12 +34,12 @@ struct StudentCard: View {
                 .cornerRadius(10)
                 .padding()
             VStack {
-                GeometryReader { geometry in
+                GeometryReader { proxy in
                     HStack {
                         Image("UofGLogo")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: geometry.size.width / 2)
+                            .frame(width: proxy.size.width / 2)
                     }
                     Spacer()
                 }
@@ -53,7 +53,6 @@ struct StudentCard: View {
                         .padding(.trailing, 30)
                     Text(customer.name + studentNumber)
                         .multilineTextAlignment(.trailing)
-                        .lineLimit(2)
                         .padding([.trailing, .bottom], 30)
                 }.foregroundColor(.white)
             }

@@ -39,9 +39,10 @@ struct NavigationHeaderView<V: View>: View {
                     .edgesIgnoringSafeArea(.top)
                 Rectangle()
                     .fill(contentBackgroundColor)
+                    .edgesIgnoringSafeArea(.bottom)
                 content()
             }.navigationBarTitle(title)
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
     
     // MARK: Private
@@ -58,7 +59,8 @@ struct NavigationHeaderView_Previews: PreviewProvider {
         NavigationHeaderView(
             title: "Test Title",
             navigationColor: .green,
-            contentBackgroundColor: .red) {
+            contentBackgroundColor: .red)
+        {
                 Text("Test")
         }
     }

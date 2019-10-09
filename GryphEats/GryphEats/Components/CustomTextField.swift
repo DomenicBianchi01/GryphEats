@@ -49,10 +49,10 @@ struct CustomTextField: View {
                 
                 if isSecure {
                     SecureField("", text: $text, onCommit: commit)
-                    .font(.system(size: 16))
+                        .font(.system(size: 16))
                 } else {
                     TextField("", text: $text, onEditingChanged: editingChanged, onCommit: commit)
-                    .font(.system(size: 16))
+                        .font(.system(size: 16))
                 }
             }
 

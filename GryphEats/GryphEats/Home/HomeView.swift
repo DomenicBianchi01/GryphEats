@@ -11,9 +11,43 @@ import SwiftUI
 // MARK: - HomeView
 
 struct HomeView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello World!"/*@END_MENU_TOKEN@*/)
+    
+    // MARK: Lifecycle
+    
+    init() {
+        UINavigationBar.appearance().backgroundColor = .guelphYellow
     }
+    
+    // MARK: Internal
+    
+    var body: some View {
+        NavigationHeaderView(
+            title: "GryphEats",
+            navigationColor: .guelphYellow,
+            contentBackgroundColor: .lightGray)
+        {
+            VStack(alignment: .leading, spacing: 0) {
+                SliderView(type: .categories(self.viewModel.categories)) { index in
+                    print("Tapped category card \(index)")
+                }.background(Color.white)
+                
+                Divider()
+                
+                ScrollView {
+                    VStack(alignment: .leading) {
+                        ForEach(self.viewModel.resutrants) { resturant in
+                            ResturantItemsView(resturant: resturant)
+                        }
+                    }
+                }.background(Color.lightGray)
+            }
+        }
+    }
+    
+    // MARK: Private
+    
+    private let viewModel = HomeViewModel()
+    
 }
 
 struct HomeView_Previews: PreviewProvider {
