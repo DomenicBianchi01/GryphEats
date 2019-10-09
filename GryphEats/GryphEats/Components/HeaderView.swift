@@ -23,10 +23,10 @@ struct HeaderView: View {
     
     var body: some View {
         VStack(alignment: UIDevice.current.isPad ? .center : .leading) {
-            Text(self.title)
+            Text(title)
                 .font(.largeTitle)
                 .bold()
-            Text(self.subtitle)
+            Text(subtitle)
                 .padding(.bottom, 30)
         }.padding(.leading, 30)
     }
