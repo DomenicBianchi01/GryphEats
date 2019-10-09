@@ -10,5 +10,14 @@ insert into food values (null, 'chicken fingers', 0, 4.49, @restaurant_id, 1, 'T
 
 select @food_id := foodid from food where description = 'TESTDATA';
 
-insert into orderitem values (@order_id, @food_id ,3);
-insert into menu values (10, @food_id, @restaurant_id, 'TESTMENU', 'cool foods', 1);
+insert into orderitem values (@order_id, @food_id ,null);
+insert into menu values (10, @restaurant_id, 'TESTMENU', 'cool foods', 1);
+
+select @identifier := identifier from orderitem inner join foodorder where timeplaced = 'oct3TEST';
+
+
+insert into topping values (0, @identifier);
+
+select @menu_id := menuid from menu where title = 'TESTMENU';
+
+insert into menuitem values (@menu_id, @food_id);
