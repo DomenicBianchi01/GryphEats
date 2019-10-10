@@ -17,6 +17,7 @@ struct SliderView: View {
     enum SliderType {
         case categories([Category])
         case foodItems([FoodItem])
+        case ingredients([Ingredient])
     }
     
     // MARK: Lifecycle
@@ -53,11 +54,15 @@ struct SliderView: View {
             return AnyView(ForEach(items.indices) { index in
                 self.menuCard(for: items[index], atIndex: index, onTap: self.onTap)
             })
+        case .ingredients(let ingredients):
+            return AnyView(ForEach(ingredients.indices) { index in
+                IngredientCard(ingredient: ingredients[index]) { _ in /*TODO*/}
+            })
         }
     }
     
     private func menuCard(for item: FoodItem, atIndex index: Int, onTap: @escaping (Int) -> Void) -> AnyView {
-        let card = MenuCard(itemName: item.name, imageName: item.image) {
+        let card = MenuCard(itemName: item.name, imageName: item.imageName) {
             onTap(index)
         }
         
@@ -75,11 +80,11 @@ struct SliderView_Previews: PreviewProvider {
         VStack {
             SliderView(
                 type: .foodItems([
-                    FoodItem(id: 0, name: "Hamburger 1", image: "hamburger"),
-                    FoodItem(id: 1, name: "Hamburger 2", image: "hamburger"),
-                    FoodItem(id: 2, name: "Hamburger 3", image: "hamburger"),
-                    FoodItem(id: 3, name: "Hamburger 4", image: "hamburger"),
-                    FoodItem(id: 4, name: "Hamburger 5", image: "hamburger")
+                    FoodItem(id: 0, name: "Hamburger 1", imageName: "hamburger"),
+                    FoodItem(id: 1, name: "Hamburger 2", imageName: "hamburger"),
+                    FoodItem(id: 2, name: "Hamburger 3", imageName: "hamburger"),
+                    FoodItem(id: 3, name: "Hamburger 4", imageName: "hamburger"),
+                    FoodItem(id: 4, name: "Hamburger 5", imageName: "hamburger")
                 ]),
                 onTap: { _ in print("Tapped") })
             SliderView(
@@ -89,6 +94,15 @@ struct SliderView_Previews: PreviewProvider {
                     Category(id: 2, name: "Pizza"),
                     Category(id: 3, name: "Meat"),
                     Category(id: 4, name: "Dessert")
+                ]),
+                onTap: { _ in print("Tapped") })
+            SliderView(
+                type: .ingredients([
+                    Ingredient(id: 0, name: "Tomato", imageName: "tomato"),
+                    Ingredient(id: 1, name: "Lettuce", imageName: "tomato"),
+                    Ingredient(id: 2, name: "Onion", imageName: "tomato"),
+                    Ingredient(id: 3, name: "Pepper", imageName: "tomato"),
+                    Ingredient(id: 4, name: "Black Olives", imageName: "tomato"),
                 ]),
                 onTap: { _ in print("Tapped") })
         }

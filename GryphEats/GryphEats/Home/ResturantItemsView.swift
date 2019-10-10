@@ -14,8 +14,9 @@ struct ResturantItemsView: View {
     
     // MARK: Lifecycle
     
-    init(resturant: Resturant) {
+    init(resturant: Resturant, onTap: @escaping (Int) -> Void) {
         self.resturant = resturant
+        self.onTap = onTap
     }
     
     // MARK: Internal
@@ -44,13 +45,14 @@ struct ResturantItemsView: View {
             }
             
             SliderView(type: .foodItems(resturant.foodItems)) { index in
-                print("Tapped resturant card \(index)")
+                self.onTap(index)
             }
         }
     }
     
     // MARK: Private
     
+    private let onTap: (Int) -> Void
     private let resturant: Resturant
     
 }
@@ -62,11 +64,11 @@ struct ResturantItemsView_Previews: PreviewProvider {
                 id: 0,
                 name: "100 Mile Grill",
                 foodItems: [
-                    FoodItem(id: 0, name: "Hamburger 1", image: "hamburger"),
-                    FoodItem(id: 1, name: "Hamburger 2", image: "hamburger"),
-                    FoodItem(id: 2, name: "Hamburger 3", image: "hamburger"),
-                    FoodItem(id: 3, name: "Hamburger 4", image: "hamburger"),
-                    FoodItem(id: 4, name: "Hamburger 5", image: "hamburger")
-            ]))
+                    FoodItem(id: 0, name: "Hamburger 1", imageName: "hamburger"),
+                    FoodItem(id: 1, name: "Hamburger 2", imageName: "hamburger"),
+                    FoodItem(id: 2, name: "Hamburger 3", imageName: "hamburger"),
+                    FoodItem(id: 3, name: "Hamburger 4", imageName: "hamburger"),
+                    FoodItem(id: 4, name: "Hamburger 5", imageName: "hamburger")
+            ])) { _ in }
     }
 }

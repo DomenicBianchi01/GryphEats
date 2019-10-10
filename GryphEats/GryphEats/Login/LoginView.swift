@@ -93,6 +93,8 @@ struct LoginView: View {
         case .success:
             self.viewController?.present(style: .fullScreen) {
                 HomeView()
+                    .environmentObject(Cart())
+                    .environmentObject(ActiveFoodItem())
             }
         case .failure(let error):
             self.error = error

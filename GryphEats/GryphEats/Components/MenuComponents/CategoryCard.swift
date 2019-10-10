@@ -30,7 +30,7 @@ struct CategoryCard: View {
                     .padding(.horizontal, 20)
                     .padding(.vertical, 10)
             }
-        }.background(Color.yellow)
+        }.background(Color.guelphYellow)
             .cornerRadius(5)
             .padding(.horizontal, 10)
             .padding(.vertical, 20)
