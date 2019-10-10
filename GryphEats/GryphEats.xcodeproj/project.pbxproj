@@ -12,6 +12,13 @@
 		B01E01572346565700B021E3 /* MealPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01E01562346565700B021E3 /* MealPlan.swift */; };
 		B01E01582346568C00B021E3 /* MealPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01E01562346565700B021E3 /* MealPlan.swift */; };
 		B01E015A23465B0E00B021E3 /* OrderCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01E015923465B0E00B021E3 /* OrderCardTests.swift */; };
+		B021DE95234FBA6D00DBF1AA /* ApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B021DE94234FBA6D00DBF1AA /* ApolloClient.swift */; };
+		B021DE97234FCA2800DBF1AA /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B021DE96234FCA2800DBF1AA /* ErrorView.swift */; };
+		B021DE98234FCA2800DBF1AA /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B021DE96234FCA2800DBF1AA /* ErrorView.swift */; };
+		B021DE9C234FCE6600DBF1AA /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B021DE9B234FCE6600DBF1AA /* ActivityIndicator.swift */; };
+		B021DE9D234FCE6600DBF1AA /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B021DE9B234FCE6600DBF1AA /* ActivityIndicator.swift */; };
+		B021DE9F234FD47F00DBF1AA /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B021DE9E234FD47F00DBF1AA /* ImageService.swift */; };
+		B021DEA2234FF55A00DBF1AA /* ErrorViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B021DEA1234FF55A00DBF1AA /* ErrorViewTests.swift */; };
 		B04616302346B1DE0033087B /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B046162F2346B1DE0033087B /* LandingView.swift */; };
 		B04616312346B2680033087B /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B046162F2346B1DE0033087B /* LandingView.swift */; };
 		B04616332346BD5D0033087B /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04616322346BD5D0033087B /* CustomTextField.swift */; };
@@ -103,7 +110,7 @@
 		B0C9B198234A8EF700605D23 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C9B197234A8EF700605D23 /* ResetPasswordView.swift */; };
 		B0C9B199234A8F3C00605D23 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C9B197234A8EF700605D23 /* ResetPasswordView.swift */; };
 		B0CA76282345481B003E7FBD /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = B0CA76272345481B003E7FBD /* Apollo */; };
-		B0CA762C23454A38003E7FBD /* Sample.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0CA762B23454A38003E7FBD /* Sample.graphql */; };
+		B0CA762C23454A38003E7FBD /* Resturants.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0CA762B23454A38003E7FBD /* Resturants.graphql */; };
 		B0CA762E23454B1F003E7FBD /* GraphAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CA762D23454B1F003E7FBD /* GraphAPI.swift */; };
 		B0F6E1F6234E370500067B79 /* ItemOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F6E1F5234E370500067B79 /* ItemOverview.swift */; };
 		B0F6E1F7234E370500067B79 /* ItemOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F6E1F5234E370500067B79 /* ItemOverview.swift */; };
@@ -133,6 +140,11 @@
 		B01E0154234650EE00B021E3 /* StudentCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCardTests.swift; sourceTree = "<group>"; };
 		B01E01562346565700B021E3 /* MealPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPlan.swift; sourceTree = "<group>"; };
 		B01E015923465B0E00B021E3 /* OrderCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCardTests.swift; sourceTree = "<group>"; };
+		B021DE94234FBA6D00DBF1AA /* ApolloClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApolloClient.swift; sourceTree = "<group>"; };
+		B021DE96234FCA2800DBF1AA /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		B021DE9B234FCE6600DBF1AA /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		B021DE9E234FD47F00DBF1AA /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		B021DEA1234FF55A00DBF1AA /* ErrorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewTests.swift; sourceTree = "<group>"; };
 		B046162F2346B1DE0033087B /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		B04616322346BD5D0033087B /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		B04616362346C6610033087B /* CircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
@@ -190,7 +202,7 @@
 		B0BEF924234D546D004455DC /* SliderViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewTests.swift; sourceTree = "<group>"; };
 		B0BEF927234D558E004455DC /* ResturantItemsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResturantItemsViewTests.swift; sourceTree = "<group>"; };
 		B0C9B197234A8EF700605D23 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
-		B0CA762B23454A38003E7FBD /* Sample.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Sample.graphql; sourceTree = "<group>"; };
+		B0CA762B23454A38003E7FBD /* Resturants.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Resturants.graphql; sourceTree = "<group>"; };
 		B0CA762D23454B1F003E7FBD /* GraphAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphAPI.swift; sourceTree = "<group>"; };
 		B0F6E1F5234E370500067B79 /* ItemOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemOverview.swift; sourceTree = "<group>"; };
 		B0F6E1F8234E496A00067B79 /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
@@ -239,8 +251,26 @@
 				B06B513F2349564D0015E960 /* BackButtonTests.swift */,
 				B06B514823495A2A0015E960 /* HeaderViewTests.swift */,
 				B0BEF91D234D5069004455DC /* NavigationHeaderViewTests.swift */,
+				B021DEA1234FF55A00DBF1AA /* ErrorViewTests.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		B021DE93234FB9F900DBF1AA /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				B021DE94234FBA6D00DBF1AA /* ApolloClient.swift */,
+				B021DE9E234FD47F00DBF1AA /* ImageService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		B021DE9A234FCE5900DBF1AA /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				B021DE9B234FCE6600DBF1AA /* ActivityIndicator.swift */,
+			);
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 		B051FF77234588AA0093C0DC /* Entities */ = {
@@ -261,6 +291,7 @@
 		B051FF7C234588BD0093C0DC /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				B021DE9A234FCE5900DBF1AA /* UIKit */,
 				B0A7C401234C2CD2001555B7 /* MenuComponents */,
 				B051FF7D234588BD0093C0DC /* OrderCard.swift */,
 				B0A2D0A623462BE700391DD6 /* StudentCard.swift */,
@@ -272,6 +303,7 @@
 				B0843372234CF20A00DD325E /* NavigationHeaderView.swift */,
 				B0F6E1FE234E6E9A00067B79 /* SlideOverCard.swift */,
 				B0F6E204234ED3EC00067B79 /* StepperView.swift */,
+				B021DE96234FCA2800DBF1AA /* ErrorView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -366,6 +398,7 @@
 		B0B205782333D45000694587 /* GryphEats */ = {
 			isa = PBXGroup;
 			children = (
+				B021DE93234FB9F900DBF1AA /* Networking */,
 				B0BBFDAF23479EDD00FDEFA4 /* Extensions */,
 				B0CA762A23454A20003E7FBD /* GraphQL */,
 				B051FF7C234588BD0093C0DC /* Components */,
@@ -448,7 +481,7 @@
 			isa = PBXGroup;
 			children = (
 				B0CA762D23454B1F003E7FBD /* GraphAPI.swift */,
-				B0CA762B23454A38003E7FBD /* Sample.graphql */,
+				B0CA762B23454A38003E7FBD /* Resturants.graphql */,
 			);
 			path = GraphQL;
 			sourceTree = "<group>";
@@ -575,7 +608,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0B205862333D45200694587 /* LaunchScreen.storyboard in Resources */,
-				B0CA762C23454A38003E7FBD /* Sample.graphql in Resources */,
+				B0CA762C23454A38003E7FBD /* Resturants.graphql in Resources */,
 				B0B205832333D45200694587 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -627,6 +660,7 @@
 				B04616312346B2680033087B /* LandingView.swift in Sources */,
 				B06B515223496CA40015E960 /* BackButton.swift in Sources */,
 				B04616342346BDA10033087B /* CustomTextField.swift in Sources */,
+				B021DE9D234FCE6600DBF1AA /* ActivityIndicator.swift in Sources */,
 				B0F6E203234E928200067B79 /* Ingredient.swift in Sources */,
 				B01E01582346568C00B021E3 /* MealPlan.swift in Sources */,
 				B046163B2346E5880033087B /* BasicButton.swift in Sources */,
@@ -640,6 +674,7 @@
 				B08F32142348D3C2009A0E61 /* ColorExtensions.swift in Sources */,
 				B0843377234D088F00DD325E /* ResturantItemsView.swift in Sources */,
 				B0843374234CF21600DD325E /* NavigationHeaderView.swift in Sources */,
+				B021DE98234FCA2800DBF1AA /* ErrorView.swift in Sources */,
 				B0FC1348234B9559000039D2 /* UIDeviceExtensions.swift in Sources */,
 				B084336C234CECD600DD325E /* HomeViewModel.swift in Sources */,
 				B0A2D09423460C0C00391DD6 /* OrderCard.swift in Sources */,
@@ -679,6 +714,7 @@
 				B0F6E205234ED3EC00067B79 /* StepperView.swift in Sources */,
 				B0FC1347234B9469000039D2 /* UIDeviceExtensions.swift in Sources */,
 				B0A7C403234C2CE0001555B7 /* SliderView.swift in Sources */,
+				B021DE97234FCA2800DBF1AA /* ErrorView.swift in Sources */,
 				B0BBFDC12348053500FDEFA4 /* LoginView.swift in Sources */,
 				B051FF7A234588AA0093C0DC /* Order.swift in Sources */,
 				B0843367234CB54700DD325E /* Category.swift in Sources */,
@@ -689,14 +725,17 @@
 				B051FF7B234588AA0093C0DC /* Customer.swift in Sources */,
 				B090F0C9234F9225007CF06F /* OrderReviewView.swift in Sources */,
 				B0F6E1F6234E370500067B79 /* ItemOverview.swift in Sources */,
+				B021DE95234FBA6D00DBF1AA /* ApolloClient.swift in Sources */,
 				B046163D2346F3230033087B /* LoginViewModel.swift in Sources */,
 				B046163A2346E5880033087B /* BasicButton.swift in Sources */,
 				B0F6E1FF234E6E9A00067B79 /* SlideOverCard.swift in Sources */,
+				B021DE9C234FCE6600DBF1AA /* ActivityIndicator.swift in Sources */,
 				B0A7C406234C2CEC001555B7 /* MenuCard.swift in Sources */,
 				B090F0C4234F71EC007CF06F /* IngredientCard.swift in Sources */,
 				B0A2D0A723462BE700391DD6 /* StudentCard.swift in Sources */,
 				B06B5146234958990015E960 /* HeaderView.swift in Sources */,
 				B01E01572346565700B021E3 /* MealPlan.swift in Sources */,
+				B021DE9F234FD47F00DBF1AA /* ImageService.swift in Sources */,
 				B084336B234CEC5300DD325E /* HomeViewModel.swift in Sources */,
 				B0BBFDBB2347D11E00FDEFA4 /* RegisterView.swift in Sources */,
 				B0BBFDB123479EFD00FDEFA4 /* EnvironmentExtensions.swift in Sources */,
@@ -720,6 +759,7 @@
 			files = (
 				B01E015A23465B0E00B021E3 /* OrderCardTests.swift in Sources */,
 				B0BEF928234D558E004455DC /* ResturantItemsViewTests.swift in Sources */,
+				B021DEA2234FF55A00DBF1AA /* ErrorViewTests.swift in Sources */,
 				B06B5134234932720015E960 /* CirclularButtonTests.swift in Sources */,
 				B0BEF91E234D5069004455DC /* NavigationHeaderViewTests.swift in Sources */,
 				B01E0155234650EE00B021E3 /* StudentCardTests.swift in Sources */,

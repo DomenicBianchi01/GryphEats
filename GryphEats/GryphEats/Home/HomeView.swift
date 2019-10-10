@@ -20,29 +20,9 @@ struct HomeView: View {
             navigationColor: .guelphYellow,
             contentBackgroundColor: .lightGray)
         {
-            VStack(alignment: .leading, spacing: 0) {
-                SliderView(type: .categories(self.viewModel.categories)) { index in
-                    print("Tapped category card \(index)")
-                }.background(Color.white)
-                
-                Divider()
-                
-                ScrollView {
-                    VStack(alignment: .leading) {
-                        ForEach(self.viewModel.resturants) { resturant in
-                            ResturantItemsView(resturant: resturant) { index in
-                                self.presentItemDetails(for: resturant.foodItems[index])
-                            }
-                        }
-                    }
-                }.background(Color.lightGray)
-                
-                NavigationLink(destination: ItemOverview(), isActive: self.$pushItemActive) {
-                  Text("")
-                }.hidden()
-    
-            }.edgesIgnoringSafeArea(.bottom)
-                .navigationBarItems(trailing: self.trailingNavigationBarItems)
+            self.content
+        }.onAppear {
+            self.viewModel.fetchResturants()
         }
     }
     
@@ -54,8 +34,47 @@ struct HomeView: View {
     @EnvironmentObject private var cart: Cart
     @EnvironmentObject private var activeItem: ActiveFoodItem
     
-    private let viewModel = HomeViewModel()
+    @ObservedObject private var viewModel = HomeViewModel()
     
+    private var content: AnyView {
+        switch viewModel.loadingState {
+        case .loading:
+            return AnyView(VStack {
+                Spacer()
+                ActivityIndicator(style: .large)
+                Spacer()
+            })
+        case .loaded(let resturants):
+            return AnyView(VStack(alignment: .leading, spacing: 0) {
+                SliderView(type: .categories(self.viewModel.categories)) { index in
+                    print("Tapped category card \(index)")
+                }.background(Color.white)
+                
+                Divider()
+                
+                ScrollView {
+                    VStack(alignment: .leading) {
+                        ForEach(resturants) { resturant in
+                            ResturantItemsView(resturant: resturant) { index in
+                                self.presentItemDetails(for: resturant.foodItems[index])
+                            }
+                        }
+                    }
+                }.background(Color.lightGray)
+                
+                NavigationLink(destination: ItemOverview(), isActive: self.$pushItemActive) {
+                    Text("")
+                }.hidden()
+                
+            }.edgesIgnoringSafeArea(.bottom)
+                .navigationBarItems(trailing: self.trailingNavigationBarItems))
+        case .error:
+            return AnyView(ErrorView(infoText: "Whoops! We could not fetch the menus.", buttonText: "Try Again") {
+                self.viewModel.fetchResturants()
+            })
+        }
+    }
+
     private var trailingNavigationBarItems: some View {
         return Button(action: { self.showOrderReview = true }) {
             Image(systemName: "cart").padding(.all, 10)

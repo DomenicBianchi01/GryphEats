@@ -41,8 +41,7 @@ struct SlideOverCard<V: View> : View {
             }.padding(.vertical)
                 .background(Color.guelphYellow)
                 .cornerRadius(5)
-                .padding(.horizontal, 30)
-                .padding(.bottom, 30)
+                .padding([.horizontal, .bottom], 30)
             // ^^^ SwiftUI Bug: Horizontal padding only gets added after applying the background. Vertical padding only
             // gets applied if it is added before the background. This is really weird...
             
