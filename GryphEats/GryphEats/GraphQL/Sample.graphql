@@ -1,7 +1,0 @@
-query ThisIsATest {
-    posts {
-        author {
-            id
-        }
-    }
-}

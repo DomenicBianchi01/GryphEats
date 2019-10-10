@@ -1,0 +1,6 @@
+query Resturants {
+    foods {
+        foodid
+        displayname
+    }
+}
