@@ -57,6 +57,11 @@
 		B0843377234D088F00DD325E /* ResturantItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0843375234D07E100DD325E /* ResturantItemsView.swift */; };
 		B08F32132348D3C2009A0E61 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F32122348D3C2009A0E61 /* ColorExtensions.swift */; };
 		B08F32142348D3C2009A0E61 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F32122348D3C2009A0E61 /* ColorExtensions.swift */; };
+		B090F0C4234F71EC007CF06F /* IngredientCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B090F0C3234F71EC007CF06F /* IngredientCard.swift */; };
+		B090F0C5234F71EC007CF06F /* IngredientCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B090F0C3234F71EC007CF06F /* IngredientCard.swift */; };
+		B090F0C9234F9225007CF06F /* OrderReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B090F0C8234F9225007CF06F /* OrderReviewView.swift */; };
+		B090F0CA234F9225007CF06F /* OrderReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B090F0C8234F9225007CF06F /* OrderReviewView.swift */; };
+		B090F0CC234F9C87007CF06F /* IngredientCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B090F0CB234F9C87007CF06F /* IngredientCardTests.swift */; };
 		B0A2D09323460C0C00391DD6 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051FF78234588AA0093C0DC /* Order.swift */; };
 		B0A2D09423460C0C00391DD6 /* OrderCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051FF7D234588BD0093C0DC /* OrderCard.swift */; };
 		B0A2D09523460C0C00391DD6 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051FF79234588AA0093C0DC /* Customer.swift */; };
@@ -100,6 +105,16 @@
 		B0CA76282345481B003E7FBD /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = B0CA76272345481B003E7FBD /* Apollo */; };
 		B0CA762C23454A38003E7FBD /* Sample.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0CA762B23454A38003E7FBD /* Sample.graphql */; };
 		B0CA762E23454B1F003E7FBD /* GraphAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CA762D23454B1F003E7FBD /* GraphAPI.swift */; };
+		B0F6E1F6234E370500067B79 /* ItemOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F6E1F5234E370500067B79 /* ItemOverview.swift */; };
+		B0F6E1F7234E370500067B79 /* ItemOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F6E1F5234E370500067B79 /* ItemOverview.swift */; };
+		B0F6E1F9234E496A00067B79 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F6E1F8234E496A00067B79 /* Cart.swift */; };
+		B0F6E1FA234E496A00067B79 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F6E1F8234E496A00067B79 /* Cart.swift */; };
+		B0F6E1FF234E6E9A00067B79 /* SlideOverCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F6E1FE234E6E9A00067B79 /* SlideOverCard.swift */; };
+		B0F6E200234E6E9A00067B79 /* SlideOverCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F6E1FE234E6E9A00067B79 /* SlideOverCard.swift */; };
+		B0F6E202234E928200067B79 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F6E201234E928200067B79 /* Ingredient.swift */; };
+		B0F6E203234E928200067B79 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F6E201234E928200067B79 /* Ingredient.swift */; };
+		B0F6E205234ED3EC00067B79 /* StepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F6E204234ED3EC00067B79 /* StepperView.swift */; };
+		B0F6E206234ED3EC00067B79 /* StepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F6E204234ED3EC00067B79 /* StepperView.swift */; };
 		B0FC1347234B9469000039D2 /* UIDeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC1346234B9469000039D2 /* UIDeviceExtensions.swift */; };
 		B0FC1348234B9559000039D2 /* UIDeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC1346234B9469000039D2 /* UIDeviceExtensions.swift */; };
 /* End PBXBuildFile section */
@@ -145,6 +160,9 @@
 		B0843372234CF20A00DD325E /* NavigationHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHeaderView.swift; sourceTree = "<group>"; };
 		B0843375234D07E100DD325E /* ResturantItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResturantItemsView.swift; sourceTree = "<group>"; };
 		B08F32122348D3C2009A0E61 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		B090F0C3234F71EC007CF06F /* IngredientCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCard.swift; sourceTree = "<group>"; };
+		B090F0C8234F9225007CF06F /* OrderReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderReviewView.swift; sourceTree = "<group>"; };
+		B090F0CB234F9C87007CF06F /* IngredientCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCardTests.swift; sourceTree = "<group>"; };
 		B0A2D0A223460C0C00391DD6 /* GryphEatsSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GryphEatsSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A2D0A323460C0C00391DD6 /* GryphEatsSwiftUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GryphEatsSwiftUI-Info.plist"; path = "/Users/workspace/cis-4250-the-subway-squad/GryphEats/GryphEatsSwiftUI/GryphEatsSwiftUI-Info.plist"; sourceTree = "<absolute>"; };
 		B0A2D0A623462BE700391DD6 /* StudentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCard.swift; sourceTree = "<group>"; };
@@ -174,6 +192,11 @@
 		B0C9B197234A8EF700605D23 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		B0CA762B23454A38003E7FBD /* Sample.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Sample.graphql; sourceTree = "<group>"; };
 		B0CA762D23454B1F003E7FBD /* GraphAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphAPI.swift; sourceTree = "<group>"; };
+		B0F6E1F5234E370500067B79 /* ItemOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemOverview.swift; sourceTree = "<group>"; };
+		B0F6E1F8234E496A00067B79 /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
+		B0F6E1FE234E6E9A00067B79 /* SlideOverCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverCard.swift; sourceTree = "<group>"; };
+		B0F6E201234E928200067B79 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		B0F6E204234ED3EC00067B79 /* StepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperView.swift; sourceTree = "<group>"; };
 		B0FC1346234B9469000039D2 /* UIDeviceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -229,6 +252,7 @@
 				B01E01562346565700B021E3 /* MealPlan.swift */,
 				B0A7C408234C328C001555B7 /* FoodItem.swift */,
 				B0843366234CB54700DD325E /* Category.swift */,
+				B0F6E201234E928200067B79 /* Ingredient.swift */,
 				B0BEF91A234D4941004455DC /* Resturant.swift */,
 			);
 			path = Entities;
@@ -246,6 +270,8 @@
 				B06B513D2349552B0015E960 /* BackButton.swift */,
 				B06B5145234958990015E960 /* HeaderView.swift */,
 				B0843372234CF20A00DD325E /* NavigationHeaderView.swift */,
+				B0F6E1FE234E6E9A00067B79 /* SlideOverCard.swift */,
+				B0F6E204234ED3EC00067B79 /* StepperView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -262,8 +288,25 @@
 			isa = PBXGroup;
 			children = (
 				B05B3FDA2348257000547DD1 /* LandingState.swift */,
+				B0F6E1F8234E496A00067B79 /* Cart.swift */,
 			);
 			path = State;
+			sourceTree = "<group>";
+		};
+		B090F0C6234F7F11007CF06F /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				B0F6E1F5234E370500067B79 /* ItemOverview.swift */,
+			);
+			path = Item;
+			sourceTree = "<group>";
+		};
+		B090F0C7234F9164007CF06F /* OrderReview */ = {
+			isa = PBXGroup;
+			children = (
+				B090F0C8234F9225007CF06F /* OrderReviewView.swift */,
+			);
+			path = OrderReview;
 			sourceTree = "<group>";
 		};
 		B0A2D0A423460ED800391DD6 /* GryphEatsSwiftUI */ = {
@@ -295,6 +338,7 @@
 				B0A7C402234C2CE0001555B7 /* SliderView.swift */,
 				B0A7C405234C2CEC001555B7 /* MenuCard.swift */,
 				B0843363234CB2A500DD325E /* CategoryCard.swift */,
+				B090F0C3234F71EC007CF06F /* IngredientCard.swift */,
 			);
 			path = MenuComponents;
 			sourceTree = "<group>";
@@ -328,6 +372,8 @@
 				B051FF77234588AA0093C0DC /* Entities */,
 				B0A2D0A52346107F00391DD6 /* Login */,
 				B0BBFDAC23477D1000FDEFA4 /* Home */,
+				B090F0C7234F9164007CF06F /* OrderReview */,
+				B090F0C6234F7F11007CF06F /* Item */,
 				B0B205792333D45000694587 /* AppDelegate.swift */,
 				B0B2057B2333D45000694587 /* SceneDelegate.swift */,
 				B0B205822333D45200694587 /* Assets.xcassets */,
@@ -385,6 +431,7 @@
 				B0BEF920234D525C004455DC /* MenuCardTests.swift */,
 				B0BEF922234D52DA004455DC /* CategoryCardTests.swift */,
 				B0BEF924234D546D004455DC /* SliderViewTests.swift */,
+				B090F0CB234F9C87007CF06F /* IngredientCardTests.swift */,
 			);
 			path = MenuComponents;
 			sourceTree = "<group>";
@@ -572,18 +619,24 @@
 				B0BBFDBF2347D27100FDEFA4 /* AnyTransitionExtensions.swift in Sources */,
 				B0A7C40A234C32BE001555B7 /* FoodItem.swift in Sources */,
 				B0A2D09323460C0C00391DD6 /* Order.swift in Sources */,
+				B0F6E206234ED3EC00067B79 /* StepperView.swift in Sources */,
+				B090F0CA234F9225007CF06F /* OrderReviewView.swift in Sources */,
 				B0A7C404234C2CE3001555B7 /* SliderView.swift in Sources */,
 				B0843365234CB2A900DD325E /* CategoryCard.swift in Sources */,
 				B0C9B199234A8F3C00605D23 /* ResetPasswordView.swift in Sources */,
 				B04616312346B2680033087B /* LandingView.swift in Sources */,
 				B06B515223496CA40015E960 /* BackButton.swift in Sources */,
 				B04616342346BDA10033087B /* CustomTextField.swift in Sources */,
+				B0F6E203234E928200067B79 /* Ingredient.swift in Sources */,
 				B01E01582346568C00B021E3 /* MealPlan.swift in Sources */,
 				B046163B2346E5880033087B /* BasicButton.swift in Sources */,
 				B0BBFDC22348053500FDEFA4 /* LoginView.swift in Sources */,
+				B0F6E1F7234E370500067B79 /* ItemOverview.swift in Sources */,
 				B0BEF91C234D49B2004455DC /* Resturant.swift in Sources */,
 				B0BBFDB523479F2E00FDEFA4 /* UIViewControllerExtensions.swift in Sources */,
+				B0F6E200234E6E9A00067B79 /* SlideOverCard.swift in Sources */,
 				B0BBFDB223479EFD00FDEFA4 /* EnvironmentExtensions.swift in Sources */,
+				B090F0C5234F71EC007CF06F /* IngredientCard.swift in Sources */,
 				B08F32142348D3C2009A0E61 /* ColorExtensions.swift in Sources */,
 				B0843377234D088F00DD325E /* ResturantItemsView.swift in Sources */,
 				B0843374234CF21600DD325E /* NavigationHeaderView.swift in Sources */,
@@ -592,6 +645,7 @@
 				B0A2D09423460C0C00391DD6 /* OrderCard.swift in Sources */,
 				B0A7C407234C2D8F001555B7 /* MenuCard.swift in Sources */,
 				B046163E2346F3230033087B /* LoginViewModel.swift in Sources */,
+				B0F6E1FA234E496A00067B79 /* Cart.swift in Sources */,
 				B06B514E23495C960015E960 /* ForgotPasswordView.swift in Sources */,
 				B0A2D09523460C0C00391DD6 /* Customer.swift in Sources */,
 				B04616382346C6660033087B /* CircularButton.swift in Sources */,
@@ -622,6 +676,7 @@
 				B0C9B198234A8EF700605D23 /* ResetPasswordView.swift in Sources */,
 				B0CA762E23454B1F003E7FBD /* GraphAPI.swift in Sources */,
 				B0BBFDAE23477D3C00FDEFA4 /* HomeView.swift in Sources */,
+				B0F6E205234ED3EC00067B79 /* StepperView.swift in Sources */,
 				B0FC1347234B9469000039D2 /* UIDeviceExtensions.swift in Sources */,
 				B0A7C403234C2CE0001555B7 /* SliderView.swift in Sources */,
 				B0BBFDC12348053500FDEFA4 /* LoginView.swift in Sources */,
@@ -632,9 +687,13 @@
 				B051FF7E234588BD0093C0DC /* OrderCard.swift in Sources */,
 				B05B3FD82348253000547DD1 /* SecurityQuestionView.swift in Sources */,
 				B051FF7B234588AA0093C0DC /* Customer.swift in Sources */,
+				B090F0C9234F9225007CF06F /* OrderReviewView.swift in Sources */,
+				B0F6E1F6234E370500067B79 /* ItemOverview.swift in Sources */,
 				B046163D2346F3230033087B /* LoginViewModel.swift in Sources */,
 				B046163A2346E5880033087B /* BasicButton.swift in Sources */,
+				B0F6E1FF234E6E9A00067B79 /* SlideOverCard.swift in Sources */,
 				B0A7C406234C2CEC001555B7 /* MenuCard.swift in Sources */,
+				B090F0C4234F71EC007CF06F /* IngredientCard.swift in Sources */,
 				B0A2D0A723462BE700391DD6 /* StudentCard.swift in Sources */,
 				B06B5146234958990015E960 /* HeaderView.swift in Sources */,
 				B01E01572346565700B021E3 /* MealPlan.swift in Sources */,
@@ -643,9 +702,11 @@
 				B0BBFDB123479EFD00FDEFA4 /* EnvironmentExtensions.swift in Sources */,
 				B04616372346C6610033087B /* CircularButton.swift in Sources */,
 				B06B514B23495BD90015E960 /* ViewExtensions.swift in Sources */,
+				B0F6E1F9234E496A00067B79 /* Cart.swift in Sources */,
 				B0BBFDBE2347D27100FDEFA4 /* AnyTransitionExtensions.swift in Sources */,
 				B0B2057A2333D45000694587 /* AppDelegate.swift in Sources */,
 				B04616302346B1DE0033087B /* LandingView.swift in Sources */,
+				B0F6E202234E928200067B79 /* Ingredient.swift in Sources */,
 				B0B2057C2333D45000694587 /* SceneDelegate.swift in Sources */,
 				B0843364234CB2A500DD325E /* CategoryCard.swift in Sources */,
 				B06B515023496B070015E960 /* AnswerQuestionView.swift in Sources */,
@@ -663,6 +724,7 @@
 				B0BEF91E234D5069004455DC /* NavigationHeaderViewTests.swift in Sources */,
 				B01E0155234650EE00B021E3 /* StudentCardTests.swift in Sources */,
 				B06B51322349322F0015E960 /* BasicButtonTests.swift in Sources */,
+				B090F0CC234F9C87007CF06F /* IngredientCardTests.swift in Sources */,
 				B0BEF925234D546D004455DC /* SliderViewTests.swift in Sources */,
 				B06B5142234957680015E960 /* CustomUIHostingController.swift in Sources */,
 				B0BEF923234D52DA004455DC /* CategoryCardTests.swift in Sources */,

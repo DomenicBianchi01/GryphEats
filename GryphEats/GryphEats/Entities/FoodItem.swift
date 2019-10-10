@@ -10,12 +10,48 @@ import SwiftUI
 
 // MARK: - FoodItem
 
-struct FoodItem: Identifiable {
+class FoodItem: Identifiable, ObservableObject {
+    
+    // MARK: Lifecycle
+    
+    init(id: Int, name: String, imageName: String, ingredients: [Ingredient] = []) {
+        self.id = id
+        self.name = name
+        self.imageName = imageName
+        self.ingredients = ingredients
+    }
     
     // MARK: Internal
     
     let id: Int
     let name: String
-    let image: String
+    let imageName: String
+    let ingredients: [Ingredient]
+    let price: Double = 9.99
+    
+    var priceAsString: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        formatter.roundingMode = .up
+
+        return "$" + String(describing: formatter.string(from: NSNumber(value: price)) ?? "Unknown")
+    }
+}
+
+
+// MARK: - ActiveFoodItem
+
+class ActiveFoodItem: ObservableObject {
+    
+    // MARK: Lifecycle
+
+    init(item: FoodItem = FoodItem(id: 0, name: "", imageName: "")) {
+        self.item = item
+    }
+    
+    // MARK: Internal
+
+    @Published var item: FoodItem
 
 }
