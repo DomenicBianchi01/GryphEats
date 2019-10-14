@@ -29,7 +29,7 @@ struct ErrorView: View {
                 .foregroundColor(.secondary)
                 .font(.system(size: 12))
                 .padding([.horizontal, .bottom])
-            // See notes in `SlideOverCard` regarding issues with trying to get an almost-full width button
+            // See notes in `ItemOverview.swift` regarding issues with trying to get an almost-full width button
             Button(action: onTap) {
                 HStack {
                     Spacer()

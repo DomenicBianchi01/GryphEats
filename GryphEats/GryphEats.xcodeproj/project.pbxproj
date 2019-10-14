@@ -69,6 +69,7 @@
 		B090F0C9234F9225007CF06F /* OrderReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B090F0C8234F9225007CF06F /* OrderReviewView.swift */; };
 		B090F0CA234F9225007CF06F /* OrderReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B090F0C8234F9225007CF06F /* OrderReviewView.swift */; };
 		B090F0CC234F9C87007CF06F /* IngredientCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B090F0CB234F9C87007CF06F /* IngredientCardTests.swift */; };
+		B094DE792354DDAB0040B733 /* BageButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094DE782354DDAB0040B733 /* BageButtonTests.swift */; };
 		B0A2D09323460C0C00391DD6 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051FF78234588AA0093C0DC /* Order.swift */; };
 		B0A2D09423460C0C00391DD6 /* OrderCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051FF7D234588BD0093C0DC /* OrderCard.swift */; };
 		B0A2D09523460C0C00391DD6 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051FF79234588AA0093C0DC /* Customer.swift */; };
@@ -122,6 +123,8 @@
 		B0F6E203234E928200067B79 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F6E201234E928200067B79 /* Ingredient.swift */; };
 		B0F6E205234ED3EC00067B79 /* StepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F6E204234ED3EC00067B79 /* StepperView.swift */; };
 		B0F6E206234ED3EC00067B79 /* StepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F6E204234ED3EC00067B79 /* StepperView.swift */; };
+		B0FBB6E72354CEB800C42C86 /* BadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FBB6E62354CEB800C42C86 /* BadgeButton.swift */; };
+		B0FBB6E82354CEB800C42C86 /* BadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FBB6E62354CEB800C42C86 /* BadgeButton.swift */; };
 		B0FC1347234B9469000039D2 /* UIDeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC1346234B9469000039D2 /* UIDeviceExtensions.swift */; };
 		B0FC1348234B9559000039D2 /* UIDeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC1346234B9469000039D2 /* UIDeviceExtensions.swift */; };
 /* End PBXBuildFile section */
@@ -175,6 +178,7 @@
 		B090F0C3234F71EC007CF06F /* IngredientCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCard.swift; sourceTree = "<group>"; };
 		B090F0C8234F9225007CF06F /* OrderReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderReviewView.swift; sourceTree = "<group>"; };
 		B090F0CB234F9C87007CF06F /* IngredientCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCardTests.swift; sourceTree = "<group>"; };
+		B094DE782354DDAB0040B733 /* BageButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BageButtonTests.swift; sourceTree = "<group>"; };
 		B0A2D0A223460C0C00391DD6 /* GryphEatsSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GryphEatsSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A2D0A323460C0C00391DD6 /* GryphEatsSwiftUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GryphEatsSwiftUI-Info.plist"; path = "/Users/workspace/cis-4250-the-subway-squad/GryphEats/GryphEatsSwiftUI/GryphEatsSwiftUI-Info.plist"; sourceTree = "<absolute>"; };
 		B0A2D0A623462BE700391DD6 /* StudentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCard.swift; sourceTree = "<group>"; };
@@ -209,6 +213,7 @@
 		B0F6E1FE234E6E9A00067B79 /* SlideOverCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverCard.swift; sourceTree = "<group>"; };
 		B0F6E201234E928200067B79 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		B0F6E204234ED3EC00067B79 /* StepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperView.swift; sourceTree = "<group>"; };
+		B0FBB6E62354CEB800C42C86 /* BadgeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeButton.swift; sourceTree = "<group>"; };
 		B0FC1346234B9469000039D2 /* UIDeviceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -252,6 +257,7 @@
 				B06B514823495A2A0015E960 /* HeaderViewTests.swift */,
 				B0BEF91D234D5069004455DC /* NavigationHeaderViewTests.swift */,
 				B021DEA1234FF55A00DBF1AA /* ErrorViewTests.swift */,
+				B094DE782354DDAB0040B733 /* BageButtonTests.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -298,6 +304,7 @@
 				B04616322346BD5D0033087B /* CustomTextField.swift */,
 				B04616362346C6610033087B /* CircularButton.swift */,
 				B04616392346E5880033087B /* BasicButton.swift */,
+				B0FBB6E62354CEB800C42C86 /* BadgeButton.swift */,
 				B06B513D2349552B0015E960 /* BackButton.swift */,
 				B06B5145234958990015E960 /* HeaderView.swift */,
 				B0843372234CF20A00DD325E /* NavigationHeaderView.swift */,
@@ -675,6 +682,7 @@
 				B0843377234D088F00DD325E /* ResturantItemsView.swift in Sources */,
 				B0843374234CF21600DD325E /* NavigationHeaderView.swift in Sources */,
 				B021DE98234FCA2800DBF1AA /* ErrorView.swift in Sources */,
+				B0FBB6E82354CEB800C42C86 /* BadgeButton.swift in Sources */,
 				B0FC1348234B9559000039D2 /* UIDeviceExtensions.swift in Sources */,
 				B084336C234CECD600DD325E /* HomeViewModel.swift in Sources */,
 				B0A2D09423460C0C00391DD6 /* OrderCard.swift in Sources */,
@@ -724,6 +732,7 @@
 				B05B3FD82348253000547DD1 /* SecurityQuestionView.swift in Sources */,
 				B051FF7B234588AA0093C0DC /* Customer.swift in Sources */,
 				B090F0C9234F9225007CF06F /* OrderReviewView.swift in Sources */,
+				B0FBB6E72354CEB800C42C86 /* BadgeButton.swift in Sources */,
 				B0F6E1F6234E370500067B79 /* ItemOverview.swift in Sources */,
 				B021DE95234FBA6D00DBF1AA /* ApolloClient.swift in Sources */,
 				B046163D2346F3230033087B /* LoginViewModel.swift in Sources */,
@@ -771,6 +780,7 @@
 				B06B51402349564D0015E960 /* BackButtonTests.swift in Sources */,
 				B06B5136234934B80015E960 /* CustomTextFieldTests.swift in Sources */,
 				B0BEF921234D525C004455DC /* MenuCardTests.swift in Sources */,
+				B094DE792354DDAB0040B733 /* BageButtonTests.swift in Sources */,
 				B06B514923495A2A0015E960 /* HeaderViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

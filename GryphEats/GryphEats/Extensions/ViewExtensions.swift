@@ -8,7 +8,11 @@
 
 import SwiftUI
 
+// MARK: - View
+
 extension View {
+    
+    // MARK: Internal
     
     /// Display a simple alert. The `title` of the alert will be the description of the error. The `message` of the alert will be the recovery suggestion of the error.
     func errorAlert<E: LocalizedError>(error: E?, completion: @escaping () -> Void) -> some View {

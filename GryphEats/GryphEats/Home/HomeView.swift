@@ -76,11 +76,16 @@ struct HomeView: View {
     }
 
     private var trailingNavigationBarItems: some View {
-        return Button(action: { self.showOrderReview = true }) {
-            Image(systemName: "cart").padding(.all, 10)
-        }.foregroundColor(.black)
-            .sheet(isPresented: $showOrderReview) {
-                OrderReviewView()
+        let action = {
+            self.showOrderReview = true
+        }
+
+        return BadgeButton(badgeNumber: $cart.items.wrappedValue.count, action: action) {
+            Image(systemName: "cart")
+                .padding(.all, 10)
+                .foregroundColor(.black)
+        }.sheet(isPresented: $showOrderReview) {
+            OrderReviewView()
         }
     }
     
@@ -88,7 +93,6 @@ struct HomeView: View {
         activeItem.item = foodItem
         pushItemActive = true
     }
-    
 }
 
 struct HomeView_Previews: PreviewProvider {
