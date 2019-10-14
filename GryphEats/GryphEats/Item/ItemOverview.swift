@@ -12,8 +12,6 @@ import SwiftUI
 
 struct ItemOverview: View {
     
-    // MARK: Lifecycle
-    
     // MARK: Internal
     
     var body: some View {
@@ -41,8 +39,29 @@ struct ItemOverview: View {
                 Spacer()
             }.padding(.top, 30)
             
-            SlideOverCard {
+            SlideOverCard(handleText: "Pull Up To Customize") {
                 VStack(alignment: .leading) {
+                    Button(action: {
+                        self.cart.items.append(self.selectedItem.item)
+                        self.dismiss()
+                    }) {
+                        HStack {
+                            // SwiftUI Bug: Wrapping this button around a GeometryReader causes a lot of vertical
+                            //whitespace to randomly get added to the frame of the button (without any code that
+                            // modifies the frame). As a result, we have to use Spacers for now.
+                            Spacer()
+                            Text("Add To Order")
+                                .foregroundColor(.black)
+                                .bold()
+                            Spacer()
+                        }
+                    }.padding(.vertical)
+                        .background(Color.guelphYellow)
+                        .cornerRadius(5)
+                        .padding([.horizontal, .bottom], 30)
+                    // ^^^ SwiftUI Bug: Horizontal padding only gets added after applying the background. Vertical
+                    // padding only gets applied if it is added before the background. This is really weird...
+
                     Text("Ingredients").bold().padding(.leading)
                     
                     ScrollView {
@@ -95,6 +114,11 @@ struct ItemOverview: View {
     @EnvironmentObject private var cart: Cart
     @EnvironmentObject private var selectedItem: ActiveFoodItem
     
+    @Environment(\.presentationMode) private var presentationMode
+    
+    private func dismiss() {
+        presentationMode.wrappedValue.dismiss()
+    }
 }
 
 struct ItemOverview_Previews: PreviewProvider {

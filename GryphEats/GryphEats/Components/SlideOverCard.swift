@@ -10,13 +10,14 @@ import SwiftUI
 
 // Inspiration provided from https://www.mozzafiller.com/posts/swiftui-slide-over-card-like-maps-stocks
 
-// MARK: - SlideOverCar
+// MARK: - SlideOverCard
 
-struct SlideOverCard<V: View> : View {
+struct SlideOverCard<V: View>: View {
     
     // MARK: Lifecycle
     
-    init(content: @escaping () -> V) {
+    init(handleText: String, content: @escaping () -> V) {
+        self.handleText = handleText
         self.content = content
     }
     
@@ -28,23 +29,7 @@ struct SlideOverCard<V: View> : View {
         }.onEnded(onDragEnded)
         
         return VStack {
-            Handle()
-            Button(action: {}) {
-                HStack {
-                    // SwiftUI Bug: Wrapping this button around a GeometryReader causes a lot of vertical whitespace to
-                    // randomly get added to the frame of the button (without any code that modifies the frame). As a
-                    // result, we have to use Spacers for now.
-                    Spacer()
-                    Text("Add To Order").foregroundColor(.black).bold()
-                    Spacer()
-                }
-            }.padding(.vertical)
-                .background(Color.guelphYellow)
-                .cornerRadius(5)
-                .padding([.horizontal, .bottom], 30)
-            // ^^^ SwiftUI Bug: Horizontal padding only gets added after applying the background. Vertical padding only
-            // gets applied if it is added before the background. This is really weird...
-            
+            Handle(text: handleText)
             content()
         }.frame(height: UIScreen.main.bounds.height)
             .background(Color.white)
@@ -60,6 +45,8 @@ struct SlideOverCard<V: View> : View {
     @State private var position: CGFloat = UIScreen.main.bounds.height - 190
     
     private let content: () -> V
+    private let handleText: String
+
     private let minimumOffset: CGFloat = 190
     private let maximumHeight: CGFloat = 100
     
@@ -116,6 +103,12 @@ private enum DragState {
 
 private struct Handle: View {
     
+    // MARK: Lifecycle
+    
+    init(text: String) {
+        self.text = text
+    }
+    
     // MARK: Internal
     
     var body: some View {
@@ -123,25 +116,24 @@ private struct Handle: View {
             RoundedRectangle(cornerRadius: handleThickness / 2.0)
                 .frame(width: 40, height: handleThickness)
                 .padding([.horizontal, .top])
-                .foregroundColor(.secondary)
-            Text("Pull Up To Customize")
+            Text(text)
                 .font(.caption)
                 .padding(.bottom)
-                .foregroundColor(.secondary)
-        }
+        }.foregroundColor(.secondary)
     }
     
     // MARK: Private
     
     private let handleThickness: CGFloat = 5
+    private let text: String
     
 }
 
-// MARK: SlideOverCard_Previews
+// MARK: - SlideOverCard_Previews
 
 struct SlideOverCard_Previews: PreviewProvider {
     static var previews: some View {
-        SlideOverCard {
+        SlideOverCard(handleText: "Pull Up To Customize") {
             Text("Test")
         }.background(Color.gray)
     }
