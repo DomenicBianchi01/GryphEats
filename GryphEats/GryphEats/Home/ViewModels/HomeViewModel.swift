@@ -16,7 +16,7 @@ class HomeViewModel: ObservableObject {
     
     enum LoadingState {
         case loading
-        case loaded([Resturant])
+        case loaded([Restaurant])
         case error
     }
     
@@ -42,18 +42,22 @@ class HomeViewModel: ObservableObject {
         FoodItem(id: 4, name: "Hamburger 5", imageName: "hamburger")
     ]
     
-    func fetchResturants() {
+    func fetchRestaurants() {
         self.loadingState = .loading
         
-        Apollo.shared.fetch(query: ResturantsQuery()) { result in
+        Apollo.shared.fetch(query: RestaurantsQuery()) { result in
             switch result {
-            case .success:
-                //TODO: Use real data from `result`
-                self.loadingState = .loaded([
-                    Resturant(id: 0, name: "100 Mile Grill", foodItems: self.foodItems),
-                    Resturant(id: 1, name: "Mom's Kitchen", foodItems: self.foodItems),
-                    Resturant(id: 2, name: "Nature's Best", foodItems: self.foodItems)
-                ])
+            case .success(let data):
+                var restaurants: [Restaurant] = []
+
+                for restaurant in data.restaurants.compactMap({ $0 }) {
+                    restaurants.append(Restaurant(
+                        id: restaurant.restaurantid,
+                        name: restaurant.displayname,
+                        foodItems: self.foodItems))
+                }
+
+                self.loadingState = .loaded(restaurants)
             case .failure:
                 self.loadingState = .error
             }

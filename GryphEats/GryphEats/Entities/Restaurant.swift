@@ -1,5 +1,5 @@
 //
-//  Resturant.swift
+//  Restaurant.swift
 //  GryphEats
 //
 //  Created by Domenic Bianchi on 2019-10-08.
@@ -8,13 +8,13 @@
 
 import SwiftUI
 
-// MARK: Resturant
+// MARK: Restaurant
 
-struct Resturant: Identifiable {
+struct Restaurant: Identifiable {
     
     // MARK: Internal
     
-    let id: Int
+    let id: String
     let name: String
     let foodItems: [FoodItem]
 

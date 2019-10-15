@@ -22,7 +22,7 @@ struct HomeView: View {
         {
             self.content
         }.onAppear {
-            self.viewModel.fetchResturants()
+            self.viewModel.fetchRestaurants()
         }
     }
     
@@ -44,7 +44,7 @@ struct HomeView: View {
                 ActivityIndicator(style: .large)
                 Spacer()
             })
-        case .loaded(let resturants):
+        case .loaded(let restaurants):
             return AnyView(VStack(alignment: .leading, spacing: 0) {
                 SliderView(type: .categories(self.viewModel.categories)) { index in
                     print("Tapped category card \(index)")
@@ -54,9 +54,9 @@ struct HomeView: View {
                 
                 ScrollView {
                     VStack(alignment: .leading) {
-                        ForEach(resturants) { resturant in
-                            ResturantItemsView(resturant: resturant) { index in
-                                self.presentItemDetails(for: resturant.foodItems[index])
+                        ForEach(restaurants) { restaurant in
+                            RestaurantItemsView(restaurant: restaurant) { index in
+                                self.presentItemDetails(for: restaurant.foodItems[index])
                             }
                         }
                     }
@@ -70,7 +70,7 @@ struct HomeView: View {
                 .navigationBarItems(trailing: self.trailingNavigationBarItems))
         case .error:
             return AnyView(ErrorView(infoText: "Whoops! We could not fetch the menus.", buttonText: "Try Again") {
-                self.viewModel.fetchResturants()
+                self.viewModel.fetchRestaurants()
             })
         }
     }

@@ -1,5 +1,5 @@
 //
-//  ResturantItemsViewTests.swift
+//  RestaurantItemsViewTests.swift
 //  GryphEatsTests
 //
 //  Created by Domenic Bianchi on 2019-10-08.
@@ -12,14 +12,14 @@ import XCTest
 
 @testable import GryphEats
 
-class ResturantItemsViewTests: XCTestCase {
+class RestaurantItemsViewTests: XCTestCase {
     
     let record = false
     
-    func testResturantItemsView() {
-        let view = ResturantItemsView(
-            resturant: Resturant(
-                id: 0,
+    func testRestaurantItemsView() {
+        let view = RestaurantItemsView(
+            restaurant: Restaurant(
+                id: "0",
                 name: "100 Mile Grill",
                 foodItems: [
                     FoodItem(id: 0, name: "Hamburger 1", imageName: "hamburger"),

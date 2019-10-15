@@ -2,18 +2,18 @@
 
 import Apollo
 
-public final class ResturantsQuery: GraphQLQuery {
-  /// query Resturants {
-  ///   foods {
+public final class RestaurantsQuery: GraphQLQuery {
+  /// query Restaurants {
+  ///   restaurants {
   ///     __typename
-  ///     foodid
+  ///     restaurantid
   ///     displayname
   ///   }
   /// }
   public let operationDefinition =
-    "query Resturants { foods { __typename foodid displayname } }"
+    "query Restaurants { restaurants { __typename restaurantid displayname } }"
 
-  public let operationName = "Resturants"
+  public let operationName = "Restaurants"
 
   public init() {
   }
@@ -22,7 +22,7 @@ public final class ResturantsQuery: GraphQLQuery {
     public static let possibleTypes = ["Query"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("foods", type: .nonNull(.list(.nonNull(.object(Food.selections))))),
+      GraphQLField("restaurants", type: .nonNull(.list(.object(Restaurant.selections)))),
     ]
 
     public private(set) var resultMap: ResultMap
@@ -31,26 +31,26 @@ public final class ResturantsQuery: GraphQLQuery {
       self.resultMap = unsafeResultMap
     }
 
-    public init(foods: [Food]) {
-      self.init(unsafeResultMap: ["__typename": "Query", "foods": foods.map { (value: Food) -> ResultMap in value.resultMap }])
+    public init(restaurants: [Restaurant?]) {
+      self.init(unsafeResultMap: ["__typename": "Query", "restaurants": restaurants.map { (value: Restaurant?) -> ResultMap? in value.flatMap { (value: Restaurant) -> ResultMap in value.resultMap } }])
     }
 
-    public var foods: [Food] {
+    public var restaurants: [Restaurant?] {
       get {
-        return (resultMap["foods"] as! [ResultMap]).map { (value: ResultMap) -> Food in Food(unsafeResultMap: value) }
+        return (resultMap["restaurants"] as! [ResultMap?]).map { (value: ResultMap?) -> Restaurant? in value.flatMap { (value: ResultMap) -> Restaurant in Restaurant(unsafeResultMap: value) } }
       }
       set {
-        resultMap.updateValue(newValue.map { (value: Food) -> ResultMap in value.resultMap }, forKey: "foods")
+        resultMap.updateValue(newValue.map { (value: Restaurant?) -> ResultMap? in value.flatMap { (value: Restaurant) -> ResultMap in value.resultMap } }, forKey: "restaurants")
       }
     }
 
-    public struct Food: GraphQLSelectionSet {
-      public static let possibleTypes = ["Food"]
+    public struct Restaurant: GraphQLSelectionSet {
+      public static let possibleTypes = ["Restaurant"]
 
       public static let selections: [GraphQLSelection] = [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-        GraphQLField("foodid", type: .nonNull(.scalar(GraphQLID.self))),
-        GraphQLField("displayname", type: .scalar(String.self)),
+        GraphQLField("restaurantid", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("displayname", type: .nonNull(.scalar(String.self))),
       ]
 
       public private(set) var resultMap: ResultMap
@@ -59,8 +59,8 @@ public final class ResturantsQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(foodid: GraphQLID, displayname: String? = nil) {
-        self.init(unsafeResultMap: ["__typename": "Food", "foodid": foodid, "displayname": displayname])
+      public init(restaurantid: GraphQLID, displayname: String) {
+        self.init(unsafeResultMap: ["__typename": "Restaurant", "restaurantid": restaurantid, "displayname": displayname])
       }
 
       public var __typename: String {
@@ -72,18 +72,18 @@ public final class ResturantsQuery: GraphQLQuery {
         }
       }
 
-      public var foodid: GraphQLID {
+      public var restaurantid: GraphQLID {
         get {
-          return resultMap["foodid"]! as! GraphQLID
+          return resultMap["restaurantid"]! as! GraphQLID
         }
         set {
-          resultMap.updateValue(newValue, forKey: "foodid")
+          resultMap.updateValue(newValue, forKey: "restaurantid")
         }
       }
 
-      public var displayname: String? {
+      public var displayname: String {
         get {
-          return resultMap["displayname"] as? String
+          return resultMap["displayname"]! as! String
         }
         set {
           resultMap.updateValue(newValue, forKey: "displayname")
