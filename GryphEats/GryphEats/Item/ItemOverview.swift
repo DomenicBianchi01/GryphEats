@@ -32,7 +32,7 @@ struct ItemOverview: View {
                         .foregroundColor(.white)
                         .font(.largeTitle)
                         .bold()
-                    Text(self.selectedItem.item.priceAsString)
+                    Text(self.selectedItem.item.price.asDollarString)
                         .foregroundColor(.guelphYellow)
                         .fontWeight(.semibold)
                 }.padding(.leading, 20)
@@ -41,27 +41,11 @@ struct ItemOverview: View {
             
             SlideOverCard(handleText: "Pull Up To Customize") {
                 VStack(alignment: .leading) {
-                    Button(action: {
+                    ActionButton(text: "Add To Order") {
                         self.cart.items.append(self.selectedItem.item)
                         self.dismiss()
-                    }) {
-                        HStack {
-                            // SwiftUI Bug: Wrapping this button around a GeometryReader causes a lot of vertical
-                            //whitespace to randomly get added to the frame of the button (without any code that
-                            // modifies the frame). As a result, we have to use Spacers for now.
-                            Spacer()
-                            Text("Add To Order")
-                                .foregroundColor(.black)
-                                .bold()
-                            Spacer()
-                        }
-                    }.padding(.vertical)
-                        .background(Color.guelphYellow)
-                        .cornerRadius(5)
-                        .padding([.horizontal, .bottom], 30)
-                    // ^^^ SwiftUI Bug: Horizontal padding only gets added after applying the background. Vertical
-                    // padding only gets applied if it is added before the background. This is really weird...
-
+                    }.padding(.bottom, 30)
+                    
                     Text("Ingredients").bold().padding(.leading)
                     
                     ScrollView {

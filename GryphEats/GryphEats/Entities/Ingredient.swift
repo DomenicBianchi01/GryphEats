@@ -10,7 +10,7 @@ import SwiftUI
 
 // MARK: Ingredient
 
-struct Ingredient: Identifiable {
+struct Ingredient: Identifiable, Equatable {
     
     // MARK: Internal
     

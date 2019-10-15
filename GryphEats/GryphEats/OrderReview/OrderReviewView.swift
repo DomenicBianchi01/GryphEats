@@ -2,7 +2,7 @@
 //  OrderReviewView.swift
 //  GryphEats
 //
-//  Created by Domenic Bianchi on 2019-10-10.
+//  Created by Domenic Bianchi on 2019-10-15.
 //  Copyright © 2019 The Subway Squad. All rights reserved.
 //
 
@@ -11,18 +11,29 @@ import SwiftUI
 // MARK: - OrderReviewView
 
 struct OrderReviewView: View {
+
+    // MARK: Internal
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            if state.state == .summary {
+                OrderSummaryView().transition(.leftSlide)
+            } else if state.state == .checkout {
+                CheckoutView().transition(.rightSlide)
+            }
+        }.background(Rectangle()
+            .fill(Color.lightGray)
+            .edgesIgnoringSafeArea(.all))
     }
-    
+
     // MARK: Private
-    
-    @EnvironmentObject private var cart: Cart
+
+    @EnvironmentObject private var state: OrderReviewState
 
 }
 
 struct OrderReviewView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderReviewView().environmentObject(Cart())
+        OrderReviewView().environmentObject(OrderReviewState())
     }
 }
