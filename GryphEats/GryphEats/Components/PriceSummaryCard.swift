@@ -98,11 +98,11 @@ struct PriceSummaryCard: View {
     private enum DiscountType: String {
         case onCampus = "With On-Campus Meal Plan (30% discount)"
         case onCampusTax = "With On-Campus Meal Plan (No Tax)"
-        case onCampusTotal = "With On-Campus Meal Plan (43% discount)"
+        case onCampusTotal = "With On-Campus Meal Plan"
         
         case offCampus = "With Ultra Meal Plan (10% discount)"
         case offCampusTax = "With Ultra Meal Plan (5% tax discount)"
-        case offCampusTotal = "With Ultra Meal Plan (15% discount)"
+        case offCampusTotal = "With Ultra Meal Plan"
     }
 }
 

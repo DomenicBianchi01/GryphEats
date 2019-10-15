@@ -1,5 +1,5 @@
 //
-//  ResturantItemsView.swift
+//  RestaurantItemsView.swift
 //  GryphEats
 //
 //  Created by Domenic Bianchi on 2019-10-08.
@@ -8,14 +8,14 @@
 
 import SwiftUI
 
-// MARK: - ResturantItemsView
+// MARK: - RestaurantItemsView
 
-struct ResturantItemsView: View {
+struct RestaurantItemsView: View {
     
     // MARK: Lifecycle
     
-    init(resturant: Resturant, onTap: @escaping (Int) -> Void) {
-        self.resturant = resturant
+    init(restaurant: Restaurant, onTap: @escaping (Int) -> Void) {
+        self.restaurant = restaurant
         self.onTap = onTap
     }
     
@@ -24,7 +24,7 @@ struct ResturantItemsView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text(resturant.name)
+                Text(restaurant.name)
                     .font(.title)
                     .fontWeight(.semibold)
                     .padding(.top, 10)
@@ -44,7 +44,7 @@ struct ResturantItemsView: View {
                     .padding(.top, 10)
             }
             
-            SliderView(type: .foodItems(resturant.foodItems)) { index in
+            SliderView(type: .foodItems(restaurant.foodItems)) { index in
                 self.onTap(index)
             }
         }
@@ -53,15 +53,15 @@ struct ResturantItemsView: View {
     // MARK: Private
     
     private let onTap: (Int) -> Void
-    private let resturant: Resturant
+    private let restaurant: Restaurant
     
 }
 
-struct ResturantItemsView_Previews: PreviewProvider {
+struct RestaurantItemsView_Previews: PreviewProvider {
     static var previews: some View {
-        ResturantItemsView(
-            resturant: Resturant(
-                id: 0,
+        RestaurantItemsView(
+            restaurant: Restaurant(
+                id: "0",
                 name: "100 Mile Grill",
                 foodItems: [
                     FoodItem(id: 0, name: "Hamburger 1", imageName: "hamburger"),
