@@ -29,19 +29,7 @@ struct ErrorView: View {
                 .foregroundColor(.secondary)
                 .font(.system(size: 12))
                 .padding([.horizontal, .bottom])
-            // See notes in `ItemOverview.swift` regarding issues with trying to get an almost-full width button
-            Button(action: onTap) {
-                HStack {
-                    Spacer()
-                    Text(buttonText)
-                        .foregroundColor(.black)
-                        .font(.system(size: 14, weight: .semibold))
-                    Spacer()
-                }
-            }.padding(.vertical, 10)
-                .background(Color.guelphYellow)
-                .cornerRadius(5)
-                .padding(.horizontal)
+            ActionButton(text: buttonText, action: onTap)
             Spacer()
         }
     }

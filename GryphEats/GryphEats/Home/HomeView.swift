@@ -74,18 +74,20 @@ struct HomeView: View {
             })
         }
     }
-
+    
     private var trailingNavigationBarItems: some View {
         let action = {
             self.showOrderReview = true
         }
-
+        
         return BadgeButton(badgeNumber: $cart.items.wrappedValue.count, action: action) {
             Image(systemName: "cart")
                 .padding(.all, 10)
                 .foregroundColor(.black)
         }.sheet(isPresented: $showOrderReview) {
             OrderReviewView()
+                .environmentObject(self.cart)
+                .environmentObject(OrderReviewState())
         }
     }
     

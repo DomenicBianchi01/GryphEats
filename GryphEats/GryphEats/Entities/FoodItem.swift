@@ -10,7 +10,7 @@ import SwiftUI
 
 // MARK: - FoodItem
 
-class FoodItem: Identifiable, ObservableObject {
+struct FoodItem: Identifiable, Equatable {
     
     // MARK: Lifecycle
     
@@ -29,29 +29,20 @@ class FoodItem: Identifiable, ObservableObject {
     let ingredients: [Ingredient]
     let price: Double = 9.99
     
-    var priceAsString: String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 2
-        formatter.roundingMode = .up
-
-        return "$" + String(describing: formatter.string(from: NSNumber(value: price)) ?? "Unknown")
-    }
 }
-
 
 // MARK: - ActiveFoodItem
 
 class ActiveFoodItem: ObservableObject {
     
     // MARK: Lifecycle
-
+    
     init(item: FoodItem = FoodItem(id: 0, name: "", imageName: "")) {
         self.item = item
     }
     
     // MARK: Internal
-
+    
     @Published var item: FoodItem
-
+    
 }

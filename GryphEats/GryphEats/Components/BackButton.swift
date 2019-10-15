@@ -14,7 +14,8 @@ struct BackButton: View {
     
     // MARK: Lifecycle
     
-    init(action: @escaping () -> Void) {
+    init(color: Color = .white, action: @escaping () -> Void) {
+        self.color = color
         self.action = action
     }
     
@@ -26,7 +27,7 @@ struct BackButton: View {
                 HStack {
                     Image(systemName: "chevron.left")
                     Text("Back")
-                }.foregroundColor(.white)
+                }.foregroundColor(color)
                     .padding()
             }
             Spacer()
@@ -36,6 +37,7 @@ struct BackButton: View {
     // MARK: Private
     
     private let action: () -> Void
+    private let color: Color
     
 }
 
