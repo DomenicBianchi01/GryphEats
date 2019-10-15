@@ -19,7 +19,7 @@ const typeDefs = gql`
 
     type Restaurant {
         restaurantid: ID!
-        displayname: String
+        displayname: String!
         phonenumber: String
         openingtime: String
         closingtime: String
