@@ -5,6 +5,9 @@ module.exports = {
         foods: async (_, args, { dataSources }, info) => dataSources.gryphAPI.getAllFood(),
         restaurants: async (_, args, { dataSources }, info) => dataSources.gryphAPI.getAllRestaurants(),
         users: async (_, args, { dataSources }, info) => dataSources.gryphAPI.getAllUsers(),
+    },
+    Mutation: {
+        completeOrder: async (_, { orderid }, { dataSources }) => dataSources.gryphAPI.completeOrder({ orderid })
     }
 };
 

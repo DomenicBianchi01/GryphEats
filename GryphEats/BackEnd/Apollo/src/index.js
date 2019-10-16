@@ -13,7 +13,7 @@ const dataSources = () => ({
 //called everytime something calls Graph
 const context = async ({ req }) => {
     // simple auth check on every request
-    console.log(req.headers);
+    // console.log(req.headers);
     return "IDK";
 }
 
@@ -27,8 +27,9 @@ const server = new ApolloServer({
     dataSources,
     // context: { gryphAPI }
 });
+const port = 4000;
 
 // The `listen` method launches a web server.
-server.listen().then(({ url }) => {
+server.listen({ port }).then(({ url }) => {
     console.log(`Server ready at ${url}`);
-});
+}).catch(console.log("Already Running"));

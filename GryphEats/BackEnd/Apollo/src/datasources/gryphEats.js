@@ -26,7 +26,7 @@ class GryphAPIS extends DataSource {
             return result;
         } catch (e) {
             console.log(e.message);
-            return -1;
+            return "getAllFood Failed: " + e.message;
         }
     }
 
@@ -40,7 +40,7 @@ class GryphAPIS extends DataSource {
             return result;
         } catch (e) {
             console.log(e.message);
-            return -1;
+            return "getAllRestaurants Failed: " + e.message;
         }
     }
 
@@ -53,9 +53,43 @@ class GryphAPIS extends DataSource {
             return result;
         } catch (e) {
             console.log(e.message);
-            return -1;
+            return "getAllUsers Failed: " + e.message;
         }
     }
+
+    /**
+     * complete order restaurent calls
+     * Calls markorderdone and send notification
+     */
+    async completeOrder({ orderid }) {
+        try {
+            console.log(orderid);
+            // return "orderid:" + orderid;
+            return {
+                success: true,
+                message: 'Order Completed',
+            };
+        } catch (e) {
+            console.log(e.message);
+            return {
+                success: false,
+                message: "completeOrder Failed: " + e.message,
+            };
+        }
+    }
+
+    /*
+    * marks an order with the current time
+    */
+    async markOrderDone() {
+        try {
+
+        } catch (e) {
+            console.log(e.message);
+            return "markOrderDone Failed: " + e.message;
+        }
+    }
+
 }
 
 module.exports = GryphAPIS;
