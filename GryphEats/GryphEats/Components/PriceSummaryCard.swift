@@ -12,6 +12,32 @@ import SwiftUI
 
 struct PriceSummaryCard: View {
     
+    // MARK: DisplayMode
+    
+    enum DisplayMode {
+        /// Use this to show a summary of the subtotal, tax, and total of the cart, as well as potential discounts by using your student card meal plan.
+        case full
+        /// Use this to show a summary of the subtotal, tax, and total of the cart if using an on campus meal plan. This will also show a "Pay" button.
+        case onCampusMealPlan
+        /// Use this to show a summary of the subtotal, tax, and total of the cart if using an ultra meal plan. This will also show a "Pay" button.
+        case ultraMealPlan
+    }
+    
+    // MARK: PaymentAction
+    
+    enum PaymentAction {
+        case studentCard
+        case credit
+        case confirmPayment
+    }
+    
+    // MARK: Lifecycle
+    
+    init(displayMode: DisplayMode = .full, action: @escaping (PaymentAction) -> Void) {
+        self.displayMode = displayMode
+        self.action = action
+    }
+    
     // MARK: Internal
     
     var body: some View {
@@ -27,9 +53,14 @@ struct PriceSummaryCard: View {
                 .padding(.bottom, 5)
                 .padding(.horizontal)
             
-            discountRow(type: .onCampus, amount: (subtotal - cart.subtotal(for: .onCampus)).asDollarString)
-            discountRow(type: .offCampus, amount: (subtotal - cart.subtotal(for: .offCampus)).asDollarString)
-
+            if displayMode == .full || displayMode == .onCampusMealPlan {
+                discountRow(type: .onCampus, amount: (subtotal - cart.subtotal(for: .onCampus)).asDollarString)
+            }
+            
+            if displayMode == .full || displayMode == .ultraMealPlan {
+                discountRow(type: .offCampus, amount: (subtotal - cart.subtotal(for: .offCampus)).asDollarString)
+            }
+            
             HStack {
                 Text("Tax (13% HST)").bold()
                 Spacer()
@@ -37,8 +68,13 @@ struct PriceSummaryCard: View {
             }.padding(.vertical, 5)
                 .padding(.horizontal)
             
-            discountRow(type: .onCampusTax, amount: (tax - cart.tax(for: .onCampus)).asDollarString)
-            discountRow(type: .offCampusTax, amount: (tax - cart.tax(for: .offCampus)).asDollarString)
+            if displayMode == .full || displayMode == .onCampusMealPlan {
+                discountRow(type: .onCampusTax, amount: (tax - cart.tax(for: .onCampus)).asDollarString)
+            }
+            
+            if displayMode == .full || displayMode == .ultraMealPlan {
+                discountRow(type: .offCampusTax, amount: (tax - cart.tax(for: .offCampus)).asDollarString)
+            }
             
             HStack {
                 Text("Total").bold()
@@ -48,25 +84,50 @@ struct PriceSummaryCard: View {
                 .padding(.horizontal)
                 .foregroundColor(.guelphRed)
             
-            // SwiftUI Bug: Had to wrap these rows in a Group for some reason
-            Group {
+            if displayMode == .full || displayMode == .onCampusMealPlan {
                 discountRow(type: .onCampusTotal, amount: cart.total(for: .onCampus).asDollarString)
-                discountRow(type: .offCampusTotal, amount: cart.total(for: .offCampus).asDollarString)
-                    .padding(.bottom, 10)
             }
             
-            Text("Meal Plan discounts are only valid if you pay with your student card.")
-                .multilineTextAlignment(.center)
-                .font(.caption)
-                .foregroundColor(.secondary)
-                .padding(.horizontal)
+            if displayMode == .full || displayMode == .ultraMealPlan {
+                discountRow(type: .offCampusTotal, amount: cart.total(for: .offCampus).asDollarString)
+            }
             
-            ActionButton(text: "Continue") {
-                withAnimation {
-                    //self.state.state = .checkout
-                }
-            }.padding(.top, 10)
-            .padding(.bottom, 20)
+            if displayMode == .full {
+                Text("Meal Plan discounts are only valid if you pay with your student card.")
+                    .multilineTextAlignment(.center)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                    .padding(.horizontal)
+                    .padding(.top, 10)
+                
+                HStack {
+                    Spacer()
+                    ApplePayButton().frame(height: 47)
+                    Spacer()
+                }.padding(.horizontal, 10)
+                    .cornerRadius(5)
+                
+                ActionButton(text: "Checkout with Student Card", backgroundColor: .guelphRed, foregroundColor: .white) {
+                    withAnimation {
+                        self.action(.studentCard)
+                    }
+                }.padding(.top, 10)
+                
+                ActionButton(text: "Other Checkout Options") {
+                    withAnimation {
+                        self.action(.credit)
+                    }
+                }.padding(.top, 10)
+                    .padding(.bottom, 20)
+            } else if displayMode == .onCampusMealPlan || displayMode == .ultraMealPlan {
+                ActionButton(
+                    text: "Pay \(cart.total(for: displayMode == .onCampusMealPlan ? .onCampus : .offCampus).asDollarString)",
+                    backgroundColor: .guelphRed,
+                    foregroundColor: .white)
+                {
+                    self.action(.confirmPayment)
+                }.padding(.vertical)
+            }
         }.font(.system(size: 14))
             .background(Color.white)
             .cornerRadius(5)
@@ -77,6 +138,9 @@ struct PriceSummaryCard: View {
     // MARK: Private
     
     @EnvironmentObject private var cart: Cart
+    
+    private let action: (PaymentAction) -> Void
+    private let displayMode: DisplayMode
     
     private func discountRow(type: DiscountType, amount: String) -> some View {
         HStack {
@@ -108,6 +172,6 @@ struct PriceSummaryCard: View {
 
 struct PriceSummaryCard_Previews: PreviewProvider {
     static var previews: some View {
-        PriceSummaryCard().environmentObject(Cart())
+        PriceSummaryCard(displayMode: .onCampusMealPlan, action: { _ in }).environmentObject(Cart())
     }
 }

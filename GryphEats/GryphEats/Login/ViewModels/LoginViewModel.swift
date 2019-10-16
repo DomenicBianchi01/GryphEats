@@ -6,7 +6,7 @@
 //  Copyright © 2019 The Subway Squad. All rights reserved.
 //
 
-import SwiftUI
+import Foundation
 
 // MARK: - LoginViewModel
 

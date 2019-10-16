@@ -17,7 +17,8 @@ class StudentCardTests: XCTestCase {
     let record = false
 
     func testStudentCard() {
-        let card = StudentCard(customer: Customer(name: "Billy Bob", mealPlan: MealPlan(currentBalance: 5000, accountNumber: "1234")))
+        let card = StudentCard(name: "Billy Bob", studentNumber: "1234", balance: 5000)
+    
         assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
     }
 }

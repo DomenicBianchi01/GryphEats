@@ -14,9 +14,28 @@ class OrderReviewState: ObservableObject {
 
     // MARK: State
 
-    enum State {
+    enum State: Equatable {
         case summary
-        case checkout
+        case checkout(paymentOption: PaymentOption)
+        case confirmed
+        
+        /// DO NOT USE THIS. This case only exists to work around SwiftUI bugs.
+        case checkoutSimplified
+        
+        static func == (lhs: State, rhs: State) -> Bool {
+            switch (lhs, rhs) {
+            case (.summary, .summary):
+                return true
+            case (.confirmed, .confirmed):
+                return true
+            case (.checkoutSimplified, .checkout):
+                return true
+            case (.checkout, .checkoutSimplified):
+                return true
+            default:
+                return false
+            }
+        }
     }
 
     // MARK: Internal

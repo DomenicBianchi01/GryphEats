@@ -14,8 +14,11 @@ struct StudentCard: View {
     
     // MARK: Lifecycle
     
-    init(customer: Customer) {
-        self.customer = customer
+    init(name: String, studentNumber: String, balance: Double, tapAction: (() -> Void)? = nil) {
+        self.name = name
+        self.studentNumber = studentNumber
+        self.balance = balance
+        self.tapAction = tapAction
     }
     
     // MARK: Internal
@@ -47,37 +50,33 @@ struct StudentCard: View {
             VStack(alignment: .trailing) {
                 Spacer()
                 Group {
-                    Text("$" + String(format: "%.2f", customer.mealPlan?.currentBalance ?? 0))
+                    Text("$" + String(format: "%.2f", balance))
                         .font(.largeTitle).bold()
                         .multilineTextAlignment(.trailing)
                         .padding(.trailing, 30)
-                    Text(customer.name + studentNumber)
+                    Text(name + "\n" + studentNumber)
                         .multilineTextAlignment(.trailing)
                         .padding([.trailing, .bottom], 30)
                 }.foregroundColor(.white)
             }
         }.frame(maxWidth: 400, maxHeight: 250)
             .aspectRatio(contentMode: .fit)
+            .onTapGesture {
+                self.tapAction?()
+        }
     }
     
     // MARK: Private
     
-    private let customer: Customer
-    
-    private var studentNumber: String {
-        guard let studentNumber = customer.mealPlan?.accountNumber else {
-            return ""
-        }
-        
-        return "\n\(studentNumber)"
-    }
+    private let name: String
+    private let studentNumber: String
+    private let balance: Double
+    private let tapAction: (() -> Void)?
+
 }
 
 struct StudentCard_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
-            StudentCard(customer: Customer(name: "Domenic Bianchi", mealPlan: MealPlan(currentBalance: 5000, accountNumber: "0921557")))
-            StudentCard(customer: Customer(name: "Domenic Bianchi"))
-        }
+        StudentCard(name: "Domenic Bianchi", studentNumber: "0921557", balance: 5000)
     }
 }
