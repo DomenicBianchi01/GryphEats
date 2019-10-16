@@ -14,8 +14,15 @@ struct ActionButton: View {
     
     // MARK: Lifecycle
     
-    init(text: String, action: @escaping () -> Void) {
+    init(
+        text: String,
+        backgroundColor: Color = .guelphYellow,
+        foregroundColor: Color = .black,
+        action: @escaping () -> Void)
+    {
         self.text = text
+        self.backgroundColor = backgroundColor
+        self.foregroundColor = foregroundColor
         self.action = action
     }
     
@@ -29,12 +36,12 @@ struct ActionButton: View {
             HStack {
                 Spacer()
                 Text(text)
-                    .foregroundColor(.black)
+                    .foregroundColor(foregroundColor)
                     .font(.system(size: 14, weight: .semibold))
                 Spacer()
             }
-        }.padding(.vertical)
-            .background(Color.guelphYellow)
+        }.padding(.vertical, 15)
+            .background(backgroundColor)
             .cornerRadius(5)
             .padding(.horizontal)
         // ^^^ SwiftUI Bug: Horizontal padding only gets added after applying the background. Vertical
@@ -44,6 +51,8 @@ struct ActionButton: View {
     // MARK: Private
     
     private let text: String
+    private let backgroundColor: Color
+    private let foregroundColor: Color
     private let action: () -> Void
 
 }

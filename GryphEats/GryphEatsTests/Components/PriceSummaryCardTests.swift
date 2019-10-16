@@ -16,8 +16,28 @@ class PriceSummaryCardTests: XCTestCase {
     
     let record = false
     
-    func testPriceSummaryCard() {
-        let card = PriceSummaryCard().environmentObject(Cart(
+    func testPriceSummaryCard_Full() {
+        let card = PriceSummaryCard(action: { _ in }).environmentObject(Cart(
+            items: [
+                FoodItem(id: 0, name: "Hamburger", imageName: "")
+            ]
+        ))
+        
+        assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
+    }
+    
+    func testPriceSummaryCard_OnCampus() {
+        let card = PriceSummaryCard(displayMode: .onCampusMealPlan, action: { _ in }).environmentObject(Cart(
+            items: [
+                FoodItem(id: 0, name: "Hamburger", imageName: "")
+            ]
+        ))
+        
+        assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
+    }
+    
+    func testPriceSummaryCard_Ultra() {
+        let card = PriceSummaryCard(displayMode: .ultraMealPlan, action: { _ in }).environmentObject(Cart(
             items: [
                 FoodItem(id: 0, name: "Hamburger", imageName: "")
             ]

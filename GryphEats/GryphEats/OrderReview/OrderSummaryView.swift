@@ -41,7 +41,20 @@ struct OrderSummaryView: View {
                         Spacer()
                     }
                 } else {
-                    PriceSummaryCard()
+                    PriceSummaryCard { action in
+                        switch action {
+                        case .studentCard:
+                            withAnimation {
+                                self.state.state = .checkout(paymentOption: .studentCard)
+                            }
+                        case .credit:
+                            withAnimation {
+                                self.state.state = .checkout(paymentOption: .credit)
+                            }
+                        default:
+                            break
+                        }
+                    }
                 }
                 
                 Spacer()

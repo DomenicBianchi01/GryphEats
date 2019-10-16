@@ -53,6 +53,13 @@
 		B06B515123496B070015E960 /* AnswerQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B514F23496B070015E960 /* AnswerQuestionView.swift */; };
 		B06B515223496CA40015E960 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B513D2349552B0015E960 /* BackButton.swift */; };
 		B06B515323496CBE0015E960 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B514A23495BD90015E960 /* ViewExtensions.swift */; };
+		B07F0DF323574AD600912397 /* PaymentOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F0DF223574AD600912397 /* PaymentOption.swift */; };
+		B07F0DF423574ADB00912397 /* PaymentOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F0DF223574AD600912397 /* PaymentOption.swift */; };
+		B07F0DF723574B8400912397 /* CheckoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F0DF623574B8400912397 /* CheckoutViewModel.swift */; };
+		B07F0DF823574B8400912397 /* CheckoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F0DF623574B8400912397 /* CheckoutViewModel.swift */; };
+		B07F0DFA2357544C00912397 /* OrderSubmittedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F0DF92357544C00912397 /* OrderSubmittedView.swift */; };
+		B07F0DFB2357544C00912397 /* OrderSubmittedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F0DF92357544C00912397 /* OrderSubmittedView.swift */; };
+		B07F0DFE235758A600912397 /* Valet in Frameworks */ = {isa = PBXBuildFile; productRef = B07F0DFD235758A600912397 /* Valet */; };
 		B0843364234CB2A500DD325E /* CategoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0843363234CB2A500DD325E /* CategoryCard.swift */; };
 		B0843365234CB2A900DD325E /* CategoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0843363234CB2A500DD325E /* CategoryCard.swift */; };
 		B0843367234CB54700DD325E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0843366234CB54700DD325E /* Category.swift */; };
@@ -106,7 +113,6 @@
 		B0BBFDBE2347D27100FDEFA4 /* AnyTransitionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BBFDBD2347D27100FDEFA4 /* AnyTransitionExtensions.swift */; };
 		B0BBFDBF2347D27100FDEFA4 /* AnyTransitionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BBFDBD2347D27100FDEFA4 /* AnyTransitionExtensions.swift */; };
 		B0BBFDC12348053500FDEFA4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BBFDC02348053500FDEFA4 /* LoginView.swift */; };
-		B0BBFDC22348053500FDEFA4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BBFDC02348053500FDEFA4 /* LoginView.swift */; };
 		B0BEF91B234D4941004455DC /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BEF91A234D4941004455DC /* Restaurant.swift */; };
 		B0BEF91C234D49B2004455DC /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BEF91A234D4941004455DC /* Restaurant.swift */; };
 		B0BEF91E234D5069004455DC /* NavigationHeaderViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BEF91D234D5069004455DC /* NavigationHeaderViewTests.swift */; };
@@ -126,6 +132,11 @@
 		B0D9ED28235669F0006A1545 /* CartItemCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D9ED27235669F0006A1545 /* CartItemCardTests.swift */; };
 		B0D9ED2A23566A41006A1545 /* ActionButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D9ED2923566A41006A1545 /* ActionButtonTests.swift */; };
 		B0D9ED2C23566AA9006A1545 /* PriceSummaryCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D9ED2B23566AA9006A1545 /* PriceSummaryCardTests.swift */; };
+		B0D9ED3423568EB2006A1545 /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D9ED3323568EB2006A1545 /* PaymentMethod.swift */; };
+		B0D9ED3523568EB2006A1545 /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D9ED3323568EB2006A1545 /* PaymentMethod.swift */; };
+		B0D9ED382356B362006A1545 /* Valet in Frameworks */ = {isa = PBXBuildFile; productRef = B0D9ED372356B362006A1545 /* Valet */; };
+		B0D9ED3A2356B87B006A1545 /* ApplePayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D9ED392356B87B006A1545 /* ApplePayButton.swift */; };
+		B0D9ED3B2356B87B006A1545 /* ApplePayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D9ED392356B87B006A1545 /* ApplePayButton.swift */; };
 		B0F6E1F6234E370500067B79 /* ItemOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F6E1F5234E370500067B79 /* ItemOverview.swift */; };
 		B0F6E1F7234E370500067B79 /* ItemOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F6E1F5234E370500067B79 /* ItemOverview.swift */; };
 		B0F6E1F9234E496A00067B79 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F6E1F8234E496A00067B79 /* Cart.swift */; };
@@ -183,6 +194,9 @@
 		B06B514A23495BD90015E960 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		B06B514C23495C960015E960 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		B06B514F23496B070015E960 /* AnswerQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerQuestionView.swift; sourceTree = "<group>"; };
+		B07F0DF223574AD600912397 /* PaymentOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentOption.swift; sourceTree = "<group>"; };
+		B07F0DF623574B8400912397 /* CheckoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewModel.swift; sourceTree = "<group>"; };
+		B07F0DF92357544C00912397 /* OrderSubmittedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSubmittedView.swift; sourceTree = "<group>"; };
 		B0843363234CB2A500DD325E /* CategoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCard.swift; sourceTree = "<group>"; };
 		B0843366234CB54700DD325E /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		B084336A234CEC5300DD325E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -231,6 +245,8 @@
 		B0D9ED27235669F0006A1545 /* CartItemCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCardTests.swift; sourceTree = "<group>"; };
 		B0D9ED2923566A41006A1545 /* ActionButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonTests.swift; sourceTree = "<group>"; };
 		B0D9ED2B23566AA9006A1545 /* PriceSummaryCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSummaryCardTests.swift; sourceTree = "<group>"; };
+		B0D9ED3323568EB2006A1545 /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
+		B0D9ED392356B87B006A1545 /* ApplePayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayButton.swift; sourceTree = "<group>"; };
 		B0F6E1F5234E370500067B79 /* ItemOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemOverview.swift; sourceTree = "<group>"; };
 		B0F6E1F8234E496A00067B79 /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		B0F6E1FE234E6E9A00067B79 /* SlideOverCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverCard.swift; sourceTree = "<group>"; };
@@ -245,6 +261,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B07F0DFE235758A600912397 /* Valet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0CA76282345481B003E7FBD /* Apollo in Frameworks */,
+				B0D9ED382356B362006A1545 /* Valet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				B021DE9B234FCE6600DBF1AA /* ActivityIndicator.swift */,
+				B0D9ED392356B87B006A1545 /* ApplePayButton.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -317,6 +336,8 @@
 				B0843366234CB54700DD325E /* Category.swift */,
 				B0F6E201234E928200067B79 /* Ingredient.swift */,
 				B0BEF91A234D4941004455DC /* Restaurant.swift */,
+				B0D9ED3323568EB2006A1545 /* PaymentMethod.swift */,
+				B07F0DF223574AD600912397 /* PaymentOption.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -343,6 +364,21 @@
 				B0D9ED2123562296006A1545 /* PriceSummaryCard.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		B07F0DF523574B7500912397 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B07F0DF623574B8400912397 /* CheckoutViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B07F0DFC235758A600912397 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		B0843369234CEC4500DD325E /* ViewModels */ = {
@@ -373,9 +409,11 @@
 		B090F0C7234F9164007CF06F /* OrderReview */ = {
 			isa = PBXGroup;
 			children = (
+				B07F0DF523574B7500912397 /* ViewModels */,
 				B09416A72355F5B40032BA12 /* OrderReviewView.swift */,
 				B090F0C8234F9225007CF06F /* OrderSummaryView.swift */,
 				B09416A42355F3660032BA12 /* CheckoutView.swift */,
+				B07F0DF92357544C00912397 /* OrderSubmittedView.swift */,
 			);
 			path = OrderReview;
 			sourceTree = "<group>";
@@ -421,6 +459,7 @@
 				B0B2058F2333D45200694587 /* GryphEatsTests */,
 				B0A2D0A423460ED800391DD6 /* GryphEatsSwiftUI */,
 				B0B205772333D45000694587 /* Products */,
+				B07F0DFC235758A600912397 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -543,6 +582,7 @@
 			);
 			name = GryphEatsSwiftUI;
 			packageProductDependencies = (
+				B07F0DFD235758A600912397 /* Valet */,
 			);
 			productName = "UofG-Hospitality-Order-Now";
 			productReference = B0A2D0A223460C0C00391DD6 /* GryphEatsSwiftUI.app */;
@@ -564,6 +604,7 @@
 			name = GryphEats;
 			packageProductDependencies = (
 				B0CA76272345481B003E7FBD /* Apollo */,
+				B0D9ED372356B362006A1545 /* Valet */,
 			);
 			productName = "UofG-Hospitality-Order-Now";
 			productReference = B0B205762333D45000694587 /* GryphEats.app */;
@@ -621,6 +662,7 @@
 			packageReferences = (
 				B0CA76262345481B003E7FBD /* XCRemoteSwiftPackageReference "apollo-ios" */,
 				B01E01502346428500B021E3 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+				B0D9ED362356B361006A1545 /* XCRemoteSwiftPackageReference "Valet" */,
 			);
 			productRefGroup = B0B205772333D45000694587 /* Products */;
 			projectDirPath = "";
@@ -693,11 +735,14 @@
 				B0BBFDBF2347D27100FDEFA4 /* AnyTransitionExtensions.swift in Sources */,
 				B09416A32355EF900032BA12 /* ActionButton.swift in Sources */,
 				B0A7C40A234C32BE001555B7 /* FoodItem.swift in Sources */,
+				B07F0DFB2357544C00912397 /* OrderSubmittedView.swift in Sources */,
 				B0A2D09323460C0C00391DD6 /* Order.swift in Sources */,
 				B0F6E206234ED3EC00067B79 /* StepperView.swift in Sources */,
 				B09416A92355F5B40032BA12 /* OrderReviewView.swift in Sources */,
+				B0D9ED3523568EB2006A1545 /* PaymentMethod.swift in Sources */,
 				B090F0CA234F9225007CF06F /* OrderSummaryView.swift in Sources */,
 				B0A7C404234C2CE3001555B7 /* SliderView.swift in Sources */,
+				B0D9ED3B2356B87B006A1545 /* ApplePayButton.swift in Sources */,
 				B0843365234CB2A900DD325E /* CategoryCard.swift in Sources */,
 				B0D9ED26235650E3006A1545 /* DoubleExtensions.swift in Sources */,
 				B0C9B199234A8F3C00605D23 /* ResetPasswordView.swift in Sources */,
@@ -713,6 +758,7 @@
 				B0BBFDB523479F2E00FDEFA4 /* UIViewControllerExtensions.swift in Sources */,
 				B0F6E200234E6E9A00067B79 /* SlideOverCard.swift in Sources */,
 				B0BBFDB223479EFD00FDEFA4 /* EnvironmentExtensions.swift in Sources */,
+				B07F0DF823574B8400912397 /* CheckoutViewModel.swift in Sources */,
 				B090F0C5234F71EC007CF06F /* IngredientCard.swift in Sources */,
 				B08F32142348D3C2009A0E61 /* ColorExtensions.swift in Sources */,
 				B0843377234D088F00DD325E /* ResturantItemsView.swift in Sources */,
@@ -723,6 +769,7 @@
 				B0A2D09423460C0C00391DD6 /* OrderCard.swift in Sources */,
 				B0A7C407234C2D8F001555B7 /* MenuCard.swift in Sources */,
 				B046163E2346F3230033087B /* LoginViewModel.swift in Sources */,
+				B07F0DF423574ADB00912397 /* PaymentOption.swift in Sources */,
 				B0F6E1FA234E496A00067B79 /* Cart.swift in Sources */,
 				B06B514E23495C960015E960 /* ForgotPasswordView.swift in Sources */,
 				B0A2D09523460C0C00391DD6 /* Customer.swift in Sources */,
@@ -747,6 +794,7 @@
 				B01DC45323552B4500539D30 /* CartItemCard.swift in Sources */,
 				B0BEF91B234D4941004455DC /* Restaurant.swift in Sources */,
 				B09416AB2355F5C50032BA12 /* OrderReviewState.swift in Sources */,
+				B0D9ED3A2356B87B006A1545 /* ApplePayButton.swift in Sources */,
 				B0A7C409234C328D001555B7 /* FoodItem.swift in Sources */,
 				B0843376234D07E100DD325E /* ResturantItemsView.swift in Sources */,
 				B0BBFDB423479F2E00FDEFA4 /* UIViewControllerExtensions.swift in Sources */,
@@ -764,12 +812,14 @@
 				B09416A22355EF900032BA12 /* ActionButton.swift in Sources */,
 				B0BBFDC12348053500FDEFA4 /* LoginView.swift in Sources */,
 				B051FF7A234588AA0093C0DC /* Order.swift in Sources */,
+				B07F0DF323574AD600912397 /* PaymentOption.swift in Sources */,
 				B0843367234CB54700DD325E /* Category.swift in Sources */,
 				B06B513E2349552B0015E960 /* BackButton.swift in Sources */,
 				B06B514D23495C960015E960 /* ForgotPasswordView.swift in Sources */,
 				B09416A82355F5B40032BA12 /* OrderReviewView.swift in Sources */,
 				B051FF7E234588BD0093C0DC /* OrderCard.swift in Sources */,
 				B05B3FD82348253000547DD1 /* SecurityQuestionView.swift in Sources */,
+				B07F0DF723574B8400912397 /* CheckoutViewModel.swift in Sources */,
 				B051FF7B234588AA0093C0DC /* Customer.swift in Sources */,
 				B090F0C9234F9225007CF06F /* OrderSummaryView.swift in Sources */,
 				B0FBB6E72354CEB800C42C86 /* BadgeButton.swift in Sources */,
@@ -787,8 +837,10 @@
 				B021DE9F234FD47F00DBF1AA /* ImageService.swift in Sources */,
 				B084336B234CEC5300DD325E /* HomeViewModel.swift in Sources */,
 				B0BBFDBB2347D11E00FDEFA4 /* RegisterView.swift in Sources */,
+				B0D9ED3423568EB2006A1545 /* PaymentMethod.swift in Sources */,
 				B0BBFDB123479EFD00FDEFA4 /* EnvironmentExtensions.swift in Sources */,
 				B09416A52355F3660032BA12 /* CheckoutView.swift in Sources */,
+				B07F0DFA2357544C00912397 /* OrderSubmittedView.swift in Sources */,
 				B04616372346C6610033087B /* CircularButton.swift in Sources */,
 				B0D9ED2223562296006A1545 /* PriceSummaryCard.swift in Sources */,
 				B06B514B23495BD90015E960 /* ViewExtensions.swift in Sources */,
@@ -1145,6 +1197,14 @@
 				version = 0.16.0;
 			};
 		};
+		B0D9ED362356B361006A1545 /* XCRemoteSwiftPackageReference "Valet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/square/Valet";
+			requirement = {
+				kind = exactVersion;
+				version = 3.2.7;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1153,10 +1213,20 @@
 			package = B01E01502346428500B021E3 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
 			productName = SnapshotTesting;
 		};
+		B07F0DFD235758A600912397 /* Valet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B0D9ED362356B361006A1545 /* XCRemoteSwiftPackageReference "Valet" */;
+			productName = Valet;
+		};
 		B0CA76272345481B003E7FBD /* Apollo */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B0CA76262345481B003E7FBD /* XCRemoteSwiftPackageReference "apollo-ios" */;
 			productName = Apollo;
+		};
+		B0D9ED372356B362006A1545 /* Valet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B0D9ED362356B361006A1545 /* XCRemoteSwiftPackageReference "Valet" */;
+			productName = Valet;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
