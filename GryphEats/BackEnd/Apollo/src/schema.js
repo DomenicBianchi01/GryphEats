@@ -6,6 +6,10 @@ const typeDefs = gql`
         users: [User]!
     }
 
+    type Mutation {
+        completeOrder(orderid: ID): Finish
+    }
+
     type Food {
         foodid: ID!
         displayname: String
@@ -36,6 +40,11 @@ const typeDefs = gql`
         email: String
         currentorderid: ID
         lastorderid: ID
+    }
+
+    type Finish {
+        success: Boolean!
+        message: String
     }
 `;
 
