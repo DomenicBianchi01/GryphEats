@@ -21,20 +21,40 @@ struct PriceSummaryCard: View {
         case onCampusMealPlan
         /// Use this to show a summary of the subtotal, tax, and total of the cart if using an ultra meal plan. This will also show a "Pay" button.
         case ultraMealPlan
+        /// Use this to hide all potential meal plan discounts. This will also show a "Pay" button
+        case noDiscounts
+        
+        // MARK: Fileprivate
+        
+        fileprivate var asPriceType: Cart.PriceType {
+            switch self {
+            case .full, .noDiscounts:
+                return .regular
+            case .onCampusMealPlan:
+                return .onCampus
+            case .ultraMealPlan:
+                return .offCampus
+            }
+        }
     }
     
     // MARK: PaymentAction
     
     enum PaymentAction {
-        case studentCard
-        case credit
+        case applePay
+        case creditOrStudentCard
         case confirmPayment
     }
     
     // MARK: Lifecycle
     
-    init(displayMode: DisplayMode = .full, action: @escaping (PaymentAction) -> Void) {
+    init(
+        displayMode: DisplayMode = .full,
+        isPayButtonDisabled: Bool = false,
+        action: @escaping (PaymentAction) -> Void)
+    {
         self.displayMode = displayMode
+        self.isPayButtonDisabled = isPayButtonDisabled
         self.action = action
     }
     
@@ -107,23 +127,18 @@ struct PriceSummaryCard: View {
                 }.padding(.horizontal, 10)
                     .cornerRadius(5)
                 
-                ActionButton(text: "Checkout with Student Card", backgroundColor: .guelphRed, foregroundColor: .white) {
+                ActionButton(text: "Checkout with Student or Credit Card") {
                     withAnimation {
-                        self.action(.studentCard)
-                    }
-                }.padding(.top, 10)
-                
-                ActionButton(text: "Other Checkout Options") {
-                    withAnimation {
-                        self.action(.credit)
+                        self.action(.creditOrStudentCard)
                     }
                 }.padding(.top, 10)
                     .padding(.bottom, 20)
-            } else if displayMode == .onCampusMealPlan || displayMode == .ultraMealPlan {
+            } else if displayMode != .full {
                 ActionButton(
-                    text: "Pay \(cart.total(for: displayMode == .onCampusMealPlan ? .onCampus : .offCampus).asDollarString)",
+                    text: "Pay \(cart.total(for: displayMode.asPriceType).asDollarString)",
                     backgroundColor: .guelphRed,
-                    foregroundColor: .white)
+                    foregroundColor: .white,
+                    isDisabled: isPayButtonDisabled)
                 {
                     self.action(.confirmPayment)
                 }.padding(.vertical)
@@ -141,6 +156,7 @@ struct PriceSummaryCard: View {
     
     private let action: (PaymentAction) -> Void
     private let displayMode: DisplayMode
+    private let isPayButtonDisabled: Bool
     
     private func discountRow(type: DiscountType, amount: String) -> some View {
         HStack {
@@ -158,7 +174,7 @@ struct PriceSummaryCard: View {
             .padding(.bottom, 10)
             .foregroundColor(.secondary)
     }
-    
+
     private enum DiscountType: String {
         case onCampus = "With On-Campus Meal Plan (30% discount)"
         case onCampusTax = "With On-Campus Meal Plan (No Tax)"
@@ -172,6 +188,6 @@ struct PriceSummaryCard: View {
 
 struct PriceSummaryCard_Previews: PreviewProvider {
     static var previews: some View {
-        PriceSummaryCard(displayMode: .onCampusMealPlan, action: { _ in }).environmentObject(Cart())
+        PriceSummaryCard(displayMode: .noDiscounts, action: { _ in }).environmentObject(Cart())
     }
 }

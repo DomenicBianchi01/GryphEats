@@ -36,8 +36,8 @@ struct RegisterView: View {
                         header: "Email",
                         placeholder: "Please enter your email",
                         text: self.$state.email)
-                }.keyboardType(.emailAddress)
-                    .padding(.bottom, 20)
+                        .keyboardType(.emailAddress)
+                }.padding(.bottom, 20)
                 
                 CustomTextField(
                     header: "Password".uppercased(),

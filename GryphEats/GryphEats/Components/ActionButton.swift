@@ -18,11 +18,13 @@ struct ActionButton: View {
         text: String,
         backgroundColor: Color = .guelphYellow,
         foregroundColor: Color = .black,
+        isDisabled: Bool = false,
         action: @escaping () -> Void)
     {
         self.text = text
         self.backgroundColor = backgroundColor
         self.foregroundColor = foregroundColor
+        self.isDisabled = isDisabled
         self.action = action
     }
     
@@ -38,12 +40,14 @@ struct ActionButton: View {
                 Text(text)
                     .foregroundColor(foregroundColor)
                     .font(.system(size: 14, weight: .semibold))
+                    .multilineTextAlignment(.center)
                 Spacer()
             }
         }.padding(.vertical, 15)
-            .background(backgroundColor)
+            .background(isDisabled ? .secondary : backgroundColor)
             .cornerRadius(5)
             .padding(.horizontal)
+            .disabled(isDisabled)
         // ^^^ SwiftUI Bug: Horizontal padding only gets added after applying the background. Vertical
         // padding only gets applied if it is added before the background. This is really weird...
     }
@@ -53,8 +57,9 @@ struct ActionButton: View {
     private let text: String
     private let backgroundColor: Color
     private let foregroundColor: Color
+    private let isDisabled: Bool
     private let action: () -> Void
-
+    
 }
 
 struct ActionButton_Previews: PreviewProvider {

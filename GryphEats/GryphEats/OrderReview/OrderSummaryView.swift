@@ -43,14 +43,12 @@ struct OrderSummaryView: View {
                 } else {
                     PriceSummaryCard { action in
                         switch action {
-                        case .studentCard:
+                        case .creditOrStudentCard:
                             withAnimation {
-                                self.state.state = .checkout(paymentOption: .studentCard)
+                                self.state.state = .checkout
                             }
-                        case .credit:
-                            withAnimation {
-                                self.state.state = .checkout(paymentOption: .credit)
-                            }
+                        case .applePay:
+                            break
                         default:
                             break
                         }
@@ -67,7 +65,7 @@ struct OrderSummaryView: View {
     @EnvironmentObject private var cart: Cart
     @EnvironmentObject private var state: OrderReviewState
     
-    private func itemCard(for item: FoodItem) -> some View {
+    private func itemCard(for item: FoodItem) -> CartItemCard {
         let editAction = {
             print("t")
         }
