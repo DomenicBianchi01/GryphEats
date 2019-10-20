@@ -9,18 +9,18 @@
 import SwiftUI
 
 struct OrderRow: View {
+    
+    @ObservedObject var order: Order
+    
     var body: some View {
         ZStack() {
             Rectangle()
-                .background(Color.red)
+                .background(rowColor)
                 .foregroundColor(.clear)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .opacity(0.4)
             
             VStack(alignment: .leading) {
-                //            HStack(){
-                //                Spacer()
-                //            }.padding(.leading)
                 Text("Domenic Bianchi")
                     .font(Font.custom("Roboto-Regular", size: 20))
                     .lineLimit(1)
@@ -39,6 +39,16 @@ struct OrderRow: View {
                     .padding(.leading)
                     .padding(.bottom)
             }
+        }
+    }
+    
+    var rowColor: Color {
+        let colors: [Color] = [.guelphRed, .guelphYellow, .green, .blue]
+        switch order.status {
+            case .new: return colors[0]
+            case .inProgress : return colors[1]
+            case .readyForPickup : return colors[2]
+            case .pickedUp : return colors[3]
         }
     }
 }

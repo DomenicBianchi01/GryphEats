@@ -16,23 +16,17 @@ struct MealRow: View {
                     RoundedRectangle(cornerRadius: 10).fill(Color.guelphYellow)
                     HStack(alignment: .top, spacing: 8) {
                         Text("1x").font(Font.custom("Roboto-Bold", size: 30)).padding(.leading)
-                        Text("Hamburger").font(Font.custom("Roboto-Bold", size: 30))
+                        Text(foodItem.name).font(Font.custom("Roboto-Bold", size: 30))
                         Spacer()
                     }
                 }
                 HStack (alignment: .top, spacing: 6){
                     VStack(alignment: .leading, spacing: 6) {
-                        HStack {
-                            Text("1x")
-                            Text("Cheese")
-                        }
-                        HStack {
-                            Text("2x")
-                            Text("Onion")
-                        }
-                        HStack {
-                            Text("1x")
-                            Text("Pepper")
+                        ForEach(foodItem.ingredients) { ingredient in
+                            HStack {
+                                Text("1x")
+                                Text(ingredient.name)
+                            }
                         }
                     }.padding(.bottom).padding(.leading, 40)
                     Spacer()
@@ -45,4 +39,7 @@ struct MealRow: View {
             }.padding(.top)            
         }
     }
+    
+    var foodItem: FoodItem
+
 }

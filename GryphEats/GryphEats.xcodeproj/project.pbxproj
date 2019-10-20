@@ -184,9 +184,9 @@
 		EB1E4548234CF28800B5C8FD /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB1E4535234CF28800B5C8FD /* Roboto-Black.ttf */; };
 		EB2237F3234B958C00CB9196 /* RestHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2237F2234B958C00CB9196 /* RestHomeView.swift */; };
 		EB2237F8234B9B4700CB9196 /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = EB2237F7234B9B4700CB9196 /* QGrid */; };
+		EB605A32235BB24F00EB7856 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB605A31235BB24F00EB7856 /* User.swift */; };
 		EBC089ED234FF72800DA3A55 /* RestOrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC089EC234FF72800DA3A55 /* RestOrdersView.swift */; };
 		EBC089EF234FFAC400DA3A55 /* OrderDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC089EE234FFAC400DA3A55 /* OrderDetailsView.swift */; };
-		EBC089F1234FFAD800DA3A55 /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC089F0234FFAD800DA3A55 /* OrdersView.swift */; };
 		EBC089F323524B5800DA3A55 /* OrderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC089F223524B5800DA3A55 /* OrderRow.swift */; };
 		EBC089F52353B51400DA3A55 /* MealRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC089F42353B51400DA3A55 /* MealRow.swift */; };
 /* End PBXBuildFile section */
@@ -319,9 +319,9 @@
 		EB1E4534234CF28800B5C8FD /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		EB1E4535234CF28800B5C8FD /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		EB2237F2234B958C00CB9196 /* RestHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestHomeView.swift; sourceTree = "<group>"; };
+		EB605A31235BB24F00EB7856 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EBC089EC234FF72800DA3A55 /* RestOrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestOrdersView.swift; sourceTree = "<group>"; };
 		EBC089EE234FFAC400DA3A55 /* OrderDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsView.swift; sourceTree = "<group>"; };
-		EBC089F0234FFAD800DA3A55 /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
 		EBC089F223524B5800DA3A55 /* OrderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRow.swift; sourceTree = "<group>"; };
 		EBC089F42353B51400DA3A55 /* MealRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -401,6 +401,7 @@
 				B0843366234CB54700DD325E /* Category.swift */,
 				B0F6E201234E928200067B79 /* Ingredient.swift */,
 				B0BEF91A234D4941004455DC /* Restaurant.swift */,
+				EB605A31235BB24F00EB7856 /* User.swift */,
 				B0D9ED3323568EB2006A1545 /* PaymentMethod.swift */,
 			);
 			path = Entities;
@@ -719,7 +720,6 @@
 				EBC089F223524B5800DA3A55 /* OrderRow.swift */,
 				EBC089EE234FFAC400DA3A55 /* OrderDetailsView.swift */,
 				EBC089F42353B51400DA3A55 /* MealRow.swift */,
-				EBC089F0234FFAD800DA3A55 /* OrdersView.swift */,
 			);
 			path = RestaurantOrders;
 			sourceTree = "<group>";
@@ -1025,7 +1025,6 @@
 				B090F0C4234F71EC007CF06F /* IngredientCard.swift in Sources */,
 				B0A2D0A723462BE700391DD6 /* StudentCard.swift in Sources */,
 				B06B5146234958990015E960 /* HeaderView.swift in Sources */,
-				EBC089F1234FFAD800DA3A55 /* OrdersView.swift in Sources */,
 				B01E01572346565700B021E3 /* MealPlan.swift in Sources */,
 				B084336B234CEC5300DD325E /* HomeViewModel.swift in Sources */,
 				B0BBFDBB2347D11E00FDEFA4 /* RegisterView.swift in Sources */,
@@ -1048,6 +1047,7 @@
 				B06B515023496B070015E960 /* AnswerQuestionView.swift in Sources */,
 				EBC089F323524B5800DA3A55 /* OrderRow.swift in Sources */,
 				B08F32132348D3C2009A0E61 /* ColorExtensions.swift in Sources */,
+				EB605A32235BB24F00EB7856 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

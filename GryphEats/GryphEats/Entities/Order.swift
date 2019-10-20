@@ -6,13 +6,23 @@
 //  Copyright © 2019 The Subway Squad. All rights reserved.
 //
 
+import SwiftUI
+
 // MARK: - Order
 
-struct Order {
+class Order: ObservableObject, Identifiable {
+        
+    init(id: Int, customer: Customer, status: Status = .new, time: String, foodItems: [FoodItem] = []) {
+        self.id = id
+        self.customer = customer
+        self.status = status
+        self.time = time
+        self.foodItems = foodItems
+    }
     
     // MARK: Status
     
-    enum Status {
+    enum Status: Int {
         case new
         case inProgress
         case readyForPickup
@@ -21,8 +31,14 @@ struct Order {
     
     // MARK: Internal
     
-    var customer: Customer
-    var status: Status
-    var time: String //TODO: Date object instead
+    var id: Int = 0
+    var customer: Customer = Customer(name: "", mealPlan: nil)
+    @Published var status: Status = .new
+    var time: String = "" //TODO: Date object instead
+    var foodItems: [FoodItem]
+    
+//    func removeOrder {
+//        //if .pickedUp then remove order
+//    }
     
 }

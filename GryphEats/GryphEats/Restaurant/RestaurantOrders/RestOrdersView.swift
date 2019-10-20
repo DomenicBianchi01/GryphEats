@@ -10,38 +10,29 @@ import SwiftUI
 
 struct RestOrdersView: View {
     
-    init() {
-        //Use this if NavigationBarTitle is with Large Font
-        //        UINavigationBar.appearance().largeTitleTextAttributes = [.back: UIColor.red]
+    var orders: [Order]
+    @State var isSelected = false
+    
+    init(orders: [Order]) {
         UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "Roboto-Bold", size: 42)!]
         UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "Roboto-Bold", size: 30)!]
-        
-        
-        //Use this if NavigationBarTitle is with displayMode = .inline
-        //        UINavigationBar.appearance().backgroundColor = Color.guelphYellow
+        self.orders = orders
     }
     
     var body: some View {
         NavigationView {
-            List (0..<5) { item in
-                NavigationLink(destination: SecondView()) {
-                    OrderRow()
+            List {
+                ForEach(orders) { order in
+                    NavigationLink(destination: OrderDetailsView(order: order).navigationBarTitle("Order Details")) {
+                        OrderCard(order: order, enableShadow: false, isCollapsable: false, fillSpace: true)
+                    }
                 }
             }.navigationBarTitle("Orders")
             Text("Select an order from the list to get started")
+        }.onAppear() {
+            UITableView.appearance().separatorColor = .clear
+        }.onDisappear() {
+            UITableView.appearance().separatorColor = .separator
         }
-    }
-}
-
-struct RestOrdersView_Previews: PreviewProvider {
-    static var previews: some View {
-        RestOrdersView()
-    }
-}
-
-struct SecondView: View {
-    var body: some View {
-        OrderDetailsView().navigationBarTitle("Order Details", displayMode: .large)
-        //        Text("Select an order from the list to get started")
     }
 }

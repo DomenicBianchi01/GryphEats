@@ -10,8 +10,6 @@ import SwiftUI
 import QGrid
 
 struct OrderDetailsView: View {
-    @State var clickedCount: Int = 0
-    @State var isExitDisabled: Bool = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -20,9 +18,9 @@ struct OrderDetailsView: View {
             }.padding(.leading)
             HStack(alignment: .top, spacing: 20) {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("Domenic Bianchi").font(Font.custom("Roboto-Bold", size: 28))
+                    Text(order.customer.name).font(Font.custom("Roboto-Bold", size: 28))
                         .lineLimit(1)
-                    Text("Order placed 2 minutes ago (11:28am)").font(Font.custom("Roboto-Regular", size: 24))
+                    Text("Order placed at " + order.time).font(Font.custom("Roboto-Regular", size: 24))
                         .lineLimit(1)
                 }
                 Spacer().layoutPriority(-1)
@@ -38,55 +36,59 @@ struct OrderDetailsView: View {
                         backgroundColor: exitButtonColor,
                         foregroundColor: .black) {
                             self.backOrder()
-                    }.padding(.trailing).disabled(isExitDisabled)
+                    }.padding(.trailing).disabled(false)
                 }
             }
             Divider()
-            List (0..<5) { item in
-                MealRow()
+            List (order.foodItems) { foodItem in
+                MealRow(foodItem: foodItem)
             }
         }.padding(.all)
     }
     
-    var continueButtonColor: Color {
-        let colors: [Color] = [.blue, .guelphYellow, .green, .gray]
-        return colors[clickedCount]
-    }
-    
-    var continueButtonText: String {
-        let text = ["Begin Order", "Complete Order", "Recieved Order"]
-        return text[clickedCount]
-    }
-    
-    var exitButtonColor: Color {
-        let colors: [Color] = [.red, .red, .gray]
-        return colors[clickedCount]
-    }
-    
-    var exitButtonText: String {
-        let text = ["Decline Order", "Cancel Order", "Order Complete"]
-        return text[clickedCount]
-    }
+    @ObservedObject var order: Order
     
     private func continueOrder() {
-        clickedCount = clickedCount+1
-        isExitDisabled = false
-        if (clickedCount >= 3) {
-            isExitDisabled = true
-            clickedCount = 0
+        switch order.status {
+            case .new: order.status = .inProgress
+            case .inProgress: order.status = .readyForPickup
+            case .readyForPickup: order.status = .pickedUp
+            case .pickedUp: order.status = .pickedUp
         }
     }
     
     private func backOrder() {
-        clickedCount = clickedCount-1
-        if (clickedCount <= 0) {
-            clickedCount = 2
+        switch order.status {
+            case .new: order.status = .readyForPickup
+            case .inProgress: order.status = .new
+            case .readyForPickup: order.status = .inProgress
+            case .pickedUp: order.status = .new
         }
     }
-}
-
-struct OrderDetailsView_preview: PreviewProvider {
-    static var previews: some View {
-        OrderDetailsView()
+    
+    private var continueButtonColor: Color {
+        let colors: [Color] = [.blue, .guelphYellow, .green, .gray]
+        return colors[order.status.rawValue]
+    }
+    
+    private var continueButtonText: String {
+        let text = ["Begin Order", "Complete Order", "Confirm Pick Up", "Order Recieved"]
+        return text[order.status.rawValue]
+    }
+    
+    private var exitButtonColor: Color {
+        let colors: [Color] = [.red, .red, .gray, .gray]
+        return colors[order.status.rawValue]
+    }
+    
+    private var exitButtonText: String {
+        let text = ["Decline Order", "Cancel Order", "Order Complete", "Order Recieved"]
+        return text[order.status.rawValue]
     }
 }
+//
+//struct OrderDetailsView_preview: PreviewProvider {
+//    static var previews: some View {
+//        OrderDetailsView()
+//    }
+//}
