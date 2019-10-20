@@ -18,13 +18,13 @@ struct OrderReviewView: View {
         HStack {
             if state.state == .summary {
                 OrderSummaryView().transition(.leftSlide)
-            } else if state.state == .checkoutSimplified {
+            } else if state.state == .checkout {
                 // SwiftUI Bug: Since we need to extract the payment option from `.checkout` (the associated value),
                 // we would need to use a `switch` or `if-case`. These cannot be used within the `body` (the SwiftUI
                 // bug) so we need to use a private property that extracts the value for us. I could have made another
                 // private variable that returns AnyView and uses a switch, however, when doing so, the custom
                 // transitions would not work (another SwiftUI bug?)
-                CheckoutView(paymentOption: paymentOption).transition(.rightSlide)
+                CheckoutView().transition(.rightSlide)
             } else if state.state == .confirmed {
                 OrderSubmittedView().transition(.rightSlide)
             }
@@ -36,15 +36,6 @@ struct OrderReviewView: View {
     // MARK: Private
     
     @EnvironmentObject private var state: OrderReviewState
-    
-    private var paymentOption: PaymentOption {
-        if case let .checkout(paymentOption) = state.state {
-            return paymentOption
-        } else {
-            // No-op
-            return .credit
-        }
-    }
     
 }
 

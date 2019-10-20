@@ -13,12 +13,14 @@ import Foundation
 
 class Apollo {
     
-    // MARK: Internal
+    // MARK: ApolloError
     
     enum ApolloError: Error {
         case noData
         case other(Error)
     }
+    
+    // MARK: Internal
     
     static let shared = Apollo()
     

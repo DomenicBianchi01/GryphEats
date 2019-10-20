@@ -14,11 +14,10 @@ struct StudentCard: View {
     
     // MARK: Lifecycle
     
-    init(name: String, studentNumber: String, balance: Double, tapAction: (() -> Void)? = nil) {
+    init(name: String, studentNumber: String, balance: Double) {
         self.name = name
         self.studentNumber = studentNumber
         self.balance = balance
-        self.tapAction = tapAction
     }
     
     // MARK: Internal
@@ -59,11 +58,9 @@ struct StudentCard: View {
                         .padding([.trailing, .bottom], 30)
                 }.foregroundColor(.white)
             }
-        }.frame(maxWidth: 400, maxHeight: 250)
-            .aspectRatio(contentMode: .fit)
-            .onTapGesture {
-                self.tapAction?()
-        }
+        }.frame(maxWidth: 400)
+            .frame(idealHeight: 260)
+            .aspectRatio(400/260, contentMode: .fit)
     }
     
     // MARK: Private
@@ -71,8 +68,7 @@ struct StudentCard: View {
     private let name: String
     private let studentNumber: String
     private let balance: Double
-    private let tapAction: (() -> Void)?
-
+    
 }
 
 struct StudentCard_Previews: PreviewProvider {

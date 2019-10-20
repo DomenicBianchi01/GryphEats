@@ -6,12 +6,12 @@ public final class RestaurantsQuery: GraphQLQuery {
   /// query Restaurants {
   ///   restaurants {
   ///     __typename
-  ///     restaurantid
-  ///     displayname
+  ///     id: restaurantid
+  ///     name: displayname
   ///   }
   /// }
   public let operationDefinition =
-    "query Restaurants { restaurants { __typename restaurantid displayname } }"
+    "query Restaurants { restaurants { __typename id: restaurantid name: displayname } }"
 
   public let operationName = "Restaurants"
 
@@ -49,8 +49,8 @@ public final class RestaurantsQuery: GraphQLQuery {
 
       public static let selections: [GraphQLSelection] = [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-        GraphQLField("restaurantid", type: .nonNull(.scalar(GraphQLID.self))),
-        GraphQLField("displayname", type: .nonNull(.scalar(String.self))),
+        GraphQLField("restaurantid", alias: "id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("displayname", alias: "name", type: .nonNull(.scalar(String.self))),
       ]
 
       public private(set) var resultMap: ResultMap
@@ -59,8 +59,8 @@ public final class RestaurantsQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(restaurantid: GraphQLID, displayname: String) {
-        self.init(unsafeResultMap: ["__typename": "Restaurant", "restaurantid": restaurantid, "displayname": displayname])
+      public init(id: GraphQLID, name: String) {
+        self.init(unsafeResultMap: ["__typename": "Restaurant", "id": id, "name": name])
       }
 
       public var __typename: String {
@@ -72,21 +72,21 @@ public final class RestaurantsQuery: GraphQLQuery {
         }
       }
 
-      public var restaurantid: GraphQLID {
+      public var id: GraphQLID {
         get {
-          return resultMap["restaurantid"]! as! GraphQLID
+          return resultMap["id"]! as! GraphQLID
         }
         set {
-          resultMap.updateValue(newValue, forKey: "restaurantid")
+          resultMap.updateValue(newValue, forKey: "id")
         }
       }
 
-      public var displayname: String {
+      public var name: String {
         get {
-          return resultMap["displayname"]! as! String
+          return resultMap["name"]! as! String
         }
         set {
-          resultMap.updateValue(newValue, forKey: "displayname")
+          resultMap.updateValue(newValue, forKey: "name")
         }
       }
     }

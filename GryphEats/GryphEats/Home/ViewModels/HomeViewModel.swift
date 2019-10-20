@@ -45,22 +45,24 @@ class HomeViewModel: ObservableObject {
     func fetchRestaurants() {
         self.loadingState = .loading
         
-        Apollo.shared.fetch(query: RestaurantsQuery()) { result in
-            switch result {
-            case .success(let data):
-                var restaurants: [Restaurant] = []
-
-                for restaurant in data.restaurants.compactMap({ $0 }) {
-                    restaurants.append(Restaurant(
-                        id: restaurant.restaurantid,
-                        name: restaurant.displayname,
-                        foodItems: self.foodItems))
-                }
-
-                self.loadingState = .loaded(restaurants)
-            case .failure:
-                self.loadingState = .error
-            }
-        }
+        self.loadingState = .loaded([Restaurant(id: "0", name: "Moms", foodItems: self.foodItems)])
+        
+//        Apollo.shared.fetch(query: RestaurantsQuery()) { result in
+//            switch result {
+//            case .success(let data):
+//                var restaurants: [Restaurant] = []
+//
+//                for restaurant in data.restaurants.compactMap({ $0 }) {
+//                    restaurants.append(Restaurant(
+//                        id: restaurant.restaurantid,
+//                        name: restaurant.displayname,
+//                        foodItems: self.foodItems))
+//                }
+//
+//                self.loadingState = .loaded(restaurants)
+//            case .failure:
+//                self.loadingState = .error
+//            }
+//        }
     }
 }

@@ -43,7 +43,7 @@ struct ItemOverview: View {
                 VStack(alignment: .leading) {
                     ActionButton(text: "Add To Order") {
                         self.cart.items.append(self.selectedItem.item)
-                        self.dismiss()
+                        self.dismiss(self.presentationMode)
                     }.padding(.bottom, 30)
                     
                     Text("Ingredients").bold().padding(.leading)
@@ -97,12 +97,8 @@ struct ItemOverview: View {
     
     @EnvironmentObject private var cart: Cart
     @EnvironmentObject private var selectedItem: ActiveFoodItem
-    
     @Environment(\.presentationMode) private var presentationMode
     
-    private func dismiss() {
-        presentationMode.wrappedValue.dismiss()
-    }
 }
 
 struct ItemOverview_Previews: PreviewProvider {

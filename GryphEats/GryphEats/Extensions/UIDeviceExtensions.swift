@@ -17,5 +17,4 @@ extension UIDevice {
     var isPad: Bool {
         return userInterfaceIdiom == .pad
     }
-    
 }

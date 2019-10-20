@@ -13,12 +13,6 @@ import PassKit
 
 struct CheckoutView: View {
     
-    // MARK: Lifecycle
-    
-    init(paymentOption: PaymentOption) {
-        self.viewModel = CheckoutViewModel(paymentOption: paymentOption)
-    }
-    
     // MARK: Internal
     
     var body: some View {
@@ -32,11 +26,34 @@ struct CheckoutView: View {
                 
                 cardView
                 
-                PriceSummaryCard(displayMode: .onCampusMealPlan) { action in
+                ForEach(viewModel.paymentMethods.indices) { index in
+                    PaymentSelectionCard(
+                        paymentMethod: self.viewModel.paymentMethods[index],
+                        isSelected: self.selectedPaymentMethodIndex == index)
+                    {
+                        self.selectedPaymentMethodIndex = index
+                    }
+                }
+                
+                if viewModel.paymentMethods.isEmpty {
+                    Text("No payment methods found.").bold()
+                }
+                
+                Button(action: {
+                    self.showAddPayment = true
+                }) {
+                    Text("Add Payment Method")
+                        .foregroundColor(.guelphRed)
+                }.padding()
+                
+                PriceSummaryCard(
+                    displayMode: priceSummaryDisplayMode ?? .noDiscounts,
+                    isPayButtonDisabled: viewModel.paymentMethods.isEmpty)
+                { action in
                     if case .confirmPayment = action {
                         self.confirmPayment = true
                     }
-                }
+                }.padding(.top, 40)
                 
                 Spacer()
             }
@@ -53,6 +70,8 @@ struct CheckoutView: View {
                 secondaryButton: .cancel {
                     self.confirmPayment = false
                 })
+        }.sheet(isPresented: $showAddPayment) {
+            AddPaymentView()
         }
     }
     
@@ -61,24 +80,48 @@ struct CheckoutView: View {
     @EnvironmentObject private var cart: Cart
     @EnvironmentObject private var state: OrderReviewState
     
+    @State private var showAddPayment: Bool = false
     @State private var confirmPayment: Bool = false
+    @State private var selectedPaymentMethodIndex = 0
     
-    private let viewModel: CheckoutViewModel
+    private let viewModel = CheckoutViewModel()
     
-    private var cardView: AnyView {
-        switch viewModel.paymentOption {
-        case .studentCard:
-            return AnyView(StudentCard(name: "Domenic Bianchi", studentNumber: "0921557", balance: 5000))
-        case .credit:
-            return AnyView(StudentCard(name: "Domenic Bianchi", studentNumber: "0921557", balance: 5000))
+    private var cardView: AnyView? {
+        guard !viewModel.paymentMethods.isEmpty else {
+            return nil
+        }
+        
+        let paymentMethod = viewModel.paymentMethods[selectedPaymentMethodIndex]
+        switch paymentMethod.cardType {
+        case .student:
+            return AnyView(StudentCard(
+                name: "Domenic Bianchi",
+                studentNumber: String(paymentMethod.accountNumber),
+                balance: 5000))
+        case .visa:
+            return AnyView(CreditCard(brand: .visa, lastFourDigits: paymentMethod.lastFourDigits))
+        case .mastercard:
+            return AnyView(CreditCard(brand: .mastercard, lastFourDigits: paymentMethod.lastFourDigits))
+        }
+    }
+    
+    var priceSummaryDisplayMode: PriceSummaryCard.DisplayMode? {
+        guard !viewModel.paymentMethods.isEmpty else {
+            return nil
+        }
+        
+        switch viewModel.paymentMethods[selectedPaymentMethodIndex].cardType {
+        case .student(let mealPlanType):
+            return mealPlanType == .onCampus ? .onCampusMealPlan : .ultraMealPlan
+        case .visa, .mastercard:
+            return .noDiscounts
         }
     }
 }
 
 struct CheckoutView_Previews: PreviewProvider {
     static var previews: some View {
-        CheckoutView(
-            paymentOption: .studentCard)
+        CheckoutView()
             .environmentObject(Cart(items: [
                 FoodItem(id: 0, name: "Hamburger", imageName: ""),
                 FoodItem(id: 0, name: "Hamburger", imageName: "")
