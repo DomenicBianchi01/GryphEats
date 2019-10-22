@@ -10,14 +10,20 @@ import SwiftUI
 
 // MARK: - ItemOverview
 
-struct ItemOverview: View {
+struct ItemOverview: View, Dismissable {
+    
+    // MARK: Lifecycle
+    
+    init(foodItem: FoodItem) {
+        self.foodItem = foodItem
+    }
     
     // MARK: Internal
     
     var body: some View {
         ZStack(alignment: .top) {
             GeometryReader { geometry in
-                Image(self.selectedItem.item.imageName)
+                Image(self.foodItem.imageName)
                     .resizable()
                     .scaledToFill()
                     .edgesIgnoringSafeArea(.vertical)
@@ -28,11 +34,11 @@ struct ItemOverview: View {
             
             HStack {
                 VStack(alignment: .leading) {
-                    Text(selectedItem.item.name)
+                    Text(foodItem.name)
                         .foregroundColor(.white)
                         .font(.largeTitle)
                         .bold()
-                    Text(self.selectedItem.item.price.asDollarString)
+                    Text(self.foodItem.price.asDollarString)
                         .foregroundColor(.guelphYellow)
                         .fontWeight(.semibold)
                 }.padding(.leading, 20)
@@ -42,8 +48,8 @@ struct ItemOverview: View {
             SlideOverCard(handleText: "Pull Up To Customize") {
                 VStack(alignment: .leading) {
                     ActionButton(text: "Add To Order") {
-                        self.cart.items.append(self.selectedItem.item)
-                        self.dismiss(self.presentationMode)
+                        self.cart.items.append(self.foodItem)
+                        self.dismiss()
                     }.padding(.bottom, 30)
                     
                     Text("Ingredients").bold().padding(.leading)
@@ -93,19 +99,20 @@ struct ItemOverview: View {
         // something wrong
     }
     
+    @Environment(\.presentationMode) var presentationMode
+    
     // MARK: Private
     
     @EnvironmentObject private var cart: Cart
-    @EnvironmentObject private var selectedItem: ActiveFoodItem
-    @Environment(\.presentationMode) private var presentationMode
+    
+    private let foodItem: FoodItem
     
 }
 
 struct ItemOverview_Previews: PreviewProvider {
     
     static var previews: some View {
-        ItemOverview()
+        ItemOverview(foodItem: FoodItem(id: 0, name: "Cheese Hamburger", imageName: "hamburger"))
             .environmentObject(Cart(items: []))
-            .environmentObject(ActiveFoodItem(item: FoodItem(id: 0, name: "Cheese Hamburger", imageName: "hamburger")))
     }
 }

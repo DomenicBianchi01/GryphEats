@@ -1,5 +1,5 @@
 //
-//  CreditCardInfoTextField.swift
+//  PaymentInfoTextField.swift
 //  GryphEats
 //
 //  Created by Domenic Bianchi on 2019-10-17.
@@ -8,9 +8,9 @@
 
 import SwiftUI
 
-// MARK: - CreditCardInfoTextField
+// MARK: - PaymentInfoTextField
 
-struct CreditCardInfoTextField: View {
+struct PaymentInfoTextField: View {
     
     // MARK: DisplayMode
     
@@ -175,11 +175,11 @@ struct CreditCardInfoTextField: View {
     }
 }
 
-struct CreditCardInfoTextField_Previews: PreviewProvider {
+struct PaymentInfoTextField_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             Spacer()
-            CreditCardInfoTextField(
+            PaymentInfoTextField(
                 displayMode: .creditCardNumber,
                 subtitleDisplayMode: .visible(text: "A subtitle"),
                 header: "Card Number",
@@ -187,12 +187,12 @@ struct CreditCardInfoTextField_Previews: PreviewProvider {
                 text: .constant(""))
             
             HStack {
-                CreditCardInfoTextField(
+                PaymentInfoTextField(
                     displayMode: .question(info: "Some answer"),
                     header: "CCV",
                     placeholder: "Placeholder",
                     text: .constant(""))
-                CreditCardInfoTextField(
+                PaymentInfoTextField(
                     displayMode: .question(info: "Some answer"),
                     header: "CCV",
                     placeholder: "Placeholder",

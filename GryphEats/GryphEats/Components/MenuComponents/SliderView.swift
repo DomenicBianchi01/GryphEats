@@ -52,7 +52,9 @@ struct SliderView: View {
             })
         case .foodItems(let items):
             return AnyView(ForEach(items.indices) { index in
-                self.menuCard(for: items[index], atIndex: index, onTap: self.onTap)
+                NavigationLink(destination: ItemOverview(foodItem: items[index])) {
+                    self.menuCard(for: items[index], atIndex: index, onTap: { _ in }).disabled(true)
+                }
             })
         case .ingredients(let ingredients):
             return AnyView(ForEach(ingredients.indices) { index in

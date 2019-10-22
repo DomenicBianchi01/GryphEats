@@ -1,5 +1,5 @@
 //
-//  AddPaymentViewModel.swift
+//  AddCreditCardViewModel.swift
 //  GryphEats
 //
 //  Created by Domenic Bianchi on 2019-10-18.
@@ -8,9 +8,9 @@
 
 import SwiftUI
 
-// MARK: - AddPaymentViewModel
+// MARK: - AddCreditCardViewModel
 
-class AddPaymentViewModel: ObservableObject {
+class AddCreditCardViewModel: ObservableObject {
     
     // MARK: Internal
     
@@ -57,6 +57,6 @@ class AddPaymentViewModel: ObservableObject {
     }
     
     var isAllInfoValid: Bool {
-        return isCreditCardNumberValid && isExpiryValid && isCvvValid
+        return !cardHolderName.isEmpty && isCreditCardNumberValid && isExpiryValid && isCvvValid
     }
 }
