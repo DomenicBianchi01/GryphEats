@@ -1,5 +1,5 @@
 //
-//  CreditCardTextFieldTests.swift
+//  PaymentInfoTextFieldTests.swift
 //  GryphEatsTests
 //
 //  Created by Domenic Bianchi on 2019-10-19.
@@ -12,12 +12,12 @@ import XCTest
 
 @testable import GryphEats
 
-class CreditCardTextFieldTests: XCTestCase {
+class PaymentInfoTextFieldTests: XCTestCase {
     
     let record = false
 
     func testCreditCardTextField_basic() {
-        let textField = CreditCardInfoTextField(
+        let textField = PaymentInfoTextField(
             displayMode: .basic,
             header: "A header",
             placeholder: "Placeholder",
@@ -27,7 +27,7 @@ class CreditCardTextFieldTests: XCTestCase {
     }
     
     func testCreditCardTextField_creditCardNumber() {
-        let textField = CreditCardInfoTextField(
+        let textField = PaymentInfoTextField(
             displayMode: .creditCardNumber,
             header: "A header",
             placeholder: "Placeholder",
@@ -37,7 +37,7 @@ class CreditCardTextFieldTests: XCTestCase {
     }
     
     func testCreditCardTextField_question() {
-        let textField = CreditCardInfoTextField(
+        let textField = PaymentInfoTextField(
             displayMode: .question(info: "A question"),
             header: "A header",
             placeholder: "Placeholder",
@@ -47,7 +47,7 @@ class CreditCardTextFieldTests: XCTestCase {
     }
     
     func testCreditCardTextField_withoutSubtitle() {
-        let textField = CreditCardInfoTextField(
+        let textField = PaymentInfoTextField(
             displayMode: .basic,
             subtitleDisplayMode: .hidden,
             header: "A header",
@@ -58,7 +58,7 @@ class CreditCardTextFieldTests: XCTestCase {
     }
     
     func testCreditCardTextField_withSubtitle() {
-        let textField = CreditCardInfoTextField(
+        let textField = PaymentInfoTextField(
             displayMode: .basic,
             subtitleDisplayMode: .visible(text: "A subtitle"),
             header: "A header",

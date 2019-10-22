@@ -117,7 +117,6 @@ struct LoginView: View {
                 else {
                     HomeView()
                         .environmentObject(Cart())
-                        .environmentObject(ActiveFoodItem())
                 }
                 //RestOrdersView()
             }

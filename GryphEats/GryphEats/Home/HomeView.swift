@@ -28,13 +28,9 @@ struct HomeView: View {
     
     // MARK: Private
     
-    @State private var pushItemActive = false
     @State private var showOrderReview: Bool = false
-    
-    @EnvironmentObject private var cart: Cart
-    @EnvironmentObject private var activeItem: ActiveFoodItem
-    
     @ObservedObject private var viewModel = HomeViewModel()
+    @EnvironmentObject private var cart: Cart
     
     private var content: AnyView {
         switch viewModel.loadingState {
@@ -55,17 +51,10 @@ struct HomeView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         ForEach(restaurants) { restaurant in
-                            RestaurantItemsView(restaurant: restaurant) { index in
-                                self.presentItemDetails(for: restaurant.foodItems[index])
-                            }
+                            RestaurantItemsView(restaurant: restaurant) { _ in }
                         }
                     }
                 }.background(Color.lightGray)
-                
-                NavigationLink(destination: ItemOverview(), isActive: self.$pushItemActive) {
-                    Text("")
-                }.hidden()
-                
             }.edgesIgnoringSafeArea(.bottom)
                 .navigationBarItems(trailing: self.trailingNavigationBarItems))
         case .error:
@@ -89,11 +78,6 @@ struct HomeView: View {
                 .environmentObject(self.cart)
                 .environmentObject(OrderReviewState())
         }
-    }
-    
-    private func presentItemDetails(for foodItem: FoodItem) {
-        activeItem.item = foodItem
-        pushItemActive = true
     }
 }
 

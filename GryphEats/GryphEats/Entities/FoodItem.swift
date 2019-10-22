@@ -30,19 +30,3 @@ struct FoodItem: Identifiable, Equatable {
     let price: Double = 9.99
     
 }
-
-// MARK: - ActiveFoodItem
-
-class ActiveFoodItem: ObservableObject {
-    
-    // MARK: Lifecycle
-    
-    init(item: FoodItem = FoodItem(id: 0, name: "", imageName: "")) {
-        self.item = item
-    }
-    
-    // MARK: Internal
-    
-    @Published var item: FoodItem
-    
-}

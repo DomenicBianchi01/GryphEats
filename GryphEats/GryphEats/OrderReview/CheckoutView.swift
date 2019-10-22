@@ -46,6 +46,8 @@ struct CheckoutView: View {
                         .foregroundColor(.guelphRed)
                 }.padding()
                 
+                Divider().padding([.horizontal, .bottom])
+                
                 PriceSummaryCard(
                     displayMode: priceSummaryDisplayMode ?? .noDiscounts,
                     isPayButtonDisabled: viewModel.paymentMethods.isEmpty)
@@ -53,7 +55,7 @@ struct CheckoutView: View {
                     if case .confirmPayment = action {
                         self.confirmPayment = true
                     }
-                }.padding(.top, 40)
+                }
                 
                 Spacer()
             }
