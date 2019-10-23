@@ -27,7 +27,7 @@ struct RestOrdersView: View {
                         OrderCard(order: order, enableShadow: false, isCollapsable: false, fillSpace: true)
                     }
                 }
-            }.navigationBarTitle("Orders")
+            }
             Text("Select an order from the list to get started")
         }.onAppear() {
             UITableView.appearance().separatorColor = .clear
