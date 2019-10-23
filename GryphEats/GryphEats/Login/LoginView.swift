@@ -92,27 +92,11 @@ struct LoginView: View {
     
     private func attemptLogin() {
         
-        let ingredients1 = Ingredient(id: 0, name: "Cheese", imageName: "")
-        let ingredients2 = Ingredient(id: 1, name: "Onion", imageName: "")
-        let ingredients3 = Ingredient(id: 2, name: "Mushrooms", imageName: "")
-
-        let foodItem1 = FoodItem(id: 0, name: "100 Mile Burger and Fries", imageName: "")
-        let foodItem2 = FoodItem(id: 1, name: "100 Mile Burger and Fries", imageName: "", ingredients: [ingredients1])
-        let foodItem3 = FoodItem(id: 2, name: "100 Mile Burger and Fries", imageName: "", ingredients: [ingredients2])
-        let foodItem4 = FoodItem(id: 3, name: "100 Mile Burger and Fries", imageName: "", ingredients: [ingredients2, ingredients3])
-        let foodItem5 = FoodItem(id: 4, name: "100 Mile Burger and Fries", imageName: "", ingredients: [ingredients1, ingredients2, ingredients3])
-        
-        let orders:[Order] = [
-            Order(id: 0, customer: Customer(name: "Domenic Bianchi", mealPlan: nil), status: .new, time: "11:29am", foodItems: [foodItem1]),
-        Order(id: 1, customer: Customer(name: "Matthew Bebis", mealPlan: nil), status: .new, time: "11:23am", foodItems: [foodItem2, foodItem3]),
-        Order(id: 2, customer: Customer(name: "Scott Riva", mealPlan: nil), status: .new, time: "11:20am", foodItems: [foodItem1, foodItem2, foodItem4]),
-        Order(id: 3, customer: Customer(name: "Shuaib Solker", mealPlan: nil), status: .new, time: "11:31am", foodItems: [foodItem1, foodItem2, foodItem3, foodItem4, foodItem5])]
-        
         switch viewModel.attemptLogin() {
         case .success:
             self.viewController?.present(style: .fullScreen) {
                 if (restaurantUser.type == 1 && restaurantUser.username == email && restaurantUser.password == password) {
-                    RestOrdersView(orders: orders)
+                    RestHomeView()
                 }
                 else {
                     MainTabView()
