@@ -2,12 +2,24 @@ const { gql } = require('apollo-server');
 const typeDefs = gql`
     type Query {
         foods: [Food]!
+        food(foodid: ID!): [Food]
+        foodName(displayname:String!):[Food]
         restaurants: [Restaurant]!
         users: [User]!
+        menus(restaurantid: ID!): [Menu]
+        menuitems(menuid: ID!): [MenuItem]!
+        orderitems(orderid: ID!): [OrderItem]
+        ordersbyrest(restaurantid: ID!): [FoodOrder]!
     }
 
     type Mutation {
         completeOrder(orderid: ID): Finish
+        updateFoodPriceByID(foodid:ID!, price:ID!): String
+        createFood(displayname:String, toppingtype:ID, price:ID, restaurantid:ID, isavailable:ID, description:String, foodgroup:ID): String
+    }
+
+    type Subscription {
+        foodAdded: Food
     }
 
     type Food {
@@ -42,6 +54,37 @@ const typeDefs = gql`
         lastorderid: ID
     }
 
+    type Menu {
+        menuid: ID!
+        restaurantid: ID!
+        title: String
+        description: String
+        isactive: ID
+    }
+
+    type MenuItem {
+        menuid: ID!
+        foodid: ID!
+    }
+
+    type OrderItem {
+        orderid: ID!
+        foodid: ID!
+        identifier: ID!
+    }
+
+    type FoodOrder {
+        orderid: ID!
+        timeplaced: String
+        timecompleted: String
+        restaurantid: ID!
+    }
+
+    type Topping {
+        toppingid: ID!
+        identifier: ID!
+    }
+
     type Finish {
         success: Boolean!
         message: String
@@ -49,6 +92,11 @@ const typeDefs = gql`
 `;
 
 module.exports = typeDefs;
+
+
+
+
+
 
 
 // const typeDefs = gql`

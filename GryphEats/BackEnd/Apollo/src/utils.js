@@ -40,8 +40,9 @@ module.exports.createDB = () => {
             primaryKey: true,
             autoIncrement: true
         },
-        timeplaced: SQL.STRING,
-        timecompleted: SQL.INTEGER,
+        timeplaced: SQL.DATE,
+        timecompleted: SQL.DATE,
+        restaurantid: SQL.INTEGER
     },
         {
             freezeTableName: true
@@ -101,8 +102,8 @@ module.exports.createDB = () => {
         },
         displayname: SQL.STRING,
         phonenumber: SQL.STRING,
-        openingtime: SQL.STRING,
-        closingtime: SQL.STRING,
+        openingtime: SQL.TIME,
+        closingtime: SQL.TIME,
         isactive: SQL.INTEGER,
         description: SQL.STRING
     },
@@ -123,7 +124,8 @@ module.exports.createDB = () => {
         address: SQL.STRING,
         email: SQL.STRING,
         currentorderid: SQL.INTEGER,
-        lastorderid: SQL.INTEGER
+        lastorderid: SQL.INTEGER,
+        usertype: SQL.INTEGER
     },
         {
             freezeTableName: true
