@@ -53,8 +53,7 @@ struct HomeView: View {
                         RestaurantItemsView(restaurant: restaurant) { _ in }
                     }
                 }.background(Color.lightGray)
-            }.edgesIgnoringSafeArea(.bottom)
-                .navigationBarItems(trailing: self.trailingNavigationBarItems))
+            }.navigationBarItems(trailing: self.trailingNavigationBarItems))
         case .error:
             return AnyView(ErrorView(infoText: "Whoops! We could not fetch the menus.", buttonText: "Try Again") {
                 self.viewModel.fetchRestaurants()

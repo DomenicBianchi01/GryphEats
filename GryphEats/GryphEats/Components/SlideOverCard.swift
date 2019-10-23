@@ -42,12 +42,12 @@ struct SlideOverCard<V: View>: View {
     // MARK: Private
     
     @GestureState private var dragState: DragState = .inactive
-    @State private var position: CGFloat = UIScreen.main.bounds.height - 190
+    @State private var position: CGFloat = UIScreen.main.bounds.height - 250
     
     private let content: () -> V
     private let handleText: String
 
-    private let minimumOffset: CGFloat = 190
+    private let minimumOffset: CGFloat = 250
     private let maximumHeight: CGFloat = 100
     
     private func onDragEnded(drag: DragGesture.Value) {

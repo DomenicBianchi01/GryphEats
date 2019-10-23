@@ -147,6 +147,11 @@
 		B0CA76282345481B003E7FBD /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = B0CA76272345481B003E7FBD /* Apollo */; };
 		B0CA762C23454A38003E7FBD /* Restaurants.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0CA762B23454A38003E7FBD /* Restaurants.graphql */; };
 		B0CA762E23454B1F003E7FBD /* GraphAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CA762D23454B1F003E7FBD /* GraphAPI.swift */; };
+		B0CD88CB23607F3C00A5C021 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD88CA23607F3C00A5C021 /* MainTabView.swift */; };
+		B0CD88CC23607F3C00A5C021 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD88CA23607F3C00A5C021 /* MainTabView.swift */; };
+		B0CD88CE236088A200A5C021 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD88CD236088A200A5C021 /* CustomTabBar.swift */; };
+		B0CD88CF236088A200A5C021 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD88CD236088A200A5C021 /* CustomTabBar.swift */; };
+		B0CD88D42360A21200A5C021 /* CustomTabBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD88D32360A21200A5C021 /* CustomTabBarTests.swift */; };
 		B0D9ED2223562296006A1545 /* PriceSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D9ED2123562296006A1545 /* PriceSummaryCard.swift */; };
 		B0D9ED23235622A6006A1545 /* PriceSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D9ED2123562296006A1545 /* PriceSummaryCard.swift */; };
 		B0D9ED25235650E3006A1545 /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D9ED24235650E3006A1545 /* DoubleExtensions.swift */; };
@@ -299,6 +304,9 @@
 		B0C9B197234A8EF700605D23 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		B0CA762B23454A38003E7FBD /* Restaurants.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Restaurants.graphql; sourceTree = "<group>"; };
 		B0CA762D23454B1F003E7FBD /* GraphAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphAPI.swift; sourceTree = "<group>"; };
+		B0CD88CA23607F3C00A5C021 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		B0CD88CD236088A200A5C021 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		B0CD88D32360A21200A5C021 /* CustomTabBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarTests.swift; sourceTree = "<group>"; };
 		B0D9ED2123562296006A1545 /* PriceSummaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSummaryCard.swift; sourceTree = "<group>"; };
 		B0D9ED24235650E3006A1545 /* DoubleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtensions.swift; sourceTree = "<group>"; };
 		B0D9ED27235669F0006A1545 /* CartItemCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCardTests.swift; sourceTree = "<group>"; };
@@ -390,6 +398,7 @@
 				B0D9ED2923566A41006A1545 /* ActionButtonTests.swift */,
 				B0D9ED2B23566AA9006A1545 /* PriceSummaryCardTests.swift */,
 				B0160C92235BE0F90087A99F /* PaymentSelectionCardTests.swift */,
+				B0CD88D32360A21200A5C021 /* CustomTabBarTests.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -397,6 +406,7 @@
 		B021DE9A234FCE5900DBF1AA /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				B0CD88CD236088A200A5C021 /* CustomTabBar.swift */,
 				B021DE9B234FCE6600DBF1AA /* ActivityIndicator.swift */,
 				B0D9ED392356B87B006A1545 /* ApplePayButton.swift */,
 			);
@@ -616,6 +626,7 @@
 				B0843369234CEC4500DD325E /* ViewModels */,
 				B0BBFDAD23477D3C00FDEFA4 /* HomeView.swift */,
 				B0843375234D07E100DD325E /* ResturantItemsView.swift */,
+				B0CD88CA23607F3C00A5C021 /* MainTabView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -933,9 +944,11 @@
 				B0BBFDBF2347D27100FDEFA4 /* AnyTransitionExtensions.swift in Sources */,
 				B03E283F235E8D3E0000EDA2 /* HomeViewModel.swift in Sources */,
 				B09416A32355EF900032BA12 /* ActionButton.swift in Sources */,
+				B0CD88CC23607F3C00A5C021 /* MainTabView.swift in Sources */,
 				B0926333236079DD0007612C /* CardProvider.swift in Sources */,
 				B0A7C40A234C32BE001555B7 /* FoodItem.swift in Sources */,
 				B07F0DFB2357544C00912397 /* OrderSubmittedView.swift in Sources */,
+				B0CD88CF236088A200A5C021 /* CustomTabBar.swift in Sources */,
 				B0A2D09323460C0C00391DD6 /* Order.swift in Sources */,
 				B0F6E206234ED3EC00067B79 /* StepperView.swift in Sources */,
 				B09416A92355F5B40032BA12 /* OrderReviewView.swift in Sources */,
@@ -1016,6 +1029,7 @@
 				B022F709235E0EA1005269FB /* AddCreditCardView.swift in Sources */,
 				B0C9B198234A8EF700605D23 /* ResetPasswordView.swift in Sources */,
 				EB2237F3234B958C00CB9196 /* RestHomeView.swift in Sources */,
+				B0CD88CE236088A200A5C021 /* CustomTabBar.swift in Sources */,
 				B0CA762E23454B1F003E7FBD /* GraphAPI.swift in Sources */,
 				B0BBFDAE23477D3C00FDEFA4 /* HomeView.swift in Sources */,
 				B0F6E205234ED3EC00067B79 /* StepperView.swift in Sources */,
@@ -1060,6 +1074,7 @@
 				B09416A52355F3660032BA12 /* CheckoutView.swift in Sources */,
 				B07F0DFA2357544C00912397 /* OrderSubmittedView.swift in Sources */,
 				B0982AF52357825300E20BB9 /* PaymentSelectionCard.swift in Sources */,
+				B0CD88CB23607F3C00A5C021 /* MainTabView.swift in Sources */,
 				B04616372346C6610033087B /* CircularButton.swift in Sources */,
 				B0D9ED2223562296006A1545 /* PriceSummaryCard.swift in Sources */,
 				B06B514B23495BD90015E960 /* ViewExtensions.swift in Sources */,
@@ -1094,6 +1109,7 @@
 				B0160C91235BDE550087A99F /* PaymentInfoTextFieldTests.swift in Sources */,
 				B06B51322349322F0015E960 /* BasicButtonTests.swift in Sources */,
 				B0160C8F235BDDB60087A99F /* CreditCardTests.swift in Sources */,
+				B0CD88D42360A21200A5C021 /* CustomTabBarTests.swift in Sources */,
 				B0D9ED2A23566A41006A1545 /* ActionButtonTests.swift in Sources */,
 				B090F0CC234F9C87007CF06F /* IngredientCardTests.swift in Sources */,
 				B0BEF925234D546D004455DC /* SliderViewTests.swift in Sources */,

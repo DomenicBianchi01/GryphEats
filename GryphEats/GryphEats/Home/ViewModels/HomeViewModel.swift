@@ -45,7 +45,12 @@ class HomeViewModel: ObservableObject {
     func fetchRestaurants() {
         self.loadingState = .loading
         
-        self.loadingState = .loaded([Restaurant(id: "0", name: "Moms", foodItems: self.foodItems)])
+        self.loadingState = .loaded([
+            Restaurant(id: "0", name: "Moms", foodItems: self.foodItems),
+            Restaurant(id: "0", name: "Moms", foodItems: self.foodItems),
+            Restaurant(id: "0", name: "Moms", foodItems: self.foodItems),
+            Restaurant(id: "0", name: "Moms", foodItems: self.foodItems)
+        ])
         
 //        Apollo.shared.fetch(query: RestaurantsQuery()) { result in
 //            switch result {
