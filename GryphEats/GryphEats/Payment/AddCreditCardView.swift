@@ -10,7 +10,13 @@ import SwiftUI
 
 // MARK: - AddCreditCardView
 
-struct AddCreditCardView: View, Dismissable {
+struct AddCreditCardView: View {
+    
+    // MARK: Lifecycle
+    
+    init(onSave: @escaping (PaymentMethod) -> Void) {
+        self.onSave = onSave
+    }
     
     // MARK: Internal
     
@@ -62,21 +68,24 @@ struct AddCreditCardView: View, Dismissable {
                 backgroundColor: .guelphRed,
                 foregroundColor: .white,
                 isDisabled: !viewModel.isAllInfoValid) {
-                    self.dismiss()
+                    guard let paymentMethod = self.viewModel.createPaymentMethod() else {
+                        return
+                    }
+                    
+                    self.onSave(paymentMethod)
             }.padding(.bottom)
         }
     }
     
-    @Environment(\.presentationMode) var presentationMode
-    
     // MARK: Private
     
     @ObservedObject private var viewModel = AddCreditCardViewModel()
+    private let onSave: (PaymentMethod) -> Void
     
 }
 
 struct AddCreditCardView_Previews: PreviewProvider {
     static var previews: some View {
-        AddCreditCardView()
+        AddCreditCardView { _ in }
     }
 }

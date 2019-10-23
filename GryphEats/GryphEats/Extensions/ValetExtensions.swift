@@ -12,10 +12,16 @@ import Valet
 
 extension Valet {
     
+    // MARK: Keys
+    
+    enum Keys: String {
+        case paymentMethods
+    }
+    
     // MARK: Internal
     
-    static var secureEnclave: SecureEnclaveValet {
+    static var keychain: Valet {
         // Based on the contents of the `Identifier`, it is 100% safe to force unwrap
-        return SecureEnclaveValet.valet(with: Identifier(nonEmpty: "GryphEats")!, accessControl: .userPresence)
+        return Valet.valet(with: Identifier(nonEmpty: "GryphEats")!, accessibility: .whenUnlocked)
     }
 }
