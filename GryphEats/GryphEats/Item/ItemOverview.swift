@@ -94,9 +94,7 @@ struct ItemOverview: View, Dismissable {
                     //                    }
                 }
             }
-            
-        }//.navigationBarTitle("") //TODO: Cannot hide navigation bar. No idea if this is a SwiftUI bug or I am doing
-        // something wrong
+        }
     }
     
     @Environment(\.presentationMode) var presentationMode

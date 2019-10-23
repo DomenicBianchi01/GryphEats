@@ -115,10 +115,8 @@ struct LoginView: View {
                     RestOrdersView(orders: orders)
                 }
                 else {
-                    HomeView()
-                        .environmentObject(Cart())
+                    MainTabView()
                 }
-                //RestOrdersView()
             }
         case .failure(let error):
             self.error = error
