@@ -49,10 +49,8 @@ struct HomeView: View {
                 Divider()
                 
                 ScrollView {
-                    VStack(alignment: .leading) {
-                        ForEach(restaurants) { restaurant in
-                            RestaurantItemsView(restaurant: restaurant) { _ in }
-                        }
+                    ForEach(restaurants) { restaurant in
+                        RestaurantItemsView(restaurant: restaurant) { _ in }
                     }
                 }.background(Color.lightGray)
             }.edgesIgnoringSafeArea(.bottom)
@@ -83,6 +81,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView().environmentObject(Cart())
     }
 }

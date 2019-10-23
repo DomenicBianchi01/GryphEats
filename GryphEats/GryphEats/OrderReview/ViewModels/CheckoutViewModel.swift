@@ -6,6 +6,7 @@
 //  Copyright © 2019 The Subway Squad. All rights reserved.
 //
 
+import Foundation
 import Valet
 
 // MARK: - CheckoutViewModel
@@ -13,25 +14,13 @@ import Valet
 class CheckoutViewModel {
     
     // MARK: Internal
-
+    
     var paymentMethods: [PaymentMethod] {
-        return [
-            PaymentMethod(
-                cardType: .visa,
-                accountName: "Domenic Bianchi",
-                accountNumber: 1234567894),
-            PaymentMethod(
-                cardType: .mastercard,
-                accountName: "Domenic Bianchi",
-                accountNumber: 123456789),
-            PaymentMethod(
-                cardType: .student(mealPlanType: .onCampus),
-                accountName: "Domenic Bianchi",
-                accountNumber: 1234567893),
-            PaymentMethod(
-            cardType: .student(mealPlanType: .ultra),
-            accountName: "Domenic Bianchi",
-            accountNumber: 1234567893)
-        ]
+        guard let rawData = Valet.keychain.string(forKey: Valet.Keys.paymentMethods.rawValue),
+            let paymentMethods = try? JSONDecoder().decode([PaymentMethod].self, from: Data(rawData.utf8)) else {
+                return []
+        }
+        
+        return paymentMethods
     }
 }

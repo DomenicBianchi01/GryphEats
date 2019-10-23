@@ -10,7 +10,13 @@ import SwiftUI
 
 // MARK: - AddMealPlanView
 
-struct AddMealPlanView: View, Dismissable {
+struct AddMealPlanView: View {
+    
+    // MARK: Lifecycle
+    
+    init(onSave: @escaping (PaymentMethod) -> Void) {
+        self.onSave = onSave
+    }
     
     // MARK: Internal
     
@@ -43,21 +49,24 @@ struct AddMealPlanView: View, Dismissable {
                 backgroundColor: .guelphRed,
                 foregroundColor: .white,
                 isDisabled: !viewModel.isAllInfoValid) {
-                    self.dismiss()
+                    guard let paymentMethod = self.viewModel.createPaymentMethod() else {
+                        return
+                    }
+                    
+                    self.onSave(paymentMethod)
             }.padding(.bottom)
         }
     }
     
-    @Environment(\.presentationMode) var presentationMode
-    
     // MARK: Private
     
     @ObservedObject private var viewModel = AddMealPlanViewModel()
+    private let onSave: (PaymentMethod) -> Void
     
 }
 
 struct AddMealPlanView_Previews: PreviewProvider {
     static var previews: some View {
-        AddMealPlanView()
+        AddMealPlanView { _ in }
     }
 }

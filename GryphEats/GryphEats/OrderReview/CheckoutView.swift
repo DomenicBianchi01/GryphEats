@@ -26,7 +26,11 @@ struct CheckoutView: View {
                 
                 cardView
                 
-                ForEach(viewModel.paymentMethods.indices) { index in
+                // This view is refreshed `onAppear`. If the number of payment methods have increased or decreased,
+                // because we are iterating over the indices and not the actual objects, we need to provide a unique
+                // identifier for the actual index (since we don't have access to `Identifiable` within the actual
+                // payment method object).
+                ForEach(viewModel.paymentMethods.indices, id: \.hashValue) { index in
                     PaymentSelectionCard(
                         paymentMethod: self.viewModel.paymentMethods[index],
                         isSelected: self.selectedPaymentMethodIndex == index)
@@ -74,6 +78,8 @@ struct CheckoutView: View {
                 })
         }.sheet(isPresented: $showAddPayment) {
             AddPaymentView()
+        }.onAppear {
+            self.forceRefresh = true
         }
     }
     
@@ -85,6 +91,11 @@ struct CheckoutView: View {
     @State private var showAddPayment: Bool = false
     @State private var confirmPayment: Bool = false
     @State private var selectedPaymentMethodIndex = 0
+    
+    // TODO: Find a better way to refresh the view.
+    // After adding a new payment, we need to refresh the view to reflect the new list of payment methods. The only
+    // way I currently know how to do this is to set a dummy `@State` property to force a refresh.
+    @State private var forceRefresh: Bool = false
     
     private let viewModel = CheckoutViewModel()
     

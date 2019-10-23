@@ -29,6 +29,8 @@
 		B022F70D235E0EB3005269FB /* AddCreditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B022F708235E0EA1005269FB /* AddCreditCardView.swift */; };
 		B03E283C235E772D0000EDA2 /* AddMealPlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03E283B235E772D0000EDA2 /* AddMealPlanViewModel.swift */; };
 		B03E283D235E772D0000EDA2 /* AddMealPlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03E283B235E772D0000EDA2 /* AddMealPlanViewModel.swift */; };
+		B03E283E235E8D090000EDA2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BBFDAD23477D3C00FDEFA4 /* HomeView.swift */; };
+		B03E283F235E8D3E0000EDA2 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B084336A234CEC5300DD325E /* HomeViewModel.swift */; };
 		B04616302346B1DE0033087B /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B046162F2346B1DE0033087B /* LandingView.swift */; };
 		B04616332346BD5D0033087B /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04616322346BD5D0033087B /* CustomTextField.swift */; };
 		B04616342346BDA10033087B /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04616322346BD5D0033087B /* CustomTextField.swift */; };
@@ -45,6 +47,7 @@
 		B05B3FD92348253000547DD1 /* SecurityQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05B3FD72348253000547DD1 /* SecurityQuestionView.swift */; };
 		B05B3FDB2348257000547DD1 /* LandingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05B3FDA2348257000547DD1 /* LandingState.swift */; };
 		B05B3FDC2348257000547DD1 /* LandingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05B3FDA2348257000547DD1 /* LandingState.swift */; };
+		B05CE801235FE772000DB827 /* CardProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05CE800235FE772000DB827 /* CardProvider.swift */; };
 		B06B51322349322F0015E960 /* BasicButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B51312349322F0015E960 /* BasicButtonTests.swift */; };
 		B06B5134234932720015E960 /* CirclularButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B5133234932720015E960 /* CirclularButtonTests.swift */; };
 		B06B5136234934B80015E960 /* CustomTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B5135234934B80015E960 /* CustomTextFieldTests.swift */; };
@@ -90,6 +93,7 @@
 		B09156072359551600FE2CD2 /* ValetExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09156052359551600FE2CD2 /* ValetExtensions.swift */; };
 		B091560923595ACE00FE2CD2 /* PaymentInfoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B091560823595ACE00FE2CD2 /* PaymentInfoTextField.swift */; };
 		B091560A23595ACE00FE2CD2 /* PaymentInfoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B091560823595ACE00FE2CD2 /* PaymentInfoTextField.swift */; };
+		B0926333236079DD0007612C /* CardProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05CE800235FE772000DB827 /* CardProvider.swift */; };
 		B09416A22355EF900032BA12 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09416A12355EF900032BA12 /* ActionButton.swift */; };
 		B09416A32355EF900032BA12 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09416A12355EF900032BA12 /* ActionButton.swift */; };
 		B09416A52355F3660032BA12 /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09416A42355F3660032BA12 /* CheckoutView.swift */; };
@@ -232,6 +236,7 @@
 		B051FF7D234588BD0093C0DC /* OrderCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCard.swift; sourceTree = "<group>"; };
 		B05B3FD72348253000547DD1 /* SecurityQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityQuestionView.swift; sourceTree = "<group>"; };
 		B05B3FDA2348257000547DD1 /* LandingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingState.swift; sourceTree = "<group>"; };
+		B05CE800235FE772000DB827 /* CardProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardProvider.swift; sourceTree = "<group>"; };
 		B06B51312349322F0015E960 /* BasicButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButtonTests.swift; sourceTree = "<group>"; };
 		B06B5133234932720015E960 /* CirclularButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclularButtonTests.swift; sourceTree = "<group>"; };
 		B06B5135234934B80015E960 /* CustomTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldTests.swift; sourceTree = "<group>"; };
@@ -412,6 +417,7 @@
 				B0BEF91A234D4941004455DC /* Restaurant.swift */,
 				EB605A31235BB24F00EB7856 /* User.swift */,
 				B0D9ED3323568EB2006A1545 /* PaymentMethod.swift */,
+				B05CE800235FE772000DB827 /* CardProvider.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -925,7 +931,9 @@
 				B01DC45423552B5300539D30 /* CartItemCard.swift in Sources */,
 				B0A2D0A823462BF500391DD6 /* StudentCard.swift in Sources */,
 				B0BBFDBF2347D27100FDEFA4 /* AnyTransitionExtensions.swift in Sources */,
+				B03E283F235E8D3E0000EDA2 /* HomeViewModel.swift in Sources */,
 				B09416A32355EF900032BA12 /* ActionButton.swift in Sources */,
+				B0926333236079DD0007612C /* CardProvider.swift in Sources */,
 				B0A7C40A234C32BE001555B7 /* FoodItem.swift in Sources */,
 				B07F0DFB2357544C00912397 /* OrderSubmittedView.swift in Sources */,
 				B0A2D09323460C0C00391DD6 /* Order.swift in Sources */,
@@ -958,6 +966,7 @@
 				B08A7B43235A918100693E6A /* AddCreditCardViewModel.swift in Sources */,
 				B07F0DF823574B8400912397 /* CheckoutViewModel.swift in Sources */,
 				B090F0C5234F71EC007CF06F /* IngredientCard.swift in Sources */,
+				B03E283E235E8D090000EDA2 /* HomeView.swift in Sources */,
 				B08F32142348D3C2009A0E61 /* ColorExtensions.swift in Sources */,
 				B0843377234D088F00DD325E /* ResturantItemsView.swift in Sources */,
 				B0843374234CF21600DD325E /* NavigationHeaderView.swift in Sources */,
@@ -1065,6 +1074,7 @@
 				B06B515023496B070015E960 /* AnswerQuestionView.swift in Sources */,
 				EBC089F323524B5800DA3A55 /* OrderRow.swift in Sources */,
 				B08F32132348D3C2009A0E61 /* ColorExtensions.swift in Sources */,
+				B05CE801235FE772000DB827 /* CardProvider.swift in Sources */,
 				EB605A32235BB24F00EB7856 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

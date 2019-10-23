@@ -14,7 +14,7 @@ struct PaymentInfoTextField: View {
     
     // MARK: DisplayMode
     
-    enum DisplayMode: Equatable {
+    enum DisplayMode {
         case basic
         case creditCardNumber
         case question(info: String)
@@ -25,23 +25,6 @@ struct PaymentInfoTextField: View {
     enum SubtitleDisplayMode {
         case hidden
         case visible(text: String)
-    }
-    
-    // MARK: CardProvider
-    
-    //TODO: Move this enum somewhere else (doesn't totally belong in this struct)
-    enum CardProvider: Int {
-        case visa = 4
-        case mastercard = 5
-        
-        fileprivate var imageName: String {
-            switch self {
-            case .visa:
-                return "visaLogo"
-            case .mastercard:
-                return "mastercardLogo"
-            }
-        }
     }
     
     // MARK: Lifecycle

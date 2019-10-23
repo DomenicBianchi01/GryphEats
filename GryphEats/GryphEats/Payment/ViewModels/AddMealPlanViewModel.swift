@@ -18,17 +18,28 @@ class AddMealPlanViewModel: ObservableObject {
     
     @Published var studentNumber: String = "" {
         didSet {
-            if studentNumber.count > 7 {
+            if studentNumber.count > 7 || (Int(studentNumber) == nil && studentNumber.count != 0) {
                 studentNumber = oldValue
             }
         }
     }
     
     var isStudentNumberValid: Bool {
-        return studentNumber.count == 7
+        studentNumber.count == 7
     }
     
     var isAllInfoValid: Bool {
-        return !studentName.isEmpty && isStudentNumberValid
+        !studentName.isEmpty && isStudentNumberValid
+    }
+    
+    func createPaymentMethod() -> PaymentMethod? {
+        guard let accountNumber = Int(studentNumber) else {
+            return nil
+        }
+        
+        return PaymentMethod(
+            cardType: .student(mealPlanType: .onCampus), //TODO: Meal plan type
+            accountName: studentName,
+            accountNumber: accountNumber)
     }
 }

@@ -7,10 +7,11 @@
 //
 
 import SwiftUI
+import Valet
 
 // MARK: - AddPaymentView
 
-struct AddPaymentView: View {
+struct AddPaymentView: View, Dismissable {
     
     // MARK: PaymentType
     
@@ -46,9 +47,13 @@ struct AddPaymentView: View {
                 .padding()
             
             if paymentType == 0 {
-                AddCreditCardView()
+                AddCreditCardView { paymentMethod in
+                    self.save(paymentMethod)
+                }
             } else {
-                AddMealPlanView()
+                AddMealPlanView { paymentMethod in
+                    self.save(paymentMethod)
+                }
             }
             
         }.background(Rectangle()
@@ -57,10 +62,26 @@ struct AddPaymentView: View {
             .dismissKeyboardOnTapGesture()
     }
     
+    @Environment(\.presentationMode) var presentationMode
+    
     // MARK: Private
     
     @State private var paymentType: Int = 0
     
+    private func save(_ paymentMethod: PaymentMethod) {
+        let rawData = Valet.keychain.string(forKey: Valet.Keys.paymentMethods.rawValue)
+        
+        var paymentMethods = (try? JSONDecoder().decode(
+            [PaymentMethod].self, from: Data(rawData?.utf8 ?? "".utf8))) ?? []
+        
+        paymentMethods.append(paymentMethod)
+        
+        if let encodedData = try? JSONEncoder().encode(paymentMethods) {
+            Valet.keychain.set(object: encodedData, forKey: Valet.Keys.paymentMethods.rawValue)
+        }
+        
+        dismiss()
+    }
 }
 
 struct AddPaymentView_Previews: PreviewProvider {
