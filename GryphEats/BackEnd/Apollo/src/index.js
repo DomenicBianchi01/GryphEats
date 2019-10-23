@@ -6,6 +6,9 @@ const { createDB } = require('./utils');
 const GryphAPI = require('./datasources/gryphEats');
 const database = createDB();
 
+// const { PubSub } = require('apollo-server');
+// const pubsub = new PubSub();
+
 const dataSources = () => ({
     gryphAPI: new GryphAPI({ database }),
 });
@@ -30,6 +33,7 @@ const server = new ApolloServer({
 const port = 4000;
 
 // The `listen` method launches a web server.
-server.listen({ port }).then(({ url }) => {
+server.listen({ port }).then(({ url, subscriptionsUrl }) => {
     console.log(`Server ready at ${url}`);
+    // console.log(`🚀 Subscriptions ready at ${subscriptionsUrl}`);
 }).catch(console.log("Already Running"));

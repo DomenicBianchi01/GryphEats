@@ -1,1 +1,1 @@
-create table menu (menuid int not null, restaurantid int not null, title varchar(255) not null default 'Untitled', description varchar(255) not null default '', isactive int not null default 0, primary key (menuid), foreign key (restaurantid) references restaurant(restaurantid))
+create table menu (menuid int not null auto_increment, restaurantid int not null, title varchar(255) not null default 'Untitled', description varchar(255) not null default '', isactive int not null default 0, primary key (menuid), foreign key (restaurantid) references restaurant(restaurantid))
