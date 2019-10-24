@@ -52,7 +52,7 @@ struct HomeView: View {
                     ForEach(restaurants) { restaurant in
                         RestaurantItemsView(restaurant: restaurant) { _ in }
                     }
-                }.background(Color.lightGray)
+                }.padding(.bottom, 40)
             }.navigationBarItems(trailing: self.trailingNavigationBarItems))
         case .error:
             return AnyView(ErrorView(infoText: "Whoops! We could not fetch the menus.", buttonText: "Try Again") {
