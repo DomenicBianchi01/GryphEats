@@ -29,10 +29,10 @@ let foodItem4 = FoodItem(id: 3, name: "100 Mile Burger and Fries", imageName: ""
 let foodItem5 = FoodItem(id: 4, name: "100 Mile Burger and Fries", imageName: "", ingredients: [ingredients1, ingredients2, ingredients3])
 
 let orders:[Order] = [
-    Order(id: 0, customer: Customer(name: "Domenic Bianchi", mealPlan: nil), status: .new, time: "11:29am", foodItems: [foodItem1]),
-    Order(id: 1, customer: Customer(name: "Matthew Bebis", mealPlan: nil), status: .new, time: "11:23am", foodItems: [foodItem2, foodItem3]),
-    Order(id: 2, customer: Customer(name: "Scott Riva", mealPlan: nil), status: .new, time: "11:20am", foodItems: [foodItem1, foodItem2, foodItem4]),
-    Order(id: 3, customer: Customer(name: "Shuaib Solker", mealPlan: nil), status: .new, time: "11:31am", foodItems: [foodItem1, foodItem2, foodItem3, foodItem4, foodItem5])]
+    Order(id: 0, customer: Customer(name: "Domenic Bianchi"), status: .new, time: "11:29am", foodItems: [foodItem1]),
+    Order(id: 1, customer: Customer(name: "Matthew Bebis"), status: .new, time: "11:23am", foodItems: [foodItem2, foodItem3]),
+    Order(id: 2, customer: Customer(name: "Scott Riva"), status: .new, time: "11:20am", foodItems: [foodItem1, foodItem2, foodItem4]),
+    Order(id: 3, customer: Customer(name: "Shuaib Solker"), status: .new, time: "11:31am", foodItems: [foodItem1, foodItem2, foodItem3, foodItem4, foodItem5])]
 
 struct RestHomeView: View {
     var body: some View {

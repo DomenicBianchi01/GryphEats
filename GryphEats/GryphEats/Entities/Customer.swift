@@ -13,6 +13,5 @@ struct Customer {
     // MARK: Internal
     
     var name: String
-    var mealPlan: MealPlan?
 
 }

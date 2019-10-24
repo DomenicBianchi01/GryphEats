@@ -15,6 +15,10 @@ extension UIDevice {
     // MARK: Internal
     
     var isPad: Bool {
-        return userInterfaceIdiom == .pad
+        userInterfaceIdiom == .pad
+    }
+    
+    var hasBottomSafeArea: Bool {
+        UIApplication.shared.firstKeyWindow?.safeAreaInsets.bottom ?? 0 > 0
     }
 }

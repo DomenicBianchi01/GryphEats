@@ -27,18 +27,27 @@ class Order: ObservableObject, Identifiable {
         case inProgress
         case readyForPickup
         case pickedUp
+        
+        var asString: String {
+            switch self {
+            case .new:
+                return "New"
+            case .inProgress:
+                return "In Progress"
+            case .readyForPickup:
+                return "Ready For Pickup"
+            case .pickedUp:
+                return "Picked Up"
+            }
+        }
     }
     
     // MARK: Internal
     
     var id: Int = 0
-    var customer: Customer = Customer(name: "", mealPlan: nil)
+    var customer: Customer = Customer(name: "")
     @Published var status: Status = .new
     var time: String = "" //TODO: Date object instead
     var foodItems: [FoodItem]
-    
-//    func removeOrder {
-//        //if .pickedUp then remove order
-//    }
     
 }
