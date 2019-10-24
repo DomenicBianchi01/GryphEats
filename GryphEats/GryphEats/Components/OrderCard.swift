@@ -119,7 +119,6 @@ struct OrderCard: View {
     }
 }
 
-#if DEBUG
 struct OrderCard_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
@@ -133,4 +132,3 @@ struct OrderCard_Previews: PreviewProvider {
             .edgesIgnoringSafeArea(.all)
     }
 }
-#endif

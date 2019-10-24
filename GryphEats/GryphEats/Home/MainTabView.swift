@@ -18,9 +18,9 @@ struct MainTabView: View {
         ZStack {
             if selection == 0 {
                 HomeView()
-                    .environmentObject(Cart())
+                    .environmentObject(cart)
             } else if selection == 1 {
-                Text("Orders")
+                OrdersView()
             } else {
                 Text("Account")
             }
@@ -39,6 +39,8 @@ struct MainTabView: View {
     // MARK: Private
     
     @State private var selection: Int = 0
+    
+    private let cart = Cart()
     
 }
 
