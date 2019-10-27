@@ -22,7 +22,7 @@ struct MainTabView: View {
             } else if selection == 1 {
                 OrdersView()
             } else {
-                Text("Account")
+                AccountView()
             }
             
             VStack {
