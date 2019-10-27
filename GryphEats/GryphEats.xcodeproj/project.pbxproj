@@ -169,6 +169,18 @@
 		B0D9ED382356B362006A1545 /* Valet in Frameworks */ = {isa = PBXBuildFile; productRef = B0D9ED372356B362006A1545 /* Valet */; };
 		B0D9ED3A2356B87B006A1545 /* ApplePayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D9ED392356B87B006A1545 /* ApplePayButton.swift */; };
 		B0D9ED3B2356B87B006A1545 /* ApplePayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D9ED392356B87B006A1545 /* ApplePayButton.swift */; };
+		B0F3197F236607F7006500AC /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F3197E236607F7006500AC /* AccountView.swift */; };
+		B0F31980236607F7006500AC /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F3197E236607F7006500AC /* AccountView.swift */; };
+		B0F3198723660BE9006500AC /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F3198623660BE9006500AC /* AccountViewModel.swift */; };
+		B0F3198823660BE9006500AC /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F3198623660BE9006500AC /* AccountViewModel.swift */; };
+		B0F3198923661CA0006500AC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BBFDC02348053500FDEFA4 /* LoginView.swift */; };
+		B0F3198A23661CB9006500AC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB605A31235BB24F00EB7856 /* User.swift */; };
+		B0F3198B23661CDB006500AC /* RestHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2237F2234B958C00CB9196 /* RestHomeView.swift */; };
+		B0F3198C23661CF2006500AC /* RestHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB37D1A12360DBD500CD0D9C /* RestHomeViewModel.swift */; };
+		B0F3198D23661D0D006500AC /* RestOrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC089EC234FF72800DA3A55 /* RestOrdersView.swift */; };
+		B0F3198E23661D15006500AC /* OrderDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC089EE234FFAC400DA3A55 /* OrderDetailsView.swift */; };
+		B0F3198F23661D2B006500AC /* MealRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC089F42353B51400DA3A55 /* MealRow.swift */; };
+		B0F3199123661D52006500AC /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = B0F3199023661D52006500AC /* QGrid */; };
 		B0F6E1F6234E370500067B79 /* ItemOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F6E1F5234E370500067B79 /* ItemOverview.swift */; };
 		B0F6E1F7234E370500067B79 /* ItemOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F6E1F5234E370500067B79 /* ItemOverview.swift */; };
 		B0F6E1F9234E496A00067B79 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F6E1F8234E496A00067B79 /* Cart.swift */; };
@@ -323,6 +335,8 @@
 		B0D9ED2B23566AA9006A1545 /* PriceSummaryCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSummaryCardTests.swift; sourceTree = "<group>"; };
 		B0D9ED3323568EB2006A1545 /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
 		B0D9ED392356B87B006A1545 /* ApplePayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayButton.swift; sourceTree = "<group>"; };
+		B0F3197E236607F7006500AC /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		B0F3198623660BE9006500AC /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		B0F6E1F5234E370500067B79 /* ItemOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemOverview.swift; sourceTree = "<group>"; };
 		B0F6E1F8234E496A00067B79 /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		B0F6E1FE234E6E9A00067B79 /* SlideOverCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverCard.swift; sourceTree = "<group>"; };
@@ -363,6 +377,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0F3199123661D52006500AC /* QGrid in Frameworks */,
 				B07F0DFE235758A600912397 /* Valet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -616,11 +631,10 @@
 				B051FF7C234588BD0093C0DC /* Components */,
 				B051FF77234588AA0093C0DC /* Entities */,
 				B0A2D0A52346107F00391DD6 /* Login */,
-				B0BBFDAC23477D1000FDEFA4 /* Home */,
-				B0CD88D52360ABD600A5C021 /* Orders */,
 				B090F0C7234F9164007CF06F /* OrderReview */,
 				B091560123594F6100FE2CD2 /* Payment */,
 				B090F0C6234F7F11007CF06F /* Item */,
+				B0F3197C236607AA006500AC /* TabBarViews */,
 				EB2237F0234B951100CB9196 /* Restaurant */,
 				B0B205792333D45000694587 /* AppDelegate.swift */,
 				B0B2057B2333D45000694587 /* SceneDelegate.swift */,
@@ -648,7 +662,6 @@
 				B0843369234CEC4500DD325E /* ViewModels */,
 				B0BBFDAD23477D3C00FDEFA4 /* HomeView.swift */,
 				B0843375234D07E100DD325E /* ResturantItemsView.swift */,
-				B0CD88CA23607F3C00A5C021 /* MainTabView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -710,6 +723,34 @@
 				B0CD88D62360ABE900A5C021 /* OrdersView.swift */,
 			);
 			path = Orders;
+			sourceTree = "<group>";
+		};
+		B0F3197C236607AA006500AC /* TabBarViews */ = {
+			isa = PBXGroup;
+			children = (
+				B0CD88CA23607F3C00A5C021 /* MainTabView.swift */,
+				B0F3197D236607BF006500AC /* Account */,
+				B0BBFDAC23477D1000FDEFA4 /* Home */,
+				B0CD88D52360ABD600A5C021 /* Orders */,
+			);
+			path = TabBarViews;
+			sourceTree = "<group>";
+		};
+		B0F3197D236607BF006500AC /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				B0F3198523660BDE006500AC /* ViewModels */,
+				B0F3197E236607F7006500AC /* AccountView.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		B0F3198523660BDE006500AC /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B0F3198623660BE9006500AC /* AccountViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		EB1E44F7234CF13E00B5C8FD /* Resources */ = {
@@ -801,6 +842,7 @@
 			name = GryphEatsSwiftUI;
 			packageProductDependencies = (
 				B07F0DFD235758A600912397 /* Valet */,
+				B0F3199023661D52006500AC /* QGrid */,
 			);
 			productName = "UofG-Hospitality-Order-Now";
 			productReference = B0A2D0A223460C0C00391DD6 /* GryphEatsSwiftUI.app */;
@@ -971,8 +1013,10 @@
 			files = (
 				B01DC45423552B5300539D30 /* CartItemCard.swift in Sources */,
 				B0A2D0A823462BF500391DD6 /* StudentCard.swift in Sources */,
+				B0F3198C23661CF2006500AC /* RestHomeViewModel.swift in Sources */,
 				B0BBFDBF2347D27100FDEFA4 /* AnyTransitionExtensions.swift in Sources */,
 				B03E283F235E8D3E0000EDA2 /* HomeViewModel.swift in Sources */,
+				B0F31980236607F7006500AC /* AccountView.swift in Sources */,
 				B09416A32355EF900032BA12 /* ActionButton.swift in Sources */,
 				B0CD88CC23607F3C00A5C021 /* MainTabView.swift in Sources */,
 				B0926333236079DD0007612C /* CardProvider.swift in Sources */,
@@ -998,12 +1042,16 @@
 				B09156072359551600FE2CD2 /* ValetExtensions.swift in Sources */,
 				B0F6E203234E928200067B79 /* Ingredient.swift in Sources */,
 				B046163B2346E5880033087B /* BasicButton.swift in Sources */,
+				B0F3198923661CA0006500AC /* LoginView.swift in Sources */,
 				B09416A62355F3660032BA12 /* CheckoutView.swift in Sources */,
 				B0F6E1F7234E370500067B79 /* ItemOverview.swift in Sources */,
+				B0F3198823660BE9006500AC /* AccountViewModel.swift in Sources */,
 				B0BEF91C234D49B2004455DC /* Restaurant.swift in Sources */,
 				B0BBFDB523479F2E00FDEFA4 /* UIViewControllerExtensions.swift in Sources */,
 				B03E283D235E772D0000EDA2 /* AddMealPlanViewModel.swift in Sources */,
 				B022F70D235E0EB3005269FB /* AddCreditCardView.swift in Sources */,
+				B0F3198F23661D2B006500AC /* MealRow.swift in Sources */,
+				B0F3198D23661D0D006500AC /* RestOrdersView.swift in Sources */,
 				B0982AF62357825300E20BB9 /* PaymentSelectionCard.swift in Sources */,
 				B0F6E200234E6E9A00067B79 /* SlideOverCard.swift in Sources */,
 				B0BBFDB223479EFD00FDEFA4 /* EnvironmentExtensions.swift in Sources */,
@@ -1017,6 +1065,7 @@
 				B021DE98234FCA2800DBF1AA /* ErrorView.swift in Sources */,
 				B0FBB6E82354CEB800C42C86 /* BadgeButton.swift in Sources */,
 				B0FC1348234B9559000039D2 /* UIDeviceExtensions.swift in Sources */,
+				B0F3198B23661CDB006500AC /* RestHomeView.swift in Sources */,
 				B0A2D09423460C0C00391DD6 /* OrderCard.swift in Sources */,
 				B0A7C407234C2D8F001555B7 /* MenuCard.swift in Sources */,
 				B046163E2346F3230033087B /* LoginViewModel.swift in Sources */,
@@ -1027,9 +1076,11 @@
 				B04616382346C6660033087B /* CircularButton.swift in Sources */,
 				B09416AC2355F5C50032BA12 /* OrderReviewState.swift in Sources */,
 				B0BBFDBC2347D11E00FDEFA4 /* RegisterView.swift in Sources */,
+				B0F3198A23661CB9006500AC /* User.swift in Sources */,
 				B05B3FD92348253000547DD1 /* SecurityQuestionView.swift in Sources */,
 				B022F70C235E0EB1005269FB /* AddMealPlanView.swift in Sources */,
 				B06B515323496CBE0015E960 /* ViewExtensions.swift in Sources */,
+				B0F3198E23661D15006500AC /* OrderDetailsView.swift in Sources */,
 				B05B3FDC2348257000547DD1 /* LandingState.swift in Sources */,
 				B091560A23595ACE00FE2CD2 /* PaymentInfoTextField.swift in Sources */,
 				B0A2D09623460C0C00391DD6 /* AppDelegate.swift in Sources */,
@@ -1099,6 +1150,7 @@
 				B0F6E1FF234E6E9A00067B79 /* SlideOverCard.swift in Sources */,
 				B021DE9C234FCE6600DBF1AA /* ActivityIndicator.swift in Sources */,
 				B0A7C406234C2CEC001555B7 /* MenuCard.swift in Sources */,
+				B0F3197F236607F7006500AC /* AccountView.swift in Sources */,
 				B090F0C4234F71EC007CF06F /* IngredientCard.swift in Sources */,
 				B0A2D0A723462BE700391DD6 /* StudentCard.swift in Sources */,
 				B06B5146234958990015E960 /* HeaderView.swift in Sources */,
@@ -1121,6 +1173,7 @@
 				B0F6E202234E928200067B79 /* Ingredient.swift in Sources */,
 				B0B2057C2333D45000694587 /* SceneDelegate.swift in Sources */,
 				B0843364234CB2A500DD325E /* CategoryCard.swift in Sources */,
+				B0F3198723660BE9006500AC /* AccountViewModel.swift in Sources */,
 				B06B515023496B070015E960 /* AnswerQuestionView.swift in Sources */,
 				EBC089F323524B5800DA3A55 /* OrderRow.swift in Sources */,
 				B08F32132348D3C2009A0E61 /* ColorExtensions.swift in Sources */,
@@ -1513,6 +1566,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B0D9ED362356B361006A1545 /* XCRemoteSwiftPackageReference "Valet" */;
 			productName = Valet;
+		};
+		B0F3199023661D52006500AC /* QGrid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB2237F6234B9B4700CB9196 /* XCRemoteSwiftPackageReference "QGrid" */;
+			productName = QGrid;
 		};
 		EB2237F7234B9B4700CB9196 /* QGrid */ = {
 			isa = XCSwiftPackageProductDependency;

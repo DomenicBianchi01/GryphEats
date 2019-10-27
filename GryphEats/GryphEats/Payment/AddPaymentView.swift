@@ -69,7 +69,7 @@ struct AddPaymentView: View, Dismissable {
     @State private var paymentType: Int = 0
     
     private func save(_ paymentMethod: PaymentMethod) {
-        let rawData = Valet.keychain.string(forKey: Valet.Keys.paymentMethods.rawValue)
+        let rawData = Valet.keychain.string(forKey: Valet.Key.paymentMethods.rawValue)
         
         var paymentMethods = (try? JSONDecoder().decode(
             [PaymentMethod].self, from: Data(rawData?.utf8 ?? "".utf8))) ?? []
@@ -77,7 +77,7 @@ struct AddPaymentView: View, Dismissable {
         paymentMethods.append(paymentMethod)
         
         if let encodedData = try? JSONEncoder().encode(paymentMethods) {
-            Valet.keychain.set(object: encodedData, forKey: Valet.Keys.paymentMethods.rawValue)
+            Valet.keychain.set(object: encodedData, forKey: Valet.Key.paymentMethods.rawValue)
         }
         
         dismiss()

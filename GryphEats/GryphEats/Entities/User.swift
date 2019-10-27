@@ -8,16 +8,29 @@
 
 import Foundation
 
-struct User {
+// MARK: - User
+
+struct User: Codable {
     
-    var type: Int
-    var username: String
-    var password: String
+    // MARK: Type
     
-    init(type: Int, username: String, password: String){
-        self.type = type
+    enum UserType: Int, Codable {
+        case customer
+        case restaurant
+    }
+    
+    // MARK: Lifecycle
+    
+    init(type: UserType, username: String, password: String) {
+        self.userType = type
         self.username = username
         self.password = password
     }
+    
+    // MARK: Internal
+    
+    let userType: UserType
+    let username: String
+    let password: String
     
 }
