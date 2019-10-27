@@ -15,7 +15,7 @@ struct MainTabView: View {
     // MARK: Internal
     
     var body: some View {
-        ZStack {
+        VStack(spacing: -1) {
             if selection == 0 {
                 HomeView()
                     .environmentObject(cart)
@@ -25,15 +25,12 @@ struct MainTabView: View {
                 AccountView()
             }
             
-            VStack {
-                Spacer()
-                CustomTabBar(selectedIndex: $selection, items: [
-                    CustomTabBarItem(icon: .system(name: "house"), title: "Menus"),
-                    CustomTabBarItem(icon: .system(name: "dollarsign.square"), title: "Orders"),
-                    CustomTabBarItem(icon: .system(name: "person"), title: "Account"),
-                ])
-            }.edgesIgnoringSafeArea(.bottom)
-        }
+            CustomTabBar(selectedIndex: $selection, items: [
+                CustomTabBarItem(icon: .system(name: "house"), title: "Menus"),
+                CustomTabBarItem(icon: .system(name: "dollarsign.square"), title: "Orders"),
+                CustomTabBarItem(icon: .system(name: "person"), title: "Account"),
+            ])
+        }.edgesIgnoringSafeArea(.bottom)
     }
     
     // MARK: Private

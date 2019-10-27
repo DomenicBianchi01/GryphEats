@@ -432,6 +432,7 @@
 		B021DE9A234FCE5900DBF1AA /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				B0843372234CF20A00DD325E /* NavigationHeaderView.swift */,
 				B0CD88CD236088A200A5C021 /* CustomTabBar.swift */,
 				B021DE9B234FCE6600DBF1AA /* ActivityIndicator.swift */,
 				B0D9ED392356B87B006A1545 /* ApplePayButton.swift */,
@@ -473,7 +474,6 @@
 				B0FBB6E62354CEB800C42C86 /* BadgeButton.swift */,
 				B06B513D2349552B0015E960 /* BackButton.swift */,
 				B06B5145234958990015E960 /* HeaderView.swift */,
-				B0843372234CF20A00DD325E /* NavigationHeaderView.swift */,
 				B0F6E1FE234E6E9A00067B79 /* SlideOverCard.swift */,
 				B0F6E204234ED3EC00067B79 /* StepperView.swift */,
 				B021DE96234FCA2800DBF1AA /* ErrorView.swift */,
