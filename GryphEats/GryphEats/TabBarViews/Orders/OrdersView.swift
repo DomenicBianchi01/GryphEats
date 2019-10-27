@@ -26,7 +26,7 @@ struct OrdersView: View {
                         self.selectedOrder = order
                     }
                 }
-            }.padding(.bottom, 40)
+            }
         }.sheet(
             isPresented: .constant($selectedOrder.wrappedValue != nil),
             onDismiss: {

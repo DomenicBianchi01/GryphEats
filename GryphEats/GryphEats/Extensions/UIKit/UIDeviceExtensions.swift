@@ -17,8 +17,4 @@ extension UIDevice {
     var isPad: Bool {
         userInterfaceIdiom == .pad
     }
-    
-    var hasBottomSafeArea: Bool {
-        UIApplication.shared.firstKeyWindow?.safeAreaInsets.bottom ?? 0 > 0
-    }
 }

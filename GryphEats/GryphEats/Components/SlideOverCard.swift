@@ -42,13 +42,13 @@ struct SlideOverCard<V: View>: View {
     // MARK: Private
     
     @GestureState private var dragState: DragState = .inactive
-    @State private var position: CGFloat = UIScreen.main.bounds.height - 250
+    @State private var position: CGFloat = UIScreen.main.bounds.height - 225
     
     private let content: () -> V
     private let handleText: String
 
-    private let minimumOffset: CGFloat = 250
-    private let maximumHeight: CGFloat = 100
+    private let minimumOffset: CGFloat = 225
+    private let maximumHeight: CGFloat = 120
     
     private func onDragEnded(drag: DragGesture.Value) {
         if drag.location.y < maximumHeight {
@@ -62,8 +62,7 @@ struct SlideOverCard<V: View>: View {
         if position + dragState.translation.height > UIScreen.main.bounds.height - minimumOffset {
             // Prevent card from being dragged too LOW
             return UIScreen.main.bounds.height - minimumOffset
-        }
-        else if position + dragState.translation.height < maximumHeight {
+        } else if position + dragState.translation.height < maximumHeight {
             // Prevent card from being dragged too HIGHT
             return maximumHeight
         } else {

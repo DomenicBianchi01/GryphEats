@@ -43,7 +43,7 @@ struct ItemOverview: View, Dismissable {
                         .fontWeight(.semibold)
                 }.padding(.leading, 20)
                 Spacer()
-            }.padding(.top, 30)
+            }.padding(.top, 50)
             
             SlideOverCard(handleText: "Pull Up To Customize") {
                 VStack(alignment: .leading) {

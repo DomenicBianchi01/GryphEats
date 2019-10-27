@@ -41,6 +41,7 @@ struct CustomTabBar: View {
         }.frame(minWidth: 0, maxWidth: .infinity)
             .background(Color.white)
             .padding(.top, 0.75)
+            .fixedSize(horizontal: false, vertical: true)
     }
     
     // MARK: Private
