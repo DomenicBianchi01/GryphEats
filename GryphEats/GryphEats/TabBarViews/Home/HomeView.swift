@@ -12,6 +12,13 @@ import SwiftUI
 
 struct HomeView: View {
     
+    // MARK: Lifecycle
+    
+    init() {
+        UITableView.appearance().separatorStyle = .none
+        UITableView.appearance().backgroundColor = .lightGray
+    }
+    
     // MARK: Internal
     
     var body: some View {
@@ -48,10 +55,12 @@ struct HomeView: View {
                 
                 Divider()
                 
-                ScrollView {
+                // Swift UI Bug: `listRowBackground` and `listRowInsets` do not work without nesting a `ForEach` within
+                // `List`
+                List {
                     ForEach(restaurants) { restaurant in
                         RestaurantItemsView(restaurant: restaurant) { _ in }
-                    }
+                    }.listConfiguration(backgroundColor: Color.lightGray)
                 }
             }.navigationBarItems(trailing: self.trailingNavigationBarItems))
         case .error:

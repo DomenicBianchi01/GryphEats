@@ -12,10 +12,17 @@ import SwiftUI
 
 struct OrderSummaryView: View {
     
+    // MARK: Lifecycle
+    
+    init() {
+        UITableView.appearance().separatorStyle = .none
+        UITableView.appearance().backgroundColor = .lightGray
+    }
+    
     // MARK: Internal
     
     var body: some View {
-        ScrollView {
+        List {
             VStack(spacing: 0) {
                 Group {
                     Image(systemName: "cart")
@@ -56,7 +63,7 @@ struct OrderSummaryView: View {
                 }
                 
                 Spacer()
-            }
+            }.listConfiguration(backgroundColor: Color.lightGray)
         }
     }
     

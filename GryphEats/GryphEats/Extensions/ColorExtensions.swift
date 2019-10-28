@@ -27,5 +27,6 @@ extension UIColor {
     // MARK: Internal
 
     static let guelphYellow = UIColor(red: 255/255, green: 199/255, blue: 42/255, alpha: 1)
+    static let lightGray = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
 
 }

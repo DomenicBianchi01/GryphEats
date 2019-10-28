@@ -12,6 +12,13 @@ import SwiftUI
 
 struct AccountView: View {
     
+    // MARK: Lifecycle
+    
+    init() {
+        UITableView.appearance().separatorStyle = .singleLine
+        UITableView.appearance().backgroundColor = .lightGray
+    }
+    
     // MARK: Internal
     
     var body: some View {
