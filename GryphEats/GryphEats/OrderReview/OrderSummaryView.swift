@@ -22,7 +22,9 @@ struct OrderSummaryView: View {
     // MARK: Internal
     
     var body: some View {
-        List {
+        // SwiftUI Bug: Using a `List` instead of a `ScrollView` causes weird behavior for the payment screen
+        // (displayed after this screen)
+        ScrollView {
             VStack(spacing: 0) {
                 Group {
                     Image(systemName: "cart")
@@ -35,7 +37,7 @@ struct OrderSummaryView: View {
                         .padding(.bottom, 10)
                 }.foregroundColor(.guelphRed)
                 
-                ForEach(cart.items) { item in
+                ForEach(cart.items, id: \.id) { item in
                     self.itemCard(for: item)
                 }
                 
@@ -63,7 +65,7 @@ struct OrderSummaryView: View {
                 }
                 
                 Spacer()
-            }.listConfiguration(backgroundColor: Color.lightGray)
+            }
         }
     }
     
@@ -72,7 +74,7 @@ struct OrderSummaryView: View {
     @EnvironmentObject private var cart: Cart
     @EnvironmentObject private var state: OrderReviewState
     
-    private func itemCard(for item: FoodItem) -> CartItemCard {
+    private func itemCard(for item: GraphFoodItem) -> CartItemCard {
         let editAction = {
             print("t")
         }
@@ -83,15 +85,14 @@ struct OrderSummaryView: View {
         
         return CartItemCard(item: item, editAction: editAction, deleteAction: deleteAction)
     }
-    
 }
 
 struct OrderSummaryView_Previews: PreviewProvider {
     static var previews: some View {
         OrderSummaryView()
             .environmentObject(Cart(items: [
-                FoodItem(id: 0, name: "Hamburger", imageName: ""),
-                FoodItem(id: 0, name: "Hamburger", imageName: "")
+                GraphFoodItem(id: "1", displayName: "Hamburger 1", price: 2),
+                GraphFoodItem(id: "2", displayName: "Hamburger 2", price: 2)
             ]))
             .environmentObject(OrderReviewState())
     }

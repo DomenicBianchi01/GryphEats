@@ -30,11 +30,11 @@ class SliderViewTests: XCTestCase {
     
     func testFoodItemsSliderView() {
         let view = SliderView(type: .foodItems([
-            FoodItem(id: 0, name: "Hamburger 1", imageName: "hamburger"),
-            FoodItem(id: 1, name: "Hamburger 2", imageName: "hamburger"),
-            FoodItem(id: 2, name: "Hamburger 3", imageName: "hamburger"),
-            FoodItem(id: 3, name: "Hamburger 4", imageName: "hamburger"),
-            FoodItem(id: 4, name: "Hamburger 5", imageName: "hamburger")
+            GraphFoodItem(id: "0", restaurantId: "1", displayName: "Hamburger 1", price: 2.00),
+            GraphFoodItem(id: "1", restaurantId: "1", displayName: "Hamburger 2", price: 2.00),
+            GraphFoodItem(id: "2", restaurantId: "1", displayName: "Hamburger 3", price: 2.00),
+            GraphFoodItem(id: "3", restaurantId: "1", displayName: "Hamburger 4", price: 2.00),
+            GraphFoodItem(id: "4", restaurantId: "1", displayName: "Hamburger 5", price: 2.00)
         ])) { _ in }
 
         assertSnapshot(matching: UIHostingController(rootView: view), as: .image, record: record)

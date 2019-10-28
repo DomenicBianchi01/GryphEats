@@ -18,7 +18,9 @@ class CartItemCardTests: XCTestCase {
 
     func testCartItemCard() {
         let card = CartItemCard(
-            item: FoodItem(id: 0, name: "Hamburger", imageName: ""), editAction: {}, deleteAction: {})
+            item: GraphFoodItem(id: "0", restaurantId: "1", displayName: "Hamburger", price: 9.99),
+            editAction: {},
+            deleteAction: {})
         
         assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
     }

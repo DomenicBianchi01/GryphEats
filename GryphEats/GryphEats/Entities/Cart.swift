@@ -21,17 +21,17 @@ class Cart: ObservableObject {
     }
     
     // MARK: Lifecycle
-
-    init(items: [FoodItem] = []) {
+    
+    init(items: [GraphFoodItem] = []) {
         self.items = items
     }
     
     // MARK: Internal
-
-    @Published var items: [FoodItem]
+    
+    @Published var items: [GraphFoodItem]
     
     func subtotal(for type: PriceType = .regular) -> Double {
-        let subtotal = items.reduce(0) { $0 + $1.price }
+        let subtotal = items.reduce(0) { $0 + ($1.price ?? 0) }
         
         switch type {
         case .onCampus:
@@ -60,11 +60,11 @@ class Cart: ObservableObject {
         subtotal(for: type) + tax(for: type)
     }
     
-    func delete(item: FoodItem) {
+    func delete(item: GraphFoodItem) {
         guard let index = items.firstIndex(where: { $0 == item }) else {
             return
         }
-
+        
         items.remove(at: index)
     }
     

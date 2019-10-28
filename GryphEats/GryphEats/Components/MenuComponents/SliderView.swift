@@ -16,7 +16,7 @@ struct SliderView: View {
     
     enum SliderType {
         case categories([Category])
-        case foodItems([FoodItem])
+        case foodItems([GraphFoodItem])
         case ingredients([Ingredient])
     }
     
@@ -63,8 +63,8 @@ struct SliderView: View {
         }
     }
     
-    private func menuCard(for item: FoodItem, atIndex index: Int, onTap: @escaping (Int) -> Void) -> AnyView {
-        let card = MenuCard(itemName: item.name, imageName: item.imageName) {
+    private func menuCard(for item: GraphFoodItem, atIndex index: Int, onTap: @escaping (Int) -> Void) -> AnyView {
+        let card = MenuCard(itemName: item.displayName ?? "", imageName: "hamburger") {
             onTap(index)
         }
         
@@ -82,11 +82,11 @@ struct SliderView_Previews: PreviewProvider {
         VStack {
             SliderView(
                 type: .foodItems([
-                    FoodItem(id: 0, name: "Hamburger 1", imageName: "hamburger"),
-                    FoodItem(id: 1, name: "Hamburger 2", imageName: "hamburger"),
-                    FoodItem(id: 2, name: "Hamburger 3", imageName: "hamburger"),
-                    FoodItem(id: 3, name: "Hamburger 4", imageName: "hamburger"),
-                    FoodItem(id: 4, name: "Hamburger 5", imageName: "hamburger")
+                    GraphFoodItem(id: "1", displayName: "Hamburger 2", price: 2),
+                    GraphFoodItem(id: "2", displayName: "Hamburger 3", price: 2),
+                    GraphFoodItem(id: "3", displayName: "Hamburger 4", price: 2),
+                    GraphFoodItem(id: "4", displayName: "Hamburger 5", price: 2),
+                    GraphFoodItem(id: "5", displayName: "Hamburger 6", price: 2)
                 ]),
                 onTap: { _ in print("Tapped") })
             SliderView(

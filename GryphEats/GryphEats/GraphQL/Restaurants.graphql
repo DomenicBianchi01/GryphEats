@@ -1,6 +1,0 @@
-query Restaurants {
-    restaurants {
-        id: restaurantid
-        name: displayname
-    }
-}
