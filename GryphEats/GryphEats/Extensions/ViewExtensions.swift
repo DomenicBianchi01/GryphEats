@@ -34,6 +34,11 @@ extension View {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
     }
+    
+    func listConfiguration(backgroundColor: Color) -> some View {
+        self.listRowBackground(Color.lightGray)
+            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+    }
 }
 
 // MARK: - Dismissable

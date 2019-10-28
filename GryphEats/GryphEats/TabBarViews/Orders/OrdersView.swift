@@ -12,6 +12,13 @@ import SwiftUI
 
 struct OrdersView: View {
     
+    // MARK: Lifecycle
+    
+    init() {
+        UITableView.appearance().separatorStyle = .none
+        UITableView.appearance().backgroundColor = .lightGray
+    }
+    
     // MARK: Internal
     
     var body: some View {
@@ -20,12 +27,14 @@ struct OrdersView: View {
             navigationColor: .guelphYellow,
             contentBackgroundColor: .lightGray)
         {
-            ScrollView {
+            // Swift UI Bug: `listRowBackground` and `listRowInsets` do not work without nesting a `ForEach` within
+            // `List`
+            List {
                 ForEach(self.orders) { order in
                     OrderHistoryCard(order: order).onTapGesture {
                         self.selectedOrder = order
                     }
-                }
+                }.listConfiguration(backgroundColor: Color.lightGray)
             }
         }.sheet(
             isPresented: .constant($selectedOrder.wrappedValue != nil),
