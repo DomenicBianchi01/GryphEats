@@ -1,25 +1,32 @@
 const { gql } = require('apollo-server');
 const typeDefs = gql`
+
+    scalar Date
     type Query {
         foods: [Food]!
-        food(foodid: ID!): [Food]
-        foodName(displayname:String!):[Food]
+        getFoodByFoodID(foodid: ID!): [Food]
+        getFoodByDisplayName(displayname:String!):[Food]
         restaurants: [Restaurant]!
         users: [User]!
-        menus(restaurantid: ID!): [Menu]
-        menuitems(menuid: ID!): [MenuItem]!
-        orderitems(orderid: ID!): [OrderItem]
-        ordersbyrest(restaurantid: ID!): [FoodOrder]!
+        menus: [Menu]!
+        getMenusByRestaurantID(restaurantid: ID!): [Menu]
+        getMenuItemsByMenuID(menuid: ID!): [MenuItem]!
+        getOrderItemsByOrderID(orderid: ID!): [OrderItem]
+        getOrdersByRestaurantID(restaurantid: ID!): [FoodOrder]!
     }
 
     type Mutation {
+        createOrder(restaurantid: ID!): FoodOrder
+        placeOrder(foodids:[ID]!, restaurantid:ID!): Finish
         completeOrder(orderid: ID): Finish
-        updateFoodPriceByID(foodid:ID!, price:ID!): String
+        updateFoodPriceByFoodID(foodid:ID!, price:ID!): String
         createFood(displayname:String, toppingtype:ID, price:ID, restaurantid:ID, isavailable:ID, description:String, foodgroup:ID): String
+        deleteFoodByFoodID(foodid:ID): String
     }
 
     type Subscription {
         foodAdded: Food
+        orderPlaced: [FoodOrder]
     }
 
     type Food {
@@ -41,6 +48,7 @@ const typeDefs = gql`
         closingtime: String
         isactive: ID
         description: String
+        menu: [Menu]
     }
 
     type User {
@@ -60,24 +68,29 @@ const typeDefs = gql`
         title: String
         description: String
         isactive: ID
+        restaurant: Restaurant
+        menuItems:[MenuItem]
     }
 
     type MenuItem {
         menuid: ID!
         foodid: ID!
+        item: [Food]
     }
 
     type OrderItem {
         orderid: ID!
         foodid: ID!
         identifier: ID!
+        foodorder: FoodOrder
     }
 
     type FoodOrder {
         orderid: ID!
-        timeplaced: String
+        timeplaced: Date
         timecompleted: String
         restaurantid: ID!
+        orderitems: [OrderItem]
     }
 
     type Topping {
@@ -92,12 +105,6 @@ const typeDefs = gql`
 `;
 
 module.exports = typeDefs;
-
-
-
-
-
-
 
 // const typeDefs = gql`
 //   # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.

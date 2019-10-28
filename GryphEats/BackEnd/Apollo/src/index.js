@@ -35,5 +35,5 @@ const port = 4000;
 // The `listen` method launches a web server.
 server.listen({ port }).then(({ url, subscriptionsUrl }) => {
     console.log(`Server ready at ${url}`);
-    // console.log(`🚀 Subscriptions ready at ${subscriptionsUrl}`);
+    console.log(`🚀 Subscriptions ready at ${subscriptionsUrl}`);
 }).catch(console.log("Already Running"));

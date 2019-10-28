@@ -19,7 +19,11 @@ module.exports.createDB = () => {
         foodid: {
             type: SQL.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            references: {
+                model: 'menuitem', // name of Target model
+                key: 'foodid', // key in Target model that we're referencing
+            },
         },
         displayname: SQL.STRING,
         toppingtype: SQL.INTEGER,
@@ -38,9 +42,16 @@ module.exports.createDB = () => {
         orderid: {
             type: SQL.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            references: {
+                model: 'orderitem', // name of Target model
+                key: 'orderid', // key in Target model that we're referencing
+            },
         },
-        timeplaced: SQL.DATE,
+        timeplaced: {
+            type: SQL.DATE,
+            defaultValue: SQL.NOW
+        },
         timecompleted: SQL.DATE,
         restaurantid: SQL.INTEGER
     },
@@ -53,12 +64,48 @@ module.exports.createDB = () => {
         menuid: {
             type: SQL.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            references: {
+                model: 'menuitem', // name of Target model
+                key: 'menuid', // key in Target model that we're referencing
+            },
         },
-        restaurantid: SQL.INTEGER,
+        restaurantid: {
+            type: SQL.INTEGER,
+            references: {
+                model: 'restaurant', // name of Target model
+                key: 'restaurantid', // key in Target model that we're referencing
+            },
+            //references: 'restaurant',
+            //referencesKey: 'restaurantid'
+        },
         title: SQL.STRING,
         description: SQL.STRING,
         isactive: SQL.INTEGER
+    },
+        {
+            freezeTableName: true
+        }
+    );
+
+    const restaurant = db.define('restaurant', {
+        restaurantid: {
+            type: SQL.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+            references: {
+                model: 'menu', // name of Target model
+                key: 'restaurantid', // key in Target model that we're referencing
+            },
+            // references: 'menu',
+            // referencesKey: 'restaurantid'
+        },
+        displayname: SQL.STRING,
+        phonenumber: SQL.STRING,
+        openingtime: SQL.TIME,
+        closingtime: SQL.TIME,
+        isactive: SQL.INTEGER,
+        description: SQL.STRING,
     },
         {
             freezeTableName: true
@@ -69,10 +116,18 @@ module.exports.createDB = () => {
         menuid: {
             type: SQL.INTEGER,
             primaryKey: true,
+            references: {
+                model: 'menu', // name of Target model
+                key: 'menuid', // key in Target model that we're referencing
+            },
         },
         foodid: {
             type: SQL.INTEGER,
-            primaryKey: true
+            primaryKey: true,
+            references: {
+                model: 'food', // name of Target model
+                key: 'foodid', // key in Target model that we're referencing
+            },
         }
     },
         {
@@ -86,26 +141,14 @@ module.exports.createDB = () => {
             primaryKey: true,
             autoIncrement: true
         },
-        orderid: SQL.INTEGER,
-        foodid: SQL.INTEGER
-    },
-        {
-            freezeTableName: true
-        }
-    );
-
-    const restaurant = db.define('restaurant', {
-        restaurantid: {
+        orderid: {
             type: SQL.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
+            references: {
+                model: 'foodorder', // name of Target model
+                key: 'orderid', // key in Target model that we're referencing
+            },
         },
-        displayname: SQL.STRING,
-        phonenumber: SQL.STRING,
-        openingtime: SQL.TIME,
-        closingtime: SQL.TIME,
-        isactive: SQL.INTEGER,
-        description: SQL.STRING
+        foodid: SQL.INTEGER,
     },
         {
             freezeTableName: true
@@ -131,6 +174,18 @@ module.exports.createDB = () => {
             freezeTableName: true
         }
     );
+
+    restaurant.hasMany(menu, { foreignKey: 'restaurantid', sourceKey: 'restaurantid' });
+    menu.belongsTo(restaurant, { foreignKey: 'restaurantid', sourceKey: 'restaurantid' });
+
+    menu.hasMany(menuitem, { foreignKey: 'menuid', sourceKey: 'menuid' });
+    menuitem.belongsTo(menu, { foreignKey: 'menuid', sourceKey: 'menuid' });
+
+    menuitem.hasOne(food, { foreignKey: 'foodid', sourceKey: 'foodid' });
+    food.belongsTo(menuitem, { foreignKey: 'foodid', sourceKey: 'foodid' });
+
+    foodorder.hasMany(orderitem, { foreignKey: 'orderid', sourceKey: 'orderid' });
+    orderitem.belongsTo(foodorder, { foreignKey: 'orderid', sourceKey: 'orderid' });
 
     return { food, foodorder, menu, menuitem, orderitem, restaurant, user };
 }
