@@ -1,0 +1,17 @@
+query RestaurantMenus {
+    restaurants {
+        id: restaurantid
+        name: displayname
+        menu {
+            isActive: isactive
+            menuItems {
+                item {
+                    id: foodid
+                    restaurantID: restaurantid
+                    displayName: displayname
+                    price
+                }
+            }
+        }
+    }
+}

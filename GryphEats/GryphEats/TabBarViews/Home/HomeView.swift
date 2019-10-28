@@ -58,7 +58,7 @@ struct HomeView: View {
                 // Swift UI Bug: `listRowBackground` and `listRowInsets` do not work without nesting a `ForEach` within
                 // `List`
                 List {
-                    ForEach(restaurants) { restaurant in
+                    ForEach(restaurants, id: \.id) { restaurant in
                         RestaurantItemsView(restaurant: restaurant) { _ in }
                     }.listConfiguration(backgroundColor: Color.lightGray)
                 }

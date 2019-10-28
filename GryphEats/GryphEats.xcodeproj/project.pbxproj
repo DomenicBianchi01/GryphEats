@@ -65,6 +65,10 @@
 		B06B515323496CBE0015E960 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B514A23495BD90015E960 /* ViewExtensions.swift */; };
 		B077747D2361D74100316DA1 /* UIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B077747C2361D74100316DA1 /* UIApplicationExtensions.swift */; };
 		B077747E2361D74100316DA1 /* UIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B077747C2361D74100316DA1 /* UIApplicationExtensions.swift */; };
+		B07B97FC23672634002E96C8 /* GraphExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07B97FB23672634002E96C8 /* GraphExtensions.swift */; };
+		B07B97FD23672634002E96C8 /* GraphExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07B97FB23672634002E96C8 /* GraphExtensions.swift */; };
+		B07B97FE23673267002E96C8 /* GraphAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CA762D23454B1F003E7FBD /* GraphAPI.swift */; };
+		B07B980323673732002E96C8 /* PlaceOrder.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B07B980223673732002E96C8 /* PlaceOrder.graphql */; };
 		B07F0DF723574B8400912397 /* CheckoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F0DF623574B8400912397 /* CheckoutViewModel.swift */; };
 		B07F0DF823574B8400912397 /* CheckoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F0DF623574B8400912397 /* CheckoutViewModel.swift */; };
 		B07F0DFA2357544C00912397 /* OrderSubmittedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F0DF92357544C00912397 /* OrderSubmittedView.swift */; };
@@ -148,7 +152,7 @@
 		B0C9B198234A8EF700605D23 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C9B197234A8EF700605D23 /* ResetPasswordView.swift */; };
 		B0C9B199234A8F3C00605D23 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C9B197234A8EF700605D23 /* ResetPasswordView.swift */; };
 		B0CA76282345481B003E7FBD /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = B0CA76272345481B003E7FBD /* Apollo */; };
-		B0CA762C23454A38003E7FBD /* Restaurants.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0CA762B23454A38003E7FBD /* Restaurants.graphql */; };
+		B0CA762C23454A38003E7FBD /* RestaurantMenus.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0CA762B23454A38003E7FBD /* RestaurantMenus.graphql */; };
 		B0CA762E23454B1F003E7FBD /* GraphAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CA762D23454B1F003E7FBD /* GraphAPI.swift */; };
 		B0CD88CB23607F3C00A5C021 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD88CA23607F3C00A5C021 /* MainTabView.swift */; };
 		B0CD88CC23607F3C00A5C021 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD88CA23607F3C00A5C021 /* MainTabView.swift */; };
@@ -272,6 +276,8 @@
 		B06B514C23495C960015E960 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		B06B514F23496B070015E960 /* AnswerQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerQuestionView.swift; sourceTree = "<group>"; };
 		B077747C2361D74100316DA1 /* UIApplicationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtensions.swift; sourceTree = "<group>"; };
+		B07B97FB23672634002E96C8 /* GraphExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphExtensions.swift; sourceTree = "<group>"; };
+		B07B980223673732002E96C8 /* PlaceOrder.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = PlaceOrder.graphql; sourceTree = "<group>"; };
 		B07F0DF623574B8400912397 /* CheckoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewModel.swift; sourceTree = "<group>"; };
 		B07F0DF92357544C00912397 /* OrderSubmittedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSubmittedView.swift; sourceTree = "<group>"; };
 		B0816FEB23624016001A04F3 /* OrderHistoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryCard.swift; sourceTree = "<group>"; };
@@ -322,7 +328,7 @@
 		B0BEF924234D546D004455DC /* SliderViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewTests.swift; sourceTree = "<group>"; };
 		B0BEF927234D558E004455DC /* RestaurantItemsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantItemsViewTests.swift; sourceTree = "<group>"; };
 		B0C9B197234A8EF700605D23 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
-		B0CA762B23454A38003E7FBD /* Restaurants.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Restaurants.graphql; sourceTree = "<group>"; };
+		B0CA762B23454A38003E7FBD /* RestaurantMenus.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = RestaurantMenus.graphql; sourceTree = "<group>"; };
 		B0CA762D23454B1F003E7FBD /* GraphAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphAPI.swift; sourceTree = "<group>"; };
 		B0CD88CA23607F3C00A5C021 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		B0CD88CD236088A200A5C021 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
@@ -712,7 +718,9 @@
 			children = (
 				B021DE94234FBA6D00DBF1AA /* ApolloClient.swift */,
 				B0CA762D23454B1F003E7FBD /* GraphAPI.swift */,
-				B0CA762B23454A38003E7FBD /* Restaurants.graphql */,
+				B07B97FB23672634002E96C8 /* GraphExtensions.swift */,
+				B0CA762B23454A38003E7FBD /* RestaurantMenus.graphql */,
+				B07B980223673732002E96C8 /* PlaceOrder.graphql */,
 			);
 			path = GraphQL;
 			sourceTree = "<group>";
@@ -955,13 +963,14 @@
 				EB1E4544234CF28800B5C8FD /* Roboto-Italic.ttf in Resources */,
 				EB1E4546234CF28800B5C8FD /* Roboto-Bold.ttf in Resources */,
 				EB1E453E234CF28800B5C8FD /* Apache License.txt in Resources */,
+				B07B980323673732002E96C8 /* PlaceOrder.graphql in Resources */,
 				EB1E4536234CF28800B5C8FD /* Roboto-Medium.ttf in Resources */,
 				EB1E4548234CF28800B5C8FD /* Roboto-Black.ttf in Resources */,
 				EB1E4541234CF28800B5C8FD /* RobotoCondensed-Regular.ttf in Resources */,
 				EB1E453A234CF28800B5C8FD /* Roboto-Regular.ttf in Resources */,
 				EB1E453F234CF28800B5C8FD /* RobotoCondensed-LightItalic.ttf in Resources */,
 				B0B205862333D45200694587 /* LaunchScreen.storyboard in Resources */,
-				B0CA762C23454A38003E7FBD /* Restaurants.graphql in Resources */,
+				B0CA762C23454A38003E7FBD /* RestaurantMenus.graphql in Resources */,
 				EB1E4545234CF28800B5C8FD /* Roboto-BlackItalic.ttf in Resources */,
 				EB1E4537234CF28800B5C8FD /* Roboto-Light.ttf in Resources */,
 				EB1E4539234CF28800B5C8FD /* RobotoCondensed-Light.ttf in Resources */,
@@ -1002,7 +1011,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nAPOLLO_SCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${APOLLO_SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${APOLLO_SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" GraphQL/GraphAPI.swift\n";
+			shellScript = "# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nAPOLLO_SCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${APOLLO_SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${APOLLO_SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=GraphQL/*.graphql --localSchemaFile=\"schema.json\" GraphQL/GraphAPI.swift\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1073,12 +1082,14 @@
 				B06B514E23495C960015E960 /* ForgotPasswordView.swift in Sources */,
 				B0A2D09523460C0C00391DD6 /* Customer.swift in Sources */,
 				B0CD88D82360ABE900A5C021 /* OrdersView.swift in Sources */,
+				B07B97FD23672634002E96C8 /* GraphExtensions.swift in Sources */,
 				B04616382346C6660033087B /* CircularButton.swift in Sources */,
 				B09416AC2355F5C50032BA12 /* OrderReviewState.swift in Sources */,
 				B0BBFDBC2347D11E00FDEFA4 /* RegisterView.swift in Sources */,
 				B0F3198A23661CB9006500AC /* User.swift in Sources */,
 				B05B3FD92348253000547DD1 /* SecurityQuestionView.swift in Sources */,
 				B022F70C235E0EB1005269FB /* AddMealPlanView.swift in Sources */,
+				B07B97FE23673267002E96C8 /* GraphAPI.swift in Sources */,
 				B06B515323496CBE0015E960 /* ViewExtensions.swift in Sources */,
 				B0F3198E23661D15006500AC /* OrderDetailsView.swift in Sources */,
 				B05B3FDC2348257000547DD1 /* LandingState.swift in Sources */,
@@ -1163,6 +1174,7 @@
 				B0982AF52357825300E20BB9 /* PaymentSelectionCard.swift in Sources */,
 				B0CD88CB23607F3C00A5C021 /* MainTabView.swift in Sources */,
 				B04616372346C6610033087B /* CircularButton.swift in Sources */,
+				B07B97FC23672634002E96C8 /* GraphExtensions.swift in Sources */,
 				B0D9ED2223562296006A1545 /* PriceSummaryCard.swift in Sources */,
 				B06B514B23495BD90015E960 /* ViewExtensions.swift in Sources */,
 				B0F6E1F9234E496A00067B79 /* Cart.swift in Sources */,

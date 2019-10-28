@@ -14,7 +14,7 @@ struct ItemOverview: View, Dismissable {
     
     // MARK: Lifecycle
     
-    init(foodItem: FoodItem) {
+    init(foodItem: GraphFoodItem) {
         self.foodItem = foodItem
     }
     
@@ -23,7 +23,7 @@ struct ItemOverview: View, Dismissable {
     var body: some View {
         ZStack(alignment: .top) {
             GeometryReader { geometry in
-                Image(self.foodItem.imageName)
+                Image("hamburger") //TODO
                     .resizable()
                     .scaledToFill()
                     .edgesIgnoringSafeArea(.vertical)
@@ -34,11 +34,11 @@ struct ItemOverview: View, Dismissable {
             
             HStack {
                 VStack(alignment: .leading) {
-                    Text(foodItem.name)
+                    Text(foodItem.displayName ?? "")
                         .foregroundColor(.white)
                         .font(.largeTitle)
                         .bold()
-                    Text(self.foodItem.price.asDollarString)
+                    Text((self.foodItem.price ?? 0).asDollarString)
                         .foregroundColor(.guelphYellow)
                         .fontWeight(.semibold)
                 }.padding(.leading, 20)
@@ -103,14 +103,14 @@ struct ItemOverview: View, Dismissable {
     
     @EnvironmentObject private var cart: Cart
     
-    private let foodItem: FoodItem
+    private let foodItem: GraphFoodItem
     
 }
 
 struct ItemOverview_Previews: PreviewProvider {
     
     static var previews: some View {
-        ItemOverview(foodItem: FoodItem(id: 0, name: "Cheese Hamburger", imageName: "hamburger"))
+        ItemOverview(foodItem: GraphFoodItem(id: "1", displayName: "Hamburger 1", price: 2))
             .environmentObject(Cart(items: []))
     }
 }

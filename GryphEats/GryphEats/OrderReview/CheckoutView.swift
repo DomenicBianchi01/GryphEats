@@ -69,8 +69,15 @@ struct CheckoutView: View {
                 message: Text("Once your confirm your payment, your order will begin to be prepared."),
                 primaryButton: .default(Text("Confirm")) {
                     withAnimation {
-                        self.state.state = .confirmed
-                        self.cart.clear()
+                        self.viewModel.submitPayment(for: self.cart) { result in
+                            switch result {
+                            case .success:
+                                self.state.state = .confirmed
+                                self.cart.clear()
+                            case .failure(let error):
+                                self.error = error
+                            }
+                        }
                     }
                 },
                 secondaryButton: .cancel {
@@ -91,6 +98,7 @@ struct CheckoutView: View {
     @State private var showAddPayment: Bool = false
     @State private var confirmPayment: Bool = false
     @State private var selectedPaymentMethodIndex = 0
+    @State private var error: CheckoutViewModel.PaymentError? = nil
     
     // TODO: Find a better way to refresh the view.
     // After adding a new payment, we need to refresh the view to reflect the new list of payment methods. The only
@@ -136,8 +144,8 @@ struct CheckoutView_Previews: PreviewProvider {
     static var previews: some View {
         CheckoutView()
             .environmentObject(Cart(items: [
-                FoodItem(id: 0, name: "Hamburger", imageName: ""),
-                FoodItem(id: 0, name: "Hamburger", imageName: "")
+                GraphFoodItem(id: "1", displayName: "Hamburger 1", price: 2),
+                GraphFoodItem(id: "2", displayName: "Hamburger 2", price: 2)
             ]))
             .environmentObject(OrderReviewState())
     }
