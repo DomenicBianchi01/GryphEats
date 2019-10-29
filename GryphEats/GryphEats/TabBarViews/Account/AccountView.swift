@@ -12,13 +12,6 @@ import SwiftUI
 
 struct AccountView: View {
     
-    // MARK: Lifecycle
-    
-    init() {
-        UITableView.appearance().separatorStyle = .singleLine
-        UITableView.appearance().backgroundColor = .lightGray
-    }
-    
     // MARK: Internal
     
     var body: some View {
@@ -36,6 +29,9 @@ struct AccountView: View {
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: row.alignment)
                 }
             }.listStyle(GroupedListStyle())
+        }.onAppear {
+            UITableView.appearance().separatorStyle = .singleLine
+            UITableView.appearance().backgroundColor = .lightGray
         }
     }
     

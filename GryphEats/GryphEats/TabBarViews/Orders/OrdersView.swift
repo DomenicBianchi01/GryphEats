@@ -12,13 +12,6 @@ import SwiftUI
 
 struct OrdersView: View {
     
-    // MARK: Lifecycle
-    
-    init() {
-        UITableView.appearance().separatorStyle = .none
-        UITableView.appearance().backgroundColor = .lightGray
-    }
-    
     // MARK: Internal
     
     var body: some View {
@@ -42,6 +35,9 @@ struct OrdersView: View {
                 self.selectedOrder = nil
         }) {
             Text(String(self.$selectedOrder.wrappedValue?.id ?? -1))
+        }.onAppear {
+            UITableView.appearance().separatorStyle = .none
+            UITableView.appearance().backgroundColor = .lightGray
         }
     }
     

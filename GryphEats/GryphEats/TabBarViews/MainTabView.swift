@@ -17,12 +17,11 @@ struct MainTabView: View {
     var body: some View {
         VStack(spacing: -1) {
             if selection == 0 {
-                HomeView()
-                    .environmentObject(cart)
+                homeView
             } else if selection == 1 {
-                OrdersView()
+                ordersView
             } else {
-                AccountView()
+                accountView
             }
             
             CustomTabBar(selectedIndex: $selection, items: [
@@ -37,7 +36,9 @@ struct MainTabView: View {
     
     @State private var selection: Int = 0
     
-    private let cart = Cart()
+    private let homeView = AnyView(HomeView().environmentObject(Cart()))
+    private let ordersView = OrdersView()
+    private let accountView = AccountView()
     
 }
 
