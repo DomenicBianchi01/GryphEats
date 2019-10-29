@@ -46,7 +46,6 @@ class LoginViewModel {
         // TODO: The code below is just being used for testing purposes until the Login API is ready
         
         if username == restaurantUser.username && password == restaurantUser.password {
-            saveCredentials(for: restaurantUser)
             return .success(restaurantUser)
         } else if username == customerUser.username && password == customerUser.password {
             saveCredentials(for: customerUser)
