@@ -25,7 +25,7 @@ class Apollo {
     static let shared = Apollo()
     
     func fetch<Query: GraphQLQuery>(query: Query, completion: @escaping (Result<Query.Data, ApolloError>) -> Void) {
-        client.fetch(query: query) { result in
+        client.fetch(query: query, cachePolicy: .fetchIgnoringCacheCompletely) { result in
             switch result {
             case .success(let graphQLResult):
                 guard let data = graphQLResult.data else {

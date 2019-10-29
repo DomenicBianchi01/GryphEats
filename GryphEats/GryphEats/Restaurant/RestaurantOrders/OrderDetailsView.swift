@@ -16,14 +16,36 @@ struct OrderDetailsView: View {
             HStack(){
                 Spacer()
             }.padding(.leading)
-            HStack(alignment: .top, spacing: 20) {
+            
+            if ( UIDevice.current.userInterfaceIdiom == .phone ) {
+                VStack(alignment: .leading, spacing: 20) {
+                    self.headerCentent
+                }
+            } else {
+                HStack(alignment: .top, spacing: 20) {
+                    self.headerCentent
+                }
+            }
+            Divider()
+            List (order.foodItems) { foodItem in
+                MealRow(foodItem: foodItem)
+            }
+        }.padding(.all)
+    }
+    
+    private var headerCentent: AnyView {
+        return AnyView(
+            Group {
                 VStack(alignment: .leading, spacing: 10) {
+                    
                     Text(order.customer.name).font(Font.custom("Roboto-Bold", size: 28))
                         .lineLimit(1)
-                    Text("Order placed at " + order.time).font(Font.custom("Roboto-Regular", size: 24))
+                    Text("Order placed at " + order.time).font(Font.custom("Roboto-Regular", size: 24)).scaledToFill()
                         .lineLimit(1)
                 }
+                if ( UIDevice.current.userInterfaceIdiom == .pad ) {
                 Spacer().layoutPriority(-1)
+                }
                 HStack() {
                     CircularButton(
                         text: Text(continueButtonText).font(Font.custom("Roboto-Light", size: 22)),
@@ -39,30 +61,39 @@ struct OrderDetailsView: View {
                     }.padding(.trailing).disabled(false)
                 }
             }
-            Divider()
-            List (order.foodItems) { foodItem in
-                MealRow(foodItem: foodItem)
-            }
-        }.padding(.all)
+        )
     }
     
     @ObservedObject var order: Order
+    @ObservedObject private var viewModel: OrderDetailsViewModel = OrderDetailsViewModel()
     
     private func continueOrder() {
         switch order.status {
-            case .new: order.status = .inProgress
-            case .inProgress: order.status = .readyForPickup
-            case .readyForPickup: order.status = .pickedUp
-            case .pickedUp: order.status = .pickedUp
+        case .new: order.status = .inProgress
+        case .inProgress: order.status = .readyForPickup
+        case .readyForPickup: order.status = .pickedUp
+        sendOrderComplete(orderID: String(order.id))
+        case .pickedUp: order.status = .pickedUp
+        }
+    }
+    
+    private func sendOrderComplete(orderID: String) {
+        self.viewModel.sendOrderComplete(orderID: orderID) { result in
+            switch result {
+            case .success:
+                print("Success")
+            case .failure(let error):
+                print(error)
+            }
         }
     }
     
     private func backOrder() {
         switch order.status {
-            case .new: order.status = .readyForPickup
-            case .inProgress: order.status = .new
-            case .readyForPickup: order.status = .inProgress
-            case .pickedUp: order.status = .new
+        case .new: order.status = .readyForPickup
+        case .inProgress: order.status = .new
+        case .readyForPickup: order.status = .inProgress
+        case .pickedUp: order.status = .new
         }
     }
     

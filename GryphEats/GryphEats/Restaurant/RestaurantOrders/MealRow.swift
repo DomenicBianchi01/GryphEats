@@ -15,12 +15,12 @@ struct MealRow: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 10).fill(Color.guelphYellow)
                     HStack(alignment: .top, spacing: 8) {
-                        Text("1x").font(Font.custom("Roboto-Bold", size: 30)).padding(.leading)
-                        Text(foodItem.name).font(Font.custom("Roboto-Bold", size: 30))
+                        Text("1x").font(Font.custom("Roboto-Bold", size: 28)).padding(.leading)
+                        Text(foodItem.name).font(Font.custom("Roboto-Bold", size: 28))
                         Spacer()
-                    }
+                    }.scaledToFill()
                 }
-                HStack (alignment: .top, spacing: 6){
+                if ( UIDevice.current.userInterfaceIdiom == .phone ) {
                     VStack(alignment: .leading, spacing: 6) {
                         ForEach(foodItem.ingredients) { ingredient in
                             HStack {
@@ -29,13 +29,31 @@ struct MealRow: View {
                             }
                         }
                     }.padding(.bottom).padding(.leading, 40)
-                    Spacer()
-                    VStack(alignment: .trailing, spacing: 6) {
+                    .font(Font.custom("Roboto-Bold", size: 28))
+                    VStack(alignment: .leading, spacing: 6) {
                         Text("Additional Info")
                         Text("Nut Allergy")
                     }.padding(.bottom).padding(.trailing, 40)
-                }.font(Font.custom("Roboto-Bold", size: 28))
+                    .font(Font.custom("Roboto-Bold", size: 20))
                     .foregroundColor(.gray)
+                } else {
+                    HStack (alignment: .top, spacing: 6){
+                        VStack(alignment: .leading, spacing: 6) {
+                            ForEach(foodItem.ingredients) { ingredient in
+                                HStack {
+                                    Text("1x")
+                                    Text(ingredient.name)
+                                }
+                            }
+                        }.padding(.bottom).padding(.leading, 40)
+                        Spacer()
+                        VStack(alignment: .trailing, spacing: 6) {
+                            Text("Additional Info")
+                            Text("Nut Allergy")
+                        }.padding(.bottom).padding(.trailing, 40)
+                    }.font(Font.custom("Roboto-Bold", size: 28))
+                        .foregroundColor(.gray)
+                }
             }.padding(.top)            
         }
     }

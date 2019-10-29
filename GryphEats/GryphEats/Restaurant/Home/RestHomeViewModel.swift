@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-// MARK: - HomeViewModel
+// MARK: - RestHomeViewModel
 
 class RestHomeViewModel: ObservableObject {
     
@@ -26,25 +26,25 @@ class RestHomeViewModel: ObservableObject {
     
     func fetchRestaurants() {
         self.loadingState = .loading
-        
-        self.loadingState = .loaded([Restaurant(id: "0", name: "Moms", foodItems: [])])
-        
-//        Apollo.shared.fetch(query: RestaurantsQuery()) { result in
-//            switch result {
-//            case .success(let data):
-//                var restaurants: [Restaurant] = []
-//
-//                for restaurant in data.restaurants.compactMap({ $0 }) {
-//                    restaurants.append(Restaurant(
-//                        id: restaurant.id,
-//                        name: restaurant.name,
-//                        foodItems: []))
-//                }
-//
-//                self.loadingState = .loaded(restaurants)
-//            case .failure:
-//                self.loadingState = .error
-//            }
-//        }
+
+//        self.loadingState = .loaded([Restaurant(id: "0", name: "Moms", foodItems: [])])
+
+        Apollo.shared.fetch(query: RestaurantMenusQuery()) { result in
+            switch result {
+            case .success(let data):
+                var restaurants: [Restaurant] = []
+
+                for restaurant in data.restaurants.compactMap({ $0 }) {
+                    restaurants.append(Restaurant(
+                        id: restaurant.id,
+                        name: restaurant.name,
+                        foodItems: []))
+                }
+
+                self.loadingState = .loaded(restaurants)
+            case .failure:
+                self.loadingState = .error
+            }
+        }
     }
 }
