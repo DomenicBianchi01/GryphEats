@@ -55,7 +55,7 @@ struct OrderCard: View {
                     Image(systemName: "clock")
                         .padding(.leading, 20)
                         .foregroundColor(.gray)
-                    Text(order.time + " (4 minutes ago)")
+                    Text(order.time)
                         .font(.subheadline)
                         .foregroundColor(.gray)
                         .padding(.trailing, 20)

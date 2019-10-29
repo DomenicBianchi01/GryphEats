@@ -221,7 +221,11 @@
 		EB2237F3234B958C00CB9196 /* RestHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2237F2234B958C00CB9196 /* RestHomeView.swift */; };
 		EB2237F8234B9B4700CB9196 /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = EB2237F7234B9B4700CB9196 /* QGrid */; };
 		EB37D1A22360DBD500CD0D9C /* RestHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB37D1A12360DBD500CD0D9C /* RestHomeViewModel.swift */; };
+		EB37D1A8236109A900CD0D9C /* OrdersByRest.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB37D1A7236109A900CD0D9C /* OrdersByRest.graphql */; };
+		EB37D1AF23610CE700CD0D9C /* RestOrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB37D1AE23610CE700CD0D9C /* RestOrdersViewModel.swift */; };
 		EB605A32235BB24F00EB7856 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB605A31235BB24F00EB7856 /* User.swift */; };
+		EB9468022368898E00FAAE56 /* CompleteOrder.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB9468012368898E00FAAE56 /* CompleteOrder.graphql */; };
+		EB94680423688AA700FAAE56 /* OrderDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB94680323688AA700FAAE56 /* OrderDetailsViewModel.swift */; };
 		EBC089ED234FF72800DA3A55 /* RestOrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC089EC234FF72800DA3A55 /* RestOrdersView.swift */; };
 		EBC089EF234FFAC400DA3A55 /* OrderDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC089EE234FFAC400DA3A55 /* OrderDetailsView.swift */; };
 		EBC089F323524B5800DA3A55 /* OrderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC089F223524B5800DA3A55 /* OrderRow.swift */; };
@@ -372,7 +376,11 @@
 		EB1E4535234CF28800B5C8FD /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		EB2237F2234B958C00CB9196 /* RestHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestHomeView.swift; sourceTree = "<group>"; };
 		EB37D1A12360DBD500CD0D9C /* RestHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestHomeViewModel.swift; sourceTree = "<group>"; };
+		EB37D1A7236109A900CD0D9C /* OrdersByRest.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = OrdersByRest.graphql; sourceTree = "<group>"; };
+		EB37D1AE23610CE700CD0D9C /* RestOrdersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestOrdersViewModel.swift; sourceTree = "<group>"; };
 		EB605A31235BB24F00EB7856 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		EB9468012368898E00FAAE56 /* CompleteOrder.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CompleteOrder.graphql; sourceTree = "<group>"; };
+		EB94680323688AA700FAAE56 /* OrderDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewModel.swift; sourceTree = "<group>"; };
 		EBC089EC234FF72800DA3A55 /* RestOrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestOrdersView.swift; sourceTree = "<group>"; };
 		EBC089EE234FFAC400DA3A55 /* OrderDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsView.swift; sourceTree = "<group>"; };
 		EBC089F223524B5800DA3A55 /* OrderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRow.swift; sourceTree = "<group>"; };
@@ -723,6 +731,8 @@
 				B07B97FB23672634002E96C8 /* GraphExtensions.swift */,
 				B0CA762B23454A38003E7FBD /* RestaurantMenus.graphql */,
 				B07B980223673732002E96C8 /* PlaceOrder.graphql */,
+				EB9468012368898E00FAAE56 /* CompleteOrder.graphql */,
+				EB37D1A7236109A900CD0D9C /* OrdersByRest.graphql */,
 			);
 			path = GraphQL;
 			sourceTree = "<group>";
@@ -823,9 +833,19 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		EB37D1AD23610CC300CD0D9C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				EB37D1AE23610CE700CD0D9C /* RestOrdersViewModel.swift */,
+				EB94680323688AA700FAAE56 /* OrderDetailsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		EBC089EB234FF6F300DA3A55 /* RestaurantOrders */ = {
 			isa = PBXGroup;
 			children = (
+				EB37D1AD23610CC300CD0D9C /* ViewModels */,
 				EBC089EC234FF72800DA3A55 /* RestOrdersView.swift */,
 				EBC089F223524B5800DA3A55 /* OrderRow.swift */,
 				EBC089EE234FFAC400DA3A55 /* OrderDetailsView.swift */,
@@ -963,10 +983,12 @@
 			files = (
 				EB1E4538234CF28800B5C8FD /* RobotoCondensed-Bold.ttf in Resources */,
 				EB1E4544234CF28800B5C8FD /* Roboto-Italic.ttf in Resources */,
+				EB37D1A8236109A900CD0D9C /* OrdersByRest.graphql in Resources */,
 				EB1E4546234CF28800B5C8FD /* Roboto-Bold.ttf in Resources */,
 				EB1E453E234CF28800B5C8FD /* Apache License.txt in Resources */,
 				B07B980323673732002E96C8 /* PlaceOrder.graphql in Resources */,
 				EB1E4536234CF28800B5C8FD /* Roboto-Medium.ttf in Resources */,
+				EB9468022368898E00FAAE56 /* CompleteOrder.graphql in Resources */,
 				EB1E4548234CF28800B5C8FD /* Roboto-Black.ttf in Resources */,
 				EB1E4541234CF28800B5C8FD /* RobotoCondensed-Regular.ttf in Resources */,
 				EB1E453A234CF28800B5C8FD /* Roboto-Regular.ttf in Resources */,
@@ -1109,6 +1131,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB94680423688AA700FAAE56 /* OrderDetailsViewModel.swift in Sources */,
 				B01DC45323552B4500539D30 /* CartItemCard.swift in Sources */,
 				B0BEF91B234D4941004455DC /* Restaurant.swift in Sources */,
 				B09416AB2355F5C50032BA12 /* OrderReviewState.swift in Sources */,
@@ -1157,6 +1180,7 @@
 				B0F6E1F6234E370500067B79 /* ItemOverview.swift in Sources */,
 				B021DE95234FBA6D00DBF1AA /* ApolloClient.swift in Sources */,
 				B046163D2346F3230033087B /* LoginViewModel.swift in Sources */,
+				EB37D1AF23610CE700CD0D9C /* RestOrdersViewModel.swift in Sources */,
 				B046163A2346E5880033087B /* BasicButton.swift in Sources */,
 				B022F70B235E0EAC005269FB /* AddMealPlanView.swift in Sources */,
 				B03E283C235E772D0000EDA2 /* AddMealPlanViewModel.swift in Sources */,
