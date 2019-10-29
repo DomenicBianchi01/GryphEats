@@ -13,6 +13,8 @@ import UIKit
 // MARK: - ApplePayButton
 
 /// `PKPaymentButton` bridged over to SwiftUI
+// The Apple Pay button does not work on Catalyst
+@available(macCatalyst, unavailable)
 struct ApplePayButton: UIViewRepresentable {
     
     // MARK: Internal

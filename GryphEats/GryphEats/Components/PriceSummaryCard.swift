@@ -120,12 +120,16 @@ struct PriceSummaryCard: View {
                     .padding(.horizontal)
                     .padding(.top, 10)
                 
+                // The Apple Pay button does not work on Catalyst
+                #if targetEnvironment(macCatalyst)
+                #else
                 HStack {
                     Spacer()
                     ApplePayButton().frame(height: 47)
                     Spacer()
                 }.padding(.horizontal, 10)
                     .cornerRadius(5)
+                #endif
                 
                 ActionButton(text: "Checkout with Student or Credit Card") {
                     withAnimation {
@@ -174,7 +178,7 @@ struct PriceSummaryCard: View {
             .padding(.bottom, 10)
             .foregroundColor(.secondary)
     }
-
+    
     private enum DiscountType: String {
         case onCampus = "With On-Campus Meal Plan (30% discount)"
         case onCampusTax = "With On-Campus Meal Plan (No Tax)"

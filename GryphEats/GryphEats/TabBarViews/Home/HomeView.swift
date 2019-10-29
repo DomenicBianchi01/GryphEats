@@ -12,13 +12,6 @@ import SwiftUI
 
 struct HomeView: View {
     
-    // MARK: Lifecycle
-    
-    init() {
-        UITableView.appearance().separatorStyle = .none
-        UITableView.appearance().backgroundColor = .lightGray
-    }
-    
     // MARK: Internal
     
     var body: some View {
@@ -29,6 +22,8 @@ struct HomeView: View {
         {
             self.content
         }.onAppear {
+            UITableView.appearance().separatorStyle = .none
+            UITableView.appearance().backgroundColor = .lightGray
             self.viewModel.fetchRestaurants()
         }
     }
