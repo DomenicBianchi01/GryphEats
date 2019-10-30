@@ -1,6 +1,7 @@
 query OrdersByRest($restID: ID!) {
   getOrdersByRestaurantID(restaurantid: $restID) {
     orderid
+    ordertype
         timeplaced
         timecompleted
         restaurantid

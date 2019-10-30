@@ -30,7 +30,7 @@ class OrderDetailsViewModel: ObservableObject {
     
     func updateOrder(
         orderID: String,
-        status: OrderStatus,
+        status: Int,
         completion: @escaping (Result<Bool, OrderUpdateError>) -> Void)
     {
         GraphClient.shared.perform(

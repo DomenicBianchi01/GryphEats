@@ -226,7 +226,7 @@
 		EB605A32235BB24F00EB7856 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB605A31235BB24F00EB7856 /* User.swift */; };
 		EB9468022368898E00FAAE56 /* UpdateOrder.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB9468012368898E00FAAE56 /* UpdateOrder.graphql */; };
 		EB94680423688AA700FAAE56 /* OrderDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB94680323688AA700FAAE56 /* OrderDetailsViewModel.swift */; };
-		EB9468092368CB2200FAAE56 /* OrdersPlaced.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB9468082368CB2200FAAE56 /* OrdersPlaced.graphql */; };
+		EB9468092368CB2200FAAE56 /* OrdersUpdated.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB9468082368CB2200FAAE56 /* OrdersUpdated.graphql */; };
 		EB94680C2368D2B800FAAE56 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = EB94680B2368D2B800FAAE56 /* Apollo */; };
 		EB94680E2368D2B800FAAE56 /* ApolloSQLite in Frameworks */ = {isa = PBXBuildFile; productRef = EB94680D2368D2B800FAAE56 /* ApolloSQLite */; };
 		EBC089ED234FF72800DA3A55 /* RestOrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC089EC234FF72800DA3A55 /* RestOrdersView.swift */; };
@@ -384,7 +384,7 @@
 		EB605A31235BB24F00EB7856 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EB9468012368898E00FAAE56 /* UpdateOrder.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = UpdateOrder.graphql; sourceTree = "<group>"; };
 		EB94680323688AA700FAAE56 /* OrderDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewModel.swift; sourceTree = "<group>"; };
-		EB9468082368CB2200FAAE56 /* OrdersPlaced.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = OrdersPlaced.graphql; sourceTree = "<group>"; };
+		EB9468082368CB2200FAAE56 /* OrdersUpdated.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = OrdersUpdated.graphql; sourceTree = "<group>"; };
 		EBC089EC234FF72800DA3A55 /* RestOrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestOrdersView.swift; sourceTree = "<group>"; };
 		EBC089EE234FFAC400DA3A55 /* OrderDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsView.swift; sourceTree = "<group>"; };
 		EBC089F223524B5800DA3A55 /* OrderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRow.swift; sourceTree = "<group>"; };
@@ -527,7 +527,7 @@
 		B07194962369F2F200E6253F /* Subscriptions */ = {
 			isa = PBXGroup;
 			children = (
-				EB9468082368CB2200FAAE56 /* OrdersPlaced.graphql */,
+				EB9468082368CB2200FAAE56 /* OrdersUpdated.graphql */,
 			);
 			path = Subscriptions;
 			sourceTree = "<group>";
@@ -1023,7 +1023,7 @@
 				EB1E4536234CF28800B5C8FD /* Roboto-Medium.ttf in Resources */,
 				EB9468022368898E00FAAE56 /* UpdateOrder.graphql in Resources */,
 				EB1E4548234CF28800B5C8FD /* Roboto-Black.ttf in Resources */,
-				EB9468092368CB2200FAAE56 /* OrdersPlaced.graphql in Resources */,
+				EB9468092368CB2200FAAE56 /* OrdersUpdated.graphql in Resources */,
 				EB1E4541234CF28800B5C8FD /* RobotoCondensed-Regular.ttf in Resources */,
 				EB1E453A234CF28800B5C8FD /* Roboto-Regular.ttf in Resources */,
 				EB1E453F234CF28800B5C8FD /* RobotoCondensed-LightItalic.ttf in Resources */,

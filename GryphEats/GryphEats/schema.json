@@ -975,12 +975,12 @@
             "deprecationReason": null
           },
           {
-            "name": "odertype",
+            "name": "ordertype",
             "description": "",
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "ID",
+              "name": "Int",
               "ofType": null
             },
             "isDeprecated": false,
@@ -1019,6 +1019,16 @@
         "possibleTypes": null
       },
       {
+        "kind": "SCALAR",
+        "name": "Int",
+        "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
         "name": "Mutation",
         "description": "",
@@ -1045,8 +1055,8 @@
                 "name": "status",
                 "description": "",
                 "type": {
-                  "kind": "ENUM",
-                  "name": "OrderStatus",
+                  "kind": "SCALAR",
+                  "name": "Int",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -1068,7 +1078,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "FoodOrder",
+              "name": "Finish",
               "ofType": null
             },
             "isDeprecated": false,
@@ -1323,41 +1333,6 @@
         "possibleTypes": null
       },
       {
-        "kind": "ENUM",
-        "name": "OrderStatus",
-        "description": "",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "neworder",
-            "description": "",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "inprogress",
-            "description": "",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ready",
-            "description": "",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pickedup",
-            "description": "",
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
         "kind": "OBJECT",
         "name": "Finish",
         "description": "",
@@ -1414,7 +1389,7 @@
             "deprecationReason": null
           },
           {
-            "name": "orderPlaced",
+            "name": "orderUpdated",
             "description": "",
             "args": [
               {
@@ -1432,22 +1407,6 @@
                 "defaultValue": null
               }
             ],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "FoodOrder",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "orderUpdated",
-            "description": "",
-            "args": [],
             "type": {
               "kind": "LIST",
               "name": null,
@@ -2263,6 +2222,41 @@
         "possibleTypes": null
       },
       {
+        "kind": "ENUM",
+        "name": "OrderStatus",
+        "description": "",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "neworder",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "inprogress",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ready",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pickedup",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
         "name": "Topping",
         "description": "",
@@ -2332,16 +2326,6 @@
         "kind": "SCALAR",
         "name": "Upload",
         "description": "The `Upload` scalar type represents a file upload.",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "Int",
-        "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
