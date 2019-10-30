@@ -58,7 +58,7 @@ struct OrderDetailsView: View {
                         backgroundColor: exitButtonColor,
                         foregroundColor: .black) {
                             self.backOrder()
-                    }.padding(.trailing).disabled(false)
+                    }.padding(.trailing).disabled(true)
                 }
             }
         )
@@ -71,19 +71,19 @@ struct OrderDetailsView: View {
         switch order.status {
         case .new:
             order.status = .inProgress
-            updateOrder(orderID: String(order.id), status: .inprogress)
+            updateOrder(orderID: String(order.id), status: 1)
         case .inProgress:
             order.status = .readyForPickup
-            updateOrder(orderID: String(order.id), status: .ready)
+            updateOrder(orderID: String(order.id), status: 2)
         case .readyForPickup:
             order.status = .pickedUp
-            updateOrder(orderID: String(order.id), status: .pickedup)
+            updateOrder(orderID: String(order.id), status: 3)
         case .pickedUp:
             order.status = .pickedUp
         }
     }
     
-    private func updateOrder(orderID: String, status: OrderStatus) {
+    private func updateOrder(orderID: String, status: Int) {
         self.viewModel.updateOrder(orderID: orderID, status: status) { result in
             switch result {
             case .success:
@@ -114,7 +114,7 @@ struct OrderDetailsView: View {
     }
     
     private var exitButtonColor: Color {
-        let colors: [Color] = [.red, .red, .gray, .gray]
+        let colors: [Color] = [.gray, .gray, .gray, .gray]
         return colors[order.status.rawValue]
     }
     

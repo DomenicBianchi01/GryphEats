@@ -60,7 +60,7 @@ class RestOrdersViewModel: ObservableObject {
                     orders.append(Order(
                         id: Int(order.orderid)!,
                         customer: Customer(name: "John Doe"),
-                        status: .new,
+                        status: Order.Status(rawValue: order.ordertype ?? 0) ?? .new,
                         time: dateString,
                         foodItems: foodItems
                     ))
@@ -71,11 +71,11 @@ class RestOrdersViewModel: ObservableObject {
             }
         }
         
-        GraphClient.shared.subscribe(subscription: OrderPlacedSubscription(restaurantID: restID)) { result in
+        GraphClient.shared.subscribe(subscription: OrderUpdatedSubscription(restaurantID: restID)) { result in
             switch result {
             case .success(let data):
                 
-                guard let orders2 = data.orderPlaced?.compactMap({ $0 }) else {
+                guard let orders2 = data.orderUpdated?.compactMap({ $0 }) else {
                     self.loadingState = .error
                     return
                 }
@@ -106,7 +106,7 @@ class RestOrdersViewModel: ObservableObject {
                     orders.append(Order(
                         id: Int(order.orderid)!,
                         customer: Customer(name: "John Doe"),
-                        status: .new,
+                        status: Order.Status(rawValue: order.ordertype ?? 0) ?? .new,
                         time: dateString,
                         foodItems: foodItems
                     ))

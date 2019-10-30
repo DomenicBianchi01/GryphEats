@@ -1,6 +1,7 @@
-subscription OrderPlaced($restaurantID: ID!) {
-    orderPlaced(restaurantid: $restaurantID) {
+subscription OrderUpdated($restaurantID: ID!) {
+    orderUpdated(restaurantid: $restaurantID) {
         orderid
+        ordertype
         timeplaced
         orderitems {
             orderid
