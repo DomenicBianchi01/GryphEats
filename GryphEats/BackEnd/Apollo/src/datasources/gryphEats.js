@@ -1,9 +1,11 @@
 const { DataSource } = require('apollo-datasource');
 //const { PubSub } = require('apollo-server');
-
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 //const pubsub = new PubSub();
 const POST_ADDED = 'POST_ADDED';
 const ORDER_PLACED = 'ORDER_PLACED';
+const ORDER_UPDATED = 'ORDER_UPDATED';
 class GryphAPIS extends DataSource {
     constructor({ database }) {
         super();
@@ -37,7 +39,7 @@ class GryphAPIS extends DataSource {
 
     async getFoodByFoodID({ foodid }) {
         try {
-            const result = await this.database.food.findAll({
+            const result = await this.database.food.findOne({
                 where: { foodid },
             });
             return result;
@@ -48,7 +50,7 @@ class GryphAPIS extends DataSource {
 
     async getFoodByDisplayName({ displayname }) {
         try {
-            const result = await this.database.food.findAll({
+            const result = await this.database.food.findOne({
                 where: { displayname },
             });
             return result;
@@ -219,7 +221,9 @@ class GryphAPIS extends DataSource {
     async getOrdersByRestaurantID({ restaurantid }) {
         try {
             const result = await this.database.foodorder.findAll({
-                where: { restaurantid },
+                where: {
+                    restaurantid, ordertype: [0, 1, 2]
+                }
             });
             return result;
         } catch (e) {
@@ -280,8 +284,10 @@ class GryphAPIS extends DataSource {
                         orderid: orderid, foodid: fid
                     });
                 }
-                var newOrders = await this.getOrdersByRestaurantID({ restaurantid });
-                await pubsub.publish(ORDER_PLACED, { orderPlaced: newOrders });
+                // var newOrders = await this.getOrdersByRestaurantID({ restaurantid });
+                // console.log(newOrders);
+                await pubsub.publish(ORDER_UPDATED, { orderUpdated: restaurantid });
+                // await pubsub.publish(ORDER_PLACED, { orderPlaced: restaurantid });
                 return {
                     success: true,
                     message: 'Order Completed',
@@ -314,6 +320,34 @@ class GryphAPIS extends DataSource {
                 success: false,
                 message: "place order failed: " + e.message
             };
+        }
+    }
+    /**
+     * Update an order, return updated ordered
+     */
+    async updateOrder({ orderid, status, restaurantid, pubsub }) {
+        try {
+            // console.log("ordertype" + status);
+            const result = await this.database.foodorder.update({ ordertype: status }, {
+                where: { orderid }
+            });
+            // console.log(result);
+            // var newOrders = await this.getOrdersByRestaurantID({ restaurantid });
+            // await pubsub.publish(ORDER_PLACED, { orderPlaced: restaurantid });
+            await pubsub.publish(ORDER_UPDATED, { orderUpdated: restaurantid });
+            if (result == 1) {
+                return {
+                    success: true,
+                    message: 'Order update done',
+                };
+            } else {
+                return {
+                    success: false,
+                    message: 'Order update failed',
+                };
+            }
+        } catch (e) {
+            return "update order failed: " + e.message;
         }
     }
 }

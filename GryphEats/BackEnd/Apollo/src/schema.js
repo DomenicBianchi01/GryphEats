@@ -2,10 +2,18 @@ const { gql } = require('apollo-server');
 const typeDefs = gql`
 
     scalar Date
+
+    enum OrderStatus {
+        neworder
+        inprogress
+        ready
+        pickedup
+    }
+
     type Query {
         foods: [Food]!
-        getFoodByFoodID(foodid: ID!): [Food]
-        getFoodByDisplayName(displayname:String!):[Food]
+        getFoodByFoodID(foodid: ID!): Food
+        getFoodByDisplayName(displayname:String!):Food
         restaurants: [Restaurant]!
         users: [User]!
         menus: [Menu]!
@@ -16,6 +24,7 @@ const typeDefs = gql`
     }
 
     type Mutation {
+        updateOrder(orderid:ID!, status:Int, restaurantid:ID!): Finish
         createOrder(restaurantid: ID!): FoodOrder
         placeOrder(foodids:[ID]!, restaurantid:ID!): Finish
         completeOrder(orderid: ID): Finish
@@ -26,16 +35,17 @@ const typeDefs = gql`
 
     type Subscription {
         foodAdded: Food
-        orderPlaced: [FoodOrder]
+        # orderPlaced(restaurantid:ID!): [FoodOrder]
+        orderUpdated(restaurantid:ID!): [FoodOrder]
     }
 
     type Food {
         foodid: ID!
         displayname: String
         toppingtype: ID
-        price: ID
+        price: Float
         restaurantid: ID
-        isavailable: ID
+        isavailable: Boolean
         description: String
         foodgroup: ID
     }
@@ -46,7 +56,7 @@ const typeDefs = gql`
         phonenumber: String
         openingtime: String
         closingtime: String
-        isactive: ID
+        isactive: Boolean
         description: String
         menu: [Menu]
     }
@@ -67,7 +77,7 @@ const typeDefs = gql`
         restaurantid: ID!
         title: String
         description: String
-        isactive: ID
+        isactive: Boolean
         restaurant: Restaurant
         menuItems:[MenuItem]
     }
@@ -75,7 +85,7 @@ const typeDefs = gql`
     type MenuItem {
         menuid: ID!
         foodid: ID!
-        item: [Food]
+        item: Food
     }
 
     type OrderItem {
@@ -83,6 +93,7 @@ const typeDefs = gql`
         foodid: ID!
         identifier: ID!
         foodorder: FoodOrder
+        food: Food
     }
 
     type FoodOrder {
@@ -90,6 +101,7 @@ const typeDefs = gql`
         timeplaced: Date
         timecompleted: String
         restaurantid: ID!
+        ordertype: Int
         orderitems: [OrderItem]
     }
 
