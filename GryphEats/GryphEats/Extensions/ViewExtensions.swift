@@ -28,7 +28,7 @@ extension View {
     
     /// Adds a double tap guesture that will dismiss the keyboard
     func dismissKeyboardOnTapGesture() -> some View {
-        //Swift UI Bug: If used with `Picker` an the tap guesture count is set to 1, the picker will become unresponsive
+        //Swift UI Bug: If used with `Picker` and the tap guesture count is set to 1, the picker will become unresponsive
         // The workaround to this is to make the "tap to dismiss keyboard" ffunctionality require a double tap.
         self.onTapGesture(count: 2) {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)

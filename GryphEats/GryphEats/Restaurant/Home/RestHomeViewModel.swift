@@ -29,7 +29,7 @@ class RestHomeViewModel: ObservableObject {
 
 //        self.loadingState = .loaded([Restaurant(id: "0", name: "Moms", foodItems: [])])
 
-        Apollo.shared.fetch(query: RestaurantMenusQuery()) { result in
+        GraphClient.shared.fetch(query: RestaurantMenusQuery()) { result in
             switch result {
             case .success(let data):
                 var restaurants: [Restaurant] = []

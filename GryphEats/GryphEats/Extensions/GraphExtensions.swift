@@ -16,7 +16,12 @@ typealias GraphFoodItem = Menu.MenuItem.Item
 
 // GraphQL structs do not conform to `Equatable` by default.
 
+// MARK: - GraphFoodItem
+
 extension GraphFoodItem: Equatable {
+    
+    // MARK: Public
+    
     public static func == (
         lhs: RestaurantMenusQuery.Data.Restaurant.Menu.MenuItem.Item,
         rhs: RestaurantMenusQuery.Data.Restaurant.Menu.MenuItem.Item) -> Bool

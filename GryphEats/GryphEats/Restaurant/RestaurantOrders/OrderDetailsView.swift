@@ -69,16 +69,22 @@ struct OrderDetailsView: View {
     
     private func continueOrder() {
         switch order.status {
-        case .new: order.status = .inProgress
-        case .inProgress: order.status = .readyForPickup
-        case .readyForPickup: order.status = .pickedUp
-        sendOrderComplete(orderID: String(order.id))
-        case .pickedUp: order.status = .pickedUp
+        case .new:
+            order.status = .inProgress
+            updateOrder(orderID: String(order.id), status: .inprogress)
+        case .inProgress:
+            order.status = .readyForPickup
+            updateOrder(orderID: String(order.id), status: .ready)
+        case .readyForPickup:
+            order.status = .pickedUp
+            updateOrder(orderID: String(order.id), status: .pickedup)
+        case .pickedUp:
+            order.status = .pickedUp
         }
     }
     
-    private func sendOrderComplete(orderID: String) {
-        self.viewModel.sendOrderComplete(orderID: orderID) { result in
+    private func updateOrder(orderID: String, status: OrderStatus) {
+        self.viewModel.updateOrder(orderID: orderID, status: status) { result in
             switch result {
             case .success:
                 print("Success")

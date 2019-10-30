@@ -32,15 +32,7 @@ class RestOrdersViewModel: ObservableObject {
     func fetchOrders() {
         self.loadingState = .loading
         
-        //        let orders:[Order] = [
-        //        Order(id: 0, customer: Customer(name: "Domenic Bianchi", mealPlan: nil), status: .new, time: "11:29am", foodItems: [foodItem1]),
-        //        Order(id: 1, customer: Customer(name: "Matthew Bebis", mealPlan: nil), status: .new, time: "11:23am", foodItems: [foodItem2]),
-        //        Order(id: 2, customer: Customer(name: "Scott Riva", mealPlan: nil), status: .new, time: "11:20am", foodItems: [foodItem1, foodItem2, foodItem4]),
-        //        Order(id: 3, customer: Customer(name: "Shuaib Solker", mealPlan: nil), status: .new, time: "11:31am", foodItems: [foodItem1, foodItem2, foodItem3, foodItem4, foodItem5])]
-        //
-        //        self.loadingState = .loaded(orders)
-        
-        Apollo.shared.fetch(query: OrdersByRestQuery(restID: restID)) { result in
+        GraphClient.shared.fetch(query: OrdersByRestQuery(restID: restID)) { result in
             switch result {
             case .success(let data):
                 let dateFormatter = DateFormatter()
@@ -78,12 +70,13 @@ class RestOrdersViewModel: ObservableObject {
                 self.loadingState = .error
             }
         }
-        Apollo.shared.subscribe(subscription: OrderPlacedSubscription(restaurantID: restID)) { result in
+        
+        GraphClient.shared.subscribe(subscription: OrderPlacedSubscription(restaurantID: restID)) { result in
             switch result {
             case .success(let data):
                 
                 guard let orders2 = data.orderPlaced?.compactMap({ $0 }) else {
-                    //self.loadingState = .error
+                    self.loadingState = .error
                     return
                 }
                 
@@ -125,6 +118,5 @@ class RestOrdersViewModel: ObservableObject {
                 self.loadingState = .error
             }
         }
-        
     }
 }

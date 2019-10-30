@@ -12,28 +12,30 @@ import SwiftUI
 
 class OrderDetailsViewModel: ObservableObject {
     
-    enum OrderCompleteError: Error, LocalizedError {
+    // MARK: OrderUpdateError
+    
+    enum OrderUpdateError: Error, LocalizedError {
         case failure
         
         // MARK: Internal
         
         var recoverySuggestion: String? {
-            switch self {
-            case .failure:
-                return "We could not mark the order as complete. Please try again later."
-            }
+            "We could not update the status of the order. Please try again later."
         }
         
         var errorDescription: String? {
-            switch self {
-            case .failure:
-                return "Error"
-            }
+            "Error"
         }
     }
     
-    func sendOrderComplete(orderID: String, completion: @escaping (Result<Bool, OrderCompleteError>) -> Void) {
-        Apollo.shared.perform(mutation: CompleteOrderMutation(orderID: orderID)) { result in
+    func updateOrder(
+        orderID: String,
+        status: OrderStatus,
+        completion: @escaping (Result<Bool, OrderUpdateError>) -> Void)
+    {
+        GraphClient.shared.perform(
+            mutation: UpdateOrderMutation(orderID: orderID, status: status, res: "1"))
+        { result in
             switch result {
             case .success:
                 return completion(.success(true))
@@ -42,5 +44,4 @@ class OrderDetailsViewModel: ObservableObject {
             }
         }
     }
-    
 }

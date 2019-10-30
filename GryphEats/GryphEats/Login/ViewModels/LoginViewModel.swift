@@ -21,14 +21,11 @@ class LoginViewModel {
         // MARK: Internal
         
         var recoverySuggestion: String? {
-            switch self {
-            case .invalidCredentials:
-                return "Please check that your email and password are correct"
-            }
+            "Please check that your email and password are correct"
         }
         
         var errorDescription: String? {
-            return "Login Error"
+            "Login Error"
         }
     }
     
