@@ -1,0 +1,16 @@
+subscription OrderPlaced($restaurantID: ID!) {
+    orderPlaced(restaurantid: $restaurantID) {
+        orderid
+        timeplaced
+        orderitems {
+            orderid
+            foodid
+            identifier
+            food {
+                foodid
+                displayname
+                description
+            }
+        }
+    }
+}

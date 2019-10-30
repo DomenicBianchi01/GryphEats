@@ -7,6 +7,7 @@
 //
 
 import Apollo
+import ApolloWebSocket
 import Foundation
 
 // MARK: - Apollo
@@ -21,6 +22,25 @@ class Apollo {
     }
     
     // MARK: Internal
+    
+    private lazy var webSocketTransport: WebSocketTransport = {
+      let url = URL(string: "ws://131.104.48.253:4000/graphql")!
+      let request = URLRequest(url: url)
+      return WebSocketTransport(request: request)
+    }()
+    
+    /// An HTTP transport to use for queries and mutations
+    private lazy var httpTransport: HTTPNetworkTransport = {
+      let url = URL(string: "http://131.104.48.253:4000")!
+      return HTTPNetworkTransport(url: url)
+    }()
+    
+    private lazy var splitNetworkTransport = SplitNetworkTransport(
+      httpNetworkTransport: self.httpTransport,
+      webSocketNetworkTransport: self.webSocketTransport
+    )
+    
+    private(set) lazy var client = ApolloClient(networkTransport: self.splitNetworkTransport)
     
     static let shared = Apollo()
     
@@ -80,6 +100,6 @@ class Apollo {
     
     // MARK: Private
     
-    private lazy var client = ApolloClient(url: URL(string: "http://131.104.48.253:4000")!)
-    
+//    private lazy var client = ApolloClient(url: URL(string: "http://131.104.48.253:4000")!)
+//    
 }

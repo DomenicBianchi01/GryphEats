@@ -151,7 +151,6 @@
 		B0BEF928234D558E004455DC /* RestaurantItemsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BEF927234D558E004455DC /* RestaurantItemsViewTests.swift */; };
 		B0C9B198234A8EF700605D23 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C9B197234A8EF700605D23 /* ResetPasswordView.swift */; };
 		B0C9B199234A8F3C00605D23 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C9B197234A8EF700605D23 /* ResetPasswordView.swift */; };
-		B0CA76282345481B003E7FBD /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = B0CA76272345481B003E7FBD /* Apollo */; };
 		B0CA762C23454A38003E7FBD /* RestaurantMenus.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0CA762B23454A38003E7FBD /* RestaurantMenus.graphql */; };
 		B0CA762E23454B1F003E7FBD /* GraphAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CA762D23454B1F003E7FBD /* GraphAPI.swift */; };
 		B0CD88CB23607F3C00A5C021 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD88CA23607F3C00A5C021 /* MainTabView.swift */; };
@@ -226,6 +225,10 @@
 		EB605A32235BB24F00EB7856 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB605A31235BB24F00EB7856 /* User.swift */; };
 		EB9468022368898E00FAAE56 /* CompleteOrder.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB9468012368898E00FAAE56 /* CompleteOrder.graphql */; };
 		EB94680423688AA700FAAE56 /* OrderDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB94680323688AA700FAAE56 /* OrderDetailsViewModel.swift */; };
+		EB9468092368CB2200FAAE56 /* OrdersPlaced.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB9468082368CB2200FAAE56 /* OrdersPlaced.graphql */; };
+		EB94680C2368D2B800FAAE56 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = EB94680B2368D2B800FAAE56 /* Apollo */; };
+		EB94680E2368D2B800FAAE56 /* ApolloSQLite in Frameworks */ = {isa = PBXBuildFile; productRef = EB94680D2368D2B800FAAE56 /* ApolloSQLite */; };
+		EB9468102368D2B800FAAE56 /* ApolloWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = EB94680F2368D2B800FAAE56 /* ApolloWebSocket */; };
 		EBC089ED234FF72800DA3A55 /* RestOrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC089EC234FF72800DA3A55 /* RestOrdersView.swift */; };
 		EBC089EF234FFAC400DA3A55 /* OrderDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC089EE234FFAC400DA3A55 /* OrderDetailsView.swift */; };
 		EBC089F323524B5800DA3A55 /* OrderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC089F223524B5800DA3A55 /* OrderRow.swift */; };
@@ -381,6 +384,7 @@
 		EB605A31235BB24F00EB7856 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EB9468012368898E00FAAE56 /* CompleteOrder.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CompleteOrder.graphql; sourceTree = "<group>"; };
 		EB94680323688AA700FAAE56 /* OrderDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewModel.swift; sourceTree = "<group>"; };
+		EB9468082368CB2200FAAE56 /* OrdersPlaced.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = OrdersPlaced.graphql; sourceTree = "<group>"; };
 		EBC089EC234FF72800DA3A55 /* RestOrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestOrdersView.swift; sourceTree = "<group>"; };
 		EBC089EE234FFAC400DA3A55 /* OrderDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsView.swift; sourceTree = "<group>"; };
 		EBC089F223524B5800DA3A55 /* OrderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRow.swift; sourceTree = "<group>"; };
@@ -402,7 +406,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB2237F8234B9B4700CB9196 /* QGrid in Frameworks */,
-				B0CA76282345481B003E7FBD /* Apollo in Frameworks */,
+				EB94680E2368D2B800FAAE56 /* ApolloSQLite in Frameworks */,
+				EB9468102368D2B800FAAE56 /* ApolloWebSocket in Frameworks */,
+				EB94680C2368D2B800FAAE56 /* Apollo in Frameworks */,
 				B0D9ED382356B362006A1545 /* Valet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -732,6 +738,7 @@
 				B0CA762B23454A38003E7FBD /* RestaurantMenus.graphql */,
 				B07B980223673732002E96C8 /* PlaceOrder.graphql */,
 				EB9468012368898E00FAAE56 /* CompleteOrder.graphql */,
+				EB9468082368CB2200FAAE56 /* OrdersPlaced.graphql */,
 				EB37D1A7236109A900CD0D9C /* OrdersByRest.graphql */,
 			);
 			path = GraphQL;
@@ -893,9 +900,11 @@
 			);
 			name = GryphEats;
 			packageProductDependencies = (
-				B0CA76272345481B003E7FBD /* Apollo */,
 				B0D9ED372356B362006A1545 /* Valet */,
 				EB2237F7234B9B4700CB9196 /* QGrid */,
+				EB94680B2368D2B800FAAE56 /* Apollo */,
+				EB94680D2368D2B800FAAE56 /* ApolloSQLite */,
+				EB94680F2368D2B800FAAE56 /* ApolloWebSocket */,
 			);
 			productName = "UofG-Hospitality-Order-Now";
 			productReference = B0B205762333D45000694587 /* GryphEats.app */;
@@ -951,10 +960,10 @@
 			);
 			mainGroup = B0B2056D2333D45000694587;
 			packageReferences = (
-				B0CA76262345481B003E7FBD /* XCRemoteSwiftPackageReference "apollo-ios" */,
 				B01E01502346428500B021E3 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 				B0D9ED362356B361006A1545 /* XCRemoteSwiftPackageReference "Valet" */,
 				EB2237F6234B9B4700CB9196 /* XCRemoteSwiftPackageReference "QGrid" */,
+				EB94680A2368D2B800FAAE56 /* XCRemoteSwiftPackageReference "apollo-ios" */,
 			);
 			productRefGroup = B0B205772333D45000694587 /* Products */;
 			projectDirPath = "";
@@ -990,6 +999,7 @@
 				EB1E4536234CF28800B5C8FD /* Roboto-Medium.ttf in Resources */,
 				EB9468022368898E00FAAE56 /* CompleteOrder.graphql in Resources */,
 				EB1E4548234CF28800B5C8FD /* Roboto-Black.ttf in Resources */,
+				EB9468092368CB2200FAAE56 /* OrdersPlaced.graphql in Resources */,
 				EB1E4541234CF28800B5C8FD /* RobotoCondensed-Regular.ttf in Resources */,
 				EB1E453A234CF28800B5C8FD /* Roboto-Regular.ttf in Resources */,
 				EB1E453F234CF28800B5C8FD /* RobotoCondensed-LightItalic.ttf in Resources */,
@@ -1564,14 +1574,6 @@
 				version = 1.6.0;
 			};
 		};
-		B0CA76262345481B003E7FBD /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
-			requirement = {
-				kind = exactVersion;
-				version = 0.16.0;
-			};
-		};
 		B0D9ED362356B361006A1545 /* XCRemoteSwiftPackageReference "Valet" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/square/Valet";
@@ -1588,6 +1590,14 @@
 				version = 0.1.2;
 			};
 		};
+		EB94680A2368D2B800FAAE56 /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.16.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1600,11 +1610,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B0D9ED362356B361006A1545 /* XCRemoteSwiftPackageReference "Valet" */;
 			productName = Valet;
-		};
-		B0CA76272345481B003E7FBD /* Apollo */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B0CA76262345481B003E7FBD /* XCRemoteSwiftPackageReference "apollo-ios" */;
-			productName = Apollo;
 		};
 		B0D9ED372356B362006A1545 /* Valet */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1620,6 +1625,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EB2237F6234B9B4700CB9196 /* XCRemoteSwiftPackageReference "QGrid" */;
 			productName = QGrid;
+		};
+		EB94680B2368D2B800FAAE56 /* Apollo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB94680A2368D2B800FAAE56 /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = Apollo;
+		};
+		EB94680D2368D2B800FAAE56 /* ApolloSQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB94680A2368D2B800FAAE56 /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = ApolloSQLite;
+		};
+		EB94680F2368D2B800FAAE56 /* ApolloWebSocket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB94680A2368D2B800FAAE56 /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = ApolloWebSocket;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

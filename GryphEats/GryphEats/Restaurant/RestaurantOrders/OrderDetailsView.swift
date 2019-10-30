@@ -44,7 +44,7 @@ struct OrderDetailsView: View {
                         .lineLimit(1)
                 }
                 if ( UIDevice.current.userInterfaceIdiom == .pad ) {
-                Spacer().layoutPriority(-1)
+                    Spacer()
                 }
                 HStack() {
                     CircularButton(

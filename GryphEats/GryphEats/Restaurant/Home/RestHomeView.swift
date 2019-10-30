@@ -37,12 +37,12 @@ import QGrid
 struct RestHomeView: View {
     
     @Environment(\.viewController) private var viewControllerHolder
-
+    
     var body: some View {
         NavigationHeaderView(title: "Stations", navigationColor: .guelphYellow, contentBackgroundColor: .white) {
             self.content.navigationBarItems(trailing: CircularButton(text: Text("Logout"), backgroundColor: .white, foregroundColor: .black) {
                 self.viewControllerHolder.value?.dismiss(animated: true)
-            }.padding(.top).layoutPriority(-1))
+            }.padding(.top))
         }
         .onAppear {
             self.viewModel.fetchRestaurants()
@@ -72,12 +72,12 @@ struct RestHomeView: View {
                 })
             } else {
                 return AnyView(QGrid(restaurants,
-                                      columns: 3,
-                                      columnsInLandscape: 3,
-                                      vSpacing: 50,
-                                      hSpacing: 5,
-                                      vPadding: 1,
-                                      hPadding: 20) {
+                                     columns: 3,
+                                     columnsInLandscape: 3,
+                                     vSpacing: 50,
+                                     hSpacing: 5,
+                                     vPadding: 1,
+                                     hPadding: 20) {
                                         restaurant in GridCell(restaurant: restaurant)
                 })
             }
@@ -92,7 +92,7 @@ struct GridCell: View {
     var restaurant: Restaurant
     @State var state: Bool = false
     @State var isSelected = false
-
+    
     var body: some View {
         VStack {
             NavigationLink(destination: RestOrdersView(restID: restaurant.id).navigationBarTitle("Orders")) {
