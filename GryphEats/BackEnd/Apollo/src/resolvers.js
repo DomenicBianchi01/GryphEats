@@ -1,9 +1,10 @@
 //export default {
-const { PubSub } = require('apollo-server');
+const { PubSub, withFilter } = require('apollo-server');
 
 const pubsub = new PubSub();
 const POST_ADDED = 'POST_ADDED';
 const ORDER_PLACED = 'ORDER_PLACED';
+const ORDER_UPDATED = 'ORDER_UPDATED';
 module.exports = {
     Query: {
         // foods: (parent, args, { dataSources }, info) => datasources.food.findAll(),
@@ -19,6 +20,7 @@ module.exports = {
         getOrdersByRestaurantID: async (_, { restaurantid }, { dataSources }, info) => dataSources.gryphAPI.getOrdersByRestaurantID({ restaurantid })
     },
     Mutation: {
+        updateOrder: async (_, { orderid, status, restaurantid }, { dataSources }) => dataSources.gryphAPI.updateOrder({ orderid, status, restaurantid, pubsub }),
         createOrder: async (_, { restaurantid }, { dataSources }) => dataSources.gryphAPI.createOrder({ restaurantid }),
         placeOrder: async (_, { foodids, restaurantid }, { dataSources }) => dataSources.gryphAPI.placeOrder({ foodids, restaurantid, pubsub }),
         completeOrder: async (_, { orderid }, { dataSources }) => dataSources.gryphAPI.completeOrder({ orderid }),
@@ -29,17 +31,37 @@ module.exports = {
 
     },
     Subscription: {
-        // foodAdded: async (_, _, { dataSources }) => dataSources.gryphAPI.foodAdded
         //     // Additional event labels can be passed to asyncIterator creation
         foodAdded: {
             subscribe: () => pubsub.asyncIterator([POST_ADDED])
         },
-        orderPlaced: {
-            subscribe: () => pubsub.asyncIterator([ORDER_PLACED])
-        }
-        // {
-        //     subscribe: () => dataSources.gryphAPI.pubsub.asyncIterator([POST_ADDED]),
+        // orderPlaced: {
+        //     subscribe: withFilter(() => pubsub.asyncIterator([ORDER_PLACED]), (payload, { restaurantid }) => {
+        //         return payload.orderPlaced === restaurantid;
+        //     }),
+        //     // subscribe: () => pubsub.asyncIterator([ORDER_PLACED]),
+        //     resolve: (payload, { restaurantid }, { dataSources }, info) => {
+        //         return dataSources.gryphAPI.getOrdersByRestaurantID({ restaurantid })
+        //     }
         // },
+        orderUpdated: {
+            subscribe: withFilter(() => pubsub.asyncIterator([ORDER_UPDATED]), (payload, { restaurantid }) => {
+                console.log({ payload });
+                return payload.orderUpdated === restaurantid;
+            }),
+            resolve: (payload, { restaurantid }, { dataSources }, info) => {
+                return dataSources.gryphAPI.getOrdersByRestaurantID({ restaurantid })
+            }
+        }
+        // export const resolvers = {
+        //     Subscription: {
+        //       somethingChanged: {
+        //         subscribe: withFilter(() => pubsub.asyncIterator(SOMETHING_CHANGED_TOPIC), (payload, variables) => {
+        //           return payload.somethingChanged.id === variables.relevantId;
+        //         }),
+        //       },
+        //     },
+        //   }
     },
     Restaurant: {
         menu: async (restaurant, _, { dataSources }) => dataSources.gryphAPI.getMenusByRestaurantID({ restaurantid: restaurant.restaurantid })
@@ -49,6 +71,12 @@ module.exports = {
     },
     MenuItem: {
         item: async (menuItem, _, { dataSources }) => dataSources.gryphAPI.getFoodByFoodID({ foodid: menuItem.foodid })
+    },
+    FoodOrder: {
+        orderitems: async (FoodOrder, _, { dataSources }) => dataSources.gryphAPI.getOrderItemsByOrderID({ orderid: FoodOrder.orderid })
+    },
+    OrderItem: {
+        food: async (OrderItem, _, { dataSources }) => dataSources.gryphAPI.getFoodByFoodID({ foodid: OrderItem.foodid })
     }
 };
 

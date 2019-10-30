@@ -2,7 +2,7 @@ insert into restaurant values (null, 'moms kitchen', '905123456', '09:00:00', '2
 
 select @restaurant_id := restaurantid from restaurant where description = 'TESTDATA';
 
-insert into foodorder values (null, '2019-12-31 23:59:59', null, @restaurant_id);
+insert into foodorder values (null, '2019-12-31 23:59:59', null, @restaurant_id, 0);
 
 
 select @order_id := orderid from foodorder where timeplaced ='2019-12-31 23:59:59';

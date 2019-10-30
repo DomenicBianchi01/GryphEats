@@ -43,17 +43,18 @@ module.exports.createDB = () => {
             type: SQL.INTEGER,
             primaryKey: true,
             autoIncrement: true,
-            references: {
+            /*references: {
                 model: 'orderitem', // name of Target model
                 key: 'orderid', // key in Target model that we're referencing
-            },
+            },*/
         },
         timeplaced: {
             type: SQL.DATE,
             defaultValue: SQL.NOW
         },
         timecompleted: SQL.DATE,
-        restaurantid: SQL.INTEGER
+        restaurantid: SQL.INTEGER,
+        ordertype: SQL.INTEGER
     },
         {
             freezeTableName: true
@@ -65,17 +66,17 @@ module.exports.createDB = () => {
             type: SQL.INTEGER,
             primaryKey: true,
             autoIncrement: true,
-            references: {
+            /*references: {
                 model: 'menuitem', // name of Target model
                 key: 'menuid', // key in Target model that we're referencing
-            },
+            },*/
         },
         restaurantid: {
             type: SQL.INTEGER,
-            references: {
+            /*references: {
                 model: 'restaurant', // name of Target model
                 key: 'restaurantid', // key in Target model that we're referencing
-            },
+            },*/
             //references: 'restaurant',
             //referencesKey: 'restaurantid'
         },
@@ -93,10 +94,10 @@ module.exports.createDB = () => {
             type: SQL.INTEGER,
             primaryKey: true,
             autoIncrement: true,
-            references: {
+            /*references: {
                 model: 'menu', // name of Target model
                 key: 'restaurantid', // key in Target model that we're referencing
-            },
+            },*/
             // references: 'menu',
             // referencesKey: 'restaurantid'
         },
@@ -148,7 +149,13 @@ module.exports.createDB = () => {
                 key: 'orderid', // key in Target model that we're referencing
             },
         },
-        foodid: SQL.INTEGER,
+        foodid: {
+            type: SQL.INTEGER,
+            /*references: {
+                model: 'food', // name of Target model
+                key: 'foodid', // key in Target model that we're referencing
+            },*/
+        }
     },
         {
             freezeTableName: true
@@ -186,6 +193,9 @@ module.exports.createDB = () => {
 
     foodorder.hasMany(orderitem, { foreignKey: 'orderid', sourceKey: 'orderid' });
     orderitem.belongsTo(foodorder, { foreignKey: 'orderid', sourceKey: 'orderid' });
+
+    orderitem.hasOne(food, { foreignKey: 'foodid', sourceKey: 'foodid' });
+    food.belongsTo(orderitem, { foreignKey: 'foodid', sourceKey: 'foodid' });
 
     return { food, foodorder, menu, menuitem, orderitem, restaurant, user };
 }

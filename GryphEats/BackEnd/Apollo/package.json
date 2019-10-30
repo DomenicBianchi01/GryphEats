@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon src/index.js",
-    "find": "lsof -i :4000"
+    "ns": "node src/index.js",
+    "find": "netstat -napt | grep 4000"
   },
   "author": "SubwaySquad2",
   "license": "ISC",
