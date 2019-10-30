@@ -57,7 +57,7 @@ class CheckoutViewModel {
             return completion(.failure(.invalidCart))
         }
         
-        Apollo.shared.perform(mutation: PlaceOrderMutation(foodIDs: cart.items.compactMap { $0.id }, restaurantID: restaurantID)) { result in
+        GraphClient.shared.perform(mutation: PlaceOrderMutation(foodIDs: cart.items.compactMap { $0.id }, restaurantID: restaurantID)) { result in
             switch result {
             case .success:
                 return completion(.success(true))

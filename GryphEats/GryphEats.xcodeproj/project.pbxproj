@@ -15,7 +15,7 @@
 		B01E01522346428500B021E3 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = B01E01512346428500B021E3 /* SnapshotTesting */; };
 		B01E0155234650EE00B021E3 /* StudentCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01E0154234650EE00B021E3 /* StudentCardTests.swift */; };
 		B01E015A23465B0E00B021E3 /* OrderCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01E015923465B0E00B021E3 /* OrderCardTests.swift */; };
-		B021DE95234FBA6D00DBF1AA /* ApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B021DE94234FBA6D00DBF1AA /* ApolloClient.swift */; };
+		B021DE95234FBA6D00DBF1AA /* GraphClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B021DE94234FBA6D00DBF1AA /* GraphClient.swift */; };
 		B021DE97234FCA2800DBF1AA /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B021DE96234FCA2800DBF1AA /* ErrorView.swift */; };
 		B021DE98234FCA2800DBF1AA /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B021DE96234FCA2800DBF1AA /* ErrorView.swift */; };
 		B021DE9C234FCE6600DBF1AA /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B021DE9B234FCE6600DBF1AA /* ActivityIndicator.swift */; };
@@ -63,6 +63,7 @@
 		B06B515123496B070015E960 /* AnswerQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B514F23496B070015E960 /* AnswerQuestionView.swift */; };
 		B06B515223496CA40015E960 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B513D2349552B0015E960 /* BackButton.swift */; };
 		B06B515323496CBE0015E960 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B514A23495BD90015E960 /* ViewExtensions.swift */; };
+		B071949B236A025100E6253F /* ApolloWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = B071949A236A025100E6253F /* ApolloWebSocket */; };
 		B077747D2361D74100316DA1 /* UIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B077747C2361D74100316DA1 /* UIApplicationExtensions.swift */; };
 		B077747E2361D74100316DA1 /* UIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B077747C2361D74100316DA1 /* UIApplicationExtensions.swift */; };
 		B07B97FC23672634002E96C8 /* GraphExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07B97FB23672634002E96C8 /* GraphExtensions.swift */; };
@@ -223,12 +224,11 @@
 		EB37D1A8236109A900CD0D9C /* OrdersByRest.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB37D1A7236109A900CD0D9C /* OrdersByRest.graphql */; };
 		EB37D1AF23610CE700CD0D9C /* RestOrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB37D1AE23610CE700CD0D9C /* RestOrdersViewModel.swift */; };
 		EB605A32235BB24F00EB7856 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB605A31235BB24F00EB7856 /* User.swift */; };
-		EB9468022368898E00FAAE56 /* CompleteOrder.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB9468012368898E00FAAE56 /* CompleteOrder.graphql */; };
+		EB9468022368898E00FAAE56 /* UpdateOrder.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB9468012368898E00FAAE56 /* UpdateOrder.graphql */; };
 		EB94680423688AA700FAAE56 /* OrderDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB94680323688AA700FAAE56 /* OrderDetailsViewModel.swift */; };
 		EB9468092368CB2200FAAE56 /* OrdersPlaced.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB9468082368CB2200FAAE56 /* OrdersPlaced.graphql */; };
 		EB94680C2368D2B800FAAE56 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = EB94680B2368D2B800FAAE56 /* Apollo */; };
 		EB94680E2368D2B800FAAE56 /* ApolloSQLite in Frameworks */ = {isa = PBXBuildFile; productRef = EB94680D2368D2B800FAAE56 /* ApolloSQLite */; };
-		EB9468102368D2B800FAAE56 /* ApolloWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = EB94680F2368D2B800FAAE56 /* ApolloWebSocket */; };
 		EBC089ED234FF72800DA3A55 /* RestOrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC089EC234FF72800DA3A55 /* RestOrdersView.swift */; };
 		EBC089EF234FFAC400DA3A55 /* OrderDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC089EE234FFAC400DA3A55 /* OrderDetailsView.swift */; };
 		EBC089F323524B5800DA3A55 /* OrderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC089F223524B5800DA3A55 /* OrderRow.swift */; };
@@ -253,7 +253,7 @@
 		B01DC45223552B4500539D30 /* CartItemCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCard.swift; sourceTree = "<group>"; };
 		B01E0154234650EE00B021E3 /* StudentCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCardTests.swift; sourceTree = "<group>"; };
 		B01E015923465B0E00B021E3 /* OrderCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCardTests.swift; sourceTree = "<group>"; };
-		B021DE94234FBA6D00DBF1AA /* ApolloClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApolloClient.swift; sourceTree = "<group>"; };
+		B021DE94234FBA6D00DBF1AA /* GraphClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphClient.swift; sourceTree = "<group>"; };
 		B021DE96234FCA2800DBF1AA /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		B021DE9B234FCE6600DBF1AA /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		B021DEA1234FF55A00DBF1AA /* ErrorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewTests.swift; sourceTree = "<group>"; };
@@ -382,7 +382,7 @@
 		EB37D1A7236109A900CD0D9C /* OrdersByRest.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = OrdersByRest.graphql; sourceTree = "<group>"; };
 		EB37D1AE23610CE700CD0D9C /* RestOrdersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestOrdersViewModel.swift; sourceTree = "<group>"; };
 		EB605A31235BB24F00EB7856 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		EB9468012368898E00FAAE56 /* CompleteOrder.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CompleteOrder.graphql; sourceTree = "<group>"; };
+		EB9468012368898E00FAAE56 /* UpdateOrder.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = UpdateOrder.graphql; sourceTree = "<group>"; };
 		EB94680323688AA700FAAE56 /* OrderDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewModel.swift; sourceTree = "<group>"; };
 		EB9468082368CB2200FAAE56 /* OrdersPlaced.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = OrdersPlaced.graphql; sourceTree = "<group>"; };
 		EBC089EC234FF72800DA3A55 /* RestOrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestOrdersView.swift; sourceTree = "<group>"; };
@@ -407,7 +407,7 @@
 			files = (
 				EB2237F8234B9B4700CB9196 /* QGrid in Frameworks */,
 				EB94680E2368D2B800FAAE56 /* ApolloSQLite in Frameworks */,
-				EB9468102368D2B800FAAE56 /* ApolloWebSocket in Frameworks */,
+				B071949B236A025100E6253F /* ApolloWebSocket in Frameworks */,
 				EB94680C2368D2B800FAAE56 /* Apollo in Frameworks */,
 				B0D9ED382356B362006A1545 /* Valet in Frameworks */,
 			);
@@ -504,6 +504,32 @@
 				B0982AF42357825300E20BB9 /* PaymentSelectionCard.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		B07194942369F2C600E6253F /* Queries */ = {
+			isa = PBXGroup;
+			children = (
+				B0CA762B23454A38003E7FBD /* RestaurantMenus.graphql */,
+				EB37D1A7236109A900CD0D9C /* OrdersByRest.graphql */,
+			);
+			path = Queries;
+			sourceTree = "<group>";
+		};
+		B07194952369F2E500E6253F /* Mutations */ = {
+			isa = PBXGroup;
+			children = (
+				B07B980223673732002E96C8 /* PlaceOrder.graphql */,
+				EB9468012368898E00FAAE56 /* UpdateOrder.graphql */,
+			);
+			path = Mutations;
+			sourceTree = "<group>";
+		};
+		B07194962369F2F200E6253F /* Subscriptions */ = {
+			isa = PBXGroup;
+			children = (
+				EB9468082368CB2200FAAE56 /* OrdersPlaced.graphql */,
+			);
+			path = Subscriptions;
 			sourceTree = "<group>";
 		};
 		B07F0DF523574B7500912397 /* ViewModels */ = {
@@ -698,6 +724,7 @@
 				B06B514A23495BD90015E960 /* ViewExtensions.swift */,
 				B0D9ED24235650E3006A1545 /* DoubleExtensions.swift */,
 				B09156052359551600FE2CD2 /* ValetExtensions.swift */,
+				B07B97FB23672634002E96C8 /* GraphExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -732,14 +759,11 @@
 		B0CA762A23454A20003E7FBD /* GraphQL */ = {
 			isa = PBXGroup;
 			children = (
-				B021DE94234FBA6D00DBF1AA /* ApolloClient.swift */,
+				B021DE94234FBA6D00DBF1AA /* GraphClient.swift */,
 				B0CA762D23454B1F003E7FBD /* GraphAPI.swift */,
-				B07B97FB23672634002E96C8 /* GraphExtensions.swift */,
-				B0CA762B23454A38003E7FBD /* RestaurantMenus.graphql */,
-				B07B980223673732002E96C8 /* PlaceOrder.graphql */,
-				EB9468012368898E00FAAE56 /* CompleteOrder.graphql */,
-				EB9468082368CB2200FAAE56 /* OrdersPlaced.graphql */,
-				EB37D1A7236109A900CD0D9C /* OrdersByRest.graphql */,
+				B07194962369F2F200E6253F /* Subscriptions */,
+				B07194952369F2E500E6253F /* Mutations */,
+				B07194942369F2C600E6253F /* Queries */,
 			);
 			path = GraphQL;
 			sourceTree = "<group>";
@@ -904,7 +928,7 @@
 				EB2237F7234B9B4700CB9196 /* QGrid */,
 				EB94680B2368D2B800FAAE56 /* Apollo */,
 				EB94680D2368D2B800FAAE56 /* ApolloSQLite */,
-				EB94680F2368D2B800FAAE56 /* ApolloWebSocket */,
+				B071949A236A025100E6253F /* ApolloWebSocket */,
 			);
 			productName = "UofG-Hospitality-Order-Now";
 			productReference = B0B205762333D45000694587 /* GryphEats.app */;
@@ -997,7 +1021,7 @@
 				EB1E453E234CF28800B5C8FD /* Apache License.txt in Resources */,
 				B07B980323673732002E96C8 /* PlaceOrder.graphql in Resources */,
 				EB1E4536234CF28800B5C8FD /* Roboto-Medium.ttf in Resources */,
-				EB9468022368898E00FAAE56 /* CompleteOrder.graphql in Resources */,
+				EB9468022368898E00FAAE56 /* UpdateOrder.graphql in Resources */,
 				EB1E4548234CF28800B5C8FD /* Roboto-Black.ttf in Resources */,
 				EB9468092368CB2200FAAE56 /* OrdersPlaced.graphql in Resources */,
 				EB1E4541234CF28800B5C8FD /* RobotoCondensed-Regular.ttf in Resources */,
@@ -1045,7 +1069,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nAPOLLO_SCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${APOLLO_SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${APOLLO_SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=GraphQL/*.graphql --localSchemaFile=\"schema.json\" GraphQL/GraphAPI.swift\n";
+			shellScript = "# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nAPOLLO_SCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${APOLLO_SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${APOLLO_SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=**/*.graphql --localSchemaFile=\"schema.json\" GraphQL/GraphAPI.swift\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1188,7 +1212,7 @@
 				B0CD88D72360ABE900A5C021 /* OrdersView.swift in Sources */,
 				B0FBB6E72354CEB800C42C86 /* BadgeButton.swift in Sources */,
 				B0F6E1F6234E370500067B79 /* ItemOverview.swift in Sources */,
-				B021DE95234FBA6D00DBF1AA /* ApolloClient.swift in Sources */,
+				B021DE95234FBA6D00DBF1AA /* GraphClient.swift in Sources */,
 				B046163D2346F3230033087B /* LoginViewModel.swift in Sources */,
 				EB37D1AF23610CE700CD0D9C /* RestOrdersViewModel.swift in Sources */,
 				B046163A2346E5880033087B /* BasicButton.swift in Sources */,
@@ -1595,7 +1619,7 @@
 			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
 			requirement = {
 				kind = exactVersion;
-				version = 0.16.0;
+				version = 0.19.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1605,6 +1629,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B01E01502346428500B021E3 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
 			productName = SnapshotTesting;
+		};
+		B071949A236A025100E6253F /* ApolloWebSocket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB94680A2368D2B800FAAE56 /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = ApolloWebSocket;
 		};
 		B07F0DFD235758A600912397 /* Valet */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1635,11 +1664,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EB94680A2368D2B800FAAE56 /* XCRemoteSwiftPackageReference "apollo-ios" */;
 			productName = ApolloSQLite;
-		};
-		EB94680F2368D2B800FAAE56 /* ApolloWebSocket */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EB94680A2368D2B800FAAE56 /* XCRemoteSwiftPackageReference "apollo-ios" */;
-			productName = ApolloWebSocket;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

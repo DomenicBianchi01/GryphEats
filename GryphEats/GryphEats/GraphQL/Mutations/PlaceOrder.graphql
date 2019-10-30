@@ -1,4 +1,4 @@
-mutation PlaceOrder($foodIDs: [ID]!, $restaurantID: ID!) {
+mutation PlaceOrder($foodIDs: [ID!]!, $restaurantID: ID!) {
     placeOrder(foodids: $foodIDs, restaurantid: $restaurantID) {
         success
     }

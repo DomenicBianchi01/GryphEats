@@ -1,5 +1,5 @@
 //
-//  ApolloClient.swift
+//  GraphClient.swift
 //  GryphEats
 //
 //  Created by Domenic Bianchi on 2019-10-10.
@@ -10,9 +10,9 @@ import Apollo
 import ApolloWebSocket
 import Foundation
 
-// MARK: - Apollo
+// MARK: - GraphClient
 
-class Apollo {
+final class GraphClient {
     
     // MARK: ApolloError
     
@@ -23,28 +23,12 @@ class Apollo {
     
     // MARK: Internal
     
-    private lazy var webSocketTransport: WebSocketTransport = {
-      let url = URL(string: "ws://131.104.48.253:4000/graphql")!
-      let request = URLRequest(url: url)
-      return WebSocketTransport(request: request)
-    }()
+    static let shared = GraphClient()
     
-    /// An HTTP transport to use for queries and mutations
-    private lazy var httpTransport: HTTPNetworkTransport = {
-      let url = URL(string: "http://131.104.48.253:4000")!
-      return HTTPNetworkTransport(url: url)
-    }()
-    
-    private lazy var splitNetworkTransport = SplitNetworkTransport(
-      httpNetworkTransport: self.httpTransport,
-      webSocketNetworkTransport: self.webSocketTransport
-    )
-    
-    private(set) lazy var client = ApolloClient(networkTransport: self.splitNetworkTransport)
-    
-    static let shared = Apollo()
-    
-    func fetch<Query: GraphQLQuery>(query: Query, completion: @escaping (Result<Query.Data, ApolloError>) -> Void) {
+    func fetch<Query: GraphQLQuery>(
+        query: Query,
+        completion: @escaping (Result<Query.Data, ApolloError>) -> Void)
+    {
         client.fetch(query: query, cachePolicy: .fetchIgnoringCacheCompletely) { result in
             switch result {
             case .success(let graphQLResult):
@@ -59,7 +43,7 @@ class Apollo {
             }
         }
     }
-
+    
     func perform<Mutation: GraphQLMutation>(
         mutation: Mutation,
         completion: @escaping (Result<Mutation.Data, ApolloError>) -> Void)
@@ -100,6 +84,16 @@ class Apollo {
     
     // MARK: Private
     
-//    private lazy var client = ApolloClient(url: URL(string: "http://131.104.48.253:4000")!)
-//    
+    private lazy var webSocketTransport = WebSocketTransport(
+        request: URLRequest(
+            url: URL(string: "ws://131.104.48.253:4000/graphql")!))
+    
+    private lazy var httpTransport = HTTPNetworkTransport(url: URL(string: "http://131.104.48.253:4000")!)
+    
+    private lazy var splitNetworkTransport = SplitNetworkTransport(
+        httpNetworkTransport: httpTransport,
+        webSocketNetworkTransport: webSocketTransport)
+    
+    private lazy var client = ApolloClient(networkTransport: splitNetworkTransport)
+    
 }

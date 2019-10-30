@@ -1,5 +1,0 @@
-mutation CompleteOrder($orderID: ID!) {
-    completeOrder(orderid: $orderID) {
-        success
-    }
-}
