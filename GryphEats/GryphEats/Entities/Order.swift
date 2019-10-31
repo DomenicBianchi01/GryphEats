@@ -22,16 +22,18 @@ class Order: ObservableObject, Identifiable {
     
     // MARK: Status
     
-    enum Status: Int {
+    enum Status: Int, CaseIterable, Identifiable {
         case new
         case inProgress
         case readyForPickup
         case pickedUp
         
+        // MARK: Internal
+        
         var asString: String {
             switch self {
             case .new:
-                return "New"
+                return "Order Placed"
             case .inProgress:
                 return "In Progress"
             case .readyForPickup:
@@ -40,6 +42,8 @@ class Order: ObservableObject, Identifiable {
                 return "Picked Up"
             }
         }
+        
+        var id: Status { self }
     }
     
     // MARK: Internal

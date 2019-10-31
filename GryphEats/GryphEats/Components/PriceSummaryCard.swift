@@ -51,10 +51,12 @@ struct PriceSummaryCard: View {
     init(
         displayMode: DisplayMode = .full,
         isPayButtonDisabled: Bool = false,
+        isPayButtonHidden: Bool = false,
         action: @escaping (PaymentAction) -> Void)
     {
         self.displayMode = displayMode
         self.isPayButtonDisabled = isPayButtonDisabled
+        self.isPayButtonHidden = isPayButtonHidden
         self.action = action
     }
     
@@ -137,7 +139,7 @@ struct PriceSummaryCard: View {
                     }
                 }.padding(.top, 10)
                     .padding(.bottom, 20)
-            } else if displayMode != .full {
+            } else if displayMode != .full && !isPayButtonHidden {
                 ActionButton(
                     text: "Pay \(cart.total(for: displayMode.asPriceType).asDollarString)",
                     backgroundColor: .guelphRed,
@@ -161,6 +163,7 @@ struct PriceSummaryCard: View {
     private let action: (PaymentAction) -> Void
     private let displayMode: DisplayMode
     private let isPayButtonDisabled: Bool
+    private let isPayButtonHidden: Bool
     
     private func discountRow(type: DiscountType, amount: String) -> some View {
         HStack {
