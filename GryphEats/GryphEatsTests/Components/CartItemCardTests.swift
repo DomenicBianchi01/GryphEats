@@ -18,7 +18,10 @@ class CartItemCardTests: XCTestCase {
 
     func testCartItemCard() {
         let card = CartItemCard(
-            item: GraphFoodItem(id: "0", restaurantId: "1", displayName: "Hamburger", price: 9.99),
+            item: RestaurantFoodItem(
+                foodItem: GraphFoodItem(id: "0", displayName: "Hamburger", price: 9.99),
+                restaurantId: "1",
+                restaurantName: "Mom's Kitchen"),
             editAction: {},
             deleteAction: {})
         

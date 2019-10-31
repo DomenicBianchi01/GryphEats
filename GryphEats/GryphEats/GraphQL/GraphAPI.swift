@@ -483,7 +483,6 @@ public final class RestaurantMenusQuery: GraphQLQuery {
             item {
               __typename
               id: foodid
-              restaurantID: restaurantid
               displayName: displayname
               price
             }
@@ -668,7 +667,6 @@ public final class RestaurantMenusQuery: GraphQLQuery {
             public static let selections: [GraphQLSelection] = [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
               GraphQLField("foodid", alias: "id", type: .nonNull(.scalar(GraphQLID.self))),
-              GraphQLField("restaurantid", alias: "restaurantID", type: .scalar(GraphQLID.self)),
               GraphQLField("displayname", alias: "displayName", type: .scalar(String.self)),
               GraphQLField("price", type: .scalar(Double.self)),
             ]
@@ -679,8 +677,8 @@ public final class RestaurantMenusQuery: GraphQLQuery {
               self.resultMap = unsafeResultMap
             }
 
-            public init(id: GraphQLID, restaurantId: GraphQLID? = nil, displayName: String? = nil, price: Double? = nil) {
-              self.init(unsafeResultMap: ["__typename": "Food", "id": id, "restaurantID": restaurantId, "displayName": displayName, "price": price])
+            public init(id: GraphQLID, displayName: String? = nil, price: Double? = nil) {
+              self.init(unsafeResultMap: ["__typename": "Food", "id": id, "displayName": displayName, "price": price])
             }
 
             public var __typename: String {
@@ -698,15 +696,6 @@ public final class RestaurantMenusQuery: GraphQLQuery {
               }
               set {
                 resultMap.updateValue(newValue, forKey: "id")
-              }
-            }
-
-            public var restaurantId: GraphQLID? {
-              get {
-                return resultMap["restaurantID"] as? GraphQLID
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "restaurantID")
               }
             }
 

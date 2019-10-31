@@ -16,7 +16,7 @@ struct SliderView: View {
     
     enum SliderType {
         case categories([Category])
-        case foodItems([GraphFoodItem])
+        case foodItems([RestaurantFoodItem])
         case ingredients([Ingredient])
     }
     
@@ -52,8 +52,9 @@ struct SliderView: View {
             })
         case .foodItems(let items):
             return AnyView(ForEach(items.indices) { index in
-                NavigationLink(destination: ItemOverview(foodItem: items[index])) {
-                    self.menuCard(for: items[index], atIndex: index, onTap: { _ in }).disabled(true)
+                NavigationLink(destination: ItemOverview(item: items[index])) {
+                    self.menuCard(for: items.map({ $0.foodItem })[index], atIndex: index, onTap: { _ in })
+                        .disabled(true)
                 }
             })
         case .ingredients(let ingredients):
@@ -82,11 +83,26 @@ struct SliderView_Previews: PreviewProvider {
         VStack {
             SliderView(
                 type: .foodItems([
-                    GraphFoodItem(id: "1", displayName: "Hamburger 2", price: 2),
-                    GraphFoodItem(id: "2", displayName: "Hamburger 3", price: 2),
-                    GraphFoodItem(id: "3", displayName: "Hamburger 4", price: 2),
-                    GraphFoodItem(id: "4", displayName: "Hamburger 5", price: 2),
-                    GraphFoodItem(id: "5", displayName: "Hamburger 6", price: 2)
+                    RestaurantFoodItem(
+                        foodItem: GraphFoodItem(id: "1", displayName: "Hamburger 1", price: 2),
+                        restaurantId: "1",
+                        restaurantName: "100 Mile Grill"),
+                    RestaurantFoodItem(
+                        foodItem: GraphFoodItem(id: "2", displayName: "Hamburger 2", price: 2),
+                        restaurantId: "1",
+                        restaurantName: "100 Mile Grill"),
+                    RestaurantFoodItem(
+                        foodItem: GraphFoodItem(id: "3", displayName: "Hamburger 3", price: 2),
+                        restaurantId: "1",
+                        restaurantName: "100 Mile Grill"),
+                    RestaurantFoodItem(
+                        foodItem: GraphFoodItem(id: "4", displayName: "Hamburger 4", price: 2),
+                        restaurantId: "1",
+                        restaurantName: "100 Mile Grill"),
+                    RestaurantFoodItem(
+                        foodItem: GraphFoodItem(id: "5", displayName: "Hamburger 5", price: 2),
+                        restaurantId: "1",
+                        restaurantName: "100 Mile Grill")
                 ]),
                 onTap: { _ in print("Tapped") })
             SliderView(

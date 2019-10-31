@@ -55,8 +55,9 @@ final class GraphClient {
                     completion(.failure(.noData))
                     return
                 }
-                
-                completion(.success(data))
+                DispatchQueue.main.async {
+                    completion(.success(data))
+                }
             case .failure(let error):
                 completion(.failure(.other(error)))
             }

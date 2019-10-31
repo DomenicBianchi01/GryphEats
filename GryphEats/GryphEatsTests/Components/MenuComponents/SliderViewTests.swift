@@ -24,19 +24,34 @@ class SliderViewTests: XCTestCase {
             Category(id: 3, name: "Meat"),
             Category(id: 4, name: "Dessert")
         ])) { _ in }
-
+        
         assertSnapshot(matching: UIHostingController(rootView: view), as: .image, record: record)
     }
     
     func testFoodItemsSliderView() {
         let view = SliderView(type: .foodItems([
-            GraphFoodItem(id: "0", restaurantId: "1", displayName: "Hamburger 1", price: 2.00),
-            GraphFoodItem(id: "1", restaurantId: "1", displayName: "Hamburger 2", price: 2.00),
-            GraphFoodItem(id: "2", restaurantId: "1", displayName: "Hamburger 3", price: 2.00),
-            GraphFoodItem(id: "3", restaurantId: "1", displayName: "Hamburger 4", price: 2.00),
-            GraphFoodItem(id: "4", restaurantId: "1", displayName: "Hamburger 5", price: 2.00)
+            RestaurantFoodItem(
+                foodItem: GraphFoodItem(id: "0", displayName: "Hamburger 1", price: 2.00),
+                restaurantId: "1",
+                restaurantName: "Mom's Kitchen"),
+            RestaurantFoodItem(
+                foodItem: GraphFoodItem(id: "1", displayName: "Hamburger 2", price: 2.00),
+                restaurantId: "1",
+                restaurantName: "Mom's Kitchen"),
+            RestaurantFoodItem(
+                foodItem: GraphFoodItem(id: "2", displayName: "Hamburger 3", price: 2.00),
+                restaurantId: "1",
+                restaurantName: "Mom's Kitchen"),
+            RestaurantFoodItem(
+                foodItem: GraphFoodItem(id: "3", displayName: "Hamburger 4", price: 2.00),
+                restaurantId: "1",
+                restaurantName: "Mom's Kitchen"),
+            RestaurantFoodItem(
+                foodItem: GraphFoodItem(id: "4", displayName: "Hamburger 5", price: 2.00),
+                restaurantId: "1",
+                restaurantName: "Mom's Kitchen")
         ])) { _ in }
-
+        
         assertSnapshot(matching: UIHostingController(rootView: view), as: .image, record: record)
     }
     
@@ -48,7 +63,7 @@ class SliderViewTests: XCTestCase {
             Ingredient(id: 3, name: "Pepper", imageName: "tomato"),
             Ingredient(id: 4, name: "Black Olives", imageName: "tomato"),
         ])) { _ in }
-
+        
         assertSnapshot(matching: UIHostingController(rootView: view), as: .image, record: record)
     }
 }
