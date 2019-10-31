@@ -69,7 +69,7 @@ struct CheckoutView: View {
                 message: Text("Once your confirm your payment, your order will begin to be prepared."),
                 primaryButton: .default(Text("Confirm")) {
                     withAnimation {
-                        self.viewModel.submitPayment(for: self.cart) { result in
+                        self.viewModel.submitOrder(for: self.cart) { result in
                             switch result {
                             case .success:
                                 self.state.state = .confirmed
@@ -144,8 +144,14 @@ struct CheckoutView_Previews: PreviewProvider {
     static var previews: some View {
         CheckoutView()
             .environmentObject(Cart(items: [
-                GraphFoodItem(id: "1", displayName: "Hamburger 1", price: 2),
-                GraphFoodItem(id: "2", displayName: "Hamburger 2", price: 2)
+                RestaurantFoodItem(
+                    foodItem: GraphFoodItem(id: "1", displayName: "Hamburger 1", price: 2),
+                    restaurantId: "1",
+                    restaurantName: "100 Mile Grill"),
+                RestaurantFoodItem(
+                    foodItem: GraphFoodItem(id: "2", displayName: "Hamburger 2", price: 2),
+                    restaurantId: "1",
+                    restaurantName: "100 Mile Grill")
             ]))
             .environmentObject(OrderReviewState())
     }

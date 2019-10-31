@@ -14,8 +14,8 @@ struct ItemOverview: View, Dismissable {
     
     // MARK: Lifecycle
     
-    init(foodItem: GraphFoodItem) {
-        self.foodItem = foodItem
+    init(item: RestaurantFoodItem) {
+        self.item = item
     }
     
     // MARK: Internal
@@ -34,11 +34,11 @@ struct ItemOverview: View, Dismissable {
             
             HStack {
                 VStack(alignment: .leading) {
-                    Text(foodItem.displayName ?? "")
+                    Text(item.foodItem.displayName ?? "")
                         .foregroundColor(.white)
                         .font(.largeTitle)
                         .bold()
-                    Text((self.foodItem.price ?? 0).asDollarString)
+                    Text((item.foodItem.price ?? 0).asDollarString)
                         .foregroundColor(.guelphYellow)
                         .fontWeight(.semibold)
                 }.padding(.leading, 20)
@@ -48,7 +48,7 @@ struct ItemOverview: View, Dismissable {
             SlideOverCard(handleText: "Pull Up To Customize") {
                 VStack(alignment: .leading) {
                     ActionButton(text: "Add To Order") {
-                        self.cart.items.append(self.foodItem)
+                        self.cart.items.append(self.item)
                         self.dismiss()
                     }.padding(.bottom, 30)
                     
@@ -64,34 +64,6 @@ struct ItemOverview: View, Dismissable {
                                 Ingredient(id: 4, name: "Black Olives", imageName: "tomato"),
                             ])) { _ in }
                     }
-                    
-                    // SwiftUI Bug: The code below should work in theory (only make the content scrollable if needed).
-                    // However, if the else block is executed the app crashes for some reason...
-                    
-                    //                    GeometryReader { proxy in
-                    //                        if proxy.size.height > UIScreen.main.bounds.height - 190 {
-                    //                            ScrollView {
-                    //                                SliderView(
-                    //                                    type: .ingredients([
-                    //                                        Ingredient(id: 0, name: "Tomato", imageName: "tomato"),
-                    //                                        Ingredient(id: 1, name: "Lettuce", imageName: "tomato"),
-                    //                                        Ingredient(id: 2, name: "Onion", imageName: "tomato"),
-                    //                                        Ingredient(id: 3, name: "Pepper", imageName: "tomato"),
-                    //                                        Ingredient(id: 4, name: "Black Olives", imageName: "tomato"),
-                    //                                    ])) { _ in }
-                    //                            }
-                    //                        } else {
-                    //                            SliderView(
-                    //                                type: .ingredients([
-                    //                                    Ingredient(id: 0, name: "Tomato", imageName: "tomato"),
-                    //                                    Ingredient(id: 1, name: "Lettuce", imageName: "tomato"),
-                    //                                    Ingredient(id: 2, name: "Onion", imageName: "tomato"),
-                    //                                    Ingredient(id: 3, name: "Pepper", imageName: "tomato"),
-                    //                                    Ingredient(id: 4, name: "Black Olives", imageName: "tomato"),
-                    //                                ])) { _ in }
-                    //                            Spacer()
-                    //                        }
-                    //                    }
                 }
             }
         }
@@ -103,14 +75,18 @@ struct ItemOverview: View, Dismissable {
     
     @EnvironmentObject private var cart: Cart
     
-    private let foodItem: GraphFoodItem
+    private let item: RestaurantFoodItem
     
 }
 
 struct ItemOverview_Previews: PreviewProvider {
     
     static var previews: some View {
-        ItemOverview(foodItem: GraphFoodItem(id: "1", displayName: "Hamburger 1", price: 2))
+        ItemOverview(
+            item: RestaurantFoodItem(
+                foodItem: GraphFoodItem(id: "1", displayName: "Hamburger 1", price: 2),
+                restaurantId: "1",
+                restaurantName: "100 Mile Grill"))
             .environmentObject(Cart(items: []))
     }
 }

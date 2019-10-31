@@ -52,18 +52,43 @@ class CheckoutViewModel {
         return paymentMethods
     }
     
-    func submitPayment(for cart: Cart, completion: @escaping (Result<Bool, PaymentError>) -> Void) {
-        guard let restaurantID = cart.items.first?.restaurantId else {
-            return completion(.failure(.invalidCart))
-        }
+    func submitOrder(for cart: Cart, completion: @escaping (Result<Bool, PaymentError>) -> Void) {
+        // If an order has items from different restaurants, we need to split the order into "one order per restaurant"
+        var splitItems: [String: [GraphFoodItem]] = [:]
         
-        GraphClient.shared.perform(mutation: PlaceOrderMutation(foodIDs: cart.items.compactMap { $0.id }, restaurantID: restaurantID)) { result in
-            switch result {
-            case .success:
-                return completion(.success(true))
-            case .failure:
-                return completion(.failure(.paymentDeclined))
+        cart.items.forEach { item in
+            if splitItems[item.restaurantId] != nil {
+                splitItems[item.restaurantId]?.append(item.foodItem)
+            } else {
+                splitItems[item.restaurantId] = [item.foodItem]
             }
         }
+        
+        let dispatchGroup = DispatchGroup()
+        
+        splitItems.forEach { element in
+            dispatchGroup.enter()
+            // Something doesn't feel right having to use DispatchQueue...
+            DispatchQueue.global(qos: .background).async {
+                GraphClient.shared.perform(
+                    mutation: PlaceOrderMutation(
+                        foodIDs: element.value.compactMap { $0.id },
+                        restaurantID: element.key))
+                { result in
+                    dispatchGroup.leave()
+                    //                switch result {
+                    //                case .success:
+                    //                    return completion(.success(true))
+                    //                case .failure:
+                    //                    return completion(.failure(.paymentDeclined))
+                    //                }
+                }
+
+                dispatchGroup.wait()
+            }
+        }
+        
+        //TODO: Actually check if any of the mutations failed
+        completion(.success(true))
     }
 }

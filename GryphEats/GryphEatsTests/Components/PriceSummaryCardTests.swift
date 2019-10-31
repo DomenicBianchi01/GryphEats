@@ -19,7 +19,10 @@ class PriceSummaryCardTests: XCTestCase {
     func testPriceSummaryCard_Full() {
         let card = PriceSummaryCard(action: { _ in }).environmentObject(Cart(
             items: [
-                GraphFoodItem(id: "0", restaurantId: "1", displayName: "Hamburger", price: 9.99)
+                RestaurantFoodItem(
+                    foodItem: GraphFoodItem(id: "0", displayName: "Hamburger", price: 9.99),
+                    restaurantId: "1",
+                    restaurantName: "Mom's Kitchen")
             ]
         ))
         
@@ -29,7 +32,10 @@ class PriceSummaryCardTests: XCTestCase {
     func testPriceSummaryCard_OnCampus() {
         let card = PriceSummaryCard(displayMode: .onCampusMealPlan, action: { _ in }).environmentObject(Cart(
             items: [
-                GraphFoodItem(id: "0", restaurantId: "1", displayName: "Hamburger", price: 9.99)
+                RestaurantFoodItem(
+                    foodItem: GraphFoodItem(id: "0", displayName: "Hamburger", price: 9.99),
+                    restaurantId: "1",
+                    restaurantName: "Mom's Kitchen")
             ]
         ))
         
@@ -39,7 +45,10 @@ class PriceSummaryCardTests: XCTestCase {
     func testPriceSummaryCard_Ultra() {
         let card = PriceSummaryCard(displayMode: .ultraMealPlan, action: { _ in }).environmentObject(Cart(
             items: [
-                GraphFoodItem(id: "0", restaurantId: "1", displayName: "Hamburger", price: 9.99)
+                RestaurantFoodItem(
+                    foodItem: GraphFoodItem(id: "0", displayName: "Hamburger", price: 9.99),
+                    restaurantId: "1",
+                    restaurantName: "Mom's Kitchen")
             ]
         ))
         

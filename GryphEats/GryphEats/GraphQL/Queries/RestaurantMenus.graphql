@@ -7,7 +7,6 @@ query RestaurantMenus {
             menuItems {
                 item {
                     id: foodid
-                    restaurantID: restaurantid
                     displayName: displayname
                     price
                 }

@@ -37,7 +37,7 @@ struct OrderSummaryView: View {
                         .padding(.bottom, 10)
                 }.foregroundColor(.guelphRed)
                 
-                ForEach(cart.items, id: \.id) { item in
+                ForEach(cart.items, id: \.foodItem.id) { item in
                     self.itemCard(for: item)
                 }
                 
@@ -74,7 +74,7 @@ struct OrderSummaryView: View {
     @EnvironmentObject private var cart: Cart
     @EnvironmentObject private var state: OrderReviewState
     
-    private func itemCard(for item: GraphFoodItem) -> CartItemCard {
+    private func itemCard(for item: RestaurantFoodItem) -> CartItemCard {
         let editAction = {
             print("t")
         }
@@ -91,8 +91,14 @@ struct OrderSummaryView_Previews: PreviewProvider {
     static var previews: some View {
         OrderSummaryView()
             .environmentObject(Cart(items: [
-                GraphFoodItem(id: "1", displayName: "Hamburger 1", price: 2),
-                GraphFoodItem(id: "2", displayName: "Hamburger 2", price: 2)
+                RestaurantFoodItem(
+                    foodItem: GraphFoodItem(id: "1", displayName: "Hamburger 1", price: 2),
+                    restaurantId: "1",
+                    restaurantName: "100 Mile Grill"),
+                RestaurantFoodItem(
+                foodItem: GraphFoodItem(id: "2", displayName: "Hamburger 2", price: 2),
+                restaurantId: "1",
+                restaurantName: "100 Mile Grill"),
             ]))
             .environmentObject(OrderReviewState())
     }

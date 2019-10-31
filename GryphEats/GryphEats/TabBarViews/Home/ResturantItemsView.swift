@@ -55,14 +55,16 @@ struct RestaurantItemsView: View {
     private let onTap: (Int) -> Void
     private let restaurant: GraphRestaurant
     
-    private var foodItems: [GraphFoodItem] {
+    private var foodItems: [RestaurantFoodItem] {
         guard let activeItems = restaurant.menu?.first(where: { $0?.isActive == true }),
             let menuItems = activeItems?.menuItems?.compactMap({ $0 }) else {
                 return []
         }
         
         return menuItems.compactMap {
-            return $0.item
+            $0.item.flatMap {
+                RestaurantFoodItem(foodItem: $0, restaurantId: restaurant.id, restaurantName: restaurant.name)
+            }
         }
     }
 }
