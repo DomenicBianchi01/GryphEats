@@ -55,9 +55,8 @@ final class GraphClient {
                     completion(.failure(.noData))
                     return
                 }
-                DispatchQueue.main.async {
-                    completion(.success(data))
-                }
+                
+                completion(.success(data))
             case .failure(let error):
                 completion(.failure(.other(error)))
             }
@@ -66,9 +65,9 @@ final class GraphClient {
     
     func subscribe<Subscription: GraphQLSubscription>(
         subscription: Subscription,
-        completion: @escaping (Result<Subscription.Data, ApolloError>) -> Void)
+        completion: @escaping (Result<Subscription.Data, ApolloError>) -> Void) -> Cancellable
     {
-        client.subscribe(subscription: subscription) { result in
+        return client.subscribe(subscription: subscription) { result in
             switch result {
             case .success(let graphQLResult):
                 guard let data = graphQLResult.data else {

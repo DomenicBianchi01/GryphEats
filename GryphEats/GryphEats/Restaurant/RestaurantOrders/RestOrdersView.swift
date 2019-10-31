@@ -25,13 +25,14 @@ struct RestOrdersView: View {
         Group {
             self.content.navigationBarItems(trailing: CircularButton(text: Text("Refresh"), backgroundColor: .guelphYellow, foregroundColor: .white) {
                 self.viewModel.fetchOrders()
-                }.padding(.top)).layoutPriority(-1)
+            }.padding(.top)).layoutPriority(-1)
         }.onAppear() {
-                self.viewModel.fetchOrders()
-                UITableView.appearance().separatorColor = .clear
-            }.onDisappear() {
-                UITableView.appearance().separatorColor = .separator
-            }
+            self.viewModel.fetchOrders()
+            UITableView.appearance().separatorColor = .clear
+        }.onDisappear() {
+            UITableView.appearance().separatorColor = .separator
+            self.viewModel.cancelSubscription()
+        }
     }
     
     private var content: AnyView {
