@@ -34,7 +34,13 @@ struct OrdersView: View {
             onDismiss: {
                 self.selectedOrder = nil
         }) {
-            Text(String(self.$selectedOrder.wrappedValue?.id ?? -1))
+            OrderTrackingView().environmentObject(Cart(
+                items: [
+                    RestaurantFoodItem(
+                        foodItem: GraphFoodItem(id: "1", displayName: "Hamburger", price: 9.99),
+                        restaurantId: "1",
+                        restaurantName: "100 Mile Grill")
+            ]))
         }.onAppear {
             UITableView.appearance().separatorStyle = .none
             UITableView.appearance().backgroundColor = .lightGray

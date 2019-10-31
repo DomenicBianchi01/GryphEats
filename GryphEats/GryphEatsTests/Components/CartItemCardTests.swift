@@ -22,7 +22,6 @@ class CartItemCardTests: XCTestCase {
                 foodItem: GraphFoodItem(id: "0", displayName: "Hamburger", price: 9.99),
                 restaurantId: "1",
                 restaurantName: "Mom's Kitchen"),
-            editAction: {},
             deleteAction: {})
         
         assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)

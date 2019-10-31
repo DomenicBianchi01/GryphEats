@@ -38,7 +38,9 @@ struct OrderSummaryView: View {
                 }.foregroundColor(.guelphRed)
                 
                 ForEach(cart.items, id: \.foodItem.id) { item in
-                    self.itemCard(for: item)
+                    CartItemCard(item: item) {
+                        self.cart.delete(item: item)
+                    }
                 }
                 
                 if cart.items.isEmpty {
@@ -74,17 +76,6 @@ struct OrderSummaryView: View {
     @EnvironmentObject private var cart: Cart
     @EnvironmentObject private var state: OrderReviewState
     
-    private func itemCard(for item: RestaurantFoodItem) -> CartItemCard {
-        let editAction = {
-            print("t")
-        }
-        
-        let deleteAction: () -> Void = {
-            self.cart.delete(item: item)
-        }
-        
-        return CartItemCard(item: item, editAction: editAction, deleteAction: deleteAction)
-    }
 }
 
 struct OrderSummaryView_Previews: PreviewProvider {
@@ -96,9 +87,9 @@ struct OrderSummaryView_Previews: PreviewProvider {
                     restaurantId: "1",
                     restaurantName: "100 Mile Grill"),
                 RestaurantFoodItem(
-                foodItem: GraphFoodItem(id: "2", displayName: "Hamburger 2", price: 2),
-                restaurantId: "1",
-                restaurantName: "100 Mile Grill"),
+                    foodItem: GraphFoodItem(id: "2", displayName: "Hamburger 2", price: 2),
+                    restaurantId: "1",
+                    restaurantName: "100 Mile Grill"),
             ]))
             .environmentObject(OrderReviewState())
     }

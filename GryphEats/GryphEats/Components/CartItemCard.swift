@@ -14,9 +14,8 @@ struct CartItemCard: View {
     
     // MARK: Lifecycle
     
-    init(item: RestaurantFoodItem, editAction: @escaping () -> Void, deleteAction: @escaping () -> Void) {
+    init(item: RestaurantFoodItem, deleteAction: (() -> Void)? = nil) {
         self.item = item
-        self.editAction = editAction
         self.deleteAction = deleteAction
     }
     
@@ -39,24 +38,21 @@ struct CartItemCard: View {
             
             Spacer()
             
-            Button(action: deleteAction) {
-                Image(systemName: "trash").foregroundColor(.guelphRed)
-            }.padding()
-
+            if deleteAction != nil {
+                Button(action: deleteAction!) {
+                    Image(systemName: "trash").foregroundColor(.guelphRed)
+                }.padding()
+            }
         }.background(Color.white)
             .cornerRadius(5)
             .padding(.all, 10)
             .shadow(radius: 2)
-            .onTapGesture {
-                self.editAction()
-        }
     }
     
     // MARK: Private
     
     private let item: RestaurantFoodItem
-    private let editAction: () -> Void
-    private let deleteAction: () -> Void
+    private let deleteAction: (() -> Void)?
 
 }
 
@@ -68,14 +64,12 @@ struct CartItemCard_Previews: PreviewProvider {
                     foodItem: GraphFoodItem(id: "1", displayName: "Hamburger 1", price: 2),
                     restaurantId: "1",
                     restaurantName: "100 Mile Grill"),
-                editAction: {},
                 deleteAction: {})
             CartItemCard(
             item: RestaurantFoodItem(
                 foodItem: GraphFoodItem(id: "2", displayName: "Hamburger 2", price: 2),
                 restaurantId: "1",
                 restaurantName: "100 Mile Grill"),
-            editAction: {},
             deleteAction: {})
         }.background(Color.lightGray)
     }
