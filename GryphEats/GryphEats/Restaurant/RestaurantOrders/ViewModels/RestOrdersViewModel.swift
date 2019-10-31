@@ -6,15 +6,12 @@
 //  Copyright © 2019 The Subway Squad. All rights reserved.
 //
 
+import Apollo
 import SwiftUI
 
 // MARK: - RestOrdersViewModel
 
 class RestOrdersViewModel: ObservableObject {
-    
-    init(restID: String) {
-        self.restID = restID
-    }
     
     // MARK: LoadingState
     
@@ -24,13 +21,23 @@ class RestOrdersViewModel: ObservableObject {
         case error
     }
     
+    // MARK: Lifecycle
+    
+    init(restID: String) {
+        self.restID = restID
+    }
+    
+    deinit {
+        cancelSubscription()
+    }
+    
+    // MARK: Internal
+    
     @Published var loadingState: LoadingState = .loading
     var restID: String
     
-    // MARK: Private
-    
     func fetchOrders() {
-        self.loadingState = .loading
+        loadingState = .loading
         
         GraphClient.shared.fetch(query: OrdersByRestQuery(restID: restID)) { result in
             switch result {
@@ -71,7 +78,9 @@ class RestOrdersViewModel: ObservableObject {
             }
         }
         
-        GraphClient.shared.subscribe(subscription: OrderUpdatedSubscription(restaurantID: restID)) { result in
+        subscription = GraphClient.shared.subscribe(
+            subscription: OrderUpdatedSubscription(restaurantID: restID))
+        { result in
             switch result {
             case .success(let data):
                 
@@ -112,11 +121,21 @@ class RestOrdersViewModel: ObservableObject {
                     ))
                     
                 }
-            
+                
                 self.loadingState = .loaded(orders)
             case .failure:
                 self.loadingState = .error
             }
         }
     }
+    
+    func cancelSubscription() {
+        subscription?.cancel()
+        subscription = nil
+    }
+    
+    // MARK: Private
+    
+    private var subscription: Cancellable?
+    
 }
