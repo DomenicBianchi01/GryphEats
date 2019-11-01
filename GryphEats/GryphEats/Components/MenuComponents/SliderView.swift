@@ -65,7 +65,7 @@ struct SliderView: View {
     }
     
     private func menuCard(for item: GraphFoodItem, atIndex index: Int, onTap: @escaping (Int) -> Void) -> AnyView {
-        let card = MenuCard(itemName: item.displayName ?? "", imageName: "hamburger") {
+        let card = MenuCard(itemName: item.displayName, imageName: "hamburger") {
             onTap(index)
         }
         

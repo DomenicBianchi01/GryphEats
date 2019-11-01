@@ -37,7 +37,7 @@ class Items {
     @Published var items: [RestaurantFoodItem]
     
     func subtotal(for type: PriceType = .regular) -> Double {
-        let subtotal = items.reduce(0) { $0 + ($1.foodItem.price ?? 0) }
+        let subtotal = items.reduce(0) { $0 + ($1.foodItem.price) }
         
         switch type {
         case .onCampus:
