@@ -17,7 +17,7 @@
 		B01875E8236B19130031FD2E /* OrderReviewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09416AA2355F5C50032BA12 /* OrderReviewState.swift */; };
 		B01875E9236B19130031FD2E /* ApplePayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D9ED392356B87B006A1545 /* ApplePayButton.swift */; };
 		B01875EA236B19130031FD2E /* ValetExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09156052359551600FE2CD2 /* ValetExtensions.swift */; };
-		B01875EB236B19130031FD2E /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A7C408234C328C001555B7 /* FoodItem.swift */; };
+		B01875EB236B19130031FD2E /* RestaurantFoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A7C408234C328C001555B7 /* RestaurantFoodItem.swift */; };
 		B01875EC236B19130031FD2E /* ResturantItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0843375234D07E100DD325E /* ResturantItemsView.swift */; };
 		B01875ED236B19130031FD2E /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BBFDB323479F2E00FDEFA4 /* UIViewControllerExtensions.swift */; };
 		B01875EE236B19130031FD2E /* MealRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC089F42353B51400DA3A55 /* MealRow.swift */; };
@@ -157,6 +157,7 @@
 		B05B3FD82348253000547DD1 /* SecurityQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05B3FD72348253000547DD1 /* SecurityQuestionView.swift */; };
 		B05B3FDB2348257000547DD1 /* LandingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05B3FDA2348257000547DD1 /* LandingState.swift */; };
 		B05CE801235FE772000DB827 /* CardProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05CE800235FE772000DB827 /* CardProvider.swift */; };
+		B0646912236BA77D00EDC13C /* Totalable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0646911236BA77D00EDC13C /* Totalable.swift */; };
 		B06B51322349322F0015E960 /* BasicButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B51312349322F0015E960 /* BasicButtonTests.swift */; };
 		B06B5134234932720015E960 /* CirclularButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B5133234932720015E960 /* CirclularButtonTests.swift */; };
 		B06B5136234934B80015E960 /* CustomTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B5135234934B80015E960 /* CustomTextFieldTests.swift */; };
@@ -198,7 +199,7 @@
 		B0A2D0A723462BE700391DD6 /* StudentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A2D0A623462BE700391DD6 /* StudentCard.swift */; };
 		B0A7C403234C2CE0001555B7 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A7C402234C2CE0001555B7 /* SliderView.swift */; };
 		B0A7C406234C2CEC001555B7 /* MenuCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A7C405234C2CEC001555B7 /* MenuCard.swift */; };
-		B0A7C409234C328D001555B7 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A7C408234C328C001555B7 /* FoodItem.swift */; };
+		B0A7C409234C328D001555B7 /* RestaurantFoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A7C408234C328C001555B7 /* RestaurantFoodItem.swift */; };
 		B0B2057A2333D45000694587 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B205792333D45000694587 /* AppDelegate.swift */; };
 		B0B2057C2333D45000694587 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B2057B2333D45000694587 /* SceneDelegate.swift */; };
 		B0B205832333D45200694587 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0B205822333D45200694587 /* Assets.xcassets */; };
@@ -317,6 +318,7 @@
 		B05B3FD72348253000547DD1 /* SecurityQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityQuestionView.swift; sourceTree = "<group>"; };
 		B05B3FDA2348257000547DD1 /* LandingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingState.swift; sourceTree = "<group>"; };
 		B05CE800235FE772000DB827 /* CardProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardProvider.swift; sourceTree = "<group>"; };
+		B0646911236BA77D00EDC13C /* Totalable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Totalable.swift; sourceTree = "<group>"; };
 		B06B51312349322F0015E960 /* BasicButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButtonTests.swift; sourceTree = "<group>"; };
 		B06B5133234932720015E960 /* CirclularButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclularButtonTests.swift; sourceTree = "<group>"; };
 		B06B5135234934B80015E960 /* CustomTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldTests.swift; sourceTree = "<group>"; };
@@ -358,7 +360,7 @@
 		B0A2D0A623462BE700391DD6 /* StudentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCard.swift; sourceTree = "<group>"; };
 		B0A7C402234C2CE0001555B7 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		B0A7C405234C2CEC001555B7 /* MenuCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCard.swift; sourceTree = "<group>"; };
-		B0A7C408234C328C001555B7 /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
+		B0A7C408234C328C001555B7 /* RestaurantFoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantFoodItem.swift; sourceTree = "<group>"; };
 		B0B205762333D45000694587 /* GryphEats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GryphEats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0B205792333D45000694587 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0B2057B2333D45000694587 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -522,13 +524,14 @@
 			isa = PBXGroup;
 			children = (
 				B08F32162348D43B009A0E61 /* State */,
+				B0646911236BA77D00EDC13C /* Totalable.swift */,
 				B0F6E1F8234E496A00067B79 /* Cart.swift */,
 				B051FF78234588AA0093C0DC /* Order.swift */,
 				B051FF79234588AA0093C0DC /* Customer.swift */,
-				B0A7C408234C328C001555B7 /* FoodItem.swift */,
+				B0BEF91A234D4941004455DC /* Restaurant.swift */,
+				B0A7C408234C328C001555B7 /* RestaurantFoodItem.swift */,
 				B0843366234CB54700DD325E /* Category.swift */,
 				B0F6E201234E928200067B79 /* Ingredient.swift */,
-				B0BEF91A234D4941004455DC /* Restaurant.swift */,
 				EB605A31235BB24F00EB7856 /* User.swift */,
 				B0D9ED3323568EB2006A1545 /* PaymentMethod.swift */,
 				B05CE800235FE772000DB827 /* CardProvider.swift */,
@@ -1170,7 +1173,7 @@
 				B01875E8236B19130031FD2E /* OrderReviewState.swift in Sources */,
 				B01875E9236B19130031FD2E /* ApplePayButton.swift in Sources */,
 				B01875EA236B19130031FD2E /* ValetExtensions.swift in Sources */,
-				B01875EB236B19130031FD2E /* FoodItem.swift in Sources */,
+				B01875EB236B19130031FD2E /* RestaurantFoodItem.swift in Sources */,
 				B01875EC236B19130031FD2E /* ResturantItemsView.swift in Sources */,
 				B01875ED236B19130031FD2E /* UIViewControllerExtensions.swift in Sources */,
 				B01875EE236B19130031FD2E /* MealRow.swift in Sources */,
@@ -1266,7 +1269,7 @@
 				B09416AB2355F5C50032BA12 /* OrderReviewState.swift in Sources */,
 				B0D9ED3A2356B87B006A1545 /* ApplePayButton.swift in Sources */,
 				B09156062359551600FE2CD2 /* ValetExtensions.swift in Sources */,
-				B0A7C409234C328D001555B7 /* FoodItem.swift in Sources */,
+				B0A7C409234C328D001555B7 /* RestaurantFoodItem.swift in Sources */,
 				B0843376234D07E100DD325E /* ResturantItemsView.swift in Sources */,
 				B0BBFDB423479F2E00FDEFA4 /* UIViewControllerExtensions.swift in Sources */,
 				EBC089F52353B51400DA3A55 /* MealRow.swift in Sources */,
@@ -1312,6 +1315,7 @@
 				B021DE95234FBA6D00DBF1AA /* GraphClient.swift in Sources */,
 				B0187667236B21D00031FD2E /* OrderStatusStepView.swift in Sources */,
 				B046163D2346F3230033087B /* LoginViewModel.swift in Sources */,
+				B0646912236BA77D00EDC13C /* Totalable.swift in Sources */,
 				EB37D1AF23610CE700CD0D9C /* RestOrdersViewModel.swift in Sources */,
 				B046163A2346E5880033087B /* BasicButton.swift in Sources */,
 				B022F70B235E0EAC005269FB /* AddMealPlanView.swift in Sources */,

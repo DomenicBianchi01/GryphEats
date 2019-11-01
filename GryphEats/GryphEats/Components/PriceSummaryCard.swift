@@ -26,7 +26,7 @@ struct PriceSummaryCard: View {
         
         // MARK: Fileprivate
         
-        fileprivate var asPriceType: Cart.PriceType {
+        fileprivate var asPriceType: Items.PriceType {
             switch self {
             case .full, .noDiscounts:
                 return .regular

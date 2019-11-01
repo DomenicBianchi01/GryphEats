@@ -2,17 +2,18 @@ query OrdersByRest($restID: ID!) {
   getOrdersByRestaurantID(restaurantid: $restID) {
     orderid
     ordertype
-        timeplaced
-        timecompleted
-        restaurantid
-        orderitems{
-            orderid
-            foodid
-            identifier
+    timeplaced
+    timecompleted
+    restaurantid
+    orderitems {
+        orderid
+        foodid
+        identifier
             food {
                 foodid
                 displayname
                 description
+                price
             }
         }
     }

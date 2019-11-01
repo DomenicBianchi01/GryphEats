@@ -10,14 +10,17 @@ import SwiftUI
 
 // MARK: - Order
 
-class Order: ObservableObject, Identifiable {
+class Order: Items, ObservableObject, Identifiable {
+    
+    // MARK: Lifecycle
         
-    init(id: Int, customer: Customer, status: Status = .new, time: String, foodItems: [FoodItem] = []) {
+    init(id: Int, customer: Customer, status: Status = .new, timePlaced: String, items: [RestaurantFoodItem] = []) {
         self.id = id
         self.customer = customer
         self.status = status
-        self.time = time
-        self.foodItems = foodItems
+        self.timePlaced = timePlaced
+        
+        super.init(items: items)
     }
     
     // MARK: Status
@@ -48,10 +51,10 @@ class Order: ObservableObject, Identifiable {
     
     // MARK: Internal
     
-    var id: Int = 0
-    var customer: Customer = Customer(name: "")
-    @Published var status: Status = .new
-    var time: String = "" //TODO: Date object instead
-    var foodItems: [FoodItem]
+    @Published var status: Status
+    
+    let id: Int
+    let customer: Customer
+    let timePlaced: String //TODO: Date object instead
     
 }

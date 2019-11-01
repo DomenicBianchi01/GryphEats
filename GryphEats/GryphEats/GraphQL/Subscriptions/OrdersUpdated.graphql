@@ -3,6 +3,7 @@ subscription OrderUpdated($restaurantID: ID!) {
         orderid
         ordertype
         timeplaced
+        restaurantid
         orderitems {
             orderid
             foodid
@@ -11,6 +12,7 @@ subscription OrderUpdated($restaurantID: ID!) {
                 foodid
                 displayname
                 description
+                price
             }
         }
     }

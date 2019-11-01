@@ -55,9 +55,15 @@ class RestOrdersViewModel: ObservableObject {
                 var orders: [Order] = []
                 
                 for order in data.getOrdersByRestaurantId.compactMap({ $0 }) {
-                    var foodItems: [FoodItem] = []
+                    var foodItems: [RestaurantFoodItem] = []
                     for orderItem in (order.orderitems?.compactMap({ $0 }))! {
-                        foodItems.append(FoodItem(id: Int(orderItem.foodid)!, name: (orderItem.food?.displayname)!, imageName: "Borger", ingredients: []))
+                        foodItems.append(RestaurantFoodItem(
+                            foodItem: GraphFoodItem(
+                                id: orderItem.foodid,
+                                displayName: orderItem.food?.displayname,
+                                price: orderItem.food?.price),
+                            restaurantId: order.restaurantid,
+                            restaurantName: "TODO"))
                     }
                     let date = order.timeplaced!
                     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.000Z"
@@ -68,8 +74,8 @@ class RestOrdersViewModel: ObservableObject {
                         id: Int(order.orderid)!,
                         customer: Customer(name: "John Doe"),
                         status: Order.Status(rawValue: order.ordertype ?? 0) ?? .new,
-                        time: dateString,
-                        foodItems: foodItems
+                        timePlaced: dateString,
+                        items: foodItems
                     ))
                 }
                 self.loadingState = .loaded(orders)
@@ -102,10 +108,15 @@ class RestOrdersViewModel: ObservableObject {
                 var orders: [Order] = []
                 
                 for order in orders2.compactMap({ $0 }) {
-                    var foodItems: [FoodItem] = []
-                    
-                    for orderItem in order.orderitems?.compactMap({$0}) ?? [] {
-                        foodItems.append(FoodItem(id: Int(orderItem.foodid)!, name: (orderItem.food?.displayname)!, imageName: "Borger", ingredients: []))
+                    var foodItems: [RestaurantFoodItem] = []
+                    for orderItem in (order.orderitems?.compactMap({ $0 }))! {
+                        foodItems.append(RestaurantFoodItem(
+                            foodItem: GraphFoodItem(
+                                id: orderItem.foodid,
+                                displayName: orderItem.food?.displayname,
+                                price: orderItem.food?.price),
+                            restaurantId: order.restaurantid,
+                            restaurantName: "TODO"))
                     }
                     let date = order.timeplaced!
                     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.000Z"
@@ -116,8 +127,8 @@ class RestOrdersViewModel: ObservableObject {
                         id: Int(order.orderid)!,
                         customer: Customer(name: "John Doe"),
                         status: Order.Status(rawValue: order.ordertype ?? 0) ?? .new,
-                        time: dateString,
-                        foodItems: foodItems
+                        timePlaced: dateString,
+                        items: foodItems
                     ))
                     
                 }

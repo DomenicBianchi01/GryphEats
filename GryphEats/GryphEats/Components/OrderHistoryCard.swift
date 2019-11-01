@@ -24,7 +24,9 @@ struct OrderHistoryCard: View {
         VStack {
             HStack {
                 VStack(alignment: .leading) {
-                    Text("Mom's Kitchen")
+                    // An order object will only contain items from a single restaurant. Not a huge fan of this line
+                    // but it'll do for now
+                    Text(order.items.first?.restaurantName ?? "")
                         .bold()
                         .padding(.bottom, 5)
                     Text("#" + String(order.id))
@@ -33,7 +35,7 @@ struct OrderHistoryCard: View {
                 }
                 Spacer()
                 VStack(alignment: .trailing) {
-                    Text("$9.99")
+                    Text(order.total().asDollarString)
                         .fontWeight(.semibold)
                         .padding(.bottom, 5)
                     Text("Sept 22, 2019")
@@ -93,10 +95,10 @@ struct OrderHistoryCard_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             Spacer()
-            OrderHistoryCard(order: Order(id: 0, customer: Customer(name: "Domenic Bianchi"), status: .new, time: "12:00pm"))
-            OrderHistoryCard(order: Order(id: 0, customer: Customer(name: "Domenic Bianchi"), status: .readyForPickup, time: "12:00pm"))
-            OrderHistoryCard(order: Order(id: 0, customer: Customer(name: "Domenic Bianchi"), status: .inProgress, time: "12:00pm"))
-            OrderHistoryCard(order: Order(id: 0, customer: Customer(name: "Domenic Bianchi"), status: .pickedUp, time: "12:00pm"))
+            OrderHistoryCard(order: Order(id: 0, customer: Customer(name: "Domenic Bianchi"), status: .new, timePlaced: "12:00pm"))
+            OrderHistoryCard(order: Order(id: 0, customer: Customer(name: "Domenic Bianchi"), status: .readyForPickup, timePlaced: "12:00pm"))
+            OrderHistoryCard(order: Order(id: 0, customer: Customer(name: "Domenic Bianchi"), status: .inProgress, timePlaced: "12:00pm"))
+            OrderHistoryCard(order: Order(id: 0, customer: Customer(name: "Domenic Bianchi"), status: .pickedUp, timePlaced: "12:00pm"))
             Spacer()
         }.background(Color.lightGray)
             .edgesIgnoringSafeArea(.all)

@@ -34,13 +34,7 @@ struct OrdersView: View {
             onDismiss: {
                 self.selectedOrder = nil
         }) {
-            OrderTrackingView().environmentObject(Cart(
-                items: [
-                    RestaurantFoodItem(
-                        foodItem: GraphFoodItem(id: "1", displayName: "Hamburger", price: 9.99),
-                        restaurantId: "1",
-                        restaurantName: "100 Mile Grill")
-            ]))
+            OrderTrackingView(order: self.selectedOrder!)
         }.onAppear {
             UITableView.appearance().separatorStyle = .none
             UITableView.appearance().backgroundColor = .lightGray
@@ -48,10 +42,26 @@ struct OrdersView: View {
     }
     
     let orders = [
-        Order(id: 1, customer: Customer(name: "Test"), status: .new, time: "12:00pm"),
-        Order(id: 2, customer: Customer(name: "Test"), status: .inProgress, time: "12:00pm"),
-        Order(id: 3, customer: Customer(name: "Test"), status: .readyForPickup, time: "12:00pm"),
-        Order(id: 4, customer: Customer(name: "Test"), status: .pickedUp, time: "12:00pm")
+        Order(id: 1, customer: Customer(name: "Test"), status: .new, timePlaced: "12:00pm", items: [
+            RestaurantFoodItem(
+                foodItem: GraphFoodItem(id: "1", displayName: "Hamburger", price: 9.99),
+                restaurantId: "1",
+                restaurantName: "100 Mile Grill")]),
+        Order(id: 2, customer: Customer(name: "Test"), status: .inProgress, timePlaced: "12:00pm", items: [
+            RestaurantFoodItem(
+                foodItem: GraphFoodItem(id: "1", displayName: "Hamburger", price: 9.99),
+                restaurantId: "1",
+                restaurantName: "100 Mile Grill")]),
+        Order(id: 3, customer: Customer(name: "Test"), status: .readyForPickup, timePlaced: "12:00pm", items: [
+            RestaurantFoodItem(
+                foodItem: GraphFoodItem(id: "1", displayName: "Hamburger", price: 9.99),
+                restaurantId: "1",
+                restaurantName: "100 Mile Grill")]),
+        Order(id: 4, customer: Customer(name: "Test"), status: .pickedUp, timePlaced: "12:00pm", items: [
+            RestaurantFoodItem(
+                foodItem: GraphFoodItem(id: "1", displayName: "Hamburger", price: 9.99),
+                restaurantId: "1",
+                restaurantName: "100 Mile Grill")])
     ]
     
     // MARK: Private

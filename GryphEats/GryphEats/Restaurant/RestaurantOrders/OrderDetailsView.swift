@@ -27,8 +27,8 @@ struct OrderDetailsView: View {
                 }
             }
             Divider()
-            List (order.foodItems) { foodItem in
-                MealRow(foodItem: foodItem)
+            List(order.items, id: \.foodItem.id) { restaurantFoodItem in
+                MealRow(foodItem: restaurantFoodItem.foodItem)
             }
         }.padding(.all)
     }
@@ -38,9 +38,12 @@ struct OrderDetailsView: View {
             Group {
                 VStack(alignment: .leading, spacing: 10) {
                     
-                    Text(order.customer.name).font(Font.custom("Roboto-Bold", size: 28))
+                    Text(order.customer.name)
+                        .font(Font.custom("Roboto-Bold", size: 28))
                         .lineLimit(1)
-                    Text("Order placed at " + order.time).font(Font.custom("Roboto-Regular", size: 24)).scaledToFill()
+                    Text("Order placed at " + order.timePlaced)
+                        .font(Font.custom("Roboto-Regular", size: 24))
+                        .scaledToFill()
                         .lineLimit(1)
                 }
                 if ( UIDevice.current.userInterfaceIdiom == .pad ) {
