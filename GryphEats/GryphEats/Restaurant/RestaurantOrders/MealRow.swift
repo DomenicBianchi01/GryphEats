@@ -16,7 +16,7 @@ struct MealRow: View {
                     RoundedRectangle(cornerRadius: 10).fill(Color.guelphYellow)
                     HStack(alignment: .top, spacing: 8) {
                         Text("1x").font(Font.custom("Roboto-Bold", size: 28)).padding(.leading)
-                        Text(foodItem.displayName ?? "").font(Font.custom("Roboto-Bold", size: 28))
+                        Text(foodItem.displayName).font(Font.custom("Roboto-Bold", size: 28))
                         Spacer()
                     }.scaledToFill()
                 }

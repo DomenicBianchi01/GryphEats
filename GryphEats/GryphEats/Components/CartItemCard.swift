@@ -24,13 +24,13 @@ struct CartItemCard: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(item.foodItem.displayName ?? "")
+                Text(item.foodItem.displayName)
                     .font(.headline)
                 Text(item.restaurantName)
                     .font(.footnote)
                     .foregroundColor(.gray)
                     .padding(.bottom, 10)
-                Text((item.foodItem.price ?? 0).asDollarString)
+                Text((item.foodItem.price).asDollarString)
                     .font(.subheadline)
                     .foregroundColor(.guelphRed)
             }.padding(.horizontal, 20)

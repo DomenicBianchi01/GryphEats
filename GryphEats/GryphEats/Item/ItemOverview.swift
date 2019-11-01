@@ -34,11 +34,11 @@ struct ItemOverview: View, Dismissable {
             
             HStack {
                 VStack(alignment: .leading) {
-                    Text(item.foodItem.displayName ?? "")
+                    Text(item.foodItem.displayName)
                         .foregroundColor(.white)
                         .font(.largeTitle)
                         .bold()
-                    Text((item.foodItem.price ?? 0).asDollarString)
+                    Text((item.foodItem.price).asDollarString)
                         .foregroundColor(.guelphYellow)
                         .fontWeight(.semibold)
                 }.padding(.leading, 20)

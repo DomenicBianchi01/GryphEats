@@ -56,15 +56,13 @@ struct RestaurantItemsView: View {
     private let restaurant: GraphRestaurant
     
     private var foodItems: [RestaurantFoodItem] {
-        guard let activeItems = restaurant.menu?.first(where: { $0?.isActive == true }),
-            let menuItems = activeItems?.menuItems?.compactMap({ $0 }) else {
+        guard let activeItems = restaurant.menu.first(where: { $0?.isActive == true }),
+            let menuItems = activeItems?.menuItems.compactMap({ $0 }) else {
                 return []
         }
         
-        return menuItems.compactMap {
-            $0.item.flatMap {
-                RestaurantFoodItem(foodItem: $0, restaurantId: restaurant.id, restaurantName: restaurant.name)
-            }
+        return menuItems.map {
+            RestaurantFoodItem(foodItem: $0.item, restaurantId: restaurant.id, restaurantName: restaurant.name)
         }
     }
 }
@@ -76,7 +74,7 @@ struct RestaurantItemsView_Previews: PreviewProvider {
                 id: "1",
                 name: "100 Mile Grill",
                 menu: [
-                    Menu(menuItems: [
+                    Menu(isActive: true, menuItems: [
                         Menu.MenuItem(item:
                             GraphFoodItem(id: "1", displayName: "Hamburger 1", price: 2)),
                         Menu.MenuItem(item:
@@ -86,18 +84,7 @@ struct RestaurantItemsView_Previews: PreviewProvider {
                         Menu.MenuItem(item:
                             GraphFoodItem(id: "4", displayName: "Hamburger 4", price: 2))
                     ])
-            ])) { _ in }
-        
-        
-        //        Restaurant(
-        //                       id: "0",
-        //                       name: "100 Mile Grill",
-        //                       foodItems: [
-        //                           FoodItem(id: 0, name: "Hamburger 1", imageName: "hamburger"),
-        //                           FoodItem(id: 1, name: "Hamburger 2", imageName: "hamburger"),
-        //                           FoodItem(id: 2, name: "Hamburger 3", imageName: "hamburger"),
-        //                           FoodItem(id: 3, name: "Hamburger 4", imageName: "hamburger"),
-        //                           FoodItem(id: 4, name: "Hamburger 5", imageName: "hamburger")
-        //                   ])) { _ in }
+                ]
+        )) { _ in }
     }
 }
