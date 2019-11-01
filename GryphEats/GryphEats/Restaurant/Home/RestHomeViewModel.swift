@@ -37,8 +37,7 @@ class RestHomeViewModel: ObservableObject {
                 for restaurant in data.restaurants.compactMap({ $0 }) {
                     restaurants.append(Restaurant(
                         id: restaurant.id,
-                        name: restaurant.name,
-                        foodItems: []))
+                        name: restaurant.name))
                 }
 
                 self.loadingState = .loaded(restaurants)

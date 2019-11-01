@@ -55,7 +55,7 @@ struct OrderCard: View {
                     Image(systemName: "clock")
                         .padding(.leading, 20)
                         .foregroundColor(.gray)
-                    Text(order.time)
+                    Text(order.timePlaced)
                         .font(.subheadline)
                         .foregroundColor(.gray)
                         .padding(.trailing, 20)
@@ -123,10 +123,10 @@ struct OrderCard_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             Spacer()
-            OrderCard(order: Order(id: 0, customer: Customer(name: "Domenic Bianchi"), status: .new, time: "12:00pm"))
-            OrderCard(order: Order(id: 1, customer: Customer(name: "Scott Riva"), status: .inProgress, time: "12:00pm"))
-            OrderCard(order: Order(id: 2, customer: Customer(name: "Matthew Bebis"), status: .readyForPickup, time: "12:00pm"))
-            OrderCard(order: Order(id: 3, customer: Customer(name: "Shu"), status: .pickedUp, time: "12:00pm"))
+            OrderCard(order: Order(id: 0, customer: Customer(name: "Domenic Bianchi"), status: .new, timePlaced: "12:00pm"))
+            OrderCard(order: Order(id: 1, customer: Customer(name: "Scott Riva"), status: .inProgress, timePlaced: "12:00pm"))
+            OrderCard(order: Order(id: 2, customer: Customer(name: "Matthew Bebis"), status: .readyForPickup, timePlaced: "12:00pm"))
+            OrderCard(order: Order(id: 3, customer: Customer(name: "Shu"), status: .pickedUp, timePlaced: "12:00pm"))
             Spacer()
         }.background(Color(red: 250/255, green: 250/255, blue: 250/255))
             .edgesIgnoringSafeArea(.all)

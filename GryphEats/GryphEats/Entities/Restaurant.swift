@@ -16,6 +16,5 @@ struct Restaurant: Identifiable {
     
     let id: String
     let name: String
-    let foodItems: [FoodItem]
 
 }

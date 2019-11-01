@@ -16,18 +16,19 @@ struct MealRow: View {
                     RoundedRectangle(cornerRadius: 10).fill(Color.guelphYellow)
                     HStack(alignment: .top, spacing: 8) {
                         Text("1x").font(Font.custom("Roboto-Bold", size: 28)).padding(.leading)
-                        Text(foodItem.name).font(Font.custom("Roboto-Bold", size: 28))
+                        Text(foodItem.displayName ?? "").font(Font.custom("Roboto-Bold", size: 28))
                         Spacer()
                     }.scaledToFill()
                 }
                 if ( UIDevice.current.userInterfaceIdiom == .phone ) {
                     VStack(alignment: .leading, spacing: 6) {
-                        ForEach(foodItem.ingredients) { ingredient in
-                            HStack {
-                                Text("1x")
-                                Text(ingredient.name)
-                            }
-                        }
+                        Text("")
+//                        ForEach(foodItem.ingredients) { ingredient in
+//                            HStack {
+//                                Text("1x")
+//                                Text(ingredient.name)
+//                            }
+//                        }
                     }.padding(.bottom).padding(.leading, 40)
                     .font(Font.custom("Roboto-Bold", size: 28))
                     VStack(alignment: .leading, spacing: 6) {
@@ -39,12 +40,13 @@ struct MealRow: View {
                 } else {
                     HStack (alignment: .top, spacing: 6){
                         VStack(alignment: .leading, spacing: 6) {
-                            ForEach(foodItem.ingredients) { ingredient in
-                                HStack {
-                                    Text("1x")
-                                    Text(ingredient.name)
-                                }
-                            }
+                            Text("")
+//                            ForEach(foodItem.ingredients) { ingredient in
+//                                HStack {
+//                                    Text("1x")
+//                                    Text(ingredient.name)
+//                                }
+//                            }
                         }.padding(.bottom).padding(.leading, 40)
                         Spacer()
                         VStack(alignment: .trailing, spacing: 6) {
@@ -58,6 +60,6 @@ struct MealRow: View {
         }
     }
     
-    var foodItem: FoodItem
+    var foodItem: GraphFoodItem
 
 }

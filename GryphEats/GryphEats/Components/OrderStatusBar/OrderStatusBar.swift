@@ -35,7 +35,7 @@ struct OrderStatusBar: View {
                     foregroundColor: .white)
                 {
                     
-                }.padding(.top)
+                }.padding(.top, 30)
             }
         }
     }

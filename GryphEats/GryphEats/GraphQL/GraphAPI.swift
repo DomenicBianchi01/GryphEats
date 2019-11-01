@@ -209,6 +209,7 @@ public final class OrdersByRestQuery: GraphQLQuery {
             foodid
             displayname
             description
+            price
           }
         }
       }
@@ -413,6 +414,7 @@ public final class OrdersByRestQuery: GraphQLQuery {
             GraphQLField("foodid", type: .nonNull(.scalar(GraphQLID.self))),
             GraphQLField("displayname", type: .scalar(String.self)),
             GraphQLField("description", type: .scalar(String.self)),
+            GraphQLField("price", type: .scalar(Double.self)),
           ]
 
           public private(set) var resultMap: ResultMap
@@ -421,8 +423,8 @@ public final class OrdersByRestQuery: GraphQLQuery {
             self.resultMap = unsafeResultMap
           }
 
-          public init(foodid: GraphQLID, displayname: String? = nil, description: String? = nil) {
-            self.init(unsafeResultMap: ["__typename": "Food", "foodid": foodid, "displayname": displayname, "description": description])
+          public init(foodid: GraphQLID, displayname: String? = nil, description: String? = nil, price: Double? = nil) {
+            self.init(unsafeResultMap: ["__typename": "Food", "foodid": foodid, "displayname": displayname, "description": description, "price": price])
           }
 
           public var __typename: String {
@@ -458,6 +460,15 @@ public final class OrdersByRestQuery: GraphQLQuery {
             }
             set {
               resultMap.updateValue(newValue, forKey: "description")
+            }
+          }
+
+          public var price: Double? {
+            get {
+              return resultMap["price"] as? Double
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "price")
             }
           }
         }
@@ -733,6 +744,7 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
         orderid
         ordertype
         timeplaced
+        restaurantid
         orderitems {
           __typename
           orderid
@@ -743,6 +755,7 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
             foodid
             displayname
             description
+            price
           }
         }
       }
@@ -795,6 +808,7 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
         GraphQLField("orderid", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("ordertype", type: .scalar(Int.self)),
         GraphQLField("timeplaced", type: .scalar(String.self)),
+        GraphQLField("restaurantid", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("orderitems", type: .list(.object(Orderitem.selections))),
       ]
 
@@ -804,8 +818,8 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
         self.resultMap = unsafeResultMap
       }
 
-      public init(orderid: GraphQLID, ordertype: Int? = nil, timeplaced: String? = nil, orderitems: [Orderitem?]? = nil) {
-        self.init(unsafeResultMap: ["__typename": "FoodOrder", "orderid": orderid, "ordertype": ordertype, "timeplaced": timeplaced, "orderitems": orderitems.flatMap { (value: [Orderitem?]) -> [ResultMap?] in value.map { (value: Orderitem?) -> ResultMap? in value.flatMap { (value: Orderitem) -> ResultMap in value.resultMap } } }])
+      public init(orderid: GraphQLID, ordertype: Int? = nil, timeplaced: String? = nil, restaurantid: GraphQLID, orderitems: [Orderitem?]? = nil) {
+        self.init(unsafeResultMap: ["__typename": "FoodOrder", "orderid": orderid, "ordertype": ordertype, "timeplaced": timeplaced, "restaurantid": restaurantid, "orderitems": orderitems.flatMap { (value: [Orderitem?]) -> [ResultMap?] in value.map { (value: Orderitem?) -> ResultMap? in value.flatMap { (value: Orderitem) -> ResultMap in value.resultMap } } }])
       }
 
       public var __typename: String {
@@ -841,6 +855,15 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
         }
         set {
           resultMap.updateValue(newValue, forKey: "timeplaced")
+        }
+      }
+
+      public var restaurantid: GraphQLID {
+        get {
+          return resultMap["restaurantid"]! as! GraphQLID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "restaurantid")
         }
       }
 
@@ -927,6 +950,7 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
             GraphQLField("foodid", type: .nonNull(.scalar(GraphQLID.self))),
             GraphQLField("displayname", type: .scalar(String.self)),
             GraphQLField("description", type: .scalar(String.self)),
+            GraphQLField("price", type: .scalar(Double.self)),
           ]
 
           public private(set) var resultMap: ResultMap
@@ -935,8 +959,8 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
             self.resultMap = unsafeResultMap
           }
 
-          public init(foodid: GraphQLID, displayname: String? = nil, description: String? = nil) {
-            self.init(unsafeResultMap: ["__typename": "Food", "foodid": foodid, "displayname": displayname, "description": description])
+          public init(foodid: GraphQLID, displayname: String? = nil, description: String? = nil, price: Double? = nil) {
+            self.init(unsafeResultMap: ["__typename": "Food", "foodid": foodid, "displayname": displayname, "description": description, "price": price])
           }
 
           public var __typename: String {
@@ -972,6 +996,15 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
             }
             set {
               resultMap.updateValue(newValue, forKey: "description")
+            }
+          }
+
+          public var price: Double? {
+            get {
+              return resultMap["price"] as? Double
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "price")
             }
           }
         }
