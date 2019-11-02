@@ -17,22 +17,22 @@ class OrderCardTests: XCTestCase {
     var record = false
 
     func testOrderCard_New() {
-        let card = OrderCard(order: Order(id: 0, customer: customer, status: .new, timePlaced: "12:00pm"))
+        let card = OrderCard(order: Order(id: "0", customer: customer, status: .new, timePlaced: "12:00pm"))
         assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
     }
     
     func testOrderCard_InProgress() {
-        let card = OrderCard(order: Order(id: 0, customer: customer, status: .inProgress, timePlaced: "12:00pm"))
+        let card = OrderCard(order: Order(id: "0", customer: customer, status: .inProgress, timePlaced: "12:00pm"))
         assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
     }
     
     func testOrderCard_ReadyForPickup() {
-        let card = OrderCard(order: Order(id: 0, customer: customer, status: .readyForPickup, timePlaced: "12:00pm"))
+        let card = OrderCard(order: Order(id: "0", customer: customer, status: .readyForPickup, timePlaced: "12:00pm"))
         assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
     }
     
     func testOrderCard_PickedUp() {
-        let card = OrderCard(order: Order(id: 0, customer: customer, status: .pickedUp, timePlaced: "12:00pm"))
+        let card = OrderCard(order: Order(id: "0", customer: customer, status: .pickedUp, timePlaced: "12:00pm"))
         assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
     }
     

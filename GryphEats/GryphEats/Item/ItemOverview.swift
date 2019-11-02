@@ -34,7 +34,7 @@ struct ItemOverview: View, Dismissable {
             
             HStack {
                 VStack(alignment: .leading) {
-                    Text(item.foodItem.displayName)
+                    Text(item.foodItem.name)
                         .foregroundColor(.white)
                         .font(.largeTitle)
                         .bold()
@@ -81,7 +81,7 @@ struct ItemOverview_Previews: PreviewProvider {
     static var previews: some View {
         ItemOverview(
             item: RestaurantFoodItem(
-                foodItem: GraphFoodItem(id: "1", displayName: "Hamburger 1", price: 2),
+                foodItem: GraphFoodItem(id: "1", name: "Hamburger 1", price: 2),
                 restaurantId: "1",
                 restaurantName: "100 Mile Grill"))
             .environmentObject(Cart(items: []))

@@ -134,6 +134,12 @@
 		B0187667236B21D00031FD2E /* OrderStatusStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0187666236B21D00031FD2E /* OrderStatusStepView.swift */; };
 		B0187668236B21D00031FD2E /* OrderStatusStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0187666236B21D00031FD2E /* OrderStatusStepView.swift */; };
 		B018766A236B3FF00031FD2E /* OrderStatusBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0187669236B3FF00031FD2E /* OrderStatusBarTests.swift */; };
+		B01AE8D5236CBE0700827276 /* UserOrders.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B01AE8D4236CBE0700827276 /* UserOrders.graphql */; };
+		B01AE8D6236CBE0700827276 /* UserOrders.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B01AE8D4236CBE0700827276 /* UserOrders.graphql */; };
+		B01AE8D9236CBF9900827276 /* OrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01AE8D8236CBF9900827276 /* OrdersViewModel.swift */; };
+		B01AE8DA236CBF9900827276 /* OrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01AE8D8236CBF9900827276 /* OrdersViewModel.swift */; };
+		B01AE8DC236CDE9A00827276 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01AE8DB236CDE9A00827276 /* LoadingState.swift */; };
+		B01AE8DD236CDE9A00827276 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01AE8DB236CDE9A00827276 /* LoadingState.swift */; };
 		B01DC45323552B4500539D30 /* CartItemCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01DC45223552B4500539D30 /* CartItemCard.swift */; };
 		B01E01522346428500B021E3 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = B01E01512346428500B021E3 /* SnapshotTesting */; };
 		B01E0155234650EE00B021E3 /* StudentCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01E0154234650EE00B021E3 /* StudentCardTests.swift */; };
@@ -299,6 +305,9 @@
 		B0187662236B1B9E0031FD2E /* OrderStatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStatusBar.swift; sourceTree = "<group>"; };
 		B0187666236B21D00031FD2E /* OrderStatusStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStatusStepView.swift; sourceTree = "<group>"; };
 		B0187669236B3FF00031FD2E /* OrderStatusBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStatusBarTests.swift; sourceTree = "<group>"; };
+		B01AE8D4236CBE0700827276 /* UserOrders.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = UserOrders.graphql; sourceTree = "<group>"; };
+		B01AE8D8236CBF9900827276 /* OrdersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewModel.swift; sourceTree = "<group>"; };
+		B01AE8DB236CDE9A00827276 /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
 		B01DC45223552B4500539D30 /* CartItemCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCard.swift; sourceTree = "<group>"; };
 		B01E0154234650EE00B021E3 /* StudentCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCardTests.swift; sourceTree = "<group>"; };
 		B01E015923465B0E00B021E3 /* OrderCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCardTests.swift; sourceTree = "<group>"; };
@@ -487,6 +496,14 @@
 			path = OrderStatusBar;
 			sourceTree = "<group>";
 		};
+		B01AE8D7236CBF3B00827276 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B01AE8D8236CBF9900827276 /* OrdersViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		B01E0153234650D200B021E3 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -577,6 +594,7 @@
 			children = (
 				B0CA762B23454A38003E7FBD /* RestaurantMenus.graphql */,
 				EB37D1A7236109A900CD0D9C /* OrdersByRest.graphql */,
+				B01AE8D4236CBE0700827276 /* UserOrders.graphql */,
 			);
 			path = Queries;
 			sourceTree = "<group>";
@@ -643,6 +661,7 @@
 		B08F32162348D43B009A0E61 /* State */ = {
 			isa = PBXGroup;
 			children = (
+				B01AE8DB236CDE9A00827276 /* LoadingState.swift */,
 				B05B3FDA2348257000547DD1 /* LandingState.swift */,
 				B09416AA2355F5C50032BA12 /* OrderReviewState.swift */,
 			);
@@ -839,6 +858,7 @@
 		B0CD88D52360ABD600A5C021 /* Orders */ = {
 			isa = PBXGroup;
 			children = (
+				B01AE8D7236CBF3B00827276 /* ViewModels */,
 				B0CD88D62360ABE900A5C021 /* OrdersView.swift */,
 				B01875D7236B18F60031FD2E /* OrderTrackingView.swift */,
 			);
@@ -1087,6 +1107,7 @@
 				B018764A236B19130031FD2E /* UpdateOrder.graphql in Resources */,
 				B018764B236B19130031FD2E /* Roboto-Black.ttf in Resources */,
 				B018764C236B19130031FD2E /* OrdersUpdated.graphql in Resources */,
+				B01AE8D6236CBE0700827276 /* UserOrders.graphql in Resources */,
 				B018764D236B19130031FD2E /* RobotoCondensed-Regular.ttf in Resources */,
 				B018764E236B19130031FD2E /* Roboto-Regular.ttf in Resources */,
 				B018764F236B19130031FD2E /* RobotoCondensed-LightItalic.ttf in Resources */,
@@ -1120,6 +1141,7 @@
 				EB9468022368898E00FAAE56 /* UpdateOrder.graphql in Resources */,
 				EB1E4548234CF28800B5C8FD /* Roboto-Black.ttf in Resources */,
 				EB9468092368CB2200FAAE56 /* OrdersUpdated.graphql in Resources */,
+				B01AE8D5236CBE0700827276 /* UserOrders.graphql in Resources */,
 				EB1E4541234CF28800B5C8FD /* RobotoCondensed-Regular.ttf in Resources */,
 				EB1E453A234CF28800B5C8FD /* Roboto-Regular.ttf in Resources */,
 				EB1E453F234CF28800B5C8FD /* RobotoCondensed-LightItalic.ttf in Resources */,
@@ -1231,6 +1253,7 @@
 				B0187619236B19130031FD2E /* AddMealPlanView.swift in Sources */,
 				B018761A236B19130031FD2E /* AddMealPlanViewModel.swift in Sources */,
 				B018761B236B19130031FD2E /* SlideOverCard.swift in Sources */,
+				B01AE8DD236CDE9A00827276 /* LoadingState.swift in Sources */,
 				B018761C236B19130031FD2E /* ActivityIndicator.swift in Sources */,
 				B018761D236B19130031FD2E /* MenuCard.swift in Sources */,
 				B018761E236B19130031FD2E /* AccountView.swift in Sources */,
@@ -1253,6 +1276,7 @@
 				B018762F236B19130031FD2E /* AnyTransitionExtensions.swift in Sources */,
 				B0187630236B19130031FD2E /* RestOrdersView.swift in Sources */,
 				B0187631236B19130031FD2E /* AppDelegate.swift in Sources */,
+				B01AE8DA236CBF9900827276 /* OrdersViewModel.swift in Sources */,
 				B0187632236B19130031FD2E /* LandingView.swift in Sources */,
 				B0187633236B19130031FD2E /* Ingredient.swift in Sources */,
 				B0187634236B19130031FD2E /* SceneDelegate.swift in Sources */,
@@ -1299,6 +1323,7 @@
 				B09416A22355EF900032BA12 /* ActionButton.swift in Sources */,
 				B0816FEC23624016001A04F3 /* OrderHistoryCard.swift in Sources */,
 				B0BBFDC12348053500FDEFA4 /* LoginView.swift in Sources */,
+				B01AE8DC236CDE9A00827276 /* LoadingState.swift in Sources */,
 				B077747D2361D74100316DA1 /* UIApplicationExtensions.swift in Sources */,
 				B051FF7A234588AA0093C0DC /* Order.swift in Sources */,
 				EB37D1A22360DBD500CD0D9C /* RestHomeViewModel.swift in Sources */,
@@ -1347,6 +1372,7 @@
 				B04616372346C6610033087B /* CircularButton.swift in Sources */,
 				B07B97FC23672634002E96C8 /* GraphExtensions.swift in Sources */,
 				B0D9ED2223562296006A1545 /* PriceSummaryCard.swift in Sources */,
+				B01AE8D9236CBF9900827276 /* OrdersViewModel.swift in Sources */,
 				B06B514B23495BD90015E960 /* ViewExtensions.swift in Sources */,
 				B0F6E1F9234E496A00067B79 /* Cart.swift in Sources */,
 				B0BBFDBE2347D27100FDEFA4 /* AnyTransitionExtensions.swift in Sources */,

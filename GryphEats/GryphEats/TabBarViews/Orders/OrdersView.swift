@@ -20,15 +20,7 @@ struct OrdersView: View {
             navigationColor: .guelphYellow,
             contentBackgroundColor: .lightGray)
         {
-            // Swift UI Bug: `listRowBackground` and `listRowInsets` do not work without nesting a `ForEach` within
-            // `List`
-            List {
-                ForEach(self.orders) { order in
-                    OrderHistoryCard(order: order).onTapGesture {
-                        self.selectedOrder = order
-                    }
-                }.listConfiguration(backgroundColor: Color.lightGray)
-            }
+            self.content
         }.sheet(
             isPresented: .constant($selectedOrder.wrappedValue != nil),
             onDismiss: {
@@ -38,36 +30,39 @@ struct OrdersView: View {
         }.onAppear {
             UITableView.appearance().separatorStyle = .none
             UITableView.appearance().backgroundColor = .lightGray
+            self.viewModel.fetchOrders()
         }
     }
-    
-    let orders = [
-        Order(id: 1, customer: Customer(name: "Test"), status: .new, timePlaced: "12:00pm", items: [
-            RestaurantFoodItem(
-                foodItem: GraphFoodItem(id: "1", displayName: "Hamburger", price: 9.99),
-                restaurantId: "1",
-                restaurantName: "100 Mile Grill")]),
-        Order(id: 2, customer: Customer(name: "Test"), status: .inProgress, timePlaced: "12:00pm", items: [
-            RestaurantFoodItem(
-                foodItem: GraphFoodItem(id: "1", displayName: "Hamburger", price: 9.99),
-                restaurantId: "1",
-                restaurantName: "100 Mile Grill")]),
-        Order(id: 3, customer: Customer(name: "Test"), status: .readyForPickup, timePlaced: "12:00pm", items: [
-            RestaurantFoodItem(
-                foodItem: GraphFoodItem(id: "1", displayName: "Hamburger", price: 9.99),
-                restaurantId: "1",
-                restaurantName: "100 Mile Grill")]),
-        Order(id: 4, customer: Customer(name: "Test"), status: .pickedUp, timePlaced: "12:00pm", items: [
-            RestaurantFoodItem(
-                foodItem: GraphFoodItem(id: "1", displayName: "Hamburger", price: 9.99),
-                restaurantId: "1",
-                restaurantName: "100 Mile Grill")])
-    ]
     
     // MARK: Private
     
     @State private var selectedOrder: Order? = nil
+    @ObservedObject private var viewModel = OrdersViewModel()
     
+    private var content: AnyView {
+        switch viewModel.loadingState {
+        case .loading:
+            return AnyView(VStack {
+                Spacer()
+                ActivityIndicator(style: .large)
+                Spacer()
+            })
+        case .loaded(let orders):
+            // Swift UI Bug: `listRowBackground` and `listRowInsets` do not work without nesting a `ForEach` within
+            // `List`
+            return AnyView(List {
+                ForEach(orders) { order in
+                    OrderHistoryCard(order: order).onTapGesture {
+                        self.selectedOrder = order
+                    }
+                }.listConfiguration(backgroundColor: Color.lightGray)
+            })
+        case .error:
+            return AnyView(ErrorView(infoText: "Whoops! We could not fetch your orders.", buttonText: "Try Again") {
+                self.viewModel.fetchOrders()
+            })
+        }
+    }
 }
 
 struct OrdersView_Previews: PreviewProvider {

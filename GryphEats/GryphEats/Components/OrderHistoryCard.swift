@@ -95,10 +95,10 @@ struct OrderHistoryCard_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             Spacer()
-            OrderHistoryCard(order: Order(id: 0, customer: Customer(name: "Domenic Bianchi"), status: .new, timePlaced: "12:00pm"))
-            OrderHistoryCard(order: Order(id: 0, customer: Customer(name: "Domenic Bianchi"), status: .readyForPickup, timePlaced: "12:00pm"))
-            OrderHistoryCard(order: Order(id: 0, customer: Customer(name: "Domenic Bianchi"), status: .inProgress, timePlaced: "12:00pm"))
-            OrderHistoryCard(order: Order(id: 0, customer: Customer(name: "Domenic Bianchi"), status: .pickedUp, timePlaced: "12:00pm"))
+            OrderHistoryCard(order: Order(id: "1", customer: Customer(name: "Domenic Bianchi"), status: .new, timePlaced: "12:00pm"))
+            OrderHistoryCard(order: Order(id: "1", customer: Customer(name: "Domenic Bianchi"), status: .readyForPickup, timePlaced: "12:00pm"))
+            OrderHistoryCard(order: Order(id: "1", customer: Customer(name: "Domenic Bianchi"), status: .inProgress, timePlaced: "12:00pm"))
+            OrderHistoryCard(order: Order(id: "1", customer: Customer(name: "Domenic Bianchi"), status: .pickedUp, timePlaced: "12:00pm"))
             Spacer()
         }.background(Color.lightGray)
             .edgesIgnoringSafeArea(.all)

@@ -24,15 +24,30 @@ class RestaurantItemsViewTests: XCTestCase {
                 menu: [
                     Menu(isActive: true, menuItems: [
                         Menu.MenuItem(item:
-                            GraphFoodItem(id: "0", displayName: "Hamburger 1", price: 9.99)),
+                            RestaurantMenusQuery.Data.Restaurant.Menu.MenuItem.Item(
+                                id: "0",
+                                name: "Hamburger 1",
+                                price: 9.99)),
                         Menu.MenuItem(item:
-                            GraphFoodItem(id: "1", displayName: "Hamburger 2", price: 9.99)),
+                            RestaurantMenusQuery.Data.Restaurant.Menu.MenuItem.Item(
+                                id: "1",
+                                name: "Hamburger 2",
+                                price: 9.99)),
                         Menu.MenuItem(item:
-                            GraphFoodItem(id: "2", displayName: "Hamburger 3", price: 9.99)),
+                            RestaurantMenusQuery.Data.Restaurant.Menu.MenuItem.Item(
+                                id: "2",
+                                name: "Hamburger 3",
+                                price: 9.99)),
                         Menu.MenuItem(item:
-                            GraphFoodItem(id: "3", displayName: "Hamburger 4", price: 9.99)),
+                            RestaurantMenusQuery.Data.Restaurant.Menu.MenuItem.Item(
+                                id: "3",
+                                name: "Hamburger 4",
+                                price: 9.99)),
                         Menu.MenuItem(item:
-                            GraphFoodItem(id: "4", displayName: "Hamburger 5", price: 9.99))
+                            RestaurantMenusQuery.Data.Restaurant.Menu.MenuItem.Item(
+                                id: "4",
+                                name: "Hamburger 5",
+                                price: 9.99))
                     ])
             ])) { _ in }
         

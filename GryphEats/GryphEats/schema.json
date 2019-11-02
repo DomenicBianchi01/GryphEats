@@ -169,12 +169,16 @@
               }
             ],
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "OBJECT",
-                "name": "Menu",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Menu",
+                  "ofType": null
+                }
               }
             },
             "isDeprecated": false,
@@ -235,12 +239,16 @@
               }
             ],
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "OBJECT",
-                "name": "OrderItem",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "OrderItem",
+                  "ofType": null
+                }
               }
             },
             "isDeprecated": false,
@@ -301,12 +309,16 @@
               }
             ],
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "OBJECT",
-                "name": "FoodOrder",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "FoodOrder",
+                  "ofType": null
+                }
               }
             },
             "isDeprecated": false,
@@ -1126,7 +1138,7 @@
             "deprecationReason": null
           },
           {
-            "name": "food",
+            "name": "item",
             "description": "",
             "args": [],
             "type": {

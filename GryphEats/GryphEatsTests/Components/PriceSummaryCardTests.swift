@@ -20,7 +20,7 @@ class PriceSummaryCardTests: XCTestCase {
         let card = PriceSummaryCard(action: { _ in }).environmentObject(Cart(
             items: [
                 RestaurantFoodItem(
-                    foodItem: GraphFoodItem(id: "0", displayName: "Hamburger", price: 9.99),
+                    foodItem: GraphFoodItem(id: "0", name: "Hamburger", price: 9.99),
                     restaurantId: "1",
                     restaurantName: "Mom's Kitchen")
             ]
@@ -33,7 +33,7 @@ class PriceSummaryCardTests: XCTestCase {
         let card = PriceSummaryCard(displayMode: .onCampusMealPlan, action: { _ in }).environmentObject(Cart(
             items: [
                 RestaurantFoodItem(
-                    foodItem: GraphFoodItem(id: "0", displayName: "Hamburger", price: 9.99),
+                    foodItem: GraphFoodItem(id: "0", name: "Hamburger", price: 9.99),
                     restaurantId: "1",
                     restaurantName: "Mom's Kitchen")
             ]
@@ -46,7 +46,7 @@ class PriceSummaryCardTests: XCTestCase {
         let card = PriceSummaryCard(displayMode: .ultraMealPlan, action: { _ in }).environmentObject(Cart(
             items: [
                 RestaurantFoodItem(
-                    foodItem: GraphFoodItem(id: "0", displayName: "Hamburger", price: 9.99),
+                    foodItem: GraphFoodItem(id: "0", name: "Hamburger", price: 9.99),
                     restaurantId: "1",
                     restaurantName: "Mom's Kitchen")
             ]

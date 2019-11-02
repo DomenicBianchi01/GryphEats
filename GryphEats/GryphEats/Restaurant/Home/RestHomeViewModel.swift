@@ -12,23 +12,15 @@ import SwiftUI
 
 class RestHomeViewModel: ObservableObject {
     
-    // MARK: LoadingState
+    // MARK: Internal
     
-    enum LoadingState {
-        case loading
-        case loaded([Restaurant])
-        case error
-    }
-    
-    @Published var loadingState: LoadingState = .loading
+    @Published var loadingState: LoadingState<[Restaurant]> = .loading
     
     // MARK: Private
     
     func fetchRestaurants() {
         self.loadingState = .loading
-
-//        self.loadingState = .loaded([Restaurant(id: "0", name: "Moms", foodItems: [])])
-
+        
         GraphClient.shared.fetch(query: RestaurantMenusQuery()) { result in
             switch result {
             case .success(let data):
