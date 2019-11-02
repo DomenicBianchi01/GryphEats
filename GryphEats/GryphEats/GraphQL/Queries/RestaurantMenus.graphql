@@ -6,11 +6,15 @@ query RestaurantMenus {
             isActive: isactive
             menuItems {
                 item {
-                    id: foodid
-                    displayName: displayname
-                    price
+                    ...FoodItemDetails
                 }
             }
         }
     }
+}
+
+fragment FoodItemDetails on Food {
+    id: foodid
+    name: displayname
+    price
 }

@@ -46,7 +46,7 @@ class OrderStatusBarTests: XCTestCase {
     
     private let cart = Cart(
         items: [RestaurantFoodItem(
-            foodItem: GraphFoodItem(id: "0", displayName: "Hamburger 1", price: 9.99),
+            foodItem: GraphFoodItem(id: "0", name: "Hamburger 1", price: 9.99),
             restaurantId: "1",
             restaurantName: "100 Mile Grill")])
 }

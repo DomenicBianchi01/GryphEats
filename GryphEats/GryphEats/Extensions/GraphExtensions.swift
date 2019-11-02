@@ -12,7 +12,8 @@ import Foundation
 
 typealias GraphRestaurant = RestaurantMenusQuery.Data.Restaurant
 typealias Menu = GraphRestaurant.Menu
-typealias GraphFoodItem = Menu.MenuItem.Item
+typealias GraphFoodItem = FoodItemDetails
+typealias GraphOrder = UserOrdersQuery.Data.GetOrdersByUserId
 
 // GraphQL structs do not conform to `Equatable` by default.
 
@@ -22,12 +23,9 @@ extension GraphFoodItem: Equatable {
     
     // MARK: Public
     
-    public static func == (
-        lhs: RestaurantMenusQuery.Data.Restaurant.Menu.MenuItem.Item,
-        rhs: RestaurantMenusQuery.Data.Restaurant.Menu.MenuItem.Item) -> Bool
-    {
-        return lhs.id == rhs.id &&
-            lhs.displayName == rhs.displayName &&
+    public static func == (lhs: FoodItemDetails, rhs: FoodItemDetails) -> Bool {
+        lhs.id == rhs.id &&
+            lhs.name == rhs.name &&
             lhs.price == rhs.price
     }
 }

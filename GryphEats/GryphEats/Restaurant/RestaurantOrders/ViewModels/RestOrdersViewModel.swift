@@ -13,14 +13,6 @@ import SwiftUI
 
 class RestOrdersViewModel: ObservableObject {
     
-    // MARK: LoadingState
-    
-    enum LoadingState {
-        case loading
-        case loaded([Order])
-        case error
-    }
-    
     // MARK: Lifecycle
     
     init(restID: String) {
@@ -33,7 +25,7 @@ class RestOrdersViewModel: ObservableObject {
     
     // MARK: Internal
     
-    @Published var loadingState: LoadingState = .loading
+    @Published var loadingState: LoadingState<[Order]> = .loading
     var restID: String
     
     func fetchOrders() {
@@ -60,8 +52,8 @@ class RestOrdersViewModel: ObservableObject {
                         foodItems.append(RestaurantFoodItem(
                             foodItem: GraphFoodItem(
                                 id: orderItem.foodid,
-                                displayName: orderItem.food.displayname,
-                                price: orderItem.food.price),
+                                name: orderItem.item.displayname,
+                                price: orderItem.item.price),
                             restaurantId: order.restaurantid,
                             restaurantName: "TODO"))
                     }
@@ -71,7 +63,7 @@ class RestOrdersViewModel: ObservableObject {
                     dateFormatter.dateFormat = "h:mma MMM dd, yyyy"
                     let dateString = dateFormatter.string(from: dateParsed!)
                     orders.append(Order(
-                        id: Int(order.orderid)!,
+                        id: order.orderid,
                         customer: Customer(name: "John Doe"),
                         status: Order.Status(rawValue: order.ordertype) ?? .new,
                         timePlaced: dateString,
@@ -113,8 +105,8 @@ class RestOrdersViewModel: ObservableObject {
                         foodItems.append(RestaurantFoodItem(
                             foodItem: GraphFoodItem(
                                 id: orderItem.foodid,
-                                displayName: orderItem.food.displayname,
-                                price: orderItem.food.price),
+                                name: orderItem.item.fragments.foodItemDetails.name,
+                                price: orderItem.item.fragments.foodItemDetails.price),
                             restaurantId: order.restaurantid,
                             restaurantName: "TODO"))
                     }
@@ -124,7 +116,7 @@ class RestOrdersViewModel: ObservableObject {
                     dateFormatter.dateFormat = "h:mma MMM dd, yyyy"
                     let dateString = dateFormatter.string(from: dateParsed!)
                     orders.append(Order(
-                        id: Int(order.orderid)!,
+                        id: order.orderid,
                         customer: Customer(name: "John Doe"),
                         status: Order.Status(rawValue: order.ordertype) ?? .new,
                         timePlaced: dateString,

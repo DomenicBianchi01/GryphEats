@@ -14,7 +14,7 @@ class Order: Items, ObservableObject, Identifiable {
     
     // MARK: Lifecycle
         
-    init(id: Int, customer: Customer, status: Status = .new, timePlaced: String, items: [RestaurantFoodItem] = []) {
+    init(id: String, customer: Customer, status: Status = .new, timePlaced: String, items: [RestaurantFoodItem] = []) {
         self.id = id
         self.customer = customer
         self.status = status
@@ -53,7 +53,7 @@ class Order: Items, ObservableObject, Identifiable {
     
     @Published var status: Status
     
-    let id: Int
+    let id: String
     let customer: Customer
     let timePlaced: String //TODO: Date object instead
     

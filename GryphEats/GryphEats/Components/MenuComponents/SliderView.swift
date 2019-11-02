@@ -65,7 +65,7 @@ struct SliderView: View {
     }
     
     private func menuCard(for item: GraphFoodItem, atIndex index: Int, onTap: @escaping (Int) -> Void) -> AnyView {
-        let card = MenuCard(itemName: item.displayName, imageName: "hamburger") {
+        let card = MenuCard(itemName: item.name, imageName: "hamburger") {
             onTap(index)
         }
         
@@ -84,23 +84,23 @@ struct SliderView_Previews: PreviewProvider {
             SliderView(
                 type: .foodItems([
                     RestaurantFoodItem(
-                        foodItem: GraphFoodItem(id: "1", displayName: "Hamburger 1", price: 2),
+                        foodItem: GraphFoodItem(id: "1", name: "Hamburger 1", price: 2),
                         restaurantId: "1",
                         restaurantName: "100 Mile Grill"),
                     RestaurantFoodItem(
-                        foodItem: GraphFoodItem(id: "2", displayName: "Hamburger 2", price: 2),
+                        foodItem: GraphFoodItem(id: "2", name: "Hamburger 2", price: 2),
                         restaurantId: "1",
                         restaurantName: "100 Mile Grill"),
                     RestaurantFoodItem(
-                        foodItem: GraphFoodItem(id: "3", displayName: "Hamburger 3", price: 2),
+                        foodItem: GraphFoodItem(id: "3", name: "Hamburger 3", price: 2),
                         restaurantId: "1",
                         restaurantName: "100 Mile Grill"),
                     RestaurantFoodItem(
-                        foodItem: GraphFoodItem(id: "4", displayName: "Hamburger 4", price: 2),
+                        foodItem: GraphFoodItem(id: "4", name: "Hamburger 4", price: 2),
                         restaurantId: "1",
                         restaurantName: "100 Mile Grill"),
                     RestaurantFoodItem(
-                        foodItem: GraphFoodItem(id: "5", displayName: "Hamburger 5", price: 2),
+                        foodItem: GraphFoodItem(id: "5", name: "Hamburger 5", price: 2),
                         restaurantId: "1",
                         restaurantName: "100 Mile Grill")
                 ]),

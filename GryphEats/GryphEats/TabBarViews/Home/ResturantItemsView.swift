@@ -62,7 +62,10 @@ struct RestaurantItemsView: View {
         }
         
         return menuItems.map {
-            RestaurantFoodItem(foodItem: $0.item, restaurantId: restaurant.id, restaurantName: restaurant.name)
+            RestaurantFoodItem(
+                foodItem: $0.item.fragments.foodItemDetails,
+                restaurantId: restaurant.id,
+                restaurantName: restaurant.name)
         }
     }
 }
@@ -76,13 +79,25 @@ struct RestaurantItemsView_Previews: PreviewProvider {
                 menu: [
                     Menu(isActive: true, menuItems: [
                         Menu.MenuItem(item:
-                            GraphFoodItem(id: "1", displayName: "Hamburger 1", price: 2)),
+                            RestaurantMenusQuery.Data.Restaurant.Menu.MenuItem.Item(
+                                id: "1",
+                                name: "Hamburger 1",
+                                price: 2)),
                         Menu.MenuItem(item:
-                            GraphFoodItem(id: "2", displayName: "Hamburger 2", price: 2)),
+                            RestaurantMenusQuery.Data.Restaurant.Menu.MenuItem.Item(
+                                id: "2",
+                                name: "Hamburger 2",
+                                price: 2)),
                         Menu.MenuItem(item:
-                            GraphFoodItem(id: "3", displayName: "Hamburger 3", price: 2)),
+                            RestaurantMenusQuery.Data.Restaurant.Menu.MenuItem.Item(
+                                id: "3",
+                                name: "Hamburger 3",
+                                price: 2)),
                         Menu.MenuItem(item:
-                            GraphFoodItem(id: "4", displayName: "Hamburger 4", price: 2))
+                            RestaurantMenusQuery.Data.Restaurant.Menu.MenuItem.Item(
+                                id: "4",
+                                name: "Hamburger 4",
+                                price: 2))
                     ])
                 ]
         )) { _ in }

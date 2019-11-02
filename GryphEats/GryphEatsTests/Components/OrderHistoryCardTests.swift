@@ -38,13 +38,13 @@ class OrderHistoryCardTests: XCTestCase {
     
     private func order(status: Order.Status) -> Order {
         Order(
-            id: 0,
+            id: "0",
             customer: Customer(name: "Billy Bob"),
             status: status,
             timePlaced: "12:00pm",
             items: [
                 RestaurantFoodItem(
-                    foodItem: GraphFoodItem(id: "1", displayName: "Hamburger", price: 9.99),
+                    foodItem: GraphFoodItem(id: "1", name: "Hamburger", price: 9.99),
                     restaurantId: "1",
                     restaurantName: "Mom's Kitchen")])
     }

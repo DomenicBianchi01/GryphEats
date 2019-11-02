@@ -9,7 +9,7 @@ query OrdersByRest($restID: ID!) {
         orderid
         foodid
         identifier
-            food {
+            item {
                 foodid
                 displayname
                 description

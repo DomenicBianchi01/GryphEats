@@ -1,0 +1,13 @@
+query UserOrders($userID: ID!) {
+    getOrdersByUserID(userid: $userID) {
+        id: orderid
+        restaurantId: restaurantid
+        timePlaced: timeplaced
+        status: ordertype
+        items: orderitems {
+            item {
+                ...FoodItemDetails
+            }
+        }
+    }
+}

@@ -8,11 +8,9 @@ subscription OrderUpdated($restaurantID: ID!) {
             orderid
             foodid
             identifier
-            food {
-                foodid
-                displayname
+            item {
+                ...FoodItemDetails
                 description
-                price
             }
         }
     }

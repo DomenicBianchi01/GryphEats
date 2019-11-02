@@ -13,17 +13,9 @@ import SwiftUI
 
 class HomeViewModel: ObservableObject {
     
-    // MARK: LoadingState
-    
-    enum LoadingState {
-        case loading
-        case loaded([GraphRestaurant])
-        case error
-    }
-    
     // MARK: Internal
     
-    @Published var loadingState: LoadingState = .loading
+    @Published var loadingState: LoadingState<[GraphRestaurant]> = .loading
     
     let categories: [Category] = [
         Category(id: 0, name: "Fish"),
