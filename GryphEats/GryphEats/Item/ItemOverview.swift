@@ -54,16 +54,13 @@ struct ItemOverview: View, Dismissable {
                     
                     Text("Ingredients").bold().padding(.leading)
                     
-                    ScrollView {
-                        SliderView(
-                            type: .ingredients([
-                                Ingredient(id: 0, name: "Tomato", imageName: "tomato"),
-                                Ingredient(id: 1, name: "Lettuce", imageName: "tomato"),
-                                Ingredient(id: 2, name: "Onion", imageName: "tomato"),
-                                Ingredient(id: 3, name: "Pepper", imageName: "tomato"),
-                                Ingredient(id: 4, name: "Black Olives", imageName: "tomato"),
-                            ])) { _ in }
-                    }
+                    CheckBoxView(ingredients: [
+                        Ingredient(id: 0, name: "Tomato", imageName: "tomato"),
+                        Ingredient(id: 1, name: "Lettuce", imageName: "tomato"),
+                        Ingredient(id: 2, name: "Onion", imageName: "tomato"),
+                        Ingredient(id: 3, name: "Pepper", imageName: "tomato"),
+                        Ingredient(id: 4, name: "Black Olives", imageName: "tomato"),
+                    ], onTap: { /*TODO*/ })
                 }
             }
         }
