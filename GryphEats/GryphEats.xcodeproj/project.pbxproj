@@ -259,6 +259,9 @@
 		EB1E4546234CF28800B5C8FD /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB1E4533234CF28800B5C8FD /* Roboto-Bold.ttf */; };
 		EB1E4547234CF28800B5C8FD /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB1E4534234CF28800B5C8FD /* Roboto-Thin.ttf */; };
 		EB1E4548234CF28800B5C8FD /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB1E4535234CF28800B5C8FD /* Roboto-Black.ttf */; };
+		EB1E4A00236DD96D00B93EEF /* CheckBoxRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1E49FF236DD96D00B93EEF /* CheckBoxRow.swift */; };
+		EB1E4A01236DDA0D00B93EEF /* CheckBoxRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1E49FF236DD96D00B93EEF /* CheckBoxRow.swift */; };
+		EB1E4A03236E204B00B93EEF /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1E4A02236E204B00B93EEF /* CheckBoxView.swift */; };
 		EB2237F3234B958C00CB9196 /* RestHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2237F2234B958C00CB9196 /* RestHomeView.swift */; };
 		EB2237F8234B9B4700CB9196 /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = EB2237F7234B9B4700CB9196 /* QGrid */; };
 		EB37D1A22360DBD500CD0D9C /* RestHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB37D1A12360DBD500CD0D9C /* RestHomeViewModel.swift */; };
@@ -423,6 +426,8 @@
 		EB1E4533234CF28800B5C8FD /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		EB1E4534234CF28800B5C8FD /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		EB1E4535234CF28800B5C8FD /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		EB1E49FF236DD96D00B93EEF /* CheckBoxRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxRow.swift; sourceTree = "<group>"; };
+		EB1E4A02236E204B00B93EEF /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 		EB2237F2234B958C00CB9196 /* RestHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestHomeView.swift; sourceTree = "<group>"; };
 		EB37D1A12360DBD500CD0D9C /* RestHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestHomeViewModel.swift; sourceTree = "<group>"; };
 		EB37D1A7236109A900CD0D9C /* OrdersByRest.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = OrdersByRest.graphql; sourceTree = "<group>"; };
@@ -702,6 +707,8 @@
 			isa = PBXGroup;
 			children = (
 				B0A7C402234C2CE0001555B7 /* SliderView.swift */,
+				EB1E49FF236DD96D00B93EEF /* CheckBoxRow.swift */,
+				EB1E4A02236E204B00B93EEF /* CheckBoxView.swift */,
 				B0A7C405234C2CEC001555B7 /* MenuCard.swift */,
 				B0843363234CB2A500DD325E /* CategoryCard.swift */,
 				B090F0C3234F71EC007CF06F /* IngredientCard.swift */,
@@ -1249,6 +1256,7 @@
 				B0187632236B19130031FD2E /* LandingView.swift in Sources */,
 				B0187633236B19130031FD2E /* Ingredient.swift in Sources */,
 				B0187634236B19130031FD2E /* SceneDelegate.swift in Sources */,
+				EB1E4A01236DDA0D00B93EEF /* CheckBoxRow.swift in Sources */,
 				B0187635236B19130031FD2E /* CategoryCard.swift in Sources */,
 				B0187636236B19130031FD2E /* AccountViewModel.swift in Sources */,
 				B0187637236B19130031FD2E /* AnswerQuestionView.swift in Sources */,
@@ -1322,6 +1330,7 @@
 				B03E283C235E772D0000EDA2 /* AddMealPlanViewModel.swift in Sources */,
 				B0F6E1FF234E6E9A00067B79 /* SlideOverCard.swift in Sources */,
 				B021DE9C234FCE6600DBF1AA /* ActivityIndicator.swift in Sources */,
+				EB1E4A03236E204B00B93EEF /* CheckBoxView.swift in Sources */,
 				B0A7C406234C2CEC001555B7 /* MenuCard.swift in Sources */,
 				B0F3197F236607F7006500AC /* AccountView.swift in Sources */,
 				B090F0C4234F71EC007CF06F /* IngredientCard.swift in Sources */,
@@ -1348,6 +1357,7 @@
 				B0B2057C2333D45000694587 /* SceneDelegate.swift in Sources */,
 				B0843364234CB2A500DD325E /* CategoryCard.swift in Sources */,
 				B0F3198723660BE9006500AC /* AccountViewModel.swift in Sources */,
+				EB1E4A00236DD96D00B93EEF /* CheckBoxRow.swift in Sources */,
 				B06B515023496B070015E960 /* AnswerQuestionView.swift in Sources */,
 				EBC089F323524B5800DA3A55 /* OrderRow.swift in Sources */,
 				B08F32132348D3C2009A0E61 /* ColorExtensions.swift in Sources */,
