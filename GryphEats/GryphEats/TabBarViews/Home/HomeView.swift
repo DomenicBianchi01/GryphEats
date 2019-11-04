@@ -37,11 +37,7 @@ struct HomeView: View {
     private var content: AnyView {
         switch viewModel.loadingState {
         case .loading:
-            return AnyView(VStack {
-                Spacer()
-                ActivityIndicator(style: .large)
-                Spacer()
-            })
+            return AnyView(ActivityIndicatorView())
         case .loaded(let restaurants):
             return AnyView(VStack(alignment: .leading, spacing: 0) {
                 SliderView(type: .categories(self.viewModel.categories)) { index in
