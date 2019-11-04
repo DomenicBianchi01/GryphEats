@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-// MARK: - MenuCard
+// MARK: - CheckBoxRow
 
 struct CheckBoxRow: View {
     
@@ -24,12 +24,12 @@ struct CheckBoxRow: View {
     var body: some View {
         Button (action: {
             self.onTap()
-            self.isSelected = !self.isSelected
+            self.isSelected.toggle()
         }) {
             HStack(alignment: .top) {
                 Rectangle()
                     .fill(isSelected ? Color.guelphRed : Color.lightGray)
-                    .frame(width:22, height:22, alignment: .center)
+                    .frame(width: 22, height: 22, alignment: .center)
                     .cornerRadius(5)
                     .shadow(radius: 2)
                     .padding([.vertical, .leading])
@@ -40,19 +40,19 @@ struct CheckBoxRow: View {
                 Spacer()
             }
         }.contentShape(Rectangle())
-        .background(Color.white)
-        .cornerRadius(5)
-        .shadow(radius: 2)
+            .background(Color.white)
+            .cornerRadius(5)
+            .shadow(radius: 2)
     }
     
     // MARK: Private
     
-    private let onTap: () -> Void
+    @State var isSelected: Bool = false
     
+    private let onTap: () -> Void
     private let itemName: String
     private let frameSize = CGSize(width: 150, height: 200)
-    @State var isSelected: Bool = false
-
+    
 }
 
 struct CheckBoxCard_Previews: PreviewProvider {
