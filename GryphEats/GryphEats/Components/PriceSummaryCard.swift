@@ -46,6 +46,18 @@ struct PriceSummaryCard: View {
         case confirmPayment
     }
     
+    // MARK: DiscountType
+    
+    private enum DiscountType: String {
+        case onCampus = "With On-Campus Meal Plan (30% discount)"
+        case onCampusTax = "With On-Campus Meal Plan (No Tax)"
+        case onCampusTotal = "With On-Campus Meal Plan"
+        
+        case offCampus = "With Ultra Meal Plan (10% discount)"
+        case offCampusTax = "With Ultra Meal Plan (5% tax discount)"
+        case offCampusTotal = "With Ultra Meal Plan"
+    }
+    
     // MARK: Lifecycle
     
     init(
@@ -180,16 +192,6 @@ struct PriceSummaryCard: View {
             .padding(.horizontal)
             .padding(.bottom, 10)
             .foregroundColor(.secondary)
-    }
-    
-    private enum DiscountType: String {
-        case onCampus = "With On-Campus Meal Plan (30% discount)"
-        case onCampusTax = "With On-Campus Meal Plan (No Tax)"
-        case onCampusTotal = "With On-Campus Meal Plan"
-        
-        case offCampus = "With Ultra Meal Plan (10% discount)"
-        case offCampusTax = "With Ultra Meal Plan (5% tax discount)"
-        case offCampusTotal = "With Ultra Meal Plan"
     }
 }
 

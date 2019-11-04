@@ -26,13 +26,24 @@ struct OrderStatusStepView: View {
         VStack {
             ZStack {
                 HStack {
-                    Rectangle().frame(height: 2).padding(.top, 2).foregroundColor(isFirstHalfComplete ? .green : .gray)
-                    Rectangle().frame(height: 2).padding(.top, 2).foregroundColor(isSecondHalfComplete ? .green : .gray)
+                    Rectangle()
+                        .frame(height: 2)
+                        .padding(.top, 2)
+                        .foregroundColor(isFirstHalfComplete ? .green : .gray)
+                    Rectangle()
+                        .frame(height: 2)
+                        .padding(.top, 2)
+                        .foregroundColor(isSecondHalfComplete ? .green : .gray)
                 }
-                Circle().frame(width: 30, height: 30).foregroundColor(isFirstHalfComplete ? .green : .gray)
+                Circle()
+                    .frame(width: 30, height: 30)
+                    .foregroundColor(isFirstHalfComplete ? .green : .gray)
                 
                 if isFirstHalfComplete {
-                    Image(systemName: "checkmark").resizable().frame(width: 12, height: 12).foregroundColor(.white)
+                    Image(systemName: "checkmark")
+                        .resizable()
+                        .frame(width: 12, height: 12)
+                        .foregroundColor(.white)
                 }
             }
             Text(text)

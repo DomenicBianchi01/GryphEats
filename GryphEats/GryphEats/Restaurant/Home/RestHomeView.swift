@@ -54,11 +54,7 @@ struct RestHomeView: View {
     private var content: AnyView {
         switch viewModel.loadingState {
         case .loading:
-            return AnyView(VStack {
-                Spacer()
-                ActivityIndicator(style: .large)
-                Spacer()
-            })
+            return AnyView(ActivityIndicatorView())
         case .loaded(let restaurants):
             if ( UIDevice.current.userInterfaceIdiom == .phone ) {
                 return AnyView( QGrid(restaurants,

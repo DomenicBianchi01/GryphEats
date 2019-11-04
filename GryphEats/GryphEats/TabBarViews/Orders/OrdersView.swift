@@ -42,11 +42,7 @@ struct OrdersView: View {
     private var content: AnyView {
         switch viewModel.loadingState {
         case .loading:
-            return AnyView(VStack {
-                Spacer()
-                ActivityIndicator(style: .large)
-                Spacer()
-            })
+            return AnyView(ActivityIndicatorView())
         case .loaded(let orders):
             // Swift UI Bug: `listRowBackground` and `listRowInsets` do not work without nesting a `ForEach` within
             // `List`

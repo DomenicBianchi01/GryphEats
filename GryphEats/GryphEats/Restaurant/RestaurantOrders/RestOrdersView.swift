@@ -38,11 +38,7 @@ struct RestOrdersView: View {
     private var content: AnyView {
         switch viewModel.loadingState {
         case .loading:
-            return AnyView(VStack {
-                Spacer()
-                ActivityIndicator(style: .large)
-                Spacer()
-            })
+            return AnyView(ActivityIndicatorView())
         case .loaded(let orders):
             if ( UIDevice.current.userInterfaceIdiom == .pad ) {
                 return AnyView(
