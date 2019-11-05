@@ -38,24 +38,37 @@ class LoginViewModel {
         
         return try? JSONDecoder().decode(User.self, from: data)
     }
-
-    func attemptLogin(username: String, password: String) -> Result<User, LoginViewModel.LoginError> {
-        // TODO: The code below is just being used for testing purposes until the Login API is ready
-        
+    
+    func attemptLogin(
+        username: String,
+        password: String,
+        completion: @escaping (Result<User, LoginViewModel.LoginError>) -> Void)
+    {
         if username == restaurantUser.username && password == restaurantUser.password {
-            return .success(restaurantUser)
-        } else if username == customerUser.username && password == customerUser.password {
-            saveCredentials(for: customerUser)
-            return .success(customerUser)
+            completion(.success(restaurantUser))
+            return
         }
         
-        return .failure(.invalidCredentials)
+        GraphClient.shared.fetch(query: LoginUserQuery(email: username, password: password)) { result in
+            switch result {
+            case .success(let data):
+                guard let userID = data.validateUser.account?.userId else {
+                    return completion(.failure(.invalidCredentials))
+                }
+                
+                //TODO: Only save credentials if user type is a customer
+                self.saveCredentials(for: User(id: userID, type: .customer, username: username, password: ""))
+                
+                return completion(.success(User(id: userID, type: .customer, username: username, password: "")))
+            case .failure:
+                return completion(.failure(.invalidCredentials))
+            }
+        }
     }
     
     // MARK: Private
     
-    private let restaurantUser = User(type: .restaurant, username: "Test", password: "password")
-    private let customerUser = User(type: .customer, username: "customer", password: "password")
+    private let restaurantUser = User(id: "1", type: .restaurant, username: "Test", password: "password")
     
     private func saveCredentials(for user: User) {
         if let data = try? JSONEncoder().encode(user) {

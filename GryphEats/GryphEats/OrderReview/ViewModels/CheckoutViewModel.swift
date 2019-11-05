@@ -52,7 +52,7 @@ class CheckoutViewModel {
         return paymentMethods
     }
     
-    func submitOrder(for cart: Cart, completion: @escaping (Result<Bool, PaymentError>) -> Void) {
+    func submitOrder(for userID: String, with cart: Cart, completion: @escaping (Result<Bool, PaymentError>) -> Void) {
         // If an order has items from different restaurants, we need to split the order into "one order per restaurant"
         var splitItems: [String: [GraphFoodItem]] = [:]
         
@@ -73,7 +73,8 @@ class CheckoutViewModel {
                 GraphClient.shared.perform(
                     mutation: PlaceOrderMutation(
                         foodIDs: element.value.compactMap { $0.id },
-                        restaurantID: element.key))
+                        restaurantID: element.key,
+                        userID: userID))
                 { result in
                     dispatchGroup.leave()
                     //                switch result {

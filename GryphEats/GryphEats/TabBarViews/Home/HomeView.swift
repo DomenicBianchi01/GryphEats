@@ -33,6 +33,7 @@ struct HomeView: View {
     @State private var showOrderReview: Bool = false
     @ObservedObject private var viewModel = HomeViewModel()
     @EnvironmentObject private var cart: Cart
+    @EnvironmentObject private var loggedInUser: User
     
     private var content: AnyView {
         switch viewModel.loadingState {
@@ -72,6 +73,7 @@ struct HomeView: View {
                 .foregroundColor(.black)
         }.sheet(isPresented: $showOrderReview) {
             OrderReviewView()
+                .environmentObject(self.loggedInUser)
                 .environmentObject(self.cart)
                 .environmentObject(OrderReviewState())
         }

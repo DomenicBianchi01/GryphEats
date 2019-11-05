@@ -12,6 +12,8 @@ import SwiftUI
 
 extension AnyTransition {
     
+    // MARK: Internal
+    
     static var leftSlide: AnyTransition {
         .asymmetric(
             insertion: .move(edge: .leading),

@@ -96,20 +96,22 @@ struct LoginView: View {
     private let viewModel = LoginViewModel()
     
     private func attemptLogin() {
-        switch viewModel.attemptLogin(username: email, password: password) {
-        case .success(let user):
-            self.presentPostLoginScreen(for: user)
-        case .failure(let error):
-            self.error = error
+        viewModel.attemptLogin(username: email, password: password) { result in
+            switch result {
+            case .success(let user):
+                self.presentPostLoginScreen(for: user)
+            case .failure(let error):
+                self.error = error
+            }
         }
     }
     
     private func presentPostLoginScreen(for user: User) {
         self.viewControllerHolder.value?.present(style: .fullScreen) {
             if user.userType == .restaurant {
-                RestHomeView()
+                RestHomeView().environmentObject(user)
             } else {
-                MainTabView()
+                MainTabView().environmentObject(user)
             }
         }
     }

@@ -52,8 +52,8 @@ class RestOrdersViewModel: ObservableObject {
                         foodItems.append(RestaurantFoodItem(
                             foodItem: GraphFoodItem(
                                 id: orderItem.foodid,
-                                name: orderItem.item.displayname,
-                                price: orderItem.item.price),
+                                name: orderItem.item.fragments.foodItemDetails.name,
+                                price: orderItem.item.fragments.foodItemDetails.price),
                             restaurantId: order.restaurantid,
                             restaurantName: "TODO"))
                     }

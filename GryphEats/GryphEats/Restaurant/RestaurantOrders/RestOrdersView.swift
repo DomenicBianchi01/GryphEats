@@ -40,29 +40,27 @@ struct RestOrdersView: View {
         case .loading:
             return AnyView(ActivityIndicatorView())
         case .loaded(let orders):
-            if ( UIDevice.current.userInterfaceIdiom == .pad ) {
+            if UIDevice.current.userInterfaceIdiom == .pad {
                 return AnyView(
                     NavigationView {
-                        List {
-                            ForEach(orders) { order in
-                                NavigationLink(destination: OrderDetailsView(order: order).navigationBarTitle("Order Details")) {
-                                    OrderCard(order: order, enableShadow: false, isCollapsable: false, fillSpace: true)
-                                }
+                        List(orders) { order in
+                            NavigationLink(destination: OrderDetailsView(order: order).navigationBarTitle("Order Details")) {
+                                OrderCard(order: order, enableShadow: false, isCollapsable: false, fillSpace: true)
                             }
                         }
-                        if ( UIDevice.current.userInterfaceIdiom == .pad ) {
+                        if UIDevice.current.userInterfaceIdiom == .pad {
                             Text("Select an order from the list to get started")
                         }
                     }
                 )
             } else {
-                return AnyView(List {
-                    ForEach(orders) { order in
+                return AnyView(
+                    List(orders) { order in
                         NavigationLink(destination: OrderDetailsView(order: order).navigationBarTitle("Order Details")) {
                             OrderCard(order: order, enableShadow: false, isCollapsable: false, fillSpace: true)
                         }
                     }
-                })
+                )
             }
         case .error:
             return AnyView(ErrorView(infoText: "Whoops! We could not fetch the stations.", buttonText: "Try Again") {
