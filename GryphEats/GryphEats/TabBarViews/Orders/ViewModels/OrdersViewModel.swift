@@ -16,10 +16,10 @@ class OrdersViewModel: ObservableObject {
     
     @Published private(set) var loadingState: LoadingState<[Order]> = .loading
     
-    func fetchOrders() {
+    func fetchOrders(userID: String) {
         loadingState = .loading
         
-        GraphClient.shared.fetch(query: UserOrdersQuery(userID: "1")) { result in
+        GraphClient.shared.fetch(query: UserOrdersQuery(userID: userID)) { result in
             switch result {
             case .success(let data):
                 self.loadingState = .loaded(data.getOrdersByUserId.compactMap({ $0 }).map { order in

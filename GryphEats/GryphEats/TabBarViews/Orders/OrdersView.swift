@@ -30,7 +30,7 @@ struct OrdersView: View {
         }.onAppear {
             UITableView.appearance().separatorStyle = .none
             UITableView.appearance().backgroundColor = .lightGray
-            self.viewModel.fetchOrders()
+            self.viewModel.fetchOrders(userID: self.loggedInUser.id)
         }
     }
     
@@ -38,6 +38,8 @@ struct OrdersView: View {
     
     @State private var selectedOrder: Order? = nil
     @ObservedObject private var viewModel = OrdersViewModel()
+    
+    @EnvironmentObject private var loggedInUser: User
     
     private var content: AnyView {
         switch viewModel.loadingState {
@@ -55,7 +57,7 @@ struct OrdersView: View {
             })
         case .error:
             return AnyView(ErrorView(infoText: "Whoops! We could not fetch your orders.", buttonText: "Try Again") {
-                self.viewModel.fetchOrders()
+                self.viewModel.fetchOrders(userID: self.loggedInUser.id)
             })
         }
     }
@@ -63,6 +65,6 @@ struct OrdersView: View {
 
 struct OrdersView_Previews: PreviewProvider {
     static var previews: some View {
-        OrdersView()
+        OrdersView().environmentObject(User(id: "1", type: .customer, username: "", password: ""))
     }
 }

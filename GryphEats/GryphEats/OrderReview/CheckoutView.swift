@@ -69,7 +69,7 @@ struct CheckoutView: View {
                 message: Text("Once your confirm your payment, your order will begin to be prepared."),
                 primaryButton: .default(Text("Confirm")) {
                     withAnimation {
-                        self.viewModel.submitOrder(for: self.cart) { result in
+                        self.viewModel.submitOrder(for: self.loggedInUser.id, with: self.cart) { result in
                             switch result {
                             case .success:
                                 self.state.state = .confirmed
@@ -92,6 +92,7 @@ struct CheckoutView: View {
     
     // MARK: Private
     
+    @EnvironmentObject private var loggedInUser: User
     @EnvironmentObject private var cart: Cart
     @EnvironmentObject private var state: OrderReviewState
     
@@ -126,7 +127,7 @@ struct CheckoutView: View {
         }
     }
     
-    var priceSummaryDisplayMode: PriceSummaryCard.DisplayMode? {
+    private var priceSummaryDisplayMode: PriceSummaryCard.DisplayMode? {
         guard !viewModel.paymentMethods.isEmpty else {
             return nil
         }
@@ -154,5 +155,6 @@ struct CheckoutView_Previews: PreviewProvider {
                     restaurantName: "100 Mile Grill")
             ]))
             .environmentObject(OrderReviewState())
+            .environmentObject(User(id: "1", type: .customer, username: "", password: ""))
     }
 }

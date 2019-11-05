@@ -229,6 +229,10 @@
 		B0CD88CE236088A200A5C021 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD88CD236088A200A5C021 /* CustomTabBar.swift */; };
 		B0CD88D42360A21200A5C021 /* CustomTabBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD88D32360A21200A5C021 /* CustomTabBarTests.swift */; };
 		B0CD88D72360ABE900A5C021 /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD88D62360ABE900A5C021 /* OrdersView.swift */; };
+		B0D9197E23718735006324D3 /* Login.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0D9197D23718735006324D3 /* Login.graphql */; };
+		B0D9197F23718735006324D3 /* Login.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0D9197D23718735006324D3 /* Login.graphql */; };
+		B0D9198023719A21006324D3 /* Totalable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0646911236BA77D00EDC13C /* Totalable.swift */; };
+		B0D9198123719A45006324D3 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1E4A02236E204B00B93EEF /* CheckBoxView.swift */; };
 		B0D9ED2223562296006A1545 /* PriceSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D9ED2123562296006A1545 /* PriceSummaryCard.swift */; };
 		B0D9ED25235650E3006A1545 /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D9ED24235650E3006A1545 /* DoubleExtensions.swift */; };
 		B0D9ED28235669F0006A1545 /* CartItemCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D9ED27235669F0006A1545 /* CartItemCardTests.swift */; };
@@ -400,6 +404,7 @@
 		B0CD88CD236088A200A5C021 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		B0CD88D32360A21200A5C021 /* CustomTabBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarTests.swift; sourceTree = "<group>"; };
 		B0CD88D62360ABE900A5C021 /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
+		B0D9197D23718735006324D3 /* Login.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Login.graphql; sourceTree = "<group>"; };
 		B0D9ED2123562296006A1545 /* PriceSummaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSummaryCard.swift; sourceTree = "<group>"; };
 		B0D9ED24235650E3006A1545 /* DoubleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtensions.swift; sourceTree = "<group>"; };
 		B0D9ED27235669F0006A1545 /* CartItemCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCardTests.swift; sourceTree = "<group>"; };
@@ -595,6 +600,7 @@
 				B0CA762B23454A38003E7FBD /* RestaurantMenus.graphql */,
 				EB37D1A7236109A900CD0D9C /* OrdersByRest.graphql */,
 				B01AE8D4236CBE0700827276 /* UserOrders.graphql */,
+				B0D9197D23718735006324D3 /* Login.graphql */,
 			);
 			path = Queries;
 			sourceTree = "<group>";
@@ -1124,6 +1130,7 @@
 				B018765A236B19130031FD2E /* Roboto-MediumItalic.ttf in Resources */,
 				B018765B236B19130031FD2E /* Assets.xcassets in Resources */,
 				B018765C236B19130031FD2E /* RobotoCondensed-Italic.ttf in Resources */,
+				B0D9197F23718735006324D3 /* Login.graphql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1158,6 +1165,7 @@
 				EB1E453B234CF28800B5C8FD /* Roboto-MediumItalic.ttf in Resources */,
 				B0B205832333D45200694587 /* Assets.xcassets in Resources */,
 				EB1E453C234CF28800B5C8FD /* RobotoCondensed-Italic.ttf in Resources */,
+				B0D9197E23718735006324D3 /* Login.graphql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1248,6 +1256,8 @@
 				B0187615236B19130031FD2E /* GraphClient.swift in Sources */,
 				B0187668236B21D00031FD2E /* OrderStatusStepView.swift in Sources */,
 				B0187616236B19130031FD2E /* LoginViewModel.swift in Sources */,
+				B0D9198023719A21006324D3 /* Totalable.swift in Sources */,
+				B0D9198123719A45006324D3 /* CheckBoxView.swift in Sources */,
 				B0187617236B19130031FD2E /* RestOrdersViewModel.swift in Sources */,
 				B0187618236B19130031FD2E /* BasicButton.swift in Sources */,
 				B0187619236B19130031FD2E /* AddMealPlanView.swift in Sources */,

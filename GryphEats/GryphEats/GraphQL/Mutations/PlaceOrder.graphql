@@ -1,5 +1,5 @@
-mutation PlaceOrder($foodIDs: [ID!]!, $restaurantID: ID!) {
-    placeOrder(foodids: $foodIDs, restaurantid: $restaurantID) {
+mutation PlaceOrder($foodIDs: [ID!]!, $restaurantID: ID!, $userID: ID!) {
+    placeOrder(userid: $userID, foodids: $foodIDs, restaurantid: $restaurantID) {
         success
     }
 }

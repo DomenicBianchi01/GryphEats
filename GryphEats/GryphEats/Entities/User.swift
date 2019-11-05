@@ -6,11 +6,11 @@
 //  Copyright © 2019 The Subway Squad. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 
 // MARK: - User
 
-struct User: Codable {
+class User: Codable, ObservableObject {
     
     // MARK: Type
     
@@ -21,7 +21,8 @@ struct User: Codable {
     
     // MARK: Lifecycle
     
-    init(type: UserType, username: String, password: String) {
+    init(id: String, type: UserType, username: String, password: String) {
+        self.id = id
         self.userType = type
         self.username = username
         self.password = password
@@ -29,6 +30,7 @@ struct User: Codable {
     
     // MARK: Internal
     
+    let id: String
     let userType: UserType
     let username: String
     let password: String

@@ -11,20 +11,32 @@ import SwiftUI
 
 //https://stackoverflow.com/a/56880640
 
+// MARK: - ViewControllerHolder
+
 struct ViewControllerHolder {
     weak var value: UIViewController?
 }
 
+// MARK: - ViewControllerKey
+
 struct ViewControllerKey: EnvironmentKey {
+    
+    // MARK: Internal
+    
     static var defaultValue: ViewControllerHolder {
         ViewControllerHolder(value: UIApplication.shared.windows.first?.rootViewController)
     }
 }
 
+// MARK: - EnvironmentValues
+
 extension EnvironmentValues {
+    
+    // MARK: Internal
+    
     var viewController: ViewControllerHolder {
         get {
-            return self[ViewControllerKey.self]
+            self[ViewControllerKey.self]
         }
         set {
             self[ViewControllerKey.self] = newValue

@@ -45,16 +45,30 @@ struct OrderStatusBar: View {
     private let status: Order.Status
     
     private func orderStatusStepView(for stepStatus: Order.Status) -> OrderStatusStepView {
-        OrderStatusStepView(
+        var barStyle: OrderStatusStepView.BarStyle = .full
+        
+        if stepStatus.rawValue == 0 {
+            barStyle = .trailing
+        } else if stepStatus.rawValue == Order.Status.allCases.count - 1 {
+            barStyle = .leading
+        }
+        
+        return OrderStatusStepView(
+            step: stepStatus.rawValue + 1,
             text: stepStatus.asString,
+            barStyle: barStyle,
             isFirstHalfComplete: self.status.rawValue >= stepStatus.rawValue,
-            isSecondHalfComplete: self.status.rawValue > stepStatus.rawValue ||
-                Order.Status.allCases.count == self.status.rawValue + 1)
+            isSecondHalfComplete: self.status.rawValue > stepStatus.rawValue)
     }
 }
 
 struct OrderStatusBar_Previews: PreviewProvider {
     static var previews: some View {
-        OrderStatusBar(status: .new)
+        VStack {
+            OrderStatusBar(status: .new)
+            OrderStatusBar(status: .inProgress)
+            OrderStatusBar(status: .readyForPickup)
+            OrderStatusBar(status: .pickedUp)
+        }
     }
 }

@@ -10,10 +10,8 @@ query OrdersByRest($restID: ID!) {
         foodid
         identifier
             item {
-                foodid
-                displayname
+                ...FoodItemDetails
                 description
-                price
             }
         }
     }

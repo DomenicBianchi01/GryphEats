@@ -11,6 +11,9 @@ import SwiftUI
 // MARK: - SecurityQuestionView
 
 struct SecurityQuestionView: View {
+    
+    // MARK: Internal
+    
     var body: some View {
         VStack(alignment: UIDevice.current.isPad ? .center : .leading) {
             BackButton {
