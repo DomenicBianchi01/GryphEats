@@ -52,14 +52,19 @@ class LoginViewModel {
         GraphClient.shared.fetch(query: LoginUserQuery(email: username, password: password)) { result in
             switch result {
             case .success(let data):
-                guard let userID = data.validateUser.account?.userId else {
+                guard let account = data.validateUser.account,
+                    let userType = User.UserType(rawValue: account.userType) else
+                {
                     return completion(.failure(.invalidCredentials))
                 }
                 
-                //TODO: Only save credentials if user type is a customer
-                self.saveCredentials(for: User(id: userID, type: .customer, username: username, password: ""))
+                let user = User(id: account.userId, type: userType, username: username, password: "")
                 
-                return completion(.success(User(id: userID, type: .customer, username: username, password: "")))
+                if userType == .customer {
+                    self.saveCredentials(for: user)
+                }
+                
+                return completion(.success(user))
             case .failure:
                 return completion(.failure(.invalidCredentials))
             }

@@ -199,6 +199,7 @@ public final class LoginUserQuery: GraphQLQuery {
         account {
           __typename
           userID: userid
+          userType: usertype
         }
       }
     }
@@ -286,6 +287,7 @@ public final class LoginUserQuery: GraphQLQuery {
         public static let selections: [GraphQLSelection] = [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("userid", alias: "userID", type: .nonNull(.scalar(GraphQLID.self))),
+          GraphQLField("usertype", alias: "userType", type: .nonNull(.scalar(Int.self))),
         ]
 
         public private(set) var resultMap: ResultMap
@@ -294,8 +296,8 @@ public final class LoginUserQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(userId: GraphQLID) {
-          self.init(unsafeResultMap: ["__typename": "User", "userID": userId])
+        public init(userId: GraphQLID, userType: Int) {
+          self.init(unsafeResultMap: ["__typename": "User", "userID": userId, "userType": userType])
         }
 
         public var __typename: String {
@@ -313,6 +315,15 @@ public final class LoginUserQuery: GraphQLQuery {
           }
           set {
             resultMap.updateValue(newValue, forKey: "userID")
+          }
+        }
+
+        public var userType: Int {
+          get {
+            return resultMap["userType"]! as! Int
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "userType")
           }
         }
       }
