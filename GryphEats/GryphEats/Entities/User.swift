@@ -12,13 +12,6 @@ import SwiftUI
 
 class User: Codable, ObservableObject {
     
-    // MARK: Type
-    
-    enum UserType: Int, Codable {
-        case customer
-        case restaurant
-    }
-    
     // MARK: Lifecycle
     
     init(id: String, type: UserType, username: String, password: String) {
@@ -36,3 +29,5 @@ class User: Codable, ObservableObject {
     let password: String
     
 }
+
+extension UserType: Codable {}

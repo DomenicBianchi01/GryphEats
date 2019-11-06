@@ -28,13 +28,13 @@ class OrderDetailsViewModel: ObservableObject {
         }
     }
     
-    func updateOrder(
-        orderID: String,
-        status: Int,
+    func update(
+        order: Order,
+        status: OrderStatus,
         completion: @escaping (Result<Bool, OrderUpdateError>) -> Void)
     {
         GraphClient.shared.perform(
-            mutation: UpdateOrderMutation(orderID: orderID, status: status))
+            mutation: UpdateOrderMutation(orderID: order.id, status: status, restaurantID: order.restaurantID))
         { result in
             switch result {
             case .success:

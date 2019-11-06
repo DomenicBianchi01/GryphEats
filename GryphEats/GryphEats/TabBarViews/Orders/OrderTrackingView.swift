@@ -70,8 +70,9 @@ struct OrderTrackingView_Previews: PreviewProvider {
         OrderTrackingView(
             order: Order(
                 id: "0",
+                restaurantID: "1",
                 customer: Customer(name: ""),
-                status: .new,
+                status: .neworder,
                 timePlaced: "12:00pm",
                 items: [RestaurantFoodItem(
                     foodItem: GraphFoodItem(id: "0", name: "Hamburger 1", price: 9.99),

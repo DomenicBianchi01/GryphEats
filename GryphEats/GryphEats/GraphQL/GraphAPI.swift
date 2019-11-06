@@ -3,6 +3,101 @@
 import Apollo
 import Foundation
 
+public enum OrderStatus: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  case neworder
+  case inprogress
+  case ready
+  case pickedup
+  case cancelled
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "neworder": self = .neworder
+      case "inprogress": self = .inprogress
+      case "ready": self = .ready
+      case "pickedup": self = .pickedup
+      case "cancelled": self = .cancelled
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .neworder: return "neworder"
+      case .inprogress: return "inprogress"
+      case .ready: return "ready"
+      case .pickedup: return "pickedup"
+      case .cancelled: return "cancelled"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: OrderStatus, rhs: OrderStatus) -> Bool {
+    switch (lhs, rhs) {
+      case (.neworder, .neworder): return true
+      case (.inprogress, .inprogress): return true
+      case (.ready, .ready): return true
+      case (.pickedup, .pickedup): return true
+      case (.cancelled, .cancelled): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [OrderStatus] {
+    return [
+      .neworder,
+      .inprogress,
+      .ready,
+      .pickedup,
+      .cancelled,
+    ]
+  }
+}
+
+public enum UserType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  case customer
+  case restaurant
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "customer": self = .customer
+      case "restaurant": self = .restaurant
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .customer: return "customer"
+      case .restaurant: return "restaurant"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: UserType, rhs: UserType) -> Bool {
+    switch (lhs, rhs) {
+      case (.customer, .customer): return true
+      case (.restaurant, .restaurant): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [UserType] {
+    return [
+      .customer,
+      .restaurant,
+    ]
+  }
+}
+
 public final class PlaceOrderMutation: GraphQLMutation {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition =
@@ -100,8 +195,8 @@ public final class UpdateOrderMutation: GraphQLMutation {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition =
     """
-    mutation UpdateOrder($orderID: ID!, $status: Int!) {
-      updateOrder(orderid: $orderID, status: $status, restaurantid: "1") {
+    mutation UpdateOrder($orderID: ID!, $status: OrderStatus!, $restaurantID: ID!) {
+      updateOrder(orderid: $orderID, status: $status, restaurantid: $restaurantID) {
         __typename
         success
       }
@@ -111,22 +206,24 @@ public final class UpdateOrderMutation: GraphQLMutation {
   public let operationName = "UpdateOrder"
 
   public var orderID: GraphQLID
-  public var status: Int
+  public var status: OrderStatus
+  public var restaurantID: GraphQLID
 
-  public init(orderID: GraphQLID, status: Int) {
+  public init(orderID: GraphQLID, status: OrderStatus, restaurantID: GraphQLID) {
     self.orderID = orderID
     self.status = status
+    self.restaurantID = restaurantID
   }
 
   public var variables: GraphQLMap? {
-    return ["orderID": orderID, "status": status]
+    return ["orderID": orderID, "status": status, "restaurantID": restaurantID]
   }
 
   public struct Data: GraphQLSelectionSet {
     public static let possibleTypes = ["Mutation"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("updateOrder", arguments: ["orderid": GraphQLVariable("orderID"), "status": GraphQLVariable("status"), "restaurantid": "1"], type: .object(UpdateOrder.selections)),
+      GraphQLField("updateOrder", arguments: ["orderid": GraphQLVariable("orderID"), "status": GraphQLVariable("status"), "restaurantid": GraphQLVariable("restaurantID")], type: .object(UpdateOrder.selections)),
     ]
 
     public private(set) var resultMap: ResultMap
@@ -194,6 +291,7 @@ public final class LoginUserQuery: GraphQLQuery {
     query LoginUser($email: String!, $password: String!) {
       validateUser(email: $email, pass: $password) {
         __typename
+        isValid
         account {
           __typename
           userID: userid
@@ -248,6 +346,7 @@ public final class LoginUserQuery: GraphQLQuery {
 
       public static let selections: [GraphQLSelection] = [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("isValid", type: .scalar(Bool.self)),
         GraphQLField("account", type: .object(Account.selections)),
       ]
 
@@ -257,8 +356,8 @@ public final class LoginUserQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(account: Account? = nil) {
-        self.init(unsafeResultMap: ["__typename": "Auth", "account": account.flatMap { (value: Account) -> ResultMap in value.resultMap }])
+      public init(isValid: Bool? = nil, account: Account? = nil) {
+        self.init(unsafeResultMap: ["__typename": "Auth", "isValid": isValid, "account": account.flatMap { (value: Account) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -267,6 +366,15 @@ public final class LoginUserQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var isValid: Bool? {
+        get {
+          return resultMap["isValid"] as? Bool
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "isValid")
         }
       }
 
@@ -285,7 +393,7 @@ public final class LoginUserQuery: GraphQLQuery {
         public static let selections: [GraphQLSelection] = [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("userid", alias: "userID", type: .nonNull(.scalar(GraphQLID.self))),
-          GraphQLField("usertype", alias: "userType", type: .nonNull(.scalar(Int.self))),
+          GraphQLField("usertype", alias: "userType", type: .nonNull(.scalar(UserType.self))),
         ]
 
         public private(set) var resultMap: ResultMap
@@ -294,7 +402,7 @@ public final class LoginUserQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(userId: GraphQLID, userType: Int) {
+        public init(userId: GraphQLID, userType: UserType) {
           self.init(unsafeResultMap: ["__typename": "User", "userID": userId, "userType": userType])
         }
 
@@ -316,9 +424,9 @@ public final class LoginUserQuery: GraphQLQuery {
           }
         }
 
-        public var userType: Int {
+        public var userType: UserType {
           get {
-            return resultMap["userType"]! as! Int
+            return resultMap["userType"]! as! UserType
           }
           set {
             resultMap.updateValue(newValue, forKey: "userType")
@@ -402,7 +510,7 @@ public final class OrdersByRestQuery: GraphQLQuery {
       public static let selections: [GraphQLSelection] = [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
         GraphQLField("orderid", type: .nonNull(.scalar(GraphQLID.self))),
-        GraphQLField("ordertype", type: .nonNull(.scalar(Int.self))),
+        GraphQLField("ordertype", type: .nonNull(.scalar(OrderStatus.self))),
         GraphQLField("timeplaced", type: .nonNull(.scalar(String.self))),
         GraphQLField("timecompleted", type: .scalar(String.self)),
         GraphQLField("restaurantid", type: .nonNull(.scalar(GraphQLID.self))),
@@ -415,7 +523,7 @@ public final class OrdersByRestQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(orderid: GraphQLID, ordertype: Int, timeplaced: String, timecompleted: String? = nil, restaurantid: GraphQLID, orderitems: [Orderitem]) {
+      public init(orderid: GraphQLID, ordertype: OrderStatus, timeplaced: String, timecompleted: String? = nil, restaurantid: GraphQLID, orderitems: [Orderitem]) {
         self.init(unsafeResultMap: ["__typename": "FoodOrder", "orderid": orderid, "ordertype": ordertype, "timeplaced": timeplaced, "timecompleted": timecompleted, "restaurantid": restaurantid, "orderitems": orderitems.map { (value: Orderitem) -> ResultMap in value.resultMap }])
       }
 
@@ -437,9 +545,9 @@ public final class OrdersByRestQuery: GraphQLQuery {
         }
       }
 
-      public var ordertype: Int {
+      public var ordertype: OrderStatus {
         get {
-          return resultMap["ordertype"]! as! Int
+          return resultMap["ordertype"]! as! OrderStatus
         }
         set {
           resultMap.updateValue(newValue, forKey: "ordertype")
@@ -940,7 +1048,7 @@ public final class UserOrdersQuery: GraphQLQuery {
         GraphQLField("orderid", alias: "id", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("restaurantid", alias: "restaurantId", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("timeplaced", alias: "timePlaced", type: .nonNull(.scalar(String.self))),
-        GraphQLField("ordertype", alias: "status", type: .nonNull(.scalar(Int.self))),
+        GraphQLField("ordertype", alias: "status", type: .nonNull(.scalar(OrderStatus.self))),
         GraphQLField("orderitems", alias: "items", type: .nonNull(.list(.nonNull(.object(Item.selections))))),
       ]
 
@@ -950,7 +1058,7 @@ public final class UserOrdersQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: GraphQLID, restaurantId: GraphQLID, timePlaced: String, status: Int, items: [Item]) {
+      public init(id: GraphQLID, restaurantId: GraphQLID, timePlaced: String, status: OrderStatus, items: [Item]) {
         self.init(unsafeResultMap: ["__typename": "FoodOrder", "id": id, "restaurantId": restaurantId, "timePlaced": timePlaced, "status": status, "items": items.map { (value: Item) -> ResultMap in value.resultMap }])
       }
 
@@ -990,9 +1098,9 @@ public final class UserOrdersQuery: GraphQLQuery {
         }
       }
 
-      public var status: Int {
+      public var status: OrderStatus {
         get {
-          return resultMap["status"]! as! Int
+          return resultMap["status"]! as! OrderStatus
         }
         set {
           resultMap.updateValue(newValue, forKey: "status")
@@ -1174,7 +1282,7 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
       public static let selections: [GraphQLSelection] = [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
         GraphQLField("orderid", type: .nonNull(.scalar(GraphQLID.self))),
-        GraphQLField("ordertype", type: .nonNull(.scalar(Int.self))),
+        GraphQLField("ordertype", type: .nonNull(.scalar(OrderStatus.self))),
         GraphQLField("timeplaced", type: .nonNull(.scalar(String.self))),
         GraphQLField("restaurantid", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("orderitems", type: .nonNull(.list(.nonNull(.object(Orderitem.selections))))),
@@ -1186,7 +1294,7 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
         self.resultMap = unsafeResultMap
       }
 
-      public init(orderid: GraphQLID, ordertype: Int, timeplaced: String, restaurantid: GraphQLID, orderitems: [Orderitem]) {
+      public init(orderid: GraphQLID, ordertype: OrderStatus, timeplaced: String, restaurantid: GraphQLID, orderitems: [Orderitem]) {
         self.init(unsafeResultMap: ["__typename": "FoodOrder", "orderid": orderid, "ordertype": ordertype, "timeplaced": timeplaced, "restaurantid": restaurantid, "orderitems": orderitems.map { (value: Orderitem) -> ResultMap in value.resultMap }])
       }
 
@@ -1208,9 +1316,9 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
         }
       }
 
-      public var ordertype: Int {
+      public var ordertype: OrderStatus {
         get {
-          return resultMap["ordertype"]! as! Int
+          return resultMap["ordertype"]! as! OrderStatus
         }
         set {
           resultMap.updateValue(newValue, forKey: "ordertype")

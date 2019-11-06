@@ -37,7 +37,12 @@ class OrderTrackingViewModel {
     // MARK: Internal
     
     func cancelOrder(completion: @escaping (Bool) -> Void) {
-        GraphClient.shared.perform(mutation: UpdateOrderMutation(orderID: order.id, status: 4)) { result in
+        GraphClient.shared.perform(
+            mutation: UpdateOrderMutation(
+                orderID: order.id,
+                status: .cancelled,
+                restaurantID: order.restaurantID))
+        { result in
             switch result {
             case .success(let data):
                 completion(data.updateOrder?.success ?? false)
