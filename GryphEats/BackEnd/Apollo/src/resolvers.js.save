@@ -1,4 +1,3 @@
-
 //export default {
 const { withFilter } = require('apollo-server');
 
@@ -6,20 +5,9 @@ const { withFilter } = require('apollo-server');
 const ps = require('./pubsub');
 const pubsub = ps.pubsub;
 const POST_ADDED = 'POST_ADDED';
+const ORDER_PLACED = 'ORDER_PLACED';
 const ORDER_UPDATED = 'ORDER_UPDATED';
-
 module.exports = {
-    OrderStatus: {
-        neworder: 0,
-        inprogress: 1,
-        ready: 2,
-        pickedup: 3,
-        cancelled: 4,
-    },
-    UserType: {
-        customer: 0,
-        restaurant: 1,
-    },
     Query: {
         // foods: (parent, args, { dataSources }, info) => datasources.food.findAll(),
         foods: async (_, args, { dataSources }, info) => dataSources.gryphAPI.getAllFood(),
@@ -28,24 +16,20 @@ module.exports = {
         restaurants: async (_, args, { dataSources }, info) => dataSources.gryphAPI.getAllRestaurants(),
         users: async (_, args, { dataSources }, info) => dataSources.gryphAPI.getAllUsers(),
         menus: async (_, args, { dataSources }, info) => dataSources.gryphAPI.getAllMenus(),
-        getStaticToppingsByFoodGroup: async (_, { foodgroup }, { dataSources }, info) => dataSources.gryphAPI.getStaticToppingsByFoodGroup({ foodgroup }),
         getMenusByRestaurantID: async (_, { restaurantid }, { dataSources }, info) => dataSources.gryphAPI.getMenusByRestaurantID({ restaurantid }),
         getMenuItemsByMenuID: async (_, { menuid }, { dataSources }, info) => dataSources.gryphAPI.getMenuItemsByMenuID({ menuid }),
         getOrderItemsByOrderID: async (_, { orderid }, { dataSources }, info) => dataSources.gryphAPI.getOrderItemsByOrderID({ orderid }),
         getOrdersByRestaurantID: async (_, { restaurantid }, { dataSources }, info) => dataSources.gryphAPI.getOrdersByRestaurantID({ restaurantid }),
-        getOrdersByUserID: async (_, { userid }, { dataSources }, info) => dataSources.gryphAPI.getOrdersByUserID({ userid }),
-        validateUser: async (_, { email, pass }, { dataSources }, info) => dataSources.gryphAPI.validateUser({ email, pass })
+        getOrdersByUserID: async (_, { userid }, { dataSources }, info) => dataSources.gryphAPI.getOrdersByUserID({ userid })
     },
     Mutation: {
         updateOrder: async (_, { orderid, status, restaurantid }, { dataSources }) => dataSources.gryphAPI.updateOrder({ orderid, status, restaurantid }),
-        createOrder: async (_, { userid, restaurantid }, { dataSources }) => dataSources.gryphAPI.createOrder({ userid, restaurantid }),
-        placeOrder: async (_, { userid, foodids, restaurantid }, { dataSources }) => dataSources.gryphAPI.placeOrder({ userid, foodids, restaurantid }),
+        createOrder: async (_, { restaurantid }, { dataSources }) => dataSources.gryphAPI.createOrder({ restaurantid }),
+        placeOrder: async (_, { foodids, restaurantid }, { dataSources }) => dataSources.gryphAPI.placeOrder({ foodids, restaurantid }),
         completeOrder: async (_, { orderid }, { dataSources }) => dataSources.gryphAPI.completeOrder({ orderid }),
         updateFoodPriceByFoodID: async (_, { foodid, price }, { dataSources }) => dataSources.gryphAPI.updateFoodPriceByFoodID({ foodid, price }),
         createFood: async (_, { displayname, toppingtype, price, restaurantid, isavailable, description, foodgroup }, { dataSources }) =>
             dataSources.gryphAPI.createFood({ displayname, toppingtype, price, restaurantid, isavailable, description, foodgroup }),
-        createUser: async (_, { fname, lname, phonenum, address, email, encryptedpw, usertype }, { dataSources }) =>
-            dataSources.gryphAPI.createUser({ fname, lname, phonenum, address, email, encryptedpw, usertype }),
         deleteFoodByFoodID: async (_, { foodid }, { dataSources }) => dataSources.gryphAPI.deleteFoodByFoodID({ foodid })
 
     },

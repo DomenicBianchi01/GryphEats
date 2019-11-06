@@ -54,7 +54,8 @@ module.exports.createDB = () => {
         },
         timecompleted: SQL.DATE,
         restaurantid: SQL.INTEGER,
-        ordertype: SQL.INTEGER
+        ordertype: SQL.INTEGER,
+        userid: SQL.INTEGER
     },
         {
             freezeTableName: true
@@ -173,9 +174,37 @@ module.exports.createDB = () => {
         phonenum: SQL.STRING,
         address: SQL.STRING,
         email: SQL.STRING,
-        currentorderid: SQL.INTEGER,
-        lastorderid: SQL.INTEGER,
+        encryptedpw: SQL.STRING,
         usertype: SQL.INTEGER
+    },
+        {
+            freezeTableName: true
+        }
+    );
+
+    const topping = db.define('topping', {
+        toppingid: {
+            type: SQL.INTEGER,
+            primaryKey: true
+        },
+        identifier: SQL.INTEGER
+    },
+        {
+            freezeTableName: true
+        }
+    );
+
+    const statictopping = db.define('statictopping', {
+        toppingid: {
+            type: SQL.INTEGER,
+            primaryKey: true
+        },
+        foodgroup: {
+            type: SQL.INTEGER,
+            primaryKey: true
+        },
+        displayname: SQL.STRING,
+        price: SQL.DECIMAL
     },
         {
             freezeTableName: true
@@ -197,5 +226,10 @@ module.exports.createDB = () => {
     orderitem.hasOne(food, { foreignKey: 'foodid', sourceKey: 'foodid' });
     food.belongsTo(orderitem, { foreignKey: 'foodid', sourceKey: 'foodid' });
 
-    return { food, foodorder, menu, menuitem, orderitem, restaurant, user };
+    user.hasMany(foodorder, { foreignKey: 'userid', sourceKey: 'userid' });
+    foodorder.belongsTo(user, { foreignKey: 'userid', sourceKey: 'userid' });
+
+    //toppin
+
+    return { food, foodorder, menu, menuitem, orderitem, restaurant, user, topping, statictopping, db };
 }

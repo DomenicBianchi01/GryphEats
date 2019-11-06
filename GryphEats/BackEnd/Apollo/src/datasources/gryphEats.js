@@ -1,16 +1,15 @@
 const { DataSource } = require('apollo-datasource');
-//const { PubSub } = require('apollo-server');
+const ps = require('../pubsub');
+const pubsub = ps.pubsub;
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
-//const pubsub = new PubSub();
 const POST_ADDED = 'POST_ADDED';
-const ORDER_PLACED = 'ORDER_PLACED';
+// const ORDER_PLACED = 'ORDER_PLACED';
 const ORDER_UPDATED = 'ORDER_UPDATED';
 class GryphAPIS extends DataSource {
     constructor({ database }) {
         super();
         this.database = database;
-        // this.pubsub = pubsub;
     }
 
     /**
@@ -82,7 +81,7 @@ class GryphAPIS extends DataSource {
     // isavailable: ID
     // description: String
     // foodgroup: ID
-    async createFood({ displayname, toppingtype, price, restaurantid, isavailable, description, foodgroup, pubsub }) {
+    async createFood({ displayname, toppingtype, price, restaurantid, isavailable, description, foodgroup }) {
         try {
             const result = await this.database.food.create({
                 displayname, toppingtype, price, isavailable, restaurantid, description, foodgroup
@@ -93,6 +92,22 @@ class GryphAPIS extends DataSource {
                 return "Created";
             } else {
                 // await pubsub.publish(POST_ADDED, { postAdded: "unable to create?" });
+                return "failed to create";
+            }
+        } catch (e) {
+
+        }
+    }
+
+    async createUser({ fname, lname, phonenum, address, email, encryptedpw, usertype, pubsub }) {
+        try {
+            const result = await this.database.user.create({
+                fname, lname, phonenum, address, email, encryptedpw, usertype
+            });
+            if (result) {
+                await pubsub.publish(POST_ADDED, { userAdded: result });
+                return "Created";
+            } else {
                 return "failed to create";
             }
         } catch (e) {
@@ -183,6 +198,20 @@ class GryphAPIS extends DataSource {
 
     }
 
+    async getStaticToppingsByFoodGroup({ foodgroup }) {
+        try {
+            const result = await this.database.statictopping.findAll({
+                where: { foodgroup },
+            });
+            return result;
+        } catch (e) {
+            console.log(e.message);
+            return "getOrderItemsFailed: " + e.message;
+
+        }
+
+    }
+
     async getAllMenus() {
         try {
             const result = await this.database.menu.findAll();
@@ -232,6 +261,21 @@ class GryphAPIS extends DataSource {
         }
     }
 
+    async getOrdersByUserID({ userid }) {
+        try {
+            const result = await this.database.foodorder.findAll({
+                where: {
+                    // restaurantid, ordertype: [0, 1, 2, 3]
+                    userid
+                }
+            });
+            return result;
+        } catch (e) {
+            console.log(e.message);
+            return "getMenuItemsFailed: " + e.message;
+        }
+    }
+
     /**
      * complete order restaurant calls
      * Calls markorderdone and send notification
@@ -270,10 +314,10 @@ class GryphAPIS extends DataSource {
      * An array of foodids will be passed
      * Assume userid is 1
      */
-    async placeOrder({ foodids, restaurantid, pubsub }) {
+    async placeOrder({ userid, foodids, restaurantid }) {
         try {
             //create an order for restaurant
-            const order = await this.createOrder({ restaurantid });
+            const order = await this.createOrder({ userid, restaurantid });
             if (order) {
                 var orderid = order.dataValues.orderid;
                 // console.log(orderid);
@@ -309,10 +353,10 @@ class GryphAPIS extends DataSource {
      * create an order for restaurant
      */
 
-    async createOrder({ restaurantid }) {
+    async createOrder({ userid, restaurantid }) {
         try {
             const result = await this.database.foodorder.create({
-                restaurantid: restaurantid
+                userid: userid, restaurantid: restaurantid
             })
             return result;
         } catch (e) {
@@ -325,12 +369,23 @@ class GryphAPIS extends DataSource {
     /**
      * Update an order, return updated ordered
      */
-    async updateOrder({ orderid, status, restaurantid, pubsub }) {
+    async updateOrder({ orderid, status, restaurantid }) {
         try {
             // console.log("ordertype" + status);
-            const result = await this.database.foodorder.update({ ordertype: status }, {
-                where: { orderid }
-            });
+            var result;
+            if (status == 3) {
+                result = await this.database.foodorder.update({ ordertype: status, timecompleted: this.database.db.fn('NOW') }, {
+                    where: { orderid }
+                });
+            } else if (status == 4) {
+                result = await this.database.foodorder.update({ ordertype: status, timecompleted: this.database.db.fn('NOW') }, {
+                    where: { orderid, ordertype: 0 }
+                });
+            } else {
+                result = await this.database.foodorder.update({ ordertype: status, timecompleted: null }, {
+                    where: { orderid }
+                });
+            }
             // console.log(result);
             // var newOrders = await this.getOrdersByRestaurantID({ restaurantid });
             // await pubsub.publish(ORDER_PLACED, { orderPlaced: restaurantid });
@@ -347,9 +402,47 @@ class GryphAPIS extends DataSource {
                 };
             }
         } catch (e) {
-            return "update order failed: " + e.message;
+            return {
+                success: false,
+                message: "update order failed: " + e.message,
+            };
+        }
+    }
+
+    async validateUser({ email, pass }) {
+        try {
+            //check
+            //return auth = 
+            console.log(email);
+            const result = await this.database.user.findOne({
+                where: {
+                    email: email,
+                    encryptedpw: pass
+                },
+            });
+            //can do select with binary for case insensitive rn idc
+            console.log(result);
+            if (result) {
+                return {
+                    isValid: true,
+                    account: result,
+                    token: "yee"
+                };
+            } else {
+                return {
+                    isValid: false,
+                    account: null,
+                    token: "no"
+                };
+            }
+        } catch (e) {
+            return {
+                isValid: false,
+                account: null,
+                token: "error--" + e.message + "\n" + e.stacktrace
+            };
         }
     }
 }
-
+// https://stackoverflow.com/questions/34120548/using-bcrypt-with-sequelize-model
 module.exports = GryphAPIS;

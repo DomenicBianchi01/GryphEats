@@ -1,0 +1,1 @@
+create table statictopping (toppingid int not null, foodgroup int not null, displayname varchar(255) not null default '', price float not null default 0, primary key (toppingid, foodgroup));
