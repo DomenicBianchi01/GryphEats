@@ -74,13 +74,13 @@ struct OrderDetailsView: View {
         switch order.status {
         case .new:
             order.status = .inProgress
-            updateOrder(orderID: String(order.id), status: 1)
+            update(order: order, status: .inprogress)
         case .inProgress:
             order.status = .readyForPickup
-            updateOrder(orderID: String(order.id), status: 2)
+            update(order: order, status: .ready)
         case .readyForPickup:
             order.status = .pickedUp
-            updateOrder(orderID: String(order.id), status: 3)
+            update(order: order, status: .pickedup)
         case .pickedUp:
             order.status = .pickedUp
         default:
@@ -88,8 +88,8 @@ struct OrderDetailsView: View {
         }
     }
     
-    private func updateOrder(orderID: String, status: Int) {
-        self.viewModel.updateOrder(orderID: orderID, status: status) { result in
+    private func update(order: Order, status: OrderStatus) {
+        self.viewModel.update(order: order, status: status) { result in
             switch result {
             case .success:
                 print("Success")

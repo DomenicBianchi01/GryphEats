@@ -14,10 +14,30 @@ class Order: Items, ObservableObject, Identifiable {
     
     // MARK: Lifecycle
         
-    init(id: String, customer: Customer, status: Status = .new, timePlaced: String, items: [RestaurantFoodItem] = []) {
+    init(
+        id: String,
+        restaurantID: String,
+        customer: Customer,
+        status: OrderStatus = .neworder,
+        timePlaced: String,
+        items: [RestaurantFoodItem] = [])
+    {
         self.id = id
+        self.restaurantID = restaurantID
         self.customer = customer
-        self.status = status
+        
+        switch status {
+        case .neworder, .__unknown:
+            self.status = .new
+        case .inprogress:
+            self.status = .inProgress
+        case .ready:
+            self.status = .readyForPickup
+        case .pickedup:
+            self.status = .pickedUp
+        case .cancelled:
+            self.status = .cancelled
+        }
         
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
@@ -68,6 +88,7 @@ class Order: Items, ObservableObject, Identifiable {
     @Published var status: Status
     
     let id: String
+    let restaurantID: String
     let customer: Customer
     let timePlaced: Date
 

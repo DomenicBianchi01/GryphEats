@@ -17,28 +17,34 @@ class OrderHistoryCardTests: XCTestCase {
     var record = false
     
     func testOrderHistoryCard_New() {
-        let card = OrderHistoryCard(order: order(status: .new))
+        let card = OrderHistoryCard(order: order(status: .neworder))
         assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
     }
     
     func testOrderHistoryCard_InProgress() {
-        let card = OrderHistoryCard(order: order(status: .inProgress))
+        let card = OrderHistoryCard(order: order(status: .inprogress))
         assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
     }
     
     func testOrderHistoryCard_ReadyForPickup() {
-        let card = OrderHistoryCard(order: order(status: .readyForPickup))
+        let card = OrderHistoryCard(order: order(status: .ready))
         assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
     }
     
     func testOrderHistoryCard_PickedUp() {
-        let card = OrderHistoryCard(order: order(status: .pickedUp))
+        let card = OrderHistoryCard(order: order(status: .pickedup))
         assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
     }
     
-    private func order(status: Order.Status) -> Order {
+    func testOrderHistoryCard_Cancelled() {
+        let card = OrderHistoryCard(order: order(status: .cancelled))
+        assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
+    }
+    
+    private func order(status: OrderStatus) -> Order {
         Order(
             id: "0",
+            restaurantID: "1",
             customer: Customer(name: "Billy Bob"),
             status: status,
             timePlaced: "2019-11-05T11:03:09.000Z",

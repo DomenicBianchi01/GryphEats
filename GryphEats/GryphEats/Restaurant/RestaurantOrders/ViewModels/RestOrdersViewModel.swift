@@ -64,8 +64,9 @@ class RestOrdersViewModel: ObservableObject {
                     let dateString = dateFormatter.string(from: dateParsed!)
                     orders.append(Order(
                         id: order.orderid,
+                        restaurantID: order.restaurantid,
                         customer: Customer(name: "John Doe"),
-                        status: Order.Status(rawValue: order.ordertype) ?? .new,
+                        status: order.ordertype,
                         timePlaced: dateString,
                         items: foodItems
                     ))
@@ -117,8 +118,9 @@ class RestOrdersViewModel: ObservableObject {
                     let dateString = dateFormatter.string(from: dateParsed!)
                     orders.append(Order(
                         id: order.orderid,
+                        restaurantID: order.restaurantid,
                         customer: Customer(name: "John Doe"),
-                        status: Order.Status(rawValue: order.ordertype) ?? .new,
+                        status: order.ordertype,
                         timePlaced: dateString,
                         items: foodItems
                     ))

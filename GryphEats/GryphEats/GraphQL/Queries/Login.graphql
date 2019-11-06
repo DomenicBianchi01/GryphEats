@@ -1,5 +1,6 @@
 query LoginUser($email: String!, $password: String!) {
     validateUser(email: $email, pass: $password) {
+        isValid
         account {
             userID: userid
             userType: usertype

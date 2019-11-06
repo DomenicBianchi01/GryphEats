@@ -25,8 +25,9 @@ class OrdersViewModel: ObservableObject {
                 self.loadingState = .loaded(data.getOrdersByUserId.compactMap({ $0 }).map { order in
                     Order(
                         id: order.id,
+                        restaurantID: order.restaurantId,
                         customer: Customer(name: ""),
-                        status: Order.Status(rawValue: order.status) ?? .new,
+                        status: order.status,
                         timePlaced: order.timePlaced,
                         items: order.items.map { item in
                             RestaurantFoodItem(
