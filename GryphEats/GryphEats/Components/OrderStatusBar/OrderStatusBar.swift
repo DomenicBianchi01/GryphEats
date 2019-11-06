@@ -14,8 +14,9 @@ struct OrderStatusBar: View {
     
     // MARK: Lifecycle
     
-    init(status: Order.Status) {
+    init(status: Order.Status, action: @escaping () -> Void) {
         self.status = status
+        self.action = action
     }
     
     // MARK: Internal
@@ -34,8 +35,13 @@ struct OrderStatusBar: View {
                     backgroundColor: .guelphRed,
                     foregroundColor: .white)
                 {
-                    
+                    self.action()
                 }.padding(.top, 30)
+            } else if status == .cancelled {
+                Text("Order was cancelled")
+                    .bold()
+                    .foregroundColor(.guelphRed)
+                    .padding([.horizontal, .top])
             }
         }
     }
@@ -43,6 +49,7 @@ struct OrderStatusBar: View {
     // MARK: Private
     
     private let status: Order.Status
+    private let action: () -> Void
     
     private func orderStatusStepView(for stepStatus: Order.Status) -> OrderStatusStepView {
         var barStyle: OrderStatusStepView.BarStyle = .full
@@ -57,6 +64,7 @@ struct OrderStatusBar: View {
             step: stepStatus.rawValue + 1,
             text: stepStatus.asString,
             barStyle: barStyle,
+            state: status == .cancelled ? .cancelled : .active,
             isFirstHalfComplete: self.status.rawValue >= stepStatus.rawValue,
             isSecondHalfComplete: self.status.rawValue > stepStatus.rawValue)
     }
@@ -65,10 +73,11 @@ struct OrderStatusBar: View {
 struct OrderStatusBar_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            OrderStatusBar(status: .new)
-            OrderStatusBar(status: .inProgress)
-            OrderStatusBar(status: .readyForPickup)
-            OrderStatusBar(status: .pickedUp)
+            OrderStatusBar(status: .new, action: {})
+            OrderStatusBar(status: .inProgress, action: {})
+            OrderStatusBar(status: .readyForPickup, action: {})
+            OrderStatusBar(status: .pickedUp, action: {})
+            OrderStatusBar(status: .cancelled, action: {})
         }
     }
 }

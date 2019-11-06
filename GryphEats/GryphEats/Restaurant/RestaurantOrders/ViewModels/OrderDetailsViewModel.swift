@@ -34,7 +34,7 @@ class OrderDetailsViewModel: ObservableObject {
         completion: @escaping (Result<Bool, OrderUpdateError>) -> Void)
     {
         GraphClient.shared.perform(
-            mutation: UpdateOrderMutation(orderID: orderID, status: status, res: "1"))
+            mutation: UpdateOrderMutation(orderID: orderID, status: status))
         { result in
             switch result {
             case .success:

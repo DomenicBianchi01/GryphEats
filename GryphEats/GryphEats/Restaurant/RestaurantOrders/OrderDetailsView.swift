@@ -41,7 +41,7 @@ struct OrderDetailsView: View {
                     Text(order.customer.name)
                         .font(Font.custom("Roboto-Bold", size: 28))
                         .lineLimit(1)
-                    Text("Order placed at " + order.timePlaced)
+                    Text("Order placed at " + order.timePlacedString())
                         .font(Font.custom("Roboto-Regular", size: 24))
                         .scaledToFill()
                         .lineLimit(1)
@@ -83,6 +83,8 @@ struct OrderDetailsView: View {
             updateOrder(orderID: String(order.id), status: 3)
         case .pickedUp:
             order.status = .pickedUp
+        default:
+            return
         }
     }
     
@@ -99,10 +101,16 @@ struct OrderDetailsView: View {
     
     private func backOrder() {
         switch order.status {
-        case .new: order.status = .readyForPickup
-        case .inProgress: order.status = .new
-        case .readyForPickup: order.status = .inProgress
-        case .pickedUp: order.status = .new
+        case .new:
+            order.status = .readyForPickup
+        case .inProgress:
+            order.status = .new
+        case .readyForPickup:
+            order.status = .inProgress
+        case .pickedUp:
+            order.status = .new
+        default:
+            return
         }
     }
     

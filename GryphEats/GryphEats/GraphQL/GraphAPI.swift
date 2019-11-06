@@ -100,8 +100,8 @@ public final class UpdateOrderMutation: GraphQLMutation {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition =
     """
-    mutation UpdateOrder($orderID: ID!, $status: Int!, $res: ID!) {
-      updateOrder(orderid: $orderID, status: $status, restaurantid: $res) {
+    mutation UpdateOrder($orderID: ID!, $status: Int!) {
+      updateOrder(orderid: $orderID, status: $status, restaurantid: "1") {
         __typename
         success
       }
@@ -112,23 +112,21 @@ public final class UpdateOrderMutation: GraphQLMutation {
 
   public var orderID: GraphQLID
   public var status: Int
-  public var res: GraphQLID
 
-  public init(orderID: GraphQLID, status: Int, res: GraphQLID) {
+  public init(orderID: GraphQLID, status: Int) {
     self.orderID = orderID
     self.status = status
-    self.res = res
   }
 
   public var variables: GraphQLMap? {
-    return ["orderID": orderID, "status": status, "res": res]
+    return ["orderID": orderID, "status": status]
   }
 
   public struct Data: GraphQLSelectionSet {
     public static let possibleTypes = ["Mutation"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("updateOrder", arguments: ["orderid": GraphQLVariable("orderID"), "status": GraphQLVariable("status"), "restaurantid": GraphQLVariable("res")], type: .object(UpdateOrder.selections)),
+      GraphQLField("updateOrder", arguments: ["orderid": GraphQLVariable("orderID"), "status": GraphQLVariable("status"), "restaurantid": "1"], type: .object(UpdateOrder.selections)),
     ]
 
     public private(set) var resultMap: ResultMap

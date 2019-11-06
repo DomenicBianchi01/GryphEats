@@ -38,7 +38,7 @@ struct OrderHistoryCard: View {
                     Text(order.total().asDollarString)
                         .fontWeight(.semibold)
                         .padding(.bottom, 5)
-                    Text("Sept 22, 2019")
+                    Text(order.timePlacedString())
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -52,7 +52,7 @@ struct OrderHistoryCard: View {
                     .font(.caption)
             }.foregroundColor(orderStatusColor)
                 .padding([.trailing, .bottom])
-        }.contentShape(Rectangle()) //Not sure why this is need but without it, tap gestures are not recognized if the
+        }.contentShape(Rectangle()) //Not sure why this is need but without it tap gestures are not recognized if the
             // tap occurs on a `Spacer`: https://stackoverflow.com/a/58138763
             .background(Color.white)
             .cornerRadius(5)
@@ -74,13 +74,15 @@ struct OrderHistoryCard: View {
             return "person.crop.circle"
         case .pickedUp:
             return "checkmark.circle"
+        case .cancelled:
+            return "xmark"
         }
     }
     
     private var orderStatusColor: Color {
         switch order.status {
-        case .new:
-            return .red
+        case .new, .cancelled:
+            return .guelphRed
         case .inProgress:
             return .yellow
         case .readyForPickup:

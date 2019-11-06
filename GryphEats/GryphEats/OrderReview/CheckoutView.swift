@@ -85,8 +85,6 @@ struct CheckoutView: View {
                 })
         }.sheet(isPresented: $showAddPayment) {
             AddPaymentView()
-        }.onAppear {
-            self.forceRefresh = true
         }
     }
     
@@ -100,11 +98,6 @@ struct CheckoutView: View {
     @State private var confirmPayment: Bool = false
     @State private var selectedPaymentMethodIndex = 0
     @State private var error: CheckoutViewModel.PaymentError? = nil
-    
-    // TODO: Find a better way to refresh the view.
-    // After adding a new payment, we need to refresh the view to reflect the new list of payment methods. The only
-    // way I currently know how to do this is to set a dummy `@State` property to force a refresh.
-    @State private var forceRefresh: Bool = false
     
     private let viewModel = CheckoutViewModel()
     

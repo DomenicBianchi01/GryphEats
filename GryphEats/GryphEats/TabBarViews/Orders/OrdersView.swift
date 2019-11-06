@@ -14,6 +14,17 @@ struct OrdersView: View {
     
     // MARK: Internal
     
+    /** NOTE ABOUT A COUPLE OF SWIFTUI BUGS
+     
+     1) For the `.sheet` modifying, if I use `.constant($selectedOrder.wrappedValue != nil)` for `isPresented`, the view
+     will present fine but will NOT dismiss. I have no idea why this is happening and I'm just assuming it's a bug since
+     just using `$showSelectedOrder` works fine.
+     
+     2) When dismissing the presented sheet, `onDismiss` only fires if the sheet is dismissed using the default swipe
+     gesture. If the view is dismissed using the `presentationMode`, `onDismiss` is not called. Due to this bug, I just
+     pass a custom handler into the presented view that will be reliably called all the time when needed.
+     */
+    
     var body: some View {
         NavigationHeaderView(
             title: "Orders",
@@ -21,12 +32,10 @@ struct OrdersView: View {
             contentBackgroundColor: .lightGray)
         {
             self.content
-        }.sheet(
-            isPresented: .constant($selectedOrder.wrappedValue != nil),
-            onDismiss: {
-                self.selectedOrder = nil
-        }) {
-            OrderTrackingView(order: self.selectedOrder!)
+        }.sheet(isPresented: $showSelectedOrder) {
+            OrderTrackingView(order: self.selectedOrder!) {
+                self.viewModel.fetchOrders(userID: self.loggedInUser.id)
+            }
         }.onAppear {
             UITableView.appearance().separatorStyle = .none
             UITableView.appearance().backgroundColor = .lightGray
@@ -37,8 +46,8 @@ struct OrdersView: View {
     // MARK: Private
     
     @State private var selectedOrder: Order? = nil
+    @State private var showSelectedOrder: Bool = false
     @ObservedObject private var viewModel = OrdersViewModel()
-    
     @EnvironmentObject private var loggedInUser: User
     
     private var content: AnyView {
@@ -52,13 +61,24 @@ struct OrdersView: View {
                 ForEach(orders) { order in
                     OrderHistoryCard(order: order).onTapGesture {
                         self.selectedOrder = order
+                        self.showSelectedOrder = true
                     }
                 }.listConfiguration(backgroundColor: Color.lightGray)
-            })
+            }.navigationBarItems(trailing: self.trailingNavigationBarItems))
         case .error:
             return AnyView(ErrorView(infoText: "Whoops! We could not fetch your orders.", buttonText: "Try Again") {
                 self.viewModel.fetchOrders(userID: self.loggedInUser.id)
             })
+        }
+    }
+    
+    private var trailingNavigationBarItems: some View {
+        Button(action: {
+            self.viewModel.fetchOrders(userID: self.loggedInUser.id)
+        }) {
+            Image(systemName: "arrow.2.circlepath")
+                .padding(.all, 10)
+                .foregroundColor(.black)
         }
     }
 }
