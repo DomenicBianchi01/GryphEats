@@ -41,7 +41,7 @@ class OrderHistoryCardTests: XCTestCase {
             id: "0",
             customer: Customer(name: "Billy Bob"),
             status: status,
-            timePlaced: "12:00pm",
+            timePlaced: "2019-11-05T11:03:09.000Z",
             items: [
                 RestaurantFoodItem(
                     foodItem: GraphFoodItem(id: "1", name: "Hamburger", price: 9.99),

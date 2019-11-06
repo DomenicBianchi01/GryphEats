@@ -229,6 +229,8 @@
 		B0CD88CE236088A200A5C021 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD88CD236088A200A5C021 /* CustomTabBar.swift */; };
 		B0CD88D42360A21200A5C021 /* CustomTabBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD88D32360A21200A5C021 /* CustomTabBarTests.swift */; };
 		B0CD88D72360ABE900A5C021 /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD88D62360ABE900A5C021 /* OrdersView.swift */; };
+		B0D850F223722DBC00B34F9C /* OrderTrackingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D850F123722DBC00B34F9C /* OrderTrackingViewModel.swift */; };
+		B0D850F323722DBC00B34F9C /* OrderTrackingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D850F123722DBC00B34F9C /* OrderTrackingViewModel.swift */; };
 		B0D9197E23718735006324D3 /* Login.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0D9197D23718735006324D3 /* Login.graphql */; };
 		B0D9197F23718735006324D3 /* Login.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0D9197D23718735006324D3 /* Login.graphql */; };
 		B0D9198023719A21006324D3 /* Totalable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0646911236BA77D00EDC13C /* Totalable.swift */; };
@@ -404,6 +406,7 @@
 		B0CD88CD236088A200A5C021 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		B0CD88D32360A21200A5C021 /* CustomTabBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarTests.swift; sourceTree = "<group>"; };
 		B0CD88D62360ABE900A5C021 /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
+		B0D850F123722DBC00B34F9C /* OrderTrackingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTrackingViewModel.swift; sourceTree = "<group>"; };
 		B0D9197D23718735006324D3 /* Login.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Login.graphql; sourceTree = "<group>"; };
 		B0D9ED2123562296006A1545 /* PriceSummaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSummaryCard.swift; sourceTree = "<group>"; };
 		B0D9ED24235650E3006A1545 /* DoubleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtensions.swift; sourceTree = "<group>"; };
@@ -505,6 +508,7 @@
 			isa = PBXGroup;
 			children = (
 				B01AE8D8236CBF9900827276 /* OrdersViewModel.swift */,
+				B0D850F123722DBC00B34F9C /* OrderTrackingViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1216,6 +1220,7 @@
 				B01875EE236B19130031FD2E /* MealRow.swift in Sources */,
 				B01875EF236B19130031FD2E /* NavigationHeaderView.swift in Sources */,
 				B01875F0236B19130031FD2E /* DoubleExtensions.swift in Sources */,
+				B0D850F323722DBC00B34F9C /* OrderTrackingViewModel.swift in Sources */,
 				B01875F1236B19130031FD2E /* LandingState.swift in Sources */,
 				B01875F2236B19130031FD2E /* CustomTextField.swift in Sources */,
 				B01875F3236B19130031FD2E /* AddCreditCardView.swift in Sources */,
@@ -1317,6 +1322,7 @@
 				EBC089F52353B51400DA3A55 /* MealRow.swift in Sources */,
 				B0843373234CF20A00DD325E /* NavigationHeaderView.swift in Sources */,
 				B0D9ED25235650E3006A1545 /* DoubleExtensions.swift in Sources */,
+				B0D850F223722DBC00B34F9C /* OrderTrackingViewModel.swift in Sources */,
 				B05B3FDB2348257000547DD1 /* LandingState.swift in Sources */,
 				B04616332346BD5D0033087B /* CustomTextField.swift in Sources */,
 				B022F709235E0EA1005269FB /* AddCreditCardView.swift in Sources */,

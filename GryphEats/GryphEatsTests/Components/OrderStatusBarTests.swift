@@ -18,28 +18,40 @@ class OrderStatusBarTests: XCTestCase {
     
     func testOrderStatusBar_orderPlaced() {
         assertSnapshot(
-            matching: UIHostingController(rootView: OrderStatusBar(status: .new).environmentObject(cart)),
+            matching: UIHostingController(
+                rootView: OrderStatusBar(status: .new, action: {}).environmentObject(cart)),
             as: .image,
             record: record)
     }
     
     func testOrderStatusBar_inProgress() {
         assertSnapshot(
-            matching: UIHostingController(rootView: OrderStatusBar(status: .inProgress).environmentObject(cart)),
+            matching: UIHostingController(
+                rootView: OrderStatusBar(status: .inProgress, action: {}).environmentObject(cart)),
             as: .image,
             record: record)
     }
     
     func testOrderStatusBar_readyForPickup() {
         assertSnapshot(
-            matching: UIHostingController(rootView: OrderStatusBar(status: .readyForPickup).environmentObject(cart)),
+            matching: UIHostingController(
+                rootView: OrderStatusBar(status: .readyForPickup, action: {}).environmentObject(cart)),
             as: .image,
             record: record)
     }
     
     func testOrderStatusBar_pickedUp() {
         assertSnapshot(
-            matching: UIHostingController(rootView: OrderStatusBar(status: .pickedUp).environmentObject(cart)),
+            matching: UIHostingController(
+                rootView: OrderStatusBar(status: .pickedUp, action: {}).environmentObject(cart)),
+            as: .image,
+            record: record)
+    }
+    
+    func testOrderStatusBar_cancelled() {
+        assertSnapshot(
+            matching: UIHostingController(
+                rootView: OrderStatusBar(status: .cancelled, action: {}).environmentObject(cart)),
             as: .image,
             record: record)
     }

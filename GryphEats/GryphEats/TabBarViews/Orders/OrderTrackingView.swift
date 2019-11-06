@@ -10,12 +10,13 @@ import SwiftUI
 
 // MARK: - OrderTrackingView
 
-struct OrderTrackingView: View {
+struct OrderTrackingView: View, Dismissable {
     
     // MARK: Lifecycle
     
-    init(order: Order) {
-        self.order = order
+    init(order: Order, onDismiss: @escaping () -> Void) {
+        self.viewModel = OrderTrackingViewModel(order: order)
+        self.onDismiss = onDismiss
     }
     
     // MARK: Internal
@@ -28,22 +29,39 @@ struct OrderTrackingView: View {
                     .padding(.bottom, 10)
                     .padding(.top, 25)
                 
-                OrderStatusBar(status: order.status)
-                    .padding(.vertical)
+                OrderStatusBar(status: viewModel.order.status) {
+                    self.viewModel.cancelOrder { success in
+                        if success {
+                            self.onDismiss()
+                            self.dismiss()
+                        } else {
+                            self.error = .cancelError
+                        }
+                    }
+                }.padding(.vertical)
                 
-                ForEach(order.items, id: \.foodItem.id) { item in
+                ForEach(viewModel.order.items, id: \.foodItem.id) { item in
                     CartItemCard(item: item)
                 }
                 
                 PriceSummaryCard(displayMode: .onCampusMealPlan, isPayButtonHidden: true) { _ in }
-                    .environmentObject(Cart(items: order.items))
+                    .environmentObject(Cart(items: viewModel.order.items))
             }
+        }.errorAlert(error: self.$error.wrappedValue) {
+            // If we do not "unset" the error, and assign an error that is the exact same type of the
+            //old value, SwiftUI will not present the alert. Possible SwiftUI Bug?
+            self.error = nil
         }
     }
     
+    @Environment(\.presentationMode) var presentationMode
+    
     // MARK: Private
     
-    private let order: Order
+    @State private var error: OrderTrackingViewModel.OrderTrackingError? = nil
+    
+    private let viewModel: OrderTrackingViewModel
+    private let onDismiss: () -> Void
     
 }
 
@@ -58,6 +76,6 @@ struct OrderTrackingView_Previews: PreviewProvider {
                 items: [RestaurantFoodItem(
                     foodItem: GraphFoodItem(id: "0", name: "Hamburger 1", price: 9.99),
                     restaurantId: "1",
-                    restaurantName: "100 Mile Grill")]))
+                    restaurantName: "100 Mile Grill")])) {}
     }
 }

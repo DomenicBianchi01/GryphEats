@@ -45,10 +45,14 @@ struct OrderRow: View {
     var rowColor: Color {
         let colors: [Color] = [.guelphRed, .guelphYellow, .green, .blue]
         switch order.status {
-            case .new: return colors[0]
-            case .inProgress : return colors[1]
-            case .readyForPickup : return colors[2]
-            case .pickedUp : return colors[3]
+        case .new, .cancelled:
+            return colors[0]
+        case .inProgress:
+            return colors[1]
+        case .readyForPickup:
+            return colors[2]
+        case .pickedUp:
+            return colors[3]
         }
     }
 }

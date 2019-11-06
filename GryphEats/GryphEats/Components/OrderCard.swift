@@ -55,7 +55,7 @@ struct OrderCard: View {
                     Image(systemName: "clock")
                         .padding(.leading, 20)
                         .foregroundColor(.gray)
-                    Text(order.timePlaced)
+                    Text(order.timePlacedString(expanded: true))
                         .font(.subheadline)
                         .foregroundColor(.gray)
                         .padding(.trailing, 20)
@@ -107,7 +107,7 @@ struct OrderCard: View {
     
     private func orderStatusToColor() -> Color {
         switch order.status {
-        case .new:
+        case .new, .cancelled:
             return .red
         case .inProgress:
             return .yellow
