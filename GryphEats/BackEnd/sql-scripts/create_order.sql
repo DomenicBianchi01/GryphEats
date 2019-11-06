@@ -1,1 +1,1 @@
-create table foodorder (orderid int not null primary key auto_increment, timeplaced datetime not null, timecompleted datetime, restaurantid int, ordertype int default 0, foreign key (restaurantid) references restaurant(restaurantid));
+create table foodorder (orderid int not null primary key auto_increment, timeplaced datetime not null, timecompleted datetime, restaurantid int, ordertype int default 0, userid int, foreign key (restaurantid) references restaurant(restaurantid), foreign key (userid) references user(userid));
