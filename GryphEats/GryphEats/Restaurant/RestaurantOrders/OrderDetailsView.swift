@@ -19,13 +19,20 @@ struct OrderDetailsView: View {
             
             if ( UIDevice.current.userInterfaceIdiom == .phone ) {
                 VStack(alignment: .leading, spacing: 20) {
-                    self.headerCentent
+                    self.headerContent
                 }
             } else {
                 HStack(alignment: .top, spacing: 20) {
-                    self.headerCentent
+                    self.headerContent
                 }
             }
+            Divider()
+            VStack(alignment: .leading, spacing: 14) {
+                Text("Additional Info:")
+                    .font(Font.custom("Roboto-Bold", size: 28))
+                    .foregroundColor(Color.secondary)
+                Text("Nut Allergy").font(Font.custom("Roboto-Regular", size: 28)).padding(.leading).foregroundColor(Color.primary)
+            }.padding(.leading)
             Divider()
             List(order.items, id: \.foodItem.id) { restaurantFoodItem in
                 MealRow(foodItem: restaurantFoodItem.foodItem)
@@ -33,11 +40,10 @@ struct OrderDetailsView: View {
         }.padding(.all)
     }
     
-    private var headerCentent: AnyView {
+    private var headerContent: AnyView {
         return AnyView(
             Group {
                 VStack(alignment: .leading, spacing: 10) {
-                    
                     Text(order.customer.name)
                         .font(Font.custom("Roboto-Bold", size: 28))
                         .lineLimit(1)
@@ -51,17 +57,17 @@ struct OrderDetailsView: View {
                 }
                 HStack() {
                     CircularButton(
+                        text: Text(exitButtonText).font(Font.custom("Roboto-Light", size: 22)),
+                        backgroundColor: exitButtonColor,
+                        foregroundColor: .black) {
+                            self.backOrder()
+                    }.padding(.trailing).disabled(!isNew).opacity(isNew ? 1 : 0)
+                    CircularButton(
                         text: Text(continueButtonText).font(Font.custom("Roboto-Light", size: 22)),
                         backgroundColor: continueButtonColor,
                         foregroundColor: .black) {
                             self.continueOrder()
                     }.padding(.trailing)
-                    CircularButton(
-                        text: Text(exitButtonText).font(Font.custom("Roboto-Light", size: 22)),
-                        backgroundColor: exitButtonColor,
-                        foregroundColor: .black) {
-                            self.backOrder()
-                    }.padding(.trailing).disabled(true)
                 }
             }
         )
@@ -112,6 +118,10 @@ struct OrderDetailsView: View {
         default:
             return
         }
+    }
+    
+    private var isNew: Bool {
+        return order.status.rawValue == 0 ? true : false
     }
     
     private var continueButtonColor: Color {

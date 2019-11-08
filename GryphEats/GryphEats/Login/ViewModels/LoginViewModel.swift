@@ -58,9 +58,9 @@ class LoginViewModel {
                 
                 let user = User(id: account.userId, type: account.userType, username: username, password: "")
                 
-                if account.userType == .customer {
+//                if account.userType == .customer {
                     self.saveCredentials(for: user)
-                }
+//                }
                 
                 return completion(.success(user))
             case .failure:

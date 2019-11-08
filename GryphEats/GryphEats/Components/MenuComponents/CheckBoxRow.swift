@@ -43,6 +43,7 @@ struct CheckBoxRow: View {
             .background(Color.white)
             .cornerRadius(5)
             .shadow(radius: 2)
+            .opacity(isSelected ? 1.0 : 0.6)
     }
     
     // MARK: Private
