@@ -20,46 +20,24 @@ struct MealRow: View {
                         Spacer()
                     }.scaledToFill()
                 }
-                if ( UIDevice.current.userInterfaceIdiom == .phone ) {
+                HStack (alignment: .top, spacing: 6){
                     VStack(alignment: .leading, spacing: 6) {
+                        //below needed to write ingridients
                         Text("")
-//                        ForEach(foodItem.ingredients) { ingredient in
-//                            HStack {
-//                                Text("1x")
-//                                Text(ingredient.name)
-//                            }
-//                        }
+                        //                            ForEach(foodItem.ingredients) { ingredient in
+                        //                                HStack {
+                        //                                    Text("1x")
+                        //                                    Text(ingredient.name)
+                        //                                }
+                        //                            }
                     }.padding(.bottom).padding(.leading, 40)
-                    .font(Font.custom("Roboto-Bold", size: 28))
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text("Additional Info")
-                        Text("Nut Allergy")
-                    }.padding(.bottom).padding(.trailing, 40)
-                    .font(Font.custom("Roboto-Bold", size: 20))
+                    Spacer()
+                }.font(Font.custom("Roboto-Bold", size: 28))
                     .foregroundColor(.gray)
-                } else {
-                    HStack (alignment: .top, spacing: 6){
-                        VStack(alignment: .leading, spacing: 6) {
-                            Text("")
-//                            ForEach(foodItem.ingredients) { ingredient in
-//                                HStack {
-//                                    Text("1x")
-//                                    Text(ingredient.name)
-//                                }
-//                            }
-                        }.padding(.bottom).padding(.leading, 40)
-                        Spacer()
-                        VStack(alignment: .trailing, spacing: 6) {
-                            Text("Additional Info")
-                            Text("Nut Allergy")
-                        }.padding(.bottom).padding(.trailing, 40)
-                    }.font(Font.custom("Roboto-Bold", size: 28))
-                        .foregroundColor(.gray)
-                }
-            }.padding(.top)            
+            }.padding(.top)
         }
     }
     
     var foodItem: GraphFoodItem
-
+    
 }
