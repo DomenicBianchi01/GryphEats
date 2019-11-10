@@ -55,16 +55,16 @@ struct ItemOverview: View, Dismissable {
                     Text("Ingredients").bold().padding(.leading)
                     
                     CheckBoxView(ingredients: [
-                        Ingredient(id: 0, name: "Tomato", imageName: "tomato"),
-                        Ingredient(id: 1, name: "Lettuce", imageName: "tomato"),
-                        Ingredient(id: 2, name: "Onion", imageName: "tomato"),
-                        Ingredient(id: 3, name: "Pepper", imageName: "tomato"),
-                        Ingredient(id: 4, name: "Black Olives", imageName: "tomato"),
-                        Ingredient(id: 5, name: "Tomato", imageName: "tomato"),
-                        Ingredient(id: 6, name: "Lettuce", imageName: "tomato"),
-                        Ingredient(id: 7, name: "Onion", imageName: "tomato"),
-                        Ingredient(id: 8, name: "Pepper", imageName: "tomato"),
-                        Ingredient(id: 9, name: "Black Olives", imageName: "tomato"),
+                        Ingredient(id: 0, name: "Tomato"),
+                        Ingredient(id: 1, name: "Lettuce"),
+                        Ingredient(id: 2, name: "Onion"),
+                        Ingredient(id: 3, name: "Pepper"),
+                        Ingredient(id: 4, name: "Black Olives"),
+                        Ingredient(id: 5, name: "Tomato"),
+                        Ingredient(id: 6, name: "Lettuce"),
+                        Ingredient(id: 7, name: "Onion"),
+                        Ingredient(id: 8, name: "Pepper"),
+                        Ingredient(id: 9, name: "Black Olives"),
                         ], onTap: { /*TODO*/ })
                 }
             }

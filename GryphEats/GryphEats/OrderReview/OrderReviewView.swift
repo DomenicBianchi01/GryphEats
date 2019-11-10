@@ -15,7 +15,23 @@ struct OrderReviewView: View {
     // MARK: Internal
     
     var body: some View {
-        HStack {
+        VStack(spacing: 0) {
+            HStack {
+                if state.state == .checkout {
+                    BackButton(color: .blue) {
+                        withAnimation {
+                            self.state.state = .summary
+                        }
+                    }
+                }
+                Spacer()
+                Button(action: {
+                    self.viewControllerHolder.value?.dismiss(animated: true)
+                }) {
+                    Image(systemName: "xmark")
+                }.padding()
+            }
+            
             if state.state == .summary {
                 OrderSummaryView().transition(.leftSlide)
             } else if state.state == .checkout {
@@ -36,6 +52,7 @@ struct OrderReviewView: View {
     // MARK: Private
     
     @EnvironmentObject private var state: OrderReviewState
+    @Environment(\.viewController) private var viewControllerHolder
     
 }
 

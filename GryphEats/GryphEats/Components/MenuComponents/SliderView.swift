@@ -17,7 +17,6 @@ struct SliderView: View {
     enum SliderType {
         case categories([Category])
         case foodItems([RestaurantFoodItem])
-        case ingredients([Ingredient])
     }
     
     // MARK: Lifecycle
@@ -56,10 +55,6 @@ struct SliderView: View {
                     self.menuCard(for: items.map({ $0.foodItem })[index], atIndex: index, onTap: { _ in })
                         .disabled(true)
                 }
-            })
-        case .ingredients(let ingredients):
-            return AnyView(ForEach(ingredients.indices) { index in
-                IngredientCard(ingredient: ingredients[index]) { _ in /*TODO*/}
             })
         }
     }
@@ -112,15 +107,6 @@ struct SliderView_Previews: PreviewProvider {
                     Category(id: 2, name: "Pizza"),
                     Category(id: 3, name: "Meat"),
                     Category(id: 4, name: "Dessert")
-                ]),
-                onTap: { _ in print("Tapped") })
-            SliderView(
-                type: .ingredients([
-                    Ingredient(id: 0, name: "Tomato", imageName: "tomato"),
-                    Ingredient(id: 1, name: "Lettuce", imageName: "tomato"),
-                    Ingredient(id: 2, name: "Onion", imageName: "tomato"),
-                    Ingredient(id: 3, name: "Pepper", imageName: "tomato"),
-                    Ingredient(id: 4, name: "Black Olives", imageName: "tomato"),
                 ]),
                 onTap: { _ in print("Tapped") })
         }

@@ -20,6 +20,8 @@ class Cart: Items, ObservableObject {
     
     // MARK: Internal
     
+    @Published var specialInstructions = ""
+    
     func delete(item: RestaurantFoodItem) {
         guard let index = items.firstIndex(where: { $0.foodItem == item.foodItem }) else {
             return

@@ -25,23 +25,17 @@ struct OrderSummaryView: View {
         // SwiftUI Bug: Using a `List` instead of a `ScrollView` causes weird behavior for the payment screen
         // (displayed after this screen)
         ScrollView {
-            VStack(spacing: 0) {
+            VStack {
                 Group {
                     Image(systemName: "cart")
                         .resizable()
                         .frame(width: 50, height: 50)
-                        .padding(.top, 25)
+                        //.padding(.top, 25)
                         .padding(.bottom, 5)
                     Text("Summary")
                         .bold()
                         .padding(.bottom, 10)
                 }.foregroundColor(.guelphRed)
-                
-                ForEach(cart.items, id: \.foodItem.id) { item in
-                    CartItemCard(item: item) {
-                        self.cart.delete(item: item)
-                    }
-                }
                 
                 if cart.items.isEmpty {
                     HStack {
@@ -52,6 +46,28 @@ struct OrderSummaryView: View {
                         Spacer()
                     }
                 } else {
+                    sectionHeader(title: "Items")
+                    
+                    ForEach(cart.items, id: \.foodItem.id) { item in
+                        CartItemCard(item: item) {
+                            self.cart.delete(item: item)
+                        }
+                    }
+                    
+                    sectionHeader(title: "Special Instructions").padding(.top)
+                    
+                    // TODO Bug: Lines do not word wrap automatically for some reason
+                    TextView(text: self.$cart.specialInstructions)
+                        .background(Color.white)
+                        .cornerRadius(5)
+                        .padding(.horizontal, 10)
+                        .shadow(radius: 2)
+                        .frame(width: UIScreen.main.bounds.size.width)
+                        .fixedSize(horizontal: true, vertical: false)
+                        .dismissKeyboardOnTapGesture()
+                    
+                    sectionHeader(title: "Summary").padding(.top)
+                    
                     PriceSummaryCard { action in
                         switch action {
                         case .creditOrStudentCard:
@@ -76,6 +92,15 @@ struct OrderSummaryView: View {
     @EnvironmentObject private var cart: Cart
     @EnvironmentObject private var state: OrderReviewState
     
+    private func sectionHeader(title: String) -> some View {
+        HStack {
+            Text(title)
+                .font(.headline)
+                .foregroundColor(.secondary)
+                .padding(.horizontal)
+            Spacer()
+        }
+    }
 }
 
 struct OrderSummaryView_Previews: PreviewProvider {

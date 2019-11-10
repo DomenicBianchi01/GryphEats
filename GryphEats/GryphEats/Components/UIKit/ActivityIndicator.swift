@@ -23,8 +23,6 @@ struct ActivityIndicator: UIViewRepresentable {
     
     // MARK: Internal
     
-    @Binding var isAnimating: Bool
-    
     func makeUIView(context: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
         UIActivityIndicatorView(style: style)
     }
@@ -35,6 +33,7 @@ struct ActivityIndicator: UIViewRepresentable {
     
     // MARK: Private
     
+    @Binding private var isAnimating: Bool
     private let style: UIActivityIndicatorView.Style
     
 }

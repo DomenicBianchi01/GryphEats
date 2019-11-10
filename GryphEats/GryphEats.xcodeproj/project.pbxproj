@@ -69,7 +69,6 @@
 		B018761C236B19130031FD2E /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B021DE9B234FCE6600DBF1AA /* ActivityIndicator.swift */; };
 		B018761D236B19130031FD2E /* MenuCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A7C405234C2CEC001555B7 /* MenuCard.swift */; };
 		B018761E236B19130031FD2E /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F3197E236607F7006500AC /* AccountView.swift */; };
-		B018761F236B19130031FD2E /* IngredientCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B090F0C3234F71EC007CF06F /* IngredientCard.swift */; };
 		B0187620236B19130031FD2E /* StudentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A2D0A623462BE700391DD6 /* StudentCard.swift */; };
 		B0187621236B19130031FD2E /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B5145234958990015E960 /* HeaderView.swift */; };
 		B0187622236B19130031FD2E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B084336A234CEC5300DD325E /* HomeViewModel.swift */; };
@@ -160,6 +159,8 @@
 		B051FF7A234588AA0093C0DC /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051FF78234588AA0093C0DC /* Order.swift */; };
 		B051FF7B234588AA0093C0DC /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051FF79234588AA0093C0DC /* Customer.swift */; };
 		B051FF7E234588BD0093C0DC /* OrderCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051FF7D234588BD0093C0DC /* OrderCard.swift */; };
+		B059D1C52375156E009C6E14 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B059D1C42375156E009C6E14 /* TextView.swift */; };
+		B059D1C62375156E009C6E14 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B059D1C42375156E009C6E14 /* TextView.swift */; };
 		B05B3FD82348253000547DD1 /* SecurityQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05B3FD72348253000547DD1 /* SecurityQuestionView.swift */; };
 		B05B3FDB2348257000547DD1 /* LandingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05B3FDA2348257000547DD1 /* LandingState.swift */; };
 		B05CE801235FE772000DB827 /* CardProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05CE800235FE772000DB827 /* CardProvider.swift */; };
@@ -189,9 +190,7 @@
 		B0843376234D07E100DD325E /* ResturantItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0843375234D07E100DD325E /* ResturantItemsView.swift */; };
 		B08A7B42235A918100693E6A /* AddCreditCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08A7B41235A918100693E6A /* AddCreditCardViewModel.swift */; };
 		B08F32132348D3C2009A0E61 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F32122348D3C2009A0E61 /* ColorExtensions.swift */; };
-		B090F0C4234F71EC007CF06F /* IngredientCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B090F0C3234F71EC007CF06F /* IngredientCard.swift */; };
 		B090F0C9234F9225007CF06F /* OrderSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B090F0C8234F9225007CF06F /* OrderSummaryView.swift */; };
-		B090F0CC234F9C87007CF06F /* IngredientCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B090F0CB234F9C87007CF06F /* IngredientCardTests.swift */; };
 		B091560323594F7900FE2CD2 /* AddPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B091560223594F7900FE2CD2 /* AddPaymentView.swift */; };
 		B09156062359551600FE2CD2 /* ValetExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09156052359551600FE2CD2 /* ValetExtensions.swift */; };
 		B091560923595ACE00FE2CD2 /* PaymentInfoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B091560823595ACE00FE2CD2 /* PaymentInfoTextField.swift */; };
@@ -333,6 +332,7 @@
 		B051FF78234588AA0093C0DC /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		B051FF79234588AA0093C0DC /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		B051FF7D234588BD0093C0DC /* OrderCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCard.swift; sourceTree = "<group>"; };
+		B059D1C42375156E009C6E14 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		B05B3FD72348253000547DD1 /* SecurityQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityQuestionView.swift; sourceTree = "<group>"; };
 		B05B3FDA2348257000547DD1 /* LandingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingState.swift; sourceTree = "<group>"; };
 		B05CE800235FE772000DB827 /* CardProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardProvider.swift; sourceTree = "<group>"; };
@@ -361,9 +361,7 @@
 		B0843375234D07E100DD325E /* ResturantItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResturantItemsView.swift; sourceTree = "<group>"; };
 		B08A7B41235A918100693E6A /* AddCreditCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCreditCardViewModel.swift; sourceTree = "<group>"; };
 		B08F32122348D3C2009A0E61 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
-		B090F0C3234F71EC007CF06F /* IngredientCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCard.swift; sourceTree = "<group>"; };
 		B090F0C8234F9225007CF06F /* OrderSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryView.swift; sourceTree = "<group>"; };
-		B090F0CB234F9C87007CF06F /* IngredientCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCardTests.swift; sourceTree = "<group>"; };
 		B091560223594F7900FE2CD2 /* AddPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPaymentView.swift; sourceTree = "<group>"; };
 		B09156052359551600FE2CD2 /* ValetExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValetExtensions.swift; sourceTree = "<group>"; };
 		B091560823595ACE00FE2CD2 /* PaymentInfoTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentInfoTextField.swift; sourceTree = "<group>"; };
@@ -547,6 +545,7 @@
 				B0CD88CD236088A200A5C021 /* CustomTabBar.swift */,
 				B021DE9B234FCE6600DBF1AA /* ActivityIndicator.swift */,
 				B0D9ED392356B87B006A1545 /* ApplePayButton.swift */,
+				B059D1C42375156E009C6E14 /* TextView.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -740,7 +739,6 @@
 				EB1E4A02236E204B00B93EEF /* CheckBoxView.swift */,
 				B0A7C405234C2CEC001555B7 /* MenuCard.swift */,
 				B0843363234CB2A500DD325E /* CategoryCard.swift */,
-				B090F0C3234F71EC007CF06F /* IngredientCard.swift */,
 			);
 			path = MenuComponents;
 			sourceTree = "<group>";
@@ -840,7 +838,6 @@
 				B0BEF920234D525C004455DC /* MenuCardTests.swift */,
 				B0BEF922234D52DA004455DC /* CategoryCardTests.swift */,
 				B0BEF924234D546D004455DC /* SliderViewTests.swift */,
-				B090F0CB234F9C87007CF06F /* IngredientCardTests.swift */,
 			);
 			path = MenuComponents;
 			sourceTree = "<group>";
@@ -1217,6 +1214,7 @@
 				B01875EB236B19130031FD2E /* RestaurantFoodItem.swift in Sources */,
 				B01875EC236B19130031FD2E /* ResturantItemsView.swift in Sources */,
 				B01875ED236B19130031FD2E /* UIViewControllerExtensions.swift in Sources */,
+				B059D1C62375156E009C6E14 /* TextView.swift in Sources */,
 				B01875EE236B19130031FD2E /* MealRow.swift in Sources */,
 				B01875EF236B19130031FD2E /* NavigationHeaderView.swift in Sources */,
 				B01875F0236B19130031FD2E /* DoubleExtensions.swift in Sources */,
@@ -1272,7 +1270,6 @@
 				B018761C236B19130031FD2E /* ActivityIndicator.swift in Sources */,
 				B018761D236B19130031FD2E /* MenuCard.swift in Sources */,
 				B018761E236B19130031FD2E /* AccountView.swift in Sources */,
-				B018761F236B19130031FD2E /* IngredientCard.swift in Sources */,
 				B0187620236B19130031FD2E /* StudentCard.swift in Sources */,
 				B0187621236B19130031FD2E /* HeaderView.swift in Sources */,
 				B0187622236B19130031FD2E /* HomeViewModel.swift in Sources */,
@@ -1319,6 +1316,7 @@
 				B0A7C409234C328D001555B7 /* RestaurantFoodItem.swift in Sources */,
 				B0843376234D07E100DD325E /* ResturantItemsView.swift in Sources */,
 				B0BBFDB423479F2E00FDEFA4 /* UIViewControllerExtensions.swift in Sources */,
+				B059D1C52375156E009C6E14 /* TextView.swift in Sources */,
 				EBC089F52353B51400DA3A55 /* MealRow.swift in Sources */,
 				B0843373234CF20A00DD325E /* NavigationHeaderView.swift in Sources */,
 				B0D9ED25235650E3006A1545 /* DoubleExtensions.swift in Sources */,
@@ -1374,7 +1372,6 @@
 				EB1E4A03236E204B00B93EEF /* CheckBoxView.swift in Sources */,
 				B0A7C406234C2CEC001555B7 /* MenuCard.swift in Sources */,
 				B0F3197F236607F7006500AC /* AccountView.swift in Sources */,
-				B090F0C4234F71EC007CF06F /* IngredientCard.swift in Sources */,
 				B0A2D0A723462BE700391DD6 /* StudentCard.swift in Sources */,
 				B06B5146234958990015E960 /* HeaderView.swift in Sources */,
 				B084336B234CEC5300DD325E /* HomeViewModel.swift in Sources */,
@@ -1427,7 +1424,6 @@
 				B0160C8F235BDDB60087A99F /* CreditCardTests.swift in Sources */,
 				B0CD88D42360A21200A5C021 /* CustomTabBarTests.swift in Sources */,
 				B0D9ED2A23566A41006A1545 /* ActionButtonTests.swift in Sources */,
-				B090F0CC234F9C87007CF06F /* IngredientCardTests.swift in Sources */,
 				B0BEF925234D546D004455DC /* SliderViewTests.swift in Sources */,
 				B06B5142234957680015E960 /* CustomUIHostingController.swift in Sources */,
 				B0D9ED28235669F0006A1545 /* CartItemCardTests.swift in Sources */,
