@@ -27,7 +27,7 @@ struct MainTabView: View {
             CustomTabBar(selectedIndex: $selection, items: [
                 CustomTabBarItem(icon: .system(name: "house"), title: "Menus"),
                 CustomTabBarItem(icon: .system(name: "dollarsign.square"), title: "Orders"),
-                CustomTabBarItem(icon: .system(name: "person"), title: "Account"),
+                CustomTabBarItem(icon: .system(name: "person"), title: "Account")
             ])
         }.edgesIgnoringSafeArea(.bottom)
     }

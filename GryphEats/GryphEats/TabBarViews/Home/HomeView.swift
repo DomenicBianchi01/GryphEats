@@ -30,10 +30,21 @@ struct HomeView: View {
     
     // MARK: Private
     
-    @State private var showOrderReview: Bool = false
+    @Environment(\.viewController) private var viewControllerHolder
+    
     @ObservedObject private var viewModel = HomeViewModel()
     @EnvironmentObject private var cart: Cart
     @EnvironmentObject private var loggedInUser: User
+    @EnvironmentObject private var state: LandingState
+    
+    func displayOrderReview() {
+        viewControllerHolder.value?.present(style: .fullScreen) {
+            OrderReviewView()
+            .environmentObject(self.loggedInUser)
+            .environmentObject(self.cart)
+            .environmentObject(OrderReviewState())
+        }
+    }
     
     private var content: AnyView {
         switch viewModel.loadingState {
@@ -64,18 +75,13 @@ struct HomeView: View {
     
     private var trailingNavigationBarItems: some View {
         let action = {
-            self.showOrderReview = true
+            self.displayOrderReview()
         }
         
         return BadgeButton(badgeNumber: $cart.items.wrappedValue.count, action: action) {
             Image(systemName: "cart")
                 .padding(.all, 10)
                 .foregroundColor(.black)
-        }.sheet(isPresented: $showOrderReview) {
-            OrderReviewView()
-                .environmentObject(self.loggedInUser)
-                .environmentObject(self.cart)
-                .environmentObject(OrderReviewState())
         }
     }
 }

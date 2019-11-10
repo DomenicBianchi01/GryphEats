@@ -16,6 +16,5 @@ struct Ingredient: Identifiable, Equatable {
     
     let id: Int
     let name: String
-    let imageName: String
 
 }

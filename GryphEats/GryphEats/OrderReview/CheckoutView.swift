@@ -18,18 +18,8 @@ struct CheckoutView: View {
     var body: some View {
         ScrollView {
             VStack {
-                BackButton(color: .blue) {
-                    withAnimation {
-                        self.state.state = .summary
-                    }
-                }
-                
                 cardView
                 
-                // This view is refreshed `onAppear`. If the number of payment methods have increased or decreased,
-                // because we are iterating over the indices and not the actual objects, we need to provide a unique
-                // identifier for the actual index (since we don't have access to `Identifiable` within the actual
-                // payment method object).
                 ForEach(viewModel.paymentMethods.indices, id: \.hashValue) { index in
                     PaymentSelectionCard(
                         paymentMethod: self.viewModel.paymentMethods[index],
@@ -97,7 +87,7 @@ struct CheckoutView: View {
     @State private var showAddPayment: Bool = false
     @State private var confirmPayment: Bool = false
     @State private var selectedPaymentMethodIndex = 0
-    @State private var error: CheckoutViewModel.PaymentError? = nil
+    @State private var error: CheckoutViewModel.CheckoutError? = nil
     
     private let viewModel = CheckoutViewModel()
     

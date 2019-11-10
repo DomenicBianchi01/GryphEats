@@ -40,9 +40,24 @@ struct OrderTrackingView: View, Dismissable {
                     }
                 }.padding(.vertical)
                 
+                sectionHeader(title: "Items")
+                
                 ForEach(viewModel.order.items, id: \.foodItem.id) { item in
                     CartItemCard(item: item)
                 }
+                
+                if viewModel.order.specialInstructions == nil {
+                    sectionHeader(title: "Special Instructions").padding(.top)
+                    TextView(text: .constant("This is a super long test.\n This is a super long test.\n This is a super long test.\n This is a super long test.\n This is a super long test.\n This is a super long test.\n This is a super long test.\n This is a super long test.\n This is a super long test.\n "), isEditable: false)
+                        .background(Color.white)
+                        .cornerRadius(5)
+                        .padding([.horizontal], 10)
+                        .shadow(radius: 2)
+                        .frame(width: UIScreen.main.bounds.size.width)
+                        .fixedSize(horizontal: true, vertical: false)
+                }
+                
+                sectionHeader(title: "Summary").padding(.top)
                 
                 PriceSummaryCard(displayMode: .onCampusMealPlan, isPayButtonHidden: true) { _ in }
                     .environmentObject(Cart(items: viewModel.order.items))
@@ -63,6 +78,15 @@ struct OrderTrackingView: View, Dismissable {
     private let viewModel: OrderTrackingViewModel
     private let onDismiss: () -> Void
     
+    private func sectionHeader(title: String) -> some View {
+        HStack {
+            Text(title)
+                .font(.headline)
+                .foregroundColor(.secondary)
+                .padding(.horizontal)
+            Spacer()
+        }
+    }
 }
 
 struct OrderTrackingView_Previews: PreviewProvider {

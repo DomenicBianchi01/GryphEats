@@ -20,11 +20,13 @@ class Order: Items, ObservableObject, Identifiable {
         customer: Customer,
         status: OrderStatus = .neworder,
         timePlaced: String,
-        items: [RestaurantFoodItem] = [])
+        items: [RestaurantFoodItem] = [],
+        specialInstructions: String? = nil)
     {
         self.id = id
         self.restaurantID = restaurantID
         self.customer = customer
+        self.specialInstructions = specialInstructions
         
         switch status {
         case .neworder, .__unknown:
@@ -91,6 +93,7 @@ class Order: Items, ObservableObject, Identifiable {
     let restaurantID: String
     let customer: Customer
     let timePlaced: Date
+    let specialInstructions: String?
 
     func timePlacedString(expanded: Bool = false) -> String {
         let dateFormatter = DateFormatter()

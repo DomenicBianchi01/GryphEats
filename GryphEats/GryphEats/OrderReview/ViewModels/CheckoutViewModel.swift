@@ -14,9 +14,9 @@ import Valet
 
 class CheckoutViewModel {
     
-    // MARK: PaymentError
+    // MARK: CheckoutError
     
-    enum PaymentError: Error, LocalizedError {
+    enum CheckoutError: Error, LocalizedError {
         case invalidCart
         case paymentDeclined
         
@@ -52,7 +52,7 @@ class CheckoutViewModel {
         return paymentMethods
     }
     
-    func submitOrder(for userID: String, with cart: Cart, completion: @escaping (Result<Bool, PaymentError>) -> Void) {
+    func submitOrder(for userID: String, with cart: Cart, completion: @escaping (Result<Bool, CheckoutError>) -> Void) {
         // If an order has items from different restaurants, we need to split the order into "one order per restaurant"
         var splitItems: [String: [GraphFoodItem]] = [:]
         
@@ -65,6 +65,7 @@ class CheckoutViewModel {
         }
         
         let dispatchGroup = DispatchGroup()
+        var placedOrder = true
         
         splitItems.forEach { element in
             dispatchGroup.enter()
@@ -77,19 +78,19 @@ class CheckoutViewModel {
                         userID: userID))
                 { result in
                     dispatchGroup.leave()
-                    //                switch result {
-                    //                case .success:
-                    //                    return completion(.success(true))
-                    //                case .failure:
-                    //                    return completion(.failure(.paymentDeclined))
-                    //                }
+                    switch result {
+                    case .success:
+                        break
+                    case .failure:
+                        placedOrder = false
+                    }
                 }
-
+                
                 dispatchGroup.wait()
             }
         }
         
-        //TODO: Actually check if any of the mutations failed
-        completion(.success(true))
+        //TODO: If an order fails, cancel all the previous ones just placd
+        completion(.success(placedOrder))
     }
 }
