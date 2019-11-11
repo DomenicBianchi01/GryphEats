@@ -13,7 +13,7 @@ import SwiftUI
 struct RegisterView: View {
     
     // MARK: Internal
-
+    
     var body: some View {
         VStack(alignment: UIDevice.current.isPad ? .center : .leading) {
             BackButton {
@@ -76,9 +76,8 @@ struct RegisterView: View {
     // MARK: Private
     
     @State private var error: LandingState.LandingError? = nil
-    
     @EnvironmentObject private var state: LandingState
-
+    
 }
 
 struct RegisterView_Previews: PreviewProvider {

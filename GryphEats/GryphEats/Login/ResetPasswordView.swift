@@ -45,11 +45,22 @@ struct ResetPasswordView: View {
                     text: Text("Continue"),
                     backgroundColor: .white,
                     foregroundColor: .black) {
-                        if let error = self.state.validatePasswordInput() {
-                            self.error = error
+                        if self.state.validatePasswordInput() != nil {
+                            self.error = .invalidPassword
                         } else {
-                            withAnimation {
-                                self.state.reset()
+                            self.viewModel.updatePassword(
+                                email: self.state.email,
+                                newPassword: self.state.password)
+                            { result in
+                                switch result {
+                                case .success:
+                                    //TODO
+                                    withAnimation {
+                                        self.state.reset()
+                                    }
+                                case .failure(let error):
+                                    self.error = error
+                                }
                             }
                         }
                 }.shadow(radius: 5).padding()
@@ -64,10 +75,11 @@ struct ResetPasswordView: View {
     
     // MARK: Private
     
-    @State private var error: LandingState.LandingError? = nil
-    
+    @State private var error: ResetPasswordViewModel.ResetPasswordError? = nil
     @EnvironmentObject private var state: LandingState
-
+    
+    private let viewModel = ResetPasswordViewModel()
+    
 }
 
 struct ResetPasswordView_Previews: PreviewProvider {

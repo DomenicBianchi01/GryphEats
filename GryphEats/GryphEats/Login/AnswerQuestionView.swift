@@ -28,7 +28,7 @@ struct AnswerQuestionView: View {
                 .foregroundColor(.white)
                 .padding(.bottom, 10)
             
-            Text("Where was your first trip?")
+            Text(state.question)
                 .underline()
                 .bold()
                 .foregroundColor(.white)
@@ -49,11 +49,25 @@ struct AnswerQuestionView: View {
                     text: Text("Continue"),
                     backgroundColor: .white,
                     foregroundColor: .black) {
-                        if let error = self.state.validateForgotPasswordInput() {
-                            self.error = error
+                        if self.state.validateForgotPasswordInput() != nil {
+                            self.error = .emptyAnswer
                         } else {
-                            withAnimation {
-                                self.state.state = .resetPassword
+                            self.viewModel.validateSecurityAnswer(
+                                email: self.state.email,
+                                answer: self.state.answer)
+                            { result in
+                                switch result {
+                                case .success(let isCorrect):
+                                    if isCorrect {
+                                        withAnimation {
+                                            self.state.state = .resetPassword
+                                        }
+                                    } else {
+                                        self.error = .invalidAnswer
+                                    }
+                                case .failure(let error):
+                                    self.error = error
+                                }
                             }
                         }
                 }.shadow(radius: 5).padding()
@@ -68,10 +82,11 @@ struct AnswerQuestionView: View {
     
     // MARK: Private
     
-    @State private var error: LandingState.LandingError? = nil
-    
+    @State private var error: AnswerQuestionViewModel.AnswerQuestionError? = nil
     @EnvironmentObject private var state: LandingState
-
+    
+    private let viewModel = AnswerQuestionViewModel()
+    
 }
 
 struct AnswerQuestionView_Previews: PreviewProvider {

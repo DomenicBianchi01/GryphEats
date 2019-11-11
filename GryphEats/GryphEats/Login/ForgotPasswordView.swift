@@ -41,11 +41,19 @@ struct ForgotPasswordView: View {
                     text: Text("Continue"),
                     backgroundColor: .white,
                     foregroundColor: .black) {
-                        if let error = self.state.validateForgotPasswordInput() {
-                            self.error = error
+                        if self.state.validateForgotPasswordInput() != nil {
+                            self.error = .emptyEmail
                         } else {
-                            withAnimation {
-                                self.state.state = .answerQuestion
+                            self.viewModel.fetchSecurityQuestion(email: self.state.email) { result in
+                                switch result {
+                                case .success(let question):
+                                    withAnimation {
+                                        self.state.question = question
+                                        self.state.state = .answerQuestion
+                                    }
+                                case .failure(let error):
+                                    self.error = error
+                                }
                             }
                         }
                 }.shadow(radius: 5).padding()
@@ -60,9 +68,10 @@ struct ForgotPasswordView: View {
     
     // MARK: Private
     
-    @State private var error: LandingState.LandingError? = nil
-    
+    @State private var error: ForgotPasswordViewModel.ForgotPasswordError? = nil
     @EnvironmentObject private var state: LandingState
+    
+    private let viewModel = ForgotPasswordViewModel()
     
 }
 

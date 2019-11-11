@@ -284,6 +284,157 @@ public final class UpdateOrderMutation: GraphQLMutation {
   }
 }
 
+public final class SecurityQuestionQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition =
+    """
+    query SecurityQuestion($email: String!) {
+      question: getSecurityQuestionByEmail(email: $email)
+    }
+    """
+
+  public let operationName = "SecurityQuestion"
+
+  public var email: String
+
+  public init(email: String) {
+    self.email = email
+  }
+
+  public var variables: GraphQLMap? {
+    return ["email": email]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Query"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("getSecurityQuestionByEmail", alias: "question", arguments: ["email": GraphQLVariable("email")], type: .nonNull(.scalar(String.self))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(question: String) {
+      self.init(unsafeResultMap: ["__typename": "Query", "question": question])
+    }
+
+    public var question: String {
+      get {
+        return resultMap["question"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "question")
+      }
+    }
+  }
+}
+
+public final class ValidateSecurityAnswerQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition =
+    """
+    query ValidateSecurityAnswer($email: String!, $answer: String!) {
+      isCorrect: validateSecurityQuestion(email: $email, securitya: $answer)
+    }
+    """
+
+  public let operationName = "ValidateSecurityAnswer"
+
+  public var email: String
+  public var answer: String
+
+  public init(email: String, answer: String) {
+    self.email = email
+    self.answer = answer
+  }
+
+  public var variables: GraphQLMap? {
+    return ["email": email, "answer": answer]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Query"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("validateSecurityQuestion", alias: "isCorrect", arguments: ["email": GraphQLVariable("email"), "securitya": GraphQLVariable("answer")], type: .nonNull(.scalar(Bool.self))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(isCorrect: Bool) {
+      self.init(unsafeResultMap: ["__typename": "Query", "isCorrect": isCorrect])
+    }
+
+    public var isCorrect: Bool {
+      get {
+        return resultMap["isCorrect"]! as! Bool
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "isCorrect")
+      }
+    }
+  }
+}
+
+public final class UpdatePasswordMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition =
+    """
+    mutation UpdatePassword($email: String!, $password: String!) {
+      success: updatePasswordByEmail(email: $email, encryptedpw: $password)
+    }
+    """
+
+  public let operationName = "UpdatePassword"
+
+  public var email: String
+  public var password: String
+
+  public init(email: String, password: String) {
+    self.email = email
+    self.password = password
+  }
+
+  public var variables: GraphQLMap? {
+    return ["email": email, "password": password]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("updatePasswordByEmail", alias: "success", arguments: ["email": GraphQLVariable("email"), "encryptedpw": GraphQLVariable("password")], type: .scalar(Bool.self)),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(success: Bool? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "success": success])
+    }
+
+    public var success: Bool? {
+      get {
+        return resultMap["success"] as? Bool
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "success")
+      }
+    }
+  }
+}
+
 public final class LoginUserQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition =
