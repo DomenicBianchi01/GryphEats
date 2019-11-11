@@ -21,7 +21,9 @@ struct CustomTextField: View {
         text: Binding<String>,
         isSecure: Bool = false,
         editingChanged: @escaping (Bool) -> Void = { _ in },
-        commit: @escaping () -> Void = { })
+        commit: @escaping () -> Void = { },
+        headerFontSize: CGFloat = 12,
+        textFieldFontSize: CGFloat = 16)
     {
         self.header = header
         self.subtitle = subtitle
@@ -30,6 +32,8 @@ struct CustomTextField: View {
         self.editingChanged = editingChanged
         self.commit = commit
         self._text = text //https://stackoverflow.com/a/56975728
+        self.headerFontSize = headerFontSize
+        self.textFieldFontSize = textFieldFontSize
     }
     
     // MARK: Internal
@@ -37,7 +41,7 @@ struct CustomTextField: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(header.uppercased())
-                .font(.system(size: 12))
+                .font(.system(size: headerFontSize))
                 .padding(.bottom, 0)
             
             // `TextField` currently does not support changing the color of the placeholder text. Therefore, we need
@@ -49,10 +53,10 @@ struct CustomTextField: View {
                 
                 if isSecure {
                     SecureField("", text: $text, onCommit: commit)
-                        .font(.system(size: 16))
+                        .font(.system(size: textFieldFontSize))
                 } else {
                     TextField("", text: $text, onEditingChanged: editingChanged, onCommit: commit)
-                        .font(.system(size: 16))
+                        .font(.system(size: textFieldFontSize))
                 }
             }
 
@@ -77,6 +81,9 @@ struct CustomTextField: View {
     private let editingChanged: (Bool) -> Void
     private let commit: () -> Void
     
+    private let headerFontSize: CGFloat
+    private let textFieldFontSize: CGFloat
+
 }
 
 struct CustomTextField_Previews: PreviewProvider {

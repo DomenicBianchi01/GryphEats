@@ -1,5 +1,5 @@
 //
-//  RestHomeViewModel.swift
+//  RestStationsViewModel.swift
 //  GryphEats
 //
 //  Created by Matthew Bebis on 10/23/19.
@@ -8,9 +8,9 @@
 
 import SwiftUI
 
-// MARK: - RestHomeViewModel
+// MARK: - RestStationsViewModel
 
-class RestHomeViewModel: ObservableObject {
+class RestStationsViewModel: ObservableObject {
     
     // MARK: Internal
     

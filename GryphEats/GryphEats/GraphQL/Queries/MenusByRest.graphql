@@ -1,0 +1,25 @@
+query MenusByRest($restID: ID!) {
+    getMenusByRestaurantID(restaurantid: $restID) {
+        menuid
+        restaurantid
+        title
+        description
+        isactive
+        restaurant {
+            ...RestaurantDetails
+        }
+        menuItems {
+            item {
+                isavailable
+            }
+        }
+    }
+}
+
+fragment RestaurantDetails on Restaurant {
+    id: restaurantid
+    name: displayname
+    openingtime
+    closingtime
+    isactive
+}
