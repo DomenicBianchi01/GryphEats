@@ -14,9 +14,10 @@ struct OrderStatusBar: View {
     
     // MARK: Lifecycle
     
-    init(status: Order.Status, action: @escaping () -> Void) {
+    init(status: Order.Status, cancelAction: @escaping () -> Void, reorderAction: @escaping () -> Void) {
         self.status = status
-        self.action = action
+        self.cancelAction = cancelAction
+        self.reorderAction = reorderAction
     }
     
     // MARK: Internal
@@ -35,7 +36,15 @@ struct OrderStatusBar: View {
                     backgroundColor: .guelphRed,
                     foregroundColor: .white)
                 {
-                    self.action()
+                    self.cancelAction()
+                }.padding(.top, 30)
+            } else if status == .pickedUp {
+                ActionButton(
+                    text: "Reorder",
+                    backgroundColor: .guelphRed,
+                    foregroundColor: .white)
+                {
+                    self.reorderAction()
                 }.padding(.top, 30)
             } else if status == .cancelled {
                 Text("Order was cancelled")
@@ -49,7 +58,8 @@ struct OrderStatusBar: View {
     // MARK: Private
     
     private let status: Order.Status
-    private let action: () -> Void
+    private let cancelAction: () -> Void
+    private let reorderAction: () -> Void
     
     private func orderStatusStepView(for stepStatus: Order.Status) -> OrderStatusStepView {
         var barStyle: OrderStatusStepView.BarStyle = .full
@@ -73,11 +83,11 @@ struct OrderStatusBar: View {
 struct OrderStatusBar_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            OrderStatusBar(status: .new, action: {})
-            OrderStatusBar(status: .inProgress, action: {})
-            OrderStatusBar(status: .readyForPickup, action: {})
-            OrderStatusBar(status: .pickedUp, action: {})
-            OrderStatusBar(status: .cancelled, action: {})
+            OrderStatusBar(status: .new, cancelAction: {}, reorderAction: {})
+            OrderStatusBar(status: .inProgress, cancelAction: {}, reorderAction: {})
+            OrderStatusBar(status: .readyForPickup, cancelAction: {}, reorderAction: {})
+            OrderStatusBar(status: .pickedUp, cancelAction: {}, reorderAction: {})
+            OrderStatusBar(status: .cancelled, cancelAction: {}, reorderAction: {})
         }
     }
 }

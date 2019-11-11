@@ -16,11 +16,17 @@ class OrderTrackingViewModel {
     
     enum OrderTrackingError: Error, LocalizedError {
         case cancelError
+        case reorderError
         
         // MARK: Internal
         
         var recoverySuggestion: String? {
-            "This order could not be cancelled. It may because this order is already in progress."
+            switch self {
+            case .cancelError:
+                return "This order could not be cancelled. It may because this order is already in progress."
+            case .reorderError:
+                return "This order could not be placed at this time. Please try again later."
+            }
         }
         
         var errorDescription: String? {
@@ -46,6 +52,22 @@ class OrderTrackingViewModel {
             switch result {
             case .success(let data):
                 completion(data.updateOrder?.success ?? false)
+            case .failure:
+                completion(false)
+            }
+        }
+    }
+    
+    func reorder(userID: String, completion: @escaping (Bool) -> Void) {
+        GraphClient.shared.perform(
+            mutation: PlaceOrderMutation(
+                foodIDs: order.items.map { $0.foodItem.id },
+                restaurantID: order.restaurantID,
+                userID: userID))
+        { result in
+            switch result {
+            case .success(let data):
+                completion(data.placeOrder?.success ?? false)
             case .failure:
                 completion(false)
             }

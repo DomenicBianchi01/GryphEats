@@ -19,7 +19,10 @@ class OrderStatusBarTests: XCTestCase {
     func testOrderStatusBar_orderPlaced() {
         assertSnapshot(
             matching: UIHostingController(
-                rootView: OrderStatusBar(status: .new, action: {}).environmentObject(cart)),
+                rootView: OrderStatusBar(
+                    status: .new,
+                    cancelAction: {},
+                    reorderAction: {}).environmentObject(cart)),
             as: .image,
             record: record)
     }
@@ -27,7 +30,10 @@ class OrderStatusBarTests: XCTestCase {
     func testOrderStatusBar_inProgress() {
         assertSnapshot(
             matching: UIHostingController(
-                rootView: OrderStatusBar(status: .inProgress, action: {}).environmentObject(cart)),
+                rootView: OrderStatusBar(
+                    status: .inProgress,
+                    cancelAction: {},
+                    reorderAction: {}).environmentObject(cart)),
             as: .image,
             record: record)
     }
@@ -35,7 +41,10 @@ class OrderStatusBarTests: XCTestCase {
     func testOrderStatusBar_readyForPickup() {
         assertSnapshot(
             matching: UIHostingController(
-                rootView: OrderStatusBar(status: .readyForPickup, action: {}).environmentObject(cart)),
+                rootView: OrderStatusBar(
+                    status: .readyForPickup,
+                    cancelAction: {},
+                    reorderAction: {}).environmentObject(cart)),
             as: .image,
             record: record)
     }
@@ -43,7 +52,10 @@ class OrderStatusBarTests: XCTestCase {
     func testOrderStatusBar_pickedUp() {
         assertSnapshot(
             matching: UIHostingController(
-                rootView: OrderStatusBar(status: .pickedUp, action: {}).environmentObject(cart)),
+                rootView: OrderStatusBar(
+                    status: .pickedUp,
+                    cancelAction: {},
+                    reorderAction: {}).environmentObject(cart)),
             as: .image,
             record: record)
     }
@@ -51,7 +63,10 @@ class OrderStatusBarTests: XCTestCase {
     func testOrderStatusBar_cancelled() {
         assertSnapshot(
             matching: UIHostingController(
-                rootView: OrderStatusBar(status: .cancelled, action: {}).environmentObject(cart)),
+                rootView: OrderStatusBar(
+                    status: .cancelled,
+                    cancelAction: {},
+                    reorderAction: {}).environmentObject(cart)),
             as: .image,
             record: record)
     }
