@@ -1,0 +1,1 @@
+create table notif (userid int not null, uuid varchar(255) primary key, token varchar(255) not null default '', foreign key (userid) references user (userid));
