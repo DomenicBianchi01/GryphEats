@@ -33,7 +33,7 @@ class AccountViewModel {
     // MARK: Internal
     
     var rows: [Row] {
-        [Row(id: .logout, text: "Logout", alignment: .center, foregroundColor: .guelphRed)]
+        [Row(id: .logout, text: "Logout", alignment: .center, foregroundColor: .guelphRed(for: .light))]
     }
     
     func clearKeychain() {

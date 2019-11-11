@@ -46,7 +46,7 @@ struct AddMealPlanView: View {
             
             ActionButton(
                 text: "Save",
-                backgroundColor: .guelphRed,
+                backgroundColor: .guelphRed(for: colorScheme),
                 foregroundColor: .white,
                 isDisabled: !viewModel.isAllInfoValid) {
                     guard let paymentMethod = self.viewModel.createPaymentMethod() else {
@@ -59,6 +59,8 @@ struct AddMealPlanView: View {
     }
     
     // MARK: Private
+    
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     @ObservedObject private var viewModel = AddMealPlanViewModel()
     private let onSave: (PaymentMethod) -> Void

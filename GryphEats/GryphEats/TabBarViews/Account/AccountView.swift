@@ -17,8 +17,8 @@ struct AccountView: View {
     var body: some View {
         NavigationHeaderView(
             title: "Account",
-            navigationColor: .guelphYellow,
-            contentBackgroundColor: .lightGray)
+            navigationColor: .navigationGuelphYellow(for: colorScheme),
+            contentBackgroundColor: .lightGray(for: colorScheme))
         {
             List(self.viewModel.rows) { row in
                 Button(action: {
@@ -38,6 +38,7 @@ struct AccountView: View {
     // MARK: Private
     
     @Environment(\.viewController) private var viewControllerHolder
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     private let viewModel = AccountViewModel()
     

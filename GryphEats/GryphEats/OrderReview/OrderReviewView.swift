@@ -45,7 +45,7 @@ struct OrderReviewView: View {
                 OrderSubmittedView().transition(.rightSlide)
             }
         }.background(Rectangle()
-            .fill(Color.lightGray)
+            .fill(Color.lightGray(for: colorScheme))
             .edgesIgnoringSafeArea(.all))
     }
     
@@ -53,6 +53,7 @@ struct OrderReviewView: View {
     
     @EnvironmentObject private var state: OrderReviewState
     @Environment(\.viewController) private var viewControllerHolder
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
 }
 

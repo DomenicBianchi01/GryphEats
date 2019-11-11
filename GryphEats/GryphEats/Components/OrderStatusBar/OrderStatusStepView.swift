@@ -67,6 +67,8 @@ struct OrderStatusStepView: View {
     
     // MARK: Private
     
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
+    
     private let step: Int
     private let text: String
     private let barStyle: BarStyle
@@ -76,19 +78,19 @@ struct OrderStatusStepView: View {
     
     private var circleColor: Color {
         if state == .cancelled {
-            return .guelphRed
+            return .guelphRed(for: colorScheme)
         } else if isFirstHalfComplete && isSecondHalfComplete {
-            return .white
+            return .tabBarBackground(for: colorScheme)
         } else if isFirstHalfComplete {
             return .green
         }
         
-        return .white
+        return .tabBarBackground(for: colorScheme)
     }
     
     private var circleBorderColor: Color {
         if state == .cancelled {
-            return .guelphRed
+            return .guelphRed(for: colorScheme)
         } else if isFirstHalfComplete {
             return .green
         }
@@ -98,14 +100,14 @@ struct OrderStatusStepView: View {
     
     private var stepColor: Color {
         if state == .cancelled {
-            return .guelphRed
+            return .guelphRed(for: colorScheme)
         } else if isFirstHalfComplete && isSecondHalfComplete {
-            return .black
+            return .darkModeBlack(for: colorScheme)
         } else if isFirstHalfComplete {
-            return .white
+            return .lightGray(for: colorScheme)
         }
         
-        return .black
+        return .darkModeBlack(for: colorScheme)
     }
     
     private var rectangles: AnyView {
@@ -122,8 +124,8 @@ struct OrderStatusStepView: View {
             let trailingColor: Color
             
             if state == .cancelled {
-                leadingColor = .guelphRed
-                trailingColor = .guelphRed
+                leadingColor = .guelphRed(for: colorScheme)
+                trailingColor = .guelphRed(for: colorScheme)
             } else {
                 if isFirstHalfComplete {
                     leadingColor = .green
@@ -146,7 +148,7 @@ struct OrderStatusStepView: View {
             let leadingColor: Color
             
             if state == .cancelled {
-                leadingColor = .guelphRed
+                leadingColor = .guelphRed(for: colorScheme)
             } else {
                 if isFirstHalfComplete {
                     leadingColor = .green
@@ -162,7 +164,7 @@ struct OrderStatusStepView: View {
             let trailingColor: Color
             
             if state == .cancelled {
-                trailingColor = .guelphRed
+                trailingColor = .guelphRed(for: colorScheme)
             } else {
                 if isSecondHalfComplete {
                     trailingColor = .green

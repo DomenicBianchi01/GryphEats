@@ -67,4 +67,56 @@ class PaymentInfoTextFieldTests: XCTestCase {
     
         assertSnapshot(matching: UIHostingController(rootView: textField), as: .image, record: record)
     }
+    
+    func testCreditCardTextField_dark_basic() {
+        let textField = PaymentInfoTextField(
+            displayMode: .basic,
+            header: "A header",
+            placeholder: "Placeholder",
+            text: .constant("")).environment(\.colorScheme, .dark)
+    
+        assertSnapshot(matching: UIHostingController(rootView: textField), as: .image, record: record)
+    }
+    
+    func testCreditCardTextField_dark_creditCardNumber() {
+        let textField = PaymentInfoTextField(
+            displayMode: .creditCardNumber,
+            header: "A header",
+            placeholder: "Placeholder",
+            text: .constant("")).environment(\.colorScheme, .dark)
+    
+        assertSnapshot(matching: UIHostingController(rootView: textField), as: .image, record: record)
+    }
+    
+    func testCreditCardTextField_dark_question() {
+        let textField = PaymentInfoTextField(
+            displayMode: .question(info: "A question"),
+            header: "A header",
+            placeholder: "Placeholder",
+            text: .constant("")).environment(\.colorScheme, .dark)
+    
+        assertSnapshot(matching: UIHostingController(rootView: textField), as: .image, record: record)
+    }
+    
+    func testCreditCardTextField_dark_withoutSubtitle() {
+        let textField = PaymentInfoTextField(
+            displayMode: .basic,
+            subtitleDisplayMode: .hidden,
+            header: "A header",
+            placeholder: "Placeholder",
+            text: .constant("Some text")).environment(\.colorScheme, .dark)
+    
+        assertSnapshot(matching: UIHostingController(rootView: textField), as: .image, record: record)
+    }
+    
+    func testCreditCardTextField_dark_withSubtitle() {
+        let textField = PaymentInfoTextField(
+            displayMode: .basic,
+            subtitleDisplayMode: .visible(text: "A subtitle"),
+            header: "A header",
+            placeholder: "Placeholder",
+            text: .constant("Some text")).environment(\.colorScheme, .dark)
+    
+        assertSnapshot(matching: UIHostingController(rootView: textField), as: .image, record: record)
+    }
 }

@@ -25,4 +25,14 @@ class BasicButtonTests: XCTestCase {
         
         assertSnapshot(matching: UIHostingController(rootView: button), as: .image, record: record)
     }
+    
+    func testBasicButton_dark() {
+        let button = BasicButton(
+            text: Text("A button"),
+            backgroundColor: .green,
+            foregroundColor: .yellow,
+            minimumWidth: 100).background(Color.black).environment(\.colorScheme, .dark)
+        
+        assertSnapshot(matching: UIHostingController(rootView: button), as: .image, record: record)
+    }
 }

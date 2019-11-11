@@ -30,6 +30,7 @@ struct TextView: UIViewRepresentable {
         view.isEditable = isEditable
         view.delegate = context.coordinator
         view.textContainer.lineBreakMode = .byWordWrapping
+        view.backgroundColor = .cardBackground
         return view
     }
 

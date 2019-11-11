@@ -17,8 +17,8 @@ struct HomeView: View {
     var body: some View {
         NavigationHeaderView(
             title: "GryphEats",
-            navigationColor: .guelphYellow,
-            contentBackgroundColor: .lightGray)
+            navigationColor: .navigationGuelphYellow(for: colorScheme),
+            contentBackgroundColor: .lightGray(for: colorScheme))
         {
             self.content
         }.onAppear {
@@ -31,6 +31,7 @@ struct HomeView: View {
     // MARK: Private
     
     @Environment(\.viewController) private var viewControllerHolder
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     @ObservedObject private var viewModel = HomeViewModel()
     @EnvironmentObject private var cart: Cart
@@ -54,7 +55,7 @@ struct HomeView: View {
             return AnyView(VStack(alignment: .leading, spacing: 0) {
                 SliderView(type: .categories(self.viewModel.categories)) { index in
                     print("Tapped category card \(index)")
-                }.background(Color.white)
+                }.background(Color.cardBackground(for: colorScheme))
                 
                 Divider()
                 
@@ -63,7 +64,7 @@ struct HomeView: View {
                 List {
                     ForEach(restaurants, id: \.id) { restaurant in
                         RestaurantItemsView(restaurant: restaurant) { _ in }
-                    }.listConfiguration(backgroundColor: Color.lightGray)
+                    }.listConfiguration(backgroundColor: .lightGray(for: colorScheme), removeInsets: true)
                 }
             }.navigationBarItems(trailing: self.trailingNavigationBarItems))
         case .error:
@@ -81,7 +82,6 @@ struct HomeView: View {
         return BadgeButton(badgeNumber: $cart.items.wrappedValue.count, action: action) {
             Image(systemName: "cart")
                 .padding(.all, 10)
-                .foregroundColor(.black)
         }
     }
 }

@@ -15,7 +15,7 @@ class HomeViewModel: ObservableObject {
     
     // MARK: Internal
     
-    @Published var loadingState: LoadingState<[GraphRestaurant]> = .loading
+    @Published private(set) var loadingState: LoadingState<[GraphRestaurant]> = .loading
     
     let categories: [Category] = [
         Category(id: 0, name: "Fish"),

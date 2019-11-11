@@ -54,4 +54,43 @@ class PriceSummaryCardTests: XCTestCase {
         
         assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
     }
+    
+    func testPriceSummaryCard_dark_Full() {
+        let card = PriceSummaryCard(action: { _ in }).environmentObject(Cart(
+            items: [
+                RestaurantFoodItem(
+                    foodItem: GraphFoodItem(id: "0", name: "Hamburger", price: 9.99),
+                    restaurantId: "1",
+                    restaurantName: "Mom's Kitchen")
+            ]
+        )).environment(\.colorScheme, .dark)
+        
+        assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
+    }
+    
+    func testPriceSummaryCard_dark_OnCampus() {
+        let card = PriceSummaryCard(displayMode: .onCampusMealPlan, action: { _ in }).environmentObject(Cart(
+            items: [
+                RestaurantFoodItem(
+                    foodItem: GraphFoodItem(id: "0", name: "Hamburger", price: 9.99),
+                    restaurantId: "1",
+                    restaurantName: "Mom's Kitchen")
+            ]
+        )).environment(\.colorScheme, .dark)
+        
+        assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
+    }
+    
+    func testPriceSummaryCard_dark_Ultra() {
+        let card = PriceSummaryCard(displayMode: .ultraMealPlan, action: { _ in }).environmentObject(Cart(
+            items: [
+                RestaurantFoodItem(
+                    foodItem: GraphFoodItem(id: "0", name: "Hamburger", price: 9.99),
+                    restaurantId: "1",
+                    restaurantName: "Mom's Kitchen")
+            ]
+        )).environment(\.colorScheme, .dark)
+        
+        assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
+    }
 }

@@ -32,7 +32,7 @@ struct CartItemCard: View {
                     .padding(.bottom, 10)
                 Text((item.foodItem.price).asDollarString)
                     .font(.subheadline)
-                    .foregroundColor(.guelphRed)
+                    .foregroundColor(.guelphRed(for: colorScheme))
             }.padding(.horizontal, 20)
                 .padding([.top, .bottom], 10)
             
@@ -40,16 +40,18 @@ struct CartItemCard: View {
             
             if deleteAction != nil {
                 Button(action: deleteAction!) {
-                    Image(systemName: "trash").foregroundColor(.guelphRed)
+                    Image(systemName: "trash").foregroundColor(.guelphRed(for: colorScheme))
                 }.padding()
             }
-        }.background(Color.white)
+        }.background(Color.cardBackground(for: colorScheme))
             .cornerRadius(5)
             .padding(.all, 10)
             .shadow(radius: 2)
     }
     
     // MARK: Private
+    
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     private let item: RestaurantFoodItem
     private let deleteAction: (() -> Void)?
@@ -71,6 +73,6 @@ struct CartItemCard_Previews: PreviewProvider {
                 restaurantId: "1",
                 restaurantName: "100 Mile Grill"),
             deleteAction: {})
-        }.background(Color.lightGray)
+        }.background(Color.lightGray(for: .light))
     }
 }
