@@ -40,11 +40,13 @@ struct AccountView: View {
     @Environment(\.viewController) private var viewControllerHolder
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
+    @EnvironmentObject private var loggedInUser: User
+    
     private let viewModel = AccountViewModel()
     
     private func buttonTapped(at id: AccountViewModel.Row.ID) {
         if id == .logout {
-            viewModel.clearKeychain()
+            viewModel.logout(user: loggedInUser)
             viewControllerHolder.value?.dismiss(animated: true)
         }
     }

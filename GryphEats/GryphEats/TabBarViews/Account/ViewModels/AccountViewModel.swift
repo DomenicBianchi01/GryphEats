@@ -17,6 +17,8 @@ class AccountViewModel {
     
     struct Row: Identifiable {
         
+        // MARK: ID
+        
         enum ID: Int {
             case logout
         }
@@ -33,10 +35,32 @@ class AccountViewModel {
     // MARK: Internal
     
     var rows: [Row] {
-        [Row(id: .logout, text: "Logout", alignment: .center, foregroundColor: .guelphRed(for: .light))]
+        [Row(id: .logout, text: "Logout", alignment: .center, foregroundColor: .guelphRed(for: colorScheme))]
     }
     
-    func clearKeychain() {
+    func logout(user: User) {
+        guard let uuid = UIDevice.current.identifierForVendor?.uuidString else {
+            return
+        }
+        
+        GraphClient.shared.perform(
+            mutation: UnregisterFromPushNotificationsMutation(userID: user.id, uuid: uuid))
+        { result in
+            switch result {
+            case .success(let data):
+                print(data.didUnregister ?? false)
+            case .failure(let error):
+                print("UNREGISTER ERROR")
+                print(error)
+            }
+        }
+        
         Valet.keychain.removeAllObjects()
+        loggedInUserID = nil
     }
+    
+    // MARK: Private
+    
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
+    
 }

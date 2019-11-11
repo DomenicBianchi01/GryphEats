@@ -6,6 +6,7 @@
 //  Copyright © 2019 The Subway Squad. All rights reserved.
 //
 
+import PassKit
 import SwiftUI
 
 // MARK: - OrderSummaryView
@@ -14,7 +15,9 @@ struct OrderSummaryView: View {
     
     // MARK: Lifecycle
     
-    init() {
+    init(isDismissButtonVisible: Bool = true) {
+        self.isDismissButtonVisible = isDismissButtonVisible
+        
         UITableView.appearance().separatorStyle = .none
         UITableView.appearance().backgroundColor = .lightGray
     }
@@ -30,7 +33,7 @@ struct OrderSummaryView: View {
                     Image(systemName: "cart")
                         .resizable()
                         .frame(width: 50, height: 50)
-                        //.padding(.top, 25)
+                        .padding(.top, isDismissButtonVisible ? 0 : 25)
                         .padding(.bottom, 5)
                     Text("Summary")
                         .bold()
@@ -75,7 +78,7 @@ struct OrderSummaryView: View {
                                 self.state.state = .checkout
                             }
                         case .applePay:
-                            break
+                            self.promptApplePay()
                         default:
                             break
                         }
@@ -89,10 +92,14 @@ struct OrderSummaryView: View {
     
     // MARK: Private
     
+    @Environment(\.viewController) private var viewControllerHolder
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     @EnvironmentObject private var cart: Cart
     @EnvironmentObject private var state: OrderReviewState
+    
+    private let viewModel = OrderSummaryViewModel()
+    private let isDismissButtonVisible: Bool
     
     private func sectionHeader(title: String) -> some View {
         HStack {
@@ -102,6 +109,23 @@ struct OrderSummaryView: View {
                 .padding(.horizontal)
             Spacer()
         }
+    }
+    
+    private func promptApplePay() {
+        let applePayController = viewModel.promptApplePay(for: cart) { success in
+            if success {
+                withAnimation {
+                    self.state.state = .confirmed
+                    self.cart.clear()
+                }
+            }
+        }
+        
+        guard let viewController = applePayController else {
+            return
+        }
+        
+        viewControllerHolder.value?.present(viewController, animated: true, completion: nil)
     }
 }
 

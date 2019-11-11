@@ -39,14 +39,7 @@ struct OrderTrackingView: View, Dismissable {
                         }
                     }
                 }, reorderAction: {
-                    self.viewModel.reorder(userID: self.loggedInUser.id) { success in
-                        if success {
-                            self.onDismiss()
-                            self.dismiss()
-                        } else {
-                            self.error = .cancelError
-                        }
-                    }
+                    self.showReorderInterface = true
                 }).padding(.vertical)
                 
                 sectionHeader(title: "Items")
@@ -75,6 +68,11 @@ struct OrderTrackingView: View, Dismissable {
             // If we do not "unset" the error, and assign an error that is the exact same type of the
             //old value, SwiftUI will not present the alert. Possible SwiftUI Bug?
             self.error = nil
+        }.sheet(isPresented: $showReorderInterface) {
+            OrderReviewView(showDismissButton: false)
+                .environmentObject(Cart(items: self.viewModel.order.items))
+                .environmentObject(self.loggedInUser)
+                .environmentObject(OrderReviewState())
         }.onDisappear {
             self.onDismiss()
         }
@@ -86,6 +84,7 @@ struct OrderTrackingView: View, Dismissable {
     // MARK: Private
     
     @State private var error: OrderTrackingViewModel.OrderTrackingError? = nil
+    @State private var showReorderInterface: Bool = false
     
     private let viewModel: OrderTrackingViewModel
     private let onDismiss: () -> Void
