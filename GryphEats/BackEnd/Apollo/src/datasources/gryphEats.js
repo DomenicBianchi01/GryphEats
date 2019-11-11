@@ -2,6 +2,7 @@ const { DataSource } = require('apollo-datasource');
 const ps = require('../pubsub');
 const pubsub = ps.pubsub;
 const Sequelize = require('sequelize');
+const apn = require('@parse/node-apn');
 const Op = Sequelize.Op;
 const POST_ADDED = 'POST_ADDED';
 // const ORDER_PLACED = 'ORDER_PLACED';
@@ -473,6 +474,7 @@ class GryphAPIS extends DataSource {
      * Update an order, return updated ordered
      */
     async updateOrder({ orderid, status, restaurantid }) {
+        console.log("Runnign!");
         try {
             // console.log("ordertype" + status);
             var result;
@@ -493,6 +495,41 @@ class GryphAPIS extends DataSource {
             // var newOrders = await this.getOrdersByRestaurantID({ restaurantid });
             // await pubsub.publish(ORDER_PLACED, { orderPlaced: restaurantid });
             await pubsub.publish(ORDER_UPDATED, { orderUpdated: restaurantid });
+
+            var options = {
+                token: {
+                    key: "/home/cis4250-1/cis-4250-the-subway-squad/GryphEats/BackEnd/Apollo/src/datasources/AuthKey_R7H2UN93CJ.p8",
+                    keyId: "R7H2UN93CJ",
+                    teamId: "667D8S5SPP"
+                },
+                production: false
+            };
+       
+            var apnProvider = new apn.Provider(options);
+            var note = new apn.Notification();
+            var message = ""
+
+            if (status == 1) {
+                message = "Your order is now being made!"
+            } else if (status == 2) {
+                message = "Your order is ready for pickup!"
+            }
+
+            if (status != "") {
+                note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
+                note.title = "Order Update"
+                note.body = message;
+                note.topic = "ca.thesubwaysquad.GryphEats"
+
+                console.log(note);
+        
+                //TODO: This token is currently hardcoded. What needs to be done is the following: Given the `orderid`, you need to figure out which user to send the push notification to.
+                apnProvider.send(note, "0373d6d1cfc3ed2fe261460f541a9fa1cd5c966e5e8200c3777cb1e33e310333").then( (result) => {
+                  console.log(result.failed);
+                  apnProvider.shutdown();
+                });
+            }
+
             if (result == 1) {
                 return {
                     success: true,
@@ -505,6 +542,7 @@ class GryphAPIS extends DataSource {
                 };
             }
         } catch (e) {
+            console.log(e)
             return {
                 success: false,
                 message: "update order failed: " + e.message,
