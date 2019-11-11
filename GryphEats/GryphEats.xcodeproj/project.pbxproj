@@ -27,7 +27,6 @@
 		B01875F2236B19130031FD2E /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04616322346BD5D0033087B /* CustomTextField.swift */; };
 		B01875F3236B19130031FD2E /* AddCreditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B022F708235E0EA1005269FB /* AddCreditCardView.swift */; };
 		B01875F4236B19130031FD2E /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C9B197234A8EF700605D23 /* ResetPasswordView.swift */; };
-		B01875F5236B19130031FD2E /* RestHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2237F2234B958C00CB9196 /* RestHomeView.swift */; };
 		B01875F6236B19130031FD2E /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD88CD236088A200A5C021 /* CustomTabBar.swift */; };
 		B01875F7236B19130031FD2E /* GraphAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CA762D23454B1F003E7FBD /* GraphAPI.swift */; };
 		B01875F8236B19130031FD2E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BBFDAD23477D3C00FDEFA4 /* HomeView.swift */; };
@@ -41,7 +40,6 @@
 		B0187600236B19130031FD2E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BBFDC02348053500FDEFA4 /* LoginView.swift */; };
 		B0187601236B19130031FD2E /* UIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B077747C2361D74100316DA1 /* UIApplicationExtensions.swift */; };
 		B0187602236B19130031FD2E /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051FF78234588AA0093C0DC /* Order.swift */; };
-		B0187603236B19130031FD2E /* RestHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB37D1A12360DBD500CD0D9C /* RestHomeViewModel.swift */; };
 		B0187604236B19130031FD2E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0843366234CB54700DD325E /* Category.swift */; };
 		B0187605236B19130031FD2E /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B513D2349552B0015E960 /* BackButton.swift */; };
 		B0187606236B19130031FD2E /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B514C23495C960015E960 /* ForgotPasswordView.swift */; };
@@ -281,12 +279,20 @@
 		EB1E4A00236DD96D00B93EEF /* CheckBoxRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1E49FF236DD96D00B93EEF /* CheckBoxRow.swift */; };
 		EB1E4A01236DDA0D00B93EEF /* CheckBoxRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1E49FF236DD96D00B93EEF /* CheckBoxRow.swift */; };
 		EB1E4A03236E204B00B93EEF /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1E4A02236E204B00B93EEF /* CheckBoxView.swift */; };
-		EB2237F3234B958C00CB9196 /* RestHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2237F2234B958C00CB9196 /* RestHomeView.swift */; };
 		EB2237F8234B9B4700CB9196 /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = EB2237F7234B9B4700CB9196 /* QGrid */; };
-		EB37D1A22360DBD500CD0D9C /* RestHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB37D1A12360DBD500CD0D9C /* RestHomeViewModel.swift */; };
+		EB37D1A22360DBD500CD0D9C /* RestStationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB37D1A12360DBD500CD0D9C /* RestStationsViewModel.swift */; };
 		EB37D1A8236109A900CD0D9C /* OrdersByRest.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB37D1A7236109A900CD0D9C /* OrdersByRest.graphql */; };
 		EB37D1AF23610CE700CD0D9C /* RestOrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB37D1AE23610CE700CD0D9C /* RestOrdersViewModel.swift */; };
 		EB605A32235BB24F00EB7856 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB605A31235BB24F00EB7856 /* User.swift */; };
+		EB6200572375FF1A0098787A /* RestStationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6200562375FF1A0098787A /* RestStationsView.swift */; };
+		EB62005A23773F340098787A /* RestEditMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB62005923773F340098787A /* RestEditMenuView.swift */; };
+		EB62005C237740B60098787A /* RestEditMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB62005B237740B60098787A /* RestEditMenuViewModel.swift */; };
+		EB62005E237756150098787A /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB62005D237756150098787A /* ToggleButton.swift */; };
+		EB62006023775B930098787A /* FoodCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB62005F23775B930098787A /* FoodCard.swift */; };
+		EB6200622378D51B0098787A /* RestTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6200612378D51B0098787A /* RestTabBarView.swift */; };
+		EB6200662378DBA60098787A /* RestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6200652378DBA60098787A /* RestCell.swift */; };
+		EB62006B2379B67F0098787A /* RestEditStationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB62006A2379B67F0098787A /* RestEditStationsView.swift */; };
+		EB62006D2379BA9A0098787A /* MenusByRest.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB62006C2379BA9A0098787A /* MenusByRest.graphql */; };
 		EB9468022368898E00FAAE56 /* UpdateOrder.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB9468012368898E00FAAE56 /* UpdateOrder.graphql */; };
 		EB94680423688AA700FAAE56 /* OrderDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB94680323688AA700FAAE56 /* OrderDetailsViewModel.swift */; };
 		EB9468092368CB2200FAAE56 /* OrdersUpdated.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB9468082368CB2200FAAE56 /* OrdersUpdated.graphql */; };
@@ -455,11 +461,19 @@
 		EB1E4535234CF28800B5C8FD /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		EB1E49FF236DD96D00B93EEF /* CheckBoxRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxRow.swift; sourceTree = "<group>"; };
 		EB1E4A02236E204B00B93EEF /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
-		EB2237F2234B958C00CB9196 /* RestHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestHomeView.swift; sourceTree = "<group>"; };
-		EB37D1A12360DBD500CD0D9C /* RestHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestHomeViewModel.swift; sourceTree = "<group>"; };
+		EB37D1A12360DBD500CD0D9C /* RestStationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestStationsViewModel.swift; sourceTree = "<group>"; };
 		EB37D1A7236109A900CD0D9C /* OrdersByRest.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = OrdersByRest.graphql; sourceTree = "<group>"; };
 		EB37D1AE23610CE700CD0D9C /* RestOrdersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestOrdersViewModel.swift; sourceTree = "<group>"; };
 		EB605A31235BB24F00EB7856 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		EB6200562375FF1A0098787A /* RestStationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestStationsView.swift; sourceTree = "<group>"; };
+		EB62005923773F340098787A /* RestEditMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestEditMenuView.swift; sourceTree = "<group>"; };
+		EB62005B237740B60098787A /* RestEditMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestEditMenuViewModel.swift; sourceTree = "<group>"; };
+		EB62005D237756150098787A /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
+		EB62005F23775B930098787A /* FoodCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCard.swift; sourceTree = "<group>"; };
+		EB6200612378D51B0098787A /* RestTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestTabBarView.swift; sourceTree = "<group>"; };
+		EB6200652378DBA60098787A /* RestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestCell.swift; sourceTree = "<group>"; };
+		EB62006A2379B67F0098787A /* RestEditStationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestEditStationsView.swift; sourceTree = "<group>"; };
+		EB62006C2379BA9A0098787A /* MenusByRest.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = MenusByRest.graphql; sourceTree = "<group>"; };
 		EB9468012368898E00FAAE56 /* UpdateOrder.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = UpdateOrder.graphql; sourceTree = "<group>"; };
 		EB94680323688AA700FAAE56 /* OrderDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewModel.swift; sourceTree = "<group>"; };
 		EB9468082368CB2200FAAE56 /* OrdersUpdated.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = OrdersUpdated.graphql; sourceTree = "<group>"; };
@@ -613,6 +627,7 @@
 			isa = PBXGroup;
 			children = (
 				B0CA762B23454A38003E7FBD /* RestaurantMenus.graphql */,
+				EB62006C2379BA9A0098787A /* MenusByRest.graphql */,
 				EB37D1A7236109A900CD0D9C /* OrdersByRest.graphql */,
 				B01AE8D4236CBE0700827276 /* UserOrders.graphql */,
 				B0D9197D23718735006324D3 /* Login.graphql */,
@@ -749,6 +764,8 @@
 			children = (
 				B0A7C402234C2CE0001555B7 /* SliderView.swift */,
 				EB1E49FF236DD96D00B93EEF /* CheckBoxRow.swift */,
+				EB62005F23775B930098787A /* FoodCard.swift */,
+				EB62005D237756150098787A /* ToggleButton.swift */,
 				EB1E4A02236E204B00B93EEF /* CheckBoxView.swift */,
 				B0A7C405234C2CEC001555B7 /* MenuCard.swift */,
 				B0843363234CB2A500DD325E /* CategoryCard.swift */,
@@ -961,7 +978,6 @@
 		EB2237F0234B951100CB9196 /* Restaurant */ = {
 			isa = PBXGroup;
 			children = (
-				EBC089EB234FF6F300DA3A55 /* RestaurantOrders */,
 				EB2237F1234B952300CB9196 /* Home */,
 			);
 			path = Restaurant;
@@ -970,8 +986,10 @@
 		EB2237F1234B952300CB9196 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				EB2237F2234B958C00CB9196 /* RestHomeView.swift */,
-				EB37D1A12360DBD500CD0D9C /* RestHomeViewModel.swift */,
+				EB6200612378D51B0098787A /* RestTabBarView.swift */,
+				EB6200652378DBA60098787A /* RestCell.swift */,
+				EB6200642378DA6A0098787A /* EditMenus */,
+				EB6200632378DA490098787A /* Stations */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -983,6 +1001,34 @@
 				EB94680323688AA700FAAE56 /* OrderDetailsViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		EB6200632378DA490098787A /* Stations */ = {
+			isa = PBXGroup;
+			children = (
+				EB37D1A12360DBD500CD0D9C /* RestStationsViewModel.swift */,
+				EB6200562375FF1A0098787A /* RestStationsView.swift */,
+				EBC089EB234FF6F300DA3A55 /* RestaurantOrders */,
+			);
+			path = Stations;
+			sourceTree = "<group>";
+		};
+		EB6200642378DA6A0098787A /* EditMenus */ = {
+			isa = PBXGroup;
+			children = (
+				EB62006E2379BC6B0098787A /* EditMenus */,
+				EB62006A2379B67F0098787A /* RestEditStationsView.swift */,
+			);
+			path = EditMenus;
+			sourceTree = "<group>";
+		};
+		EB62006E2379BC6B0098787A /* EditMenus */ = {
+			isa = PBXGroup;
+			children = (
+				EB62005923773F340098787A /* RestEditMenuView.swift */,
+				EB62005B237740B60098787A /* RestEditMenuViewModel.swift */,
+			);
+			path = EditMenus;
 			sourceTree = "<group>";
 		};
 		EBC089EB234FF6F300DA3A55 /* RestaurantOrders */ = {
@@ -1170,6 +1216,7 @@
 				EB1E4541234CF28800B5C8FD /* RobotoCondensed-Regular.ttf in Resources */,
 				EB1E453A234CF28800B5C8FD /* Roboto-Regular.ttf in Resources */,
 				EB1E453F234CF28800B5C8FD /* RobotoCondensed-LightItalic.ttf in Resources */,
+				EB62006D2379BA9A0098787A /* MenusByRest.graphql in Resources */,
 				B0B205862333D45200694587 /* LaunchScreen.storyboard in Resources */,
 				B0CA762C23454A38003E7FBD /* RestaurantMenus.graphql in Resources */,
 				EB1E4545234CF28800B5C8FD /* Roboto-BlackItalic.ttf in Resources */,
@@ -1241,7 +1288,6 @@
 				B01875F2236B19130031FD2E /* CustomTextField.swift in Sources */,
 				B01875F3236B19130031FD2E /* AddCreditCardView.swift in Sources */,
 				B01875F4236B19130031FD2E /* ResetPasswordView.swift in Sources */,
-				B01875F5236B19130031FD2E /* RestHomeView.swift in Sources */,
 				B01875F6236B19130031FD2E /* CustomTabBar.swift in Sources */,
 				B01875F7236B19130031FD2E /* GraphAPI.swift in Sources */,
 				B01875F8236B19130031FD2E /* HomeView.swift in Sources */,
@@ -1255,7 +1301,6 @@
 				B0187600236B19130031FD2E /* LoginView.swift in Sources */,
 				B0187601236B19130031FD2E /* UIApplicationExtensions.swift in Sources */,
 				B0187602236B19130031FD2E /* Order.swift in Sources */,
-				B0187603236B19130031FD2E /* RestHomeViewModel.swift in Sources */,
 				B0187604236B19130031FD2E /* Category.swift in Sources */,
 				B0187605236B19130031FD2E /* BackButton.swift in Sources */,
 				B0187606236B19130031FD2E /* ForgotPasswordView.swift in Sources */,
@@ -1335,7 +1380,9 @@
 				B0D9ED3A2356B87B006A1545 /* ApplePayButton.swift in Sources */,
 				B09156062359551600FE2CD2 /* ValetExtensions.swift in Sources */,
 				B0A7C409234C328D001555B7 /* RestaurantFoodItem.swift in Sources */,
+				EB62006023775B930098787A /* FoodCard.swift in Sources */,
 				B0843376234D07E100DD325E /* ResturantItemsView.swift in Sources */,
+				EB6200622378D51B0098787A /* RestTabBarView.swift in Sources */,
 				B0BBFDB423479F2E00FDEFA4 /* UIViewControllerExtensions.swift in Sources */,
 				B059D1C52375156E009C6E14 /* TextView.swift in Sources */,
 				EBC089F52353B51400DA3A55 /* MealRow.swift in Sources */,
@@ -1346,7 +1393,6 @@
 				B04616332346BD5D0033087B /* CustomTextField.swift in Sources */,
 				B022F709235E0EA1005269FB /* AddCreditCardView.swift in Sources */,
 				B0C9B198234A8EF700605D23 /* ResetPasswordView.swift in Sources */,
-				EB2237F3234B958C00CB9196 /* RestHomeView.swift in Sources */,
 				B0CD88CE236088A200A5C021 /* CustomTabBar.swift in Sources */,
 				B0CA762E23454B1F003E7FBD /* GraphAPI.swift in Sources */,
 				B0BBFDAE23477D3C00FDEFA4 /* HomeView.swift in Sources */,
@@ -1361,7 +1407,7 @@
 				B01AE8DC236CDE9A00827276 /* LoadingState.swift in Sources */,
 				B077747D2361D74100316DA1 /* UIApplicationExtensions.swift in Sources */,
 				B051FF7A234588AA0093C0DC /* Order.swift in Sources */,
-				EB37D1A22360DBD500CD0D9C /* RestHomeViewModel.swift in Sources */,
+				EB37D1A22360DBD500CD0D9C /* RestStationsViewModel.swift in Sources */,
 				B0843367234CB54700DD325E /* Category.swift in Sources */,
 				B06B513E2349552B0015E960 /* BackButton.swift in Sources */,
 				B06B514D23495C960015E960 /* ForgotPasswordView.swift in Sources */,
@@ -1385,7 +1431,9 @@
 				B0187667236B21D00031FD2E /* OrderStatusStepView.swift in Sources */,
 				B046163D2346F3230033087B /* LoginViewModel.swift in Sources */,
 				B0646912236BA77D00EDC13C /* Totalable.swift in Sources */,
+				EB62006B2379B67F0098787A /* RestEditStationsView.swift in Sources */,
 				EB37D1AF23610CE700CD0D9C /* RestOrdersViewModel.swift in Sources */,
+				EB6200662378DBA60098787A /* RestCell.swift in Sources */,
 				B046163A2346E5880033087B /* BasicButton.swift in Sources */,
 				B022F70B235E0EAC005269FB /* AddMealPlanView.swift in Sources */,
 				B03E283C235E772D0000EDA2 /* AddMealPlanViewModel.swift in Sources */,
@@ -1393,6 +1441,7 @@
 				B021DE9C234FCE6600DBF1AA /* ActivityIndicator.swift in Sources */,
 				EB1E4A03236E204B00B93EEF /* CheckBoxView.swift in Sources */,
 				B0A7C406234C2CEC001555B7 /* MenuCard.swift in Sources */,
+				EB6200572375FF1A0098787A /* RestStationsView.swift in Sources */,
 				B0F3197F236607F7006500AC /* AccountView.swift in Sources */,
 				B0A2D0A723462BE700391DD6 /* StudentCard.swift in Sources */,
 				B06B5146234958990015E960 /* HeaderView.swift in Sources */,
@@ -1414,8 +1463,11 @@
 				B0BBFDBE2347D27100FDEFA4 /* AnyTransitionExtensions.swift in Sources */,
 				EBC089ED234FF72800DA3A55 /* RestOrdersView.swift in Sources */,
 				B0B2057A2333D45000694587 /* AppDelegate.swift in Sources */,
+				EB62005E237756150098787A /* ToggleButton.swift in Sources */,
 				B04616302346B1DE0033087B /* LandingView.swift in Sources */,
+				EB62005C237740B60098787A /* RestEditMenuViewModel.swift in Sources */,
 				B0F6E202234E928200067B79 /* Ingredient.swift in Sources */,
+				EB62005A23773F340098787A /* RestEditMenuView.swift in Sources */,
 				B0B2057C2333D45000694587 /* SceneDelegate.swift in Sources */,
 				B0843364234CB2A500DD325E /* CategoryCard.swift in Sources */,
 				B0F3198723660BE9006500AC /* AccountViewModel.swift in Sources */,

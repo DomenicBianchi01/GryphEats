@@ -2055,6 +2055,7 @@
             "deprecationReason": null
           },
           {
+<<<<<<< HEAD
             "name": "registerNotify",
             "description": "",
             "args": [
@@ -2110,6 +2111,8 @@
             "deprecationReason": null
           },
           {
+=======
+>>>>>>> master
             "name": "deleteNotifByUUID",
             "description": "",
             "args": [

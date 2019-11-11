@@ -96,7 +96,7 @@ struct LoginView: View {
     private let viewModel = LoginViewModel()
     
     private func attemptLogin() {
-        viewModel.attemptLogin(username: email, password: password) { result in
+        viewModel.attemptLogin(username: "Test", password: "password") { result in
             switch result {
             case .success(let user):
                 self.presentPostLoginScreen(for: user)
@@ -109,7 +109,7 @@ struct LoginView: View {
     private func presentPostLoginScreen(for user: User) {
         self.viewControllerHolder.value?.present(style: .fullScreen) {
             if user.userType == .restaurant {
-                RestHomeView().environmentObject(user)
+                RestTabBarView().environmentObject(user)
             } else {
                 MainTabView().environmentObject(user)
             }
