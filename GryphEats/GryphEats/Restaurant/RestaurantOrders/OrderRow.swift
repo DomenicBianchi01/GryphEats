@@ -43,7 +43,7 @@ struct OrderRow: View {
     }
     
     var rowColor: Color {
-        let colors: [Color] = [.guelphRed, .guelphYellow, .green, .blue]
+        let colors: [Color] = [.guelphRed(for: .light), .guelphYellow, .green, .blue]
         switch order.status {
         case .new, .cancelled:
             return colors[0]

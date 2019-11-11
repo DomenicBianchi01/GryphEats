@@ -28,7 +28,7 @@ struct StudentCard: View {
                 .fill(LinearGradient(
                     gradient: Gradient(
                         stops: [
-                            Gradient.Stop(color: .guelphRed, location: 0.5),
+                            Gradient.Stop(color: .guelphRed(for: .light), location: 0.5),
                             Gradient.Stop(color: Color(red: 158/255, green: 15/255, blue: 39/255), location: 0.5)
                     ]),
                     startPoint: .topLeading,

@@ -39,12 +39,14 @@ struct CustomTabBar: View {
                 }
             }.padding(.horizontal)
         }.frame(minWidth: 0, maxWidth: .infinity)
-            .background(Color.white)
+            .background(Color.tabBarBackground(for: colorScheme))
             .padding(.top, 0.75)
             .fixedSize(horizontal: false, vertical: true)
     }
     
     // MARK: Private
+    
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     @Binding private var selectedIndex: Int
     
@@ -91,11 +93,13 @@ private struct CustomTabBarItemView: View {
                 .font(.system(size: 10))
                 .lineLimit(1)
         }.padding().padding(.bottom, 10)
-            .foregroundColor(isSelected ? .guelphRed : .gray)
+            .foregroundColor(isSelected ? .guelphRed(for: colorScheme) : .gray)
             .frame(maxWidth: .infinity)
     }
     
     // MARK: Private
+    
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     private let isSelected: Bool
     private let item: CustomTabBarItem

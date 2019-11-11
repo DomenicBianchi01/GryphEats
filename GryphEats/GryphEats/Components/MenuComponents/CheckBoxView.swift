@@ -22,17 +22,20 @@ struct CheckBoxView: View {
     // MARK: Internal
     
     var body: some View {
-        List(ingredients) { ingredient in
-            CheckBoxRow(itemName: ingredient.name, onTap: self.onTap)
+        List {
+            ForEach(ingredients) { ingredient in
+                CheckBoxRow(itemName: ingredient.name, onTap: self.onTap)
+            }.listConfiguration(backgroundColor: .cardBackground(for: colorScheme))
         }.onAppear {
             UITableViewCell.appearance().selectionStyle = .none
-            UITableView.appearance().backgroundColor = .white
         }.onDisappear {
             UITableViewCell.appearance().selectionStyle = .default
         }
     }
     
     // MARK: Private
+    
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     private let ingredients: [Ingredient]
     private let onTap: () -> Void

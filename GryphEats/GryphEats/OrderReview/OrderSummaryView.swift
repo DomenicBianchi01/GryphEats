@@ -35,7 +35,7 @@ struct OrderSummaryView: View {
                     Text("Summary")
                         .bold()
                         .padding(.bottom, 10)
-                }.foregroundColor(.guelphRed)
+                }.foregroundColor(.guelphRed(for: colorScheme))
                 
                 if cart.items.isEmpty {
                     HStack {
@@ -84,10 +84,12 @@ struct OrderSummaryView: View {
                 
                 Spacer()
             }
-        }
+        }.dismissKeyboardOnTapGesture()
     }
     
     // MARK: Private
+    
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     @EnvironmentObject private var cart: Cart
     @EnvironmentObject private var state: OrderReviewState

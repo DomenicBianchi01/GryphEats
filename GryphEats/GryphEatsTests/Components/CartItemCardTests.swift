@@ -26,4 +26,15 @@ class CartItemCardTests: XCTestCase {
         
         assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
     }
+    
+    func testCartItemCard_dark() {
+        let card = CartItemCard(
+            item: RestaurantFoodItem(
+                foodItem: GraphFoodItem(id: "0", name: "Hamburger", price: 9.99),
+                restaurantId: "1",
+                restaurantName: "Mom's Kitchen"),
+            deleteAction: {}).environment(\.colorScheme, .dark)
+        
+        assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
+    }
 }

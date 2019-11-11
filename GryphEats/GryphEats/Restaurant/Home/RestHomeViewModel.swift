@@ -14,7 +14,7 @@ class RestHomeViewModel: ObservableObject {
     
     // MARK: Internal
     
-    @Published var loadingState: LoadingState<[Restaurant]> = .loading
+    @Published private(set) var loadingState: LoadingState<[Restaurant]> = .loading
     
     // MARK: Private
     

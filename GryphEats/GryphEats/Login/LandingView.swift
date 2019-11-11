@@ -31,7 +31,7 @@ struct LandingView: View {
             }
         }.background(Rectangle()
             .fill(LinearGradient(
-                gradient: Gradient(colors: [.guelphRed, .guelphYellow]),
+                gradient: Gradient(colors: [.guelphRed(for: .light), .guelphYellow]),
                 startPoint: .top,
                 endPoint: .bottom))
             .edgesIgnoringSafeArea(.all))

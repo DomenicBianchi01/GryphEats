@@ -54,13 +54,15 @@ struct OrderHistoryCard: View {
                 .padding([.trailing, .bottom])
         }.contentShape(Rectangle()) //Not sure why this is need but without it tap gestures are not recognized if the
             // tap occurs on a `Spacer`: https://stackoverflow.com/a/58138763
-            .background(Color.white)
+            .background(Color.cardBackground(for: colorScheme))
             .cornerRadius(5)
             .padding([.horizontal, .top])
             .shadow(radius: 2)
     }
     
     // MARK: Private
+    
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     private let order: Order
     
@@ -82,7 +84,7 @@ struct OrderHistoryCard: View {
     private var orderStatusColor: Color {
         switch order.status {
         case .new, .cancelled:
-            return .guelphRed
+            return .guelphRed(for: colorScheme)
         case .inProgress:
             return .yellow
         case .readyForPickup:
@@ -102,7 +104,7 @@ struct OrderHistoryCard_Previews: PreviewProvider {
             OrderHistoryCard(order: Order(id: "1", restaurantID: "1", customer: Customer(name: "Domenic Bianchi"), status: .ready, timePlaced: "12:00pm"))
             OrderHistoryCard(order: Order(id: "1", restaurantID: "1", customer: Customer(name: "Domenic Bianchi"), status: .pickedup, timePlaced: "12:00pm"))
             Spacer()
-        }.background(Color.lightGray)
+        }.background(Color.lightGray(for: .light))
             .edgesIgnoringSafeArea(.all)
     }
 }

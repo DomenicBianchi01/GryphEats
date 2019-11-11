@@ -37,7 +37,7 @@ struct CheckoutView: View {
                     self.showAddPayment = true
                 }) {
                     Text("Add Payment Method")
-                        .foregroundColor(.guelphRed)
+                        .foregroundColor(.guelphRed(for: colorScheme))
                 }.padding()
                 
                 Divider().padding([.horizontal, .bottom])
@@ -79,6 +79,8 @@ struct CheckoutView: View {
     }
     
     // MARK: Private
+    
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     @EnvironmentObject private var loggedInUser: User
     @EnvironmentObject private var cart: Cart

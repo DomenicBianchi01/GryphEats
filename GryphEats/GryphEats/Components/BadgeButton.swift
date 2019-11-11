@@ -29,7 +29,7 @@ struct BadgeButton<V: View>: View {
     var body: some View {
         ZStack {
             Button(action: action) {
-                content()
+                content().foregroundColor(.darkModeBlack(for: self.colorScheme))
             }
             
             if badgeNumber > 0 {
@@ -46,6 +46,8 @@ struct BadgeButton<V: View>: View {
     
     // MARK: Private
     
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
+    
     private let action: () -> Void
     private let content: () -> V
     private let badgeNumber: Int
@@ -57,14 +59,12 @@ struct BadgeButton_Previews: PreviewProvider {
         VStack {
             BadgeButton(action: {}) {
                 Image(systemName: "cart")
-                    .foregroundColor(.black)
                     .padding()
             }
             BadgeButton(badgeNumber: 1, action: {}) {
                 Image(systemName: "cart")
-                    .foregroundColor(.black)
                     .padding()
-            }
+            }.background(Color.black).environment(\.colorScheme, .dark)
         }
     }
 }

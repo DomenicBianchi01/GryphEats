@@ -32,7 +32,7 @@ struct SlideOverCard<V: View>: View {
             Handle(text: handleText)
             content()
         }.frame(height: UIScreen.main.bounds.height)
-            .background(Color.white)
+            .background(Color.cardBackground(for: colorScheme))
             .cornerRadius(15)
             .offset(y: offset)
             .animation(dragState.isDragging ? nil : .interpolatingSpring(stiffness: 300, damping: 20, initialVelocity: 10))
@@ -40,6 +40,8 @@ struct SlideOverCard<V: View>: View {
     }
     
     // MARK: Private
+    
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     @GestureState private var dragState: DragState = .inactive
     @State private var position: CGFloat = UIScreen.main.bounds.height - 225

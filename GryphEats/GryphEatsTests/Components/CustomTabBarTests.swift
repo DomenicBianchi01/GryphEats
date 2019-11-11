@@ -25,4 +25,14 @@ class CustomTabBarTests: XCTestCase {
         
         assertSnapshot(matching: UIHostingController(rootView: tabBar), as: .image, record: record)
     }
+    
+    func testCustomTabBar_dark() {
+        let tabBar = CustomTabBar(selectedIndex: .constant(1), items: [
+            CustomTabBarItem(icon: .system(name: "person"), title: "Option 1"),
+            CustomTabBarItem(icon: .system(name: "person"), title: "Option 2"),
+            CustomTabBarItem(icon: .system(name: "person"), title: "Option 3")
+        ]).environment(\.colorScheme, .dark)
+        
+        assertSnapshot(matching: UIHostingController(rootView: tabBar), as: .image, record: record)
+    }
 }

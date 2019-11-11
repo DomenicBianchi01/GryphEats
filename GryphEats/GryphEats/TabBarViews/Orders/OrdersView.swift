@@ -28,8 +28,8 @@ struct OrdersView: View {
     var body: some View {
         NavigationHeaderView(
             title: "Orders",
-            navigationColor: .guelphYellow,
-            contentBackgroundColor: .lightGray)
+            navigationColor: .navigationGuelphYellow(for: colorScheme),
+            contentBackgroundColor: .lightGray(for: colorScheme))
         {
             self.content
         }.sheet(isPresented: $showSelectedOrder) {
@@ -44,6 +44,8 @@ struct OrdersView: View {
     }
     
     // MARK: Private
+    
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     @State private var selectedOrder: Order? = nil
     @State private var showSelectedOrder: Bool = false
@@ -63,7 +65,7 @@ struct OrdersView: View {
                         self.selectedOrder = order
                         self.showSelectedOrder = true
                     }
-                }.listConfiguration(backgroundColor: Color.lightGray)
+                }.listConfiguration(backgroundColor: .lightGray(for: colorScheme), removeInsets: true)
             }.navigationBarItems(trailing: self.trailingNavigationBarItems))
         case .error:
             return AnyView(ErrorView(infoText: "Whoops! We could not fetch your orders.", buttonText: "Try Again") {
@@ -78,7 +80,7 @@ struct OrdersView: View {
         }) {
             Image(systemName: "arrow.2.circlepath")
                 .padding(.all, 10)
-                .foregroundColor(.black)
+                .foregroundColor(.darkModeBlack(for: colorScheme))
         }
     }
 }

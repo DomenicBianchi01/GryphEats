@@ -25,7 +25,7 @@ class RestOrdersViewModel: ObservableObject {
     
     // MARK: Internal
     
-    @Published var loadingState: LoadingState<[Order]> = .loading
+    @Published private(set) var loadingState: LoadingState<[Order]> = .loading
     var restID: String
     
     func fetchOrders() {

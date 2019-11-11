@@ -58,7 +58,7 @@ struct PaymentInfoTextField: View {
             // to manually add a custom placeholder label when the text field is empty.
             ZStack(alignment: .leading) {
                 Rectangle()
-                    .foregroundColor(Color(red: 230/255, green: 230/255, blue: 230/255))
+                    .foregroundColor(.textFieldColor(for: colorScheme))
                     .frame(height: 50)
                     .cornerRadius(5)
                     .overlay(
@@ -82,6 +82,8 @@ struct PaymentInfoTextField: View {
     }
     
     // MARK: Private
+    
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     @Binding var text: String
     @State var showQuestionDialog = false
@@ -140,7 +142,7 @@ struct PaymentInfoTextField: View {
                     self.showQuestionDialog = true
                 }) {
                     Image(systemName: "questionmark.circle")
-                        .foregroundColor(.black)
+                        .foregroundColor(.darkModeBlack(for: colorScheme))
                 }.padding()
             })
         }
@@ -153,7 +155,7 @@ struct PaymentInfoTextField: View {
         
         return AnyView(Text(subtitleText)
             .font(.caption)
-            .foregroundColor(.guelphRed)
+            .foregroundColor(.guelphRed(for: colorScheme))
             .padding(.horizontal))
     }
 }
@@ -183,7 +185,7 @@ struct PaymentInfoTextField_Previews: PreviewProvider {
             }
             Spacer()
         }.background(Rectangle()
-            .fill(Color.lightGray)
+            .fill(Color.lightGray(for: .light))
             .edgesIgnoringSafeArea(.all))
     }
 }

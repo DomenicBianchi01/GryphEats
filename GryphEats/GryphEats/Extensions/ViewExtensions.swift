@@ -35,9 +35,14 @@ extension View {
         }
     }
     
-    func listConfiguration(backgroundColor: Color) -> some View {
-        self.listRowBackground(Color.lightGray)
-            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+    func listConfiguration(backgroundColor: Color, removeInsets: Bool = false) -> AnyView {
+        let updatedView = self.listRowBackground(backgroundColor)
+        
+        if removeInsets {
+            return AnyView(updatedView.listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)))
+        }
+        
+        return AnyView(updatedView)
     }
 }
 

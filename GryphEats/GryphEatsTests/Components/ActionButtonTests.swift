@@ -21,4 +21,10 @@ class ActionButtonTests: XCTestCase {
         
         assertSnapshot(matching: UIHostingController(rootView: button), as: .image, record: record)
     }
+    
+    func testActionButton_dark() {
+        let button = ActionButton(text: "Do an action!", action: {}).colorScheme(.dark)
+        
+        assertSnapshot(matching: UIHostingController(rootView: button), as: .image, record: record)
+    }
 }

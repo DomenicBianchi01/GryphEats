@@ -28,10 +28,10 @@ struct CheckBoxRow: View {
         }) {
             HStack(alignment: .top) {
                 Rectangle()
-                    .fill(isSelected ? Color.guelphRed : Color.lightGray)
+                    .fill(isSelected ? Color.guelphRed(for: colorScheme) : Color.lightGray(for: colorScheme))
                     .frame(width: 22, height: 22, alignment: .center)
                     .cornerRadius(5)
-                    .shadow(radius: 2)
+                    .shadow(color: .darkModeBlack(for: colorScheme), radius: 2)
                     .padding([.vertical, .leading])
                 Text(itemName)
                     .fontWeight(.semibold)
@@ -40,13 +40,15 @@ struct CheckBoxRow: View {
                 Spacer()
             }
         }.contentShape(Rectangle())
-            .background(Color.white)
+            .background(Color.lightGray(for: colorScheme))
             .cornerRadius(5)
             .shadow(radius: 2)
             .opacity(isSelected ? 1.0 : 0.6)
     }
     
     // MARK: Private
+    
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     @State var isSelected: Bool = false
     

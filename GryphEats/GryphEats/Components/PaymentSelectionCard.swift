@@ -41,16 +41,18 @@ struct PaymentSelectionCard: View {
                 Spacer()
             }.padding(.all, 10)
         }.font(.system(size: 14))
-            .background(Color.white)
+            .background(Color.cardBackground(for: colorScheme))
             .cornerRadius(5)
             .padding([.horizontal, .top], 10)
-            .shadow(color: isSelected ? .guelphRed : .secondary, radius: 2)
+            .shadow(color: isSelected ? .guelphRed(for: colorScheme) : .secondary, radius: 2)
             .onTapGesture {
                 self.tapAction()
         }
     }
     
     // MARK: Private
+    
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     private let paymentMethod: PaymentMethod
     private let tapAction: () -> Void

@@ -57,12 +57,13 @@ struct AddPaymentView: View, Dismissable {
             }
             
         }.background(Rectangle()
-            .fill(Color.lightGray)
+            .fill(Color.lightGray(for: colorScheme))
             .edgesIgnoringSafeArea(.all))
             .dismissKeyboardOnTapGesture()
     }
     
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     // MARK: Private
     

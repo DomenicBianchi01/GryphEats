@@ -35,4 +35,22 @@ class BageButtonTests: XCTestCase {
         
         assertSnapshot(matching: UIHostingController(rootView: button), as: .image, record: record)
     }
+    
+    func testNoBadge_dark() {
+        let button = BadgeButton(action: {}) {
+            Image(systemName: "cart")
+                .padding(.all, 10)
+        }.background(Color.black).environment(\.colorScheme, .dark)
+        
+        assertSnapshot(matching: UIHostingController(rootView: button), as: .image, record: record)
+    }
+    
+    func testWithBadge_dark() {
+        let button = BadgeButton(badgeNumber: 1, action: {}) {
+            Image(systemName: "cart")
+                .padding(.all, 10)
+        }.background(Color.black).environment(\.colorScheme, .dark)
+        
+        assertSnapshot(matching: UIHostingController(rootView: button), as: .image, record: record)
+    }
 }

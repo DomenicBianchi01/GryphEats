@@ -27,9 +27,7 @@ struct ItemOverview: View, Dismissable {
                     .resizable()
                     .scaledToFill()
                     .edgesIgnoringSafeArea(.vertical)
-                    .frame(
-                        maxWidth: geometry.size.width,
-                        maxHeight: geometry.size.height)
+                    .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height)
             }
             
             HStack {
@@ -38,7 +36,7 @@ struct ItemOverview: View, Dismissable {
                         .foregroundColor(.white)
                         .font(.largeTitle)
                         .bold()
-                    Text((item.foodItem.price).asDollarString)
+                    Text(item.foodItem.price.asDollarString)
                         .foregroundColor(.guelphYellow)
                         .fontWeight(.semibold)
                 }.padding(.leading, 20)
@@ -65,7 +63,7 @@ struct ItemOverview: View, Dismissable {
                         Ingredient(id: 7, name: "Onion"),
                         Ingredient(id: 8, name: "Pepper"),
                         Ingredient(id: 9, name: "Black Olives"),
-                        ], onTap: { /*TODO*/ })
+                    ], onTap: { /*TODO*/ })
                 }
             }
         }

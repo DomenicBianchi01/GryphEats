@@ -116,7 +116,7 @@ struct PriceSummaryCard: View {
                 Text(cart.total().asDollarString)
             }.padding(.vertical, 5)
                 .padding(.horizontal)
-                .foregroundColor(.guelphRed)
+                .foregroundColor(.guelphRed(for: colorScheme))
             
             if displayMode == .full || displayMode == .onCampusMealPlan {
                 discountRow(type: .onCampusTotal, amount: cart.total(for: .onCampus).asDollarString)
@@ -154,7 +154,7 @@ struct PriceSummaryCard: View {
             } else if displayMode != .full && !isPayButtonHidden {
                 ActionButton(
                     text: "Pay \(cart.total(for: displayMode.asPriceType).asDollarString)",
-                    backgroundColor: .guelphRed,
+                    backgroundColor: .guelphRed(for: colorScheme),
                     foregroundColor: .white,
                     isDisabled: isPayButtonDisabled)
                 {
@@ -162,13 +162,15 @@ struct PriceSummaryCard: View {
                 }.padding(.vertical)
             }
         }.font(.system(size: 14))
-            .background(Color.white)
+            .background(Color.cardBackground(for: colorScheme))
             .cornerRadius(5)
             .padding(.all, 10)
             .shadow(radius: 2)
     }
     
     // MARK: Private
+    
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     @EnvironmentObject private var cart: Cart
     
@@ -184,7 +186,7 @@ struct PriceSummaryCard: View {
             Spacer()
             
             if type == .onCampusTotal || type == .offCampusTotal {
-                Text(amount).foregroundColor(.guelphRed)
+                Text(amount).foregroundColor(.guelphRed(for: colorScheme))
             } else {
                 Text("-" + amount)
             }

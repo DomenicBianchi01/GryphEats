@@ -33,7 +33,7 @@ struct OrderStatusBar: View {
             if status == .new {
                 ActionButton(
                     text: "Cancel Order",
-                    backgroundColor: .guelphRed,
+                    backgroundColor: .guelphRed(for: colorScheme),
                     foregroundColor: .white)
                 {
                     self.cancelAction()
@@ -41,7 +41,7 @@ struct OrderStatusBar: View {
             } else if status == .pickedUp {
                 ActionButton(
                     text: "Reorder",
-                    backgroundColor: .guelphRed,
+                    backgroundColor: .guelphRed(for: colorScheme),
                     foregroundColor: .white)
                 {
                     self.reorderAction()
@@ -49,13 +49,15 @@ struct OrderStatusBar: View {
             } else if status == .cancelled {
                 Text("Order was cancelled")
                     .bold()
-                    .foregroundColor(.guelphRed)
+                    .foregroundColor(.guelphRed(for: colorScheme))
                     .padding([.horizontal, .top])
             }
         }
     }
     
     // MARK: Private
+    
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     private let status: Order.Status
     private let cancelAction: () -> Void

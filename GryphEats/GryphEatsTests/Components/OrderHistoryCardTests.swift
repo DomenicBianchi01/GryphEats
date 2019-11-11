@@ -41,6 +41,31 @@ class OrderHistoryCardTests: XCTestCase {
         assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
     }
     
+    func testOrderHistoryCard_dark_New() {
+        let card = OrderHistoryCard(order: order(status: .neworder)).environment(\.colorScheme, .dark)
+        assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
+    }
+    
+    func testOrderHistoryCard_dark_InProgress() {
+        let card = OrderHistoryCard(order: order(status: .inprogress)).environment(\.colorScheme, .dark)
+        assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
+    }
+    
+    func testOrderHistoryCard_dark_ReadyForPickup() {
+        let card = OrderHistoryCard(order: order(status: .ready)).environment(\.colorScheme, .dark)
+        assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
+    }
+    
+    func testOrderHistoryCard_dark_PickedUp() {
+        let card = OrderHistoryCard(order: order(status: .pickedup)).environment(\.colorScheme, .dark)
+        assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
+    }
+    
+    func testOrderHistoryCard_dark_Cancelled() {
+        let card = OrderHistoryCard(order: order(status: .cancelled)).environment(\.colorScheme, .dark)
+        assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
+    }
+    
     private func order(status: OrderStatus) -> Order {
         Order(
             id: "0",

@@ -71,6 +71,76 @@ class OrderStatusBarTests: XCTestCase {
             record: record)
     }
     
+    func testOrderStatusBar_dark_orderPlaced() {
+        assertSnapshot(
+            matching: UIHostingController(
+                rootView: OrderStatusBar(
+                    status: .new,
+                    cancelAction: {},
+                    reorderAction: {})
+                    .background(Color.lightGray(for: .dark))
+                    .environmentObject(cart)
+                    .environment(\.colorScheme, .dark)),
+            as: .image,
+            record: record)
+    }
+    
+    func testOrderStatusBar_dark_inProgress() {
+        assertSnapshot(
+            matching: UIHostingController(
+                rootView: OrderStatusBar(
+                    status: .inProgress,
+                    cancelAction: {},
+                    reorderAction: {})
+                    .background(Color.lightGray(for: .dark))
+                    .environmentObject(cart)
+                    .environment(\.colorScheme, .dark)),
+            as: .image,
+            record: record)
+    }
+    
+    func testOrderStatusBar_dark_readyForPickup() {
+        assertSnapshot(
+            matching: UIHostingController(
+                rootView: OrderStatusBar(
+                    status: .readyForPickup,
+                    cancelAction: {},
+                    reorderAction: {})
+                    .background(Color.lightGray(for: .dark))
+                    .environmentObject(cart)
+                    .environment(\.colorScheme, .dark)),
+            as: .image,
+            record: record)
+    }
+    
+    func testOrderStatusBar_dark_pickedUp() {
+        assertSnapshot(
+            matching: UIHostingController(
+                rootView: OrderStatusBar(
+                    status: .pickedUp,
+                    cancelAction: {},
+                    reorderAction: {})
+                    .background(Color.lightGray(for: .dark))
+                    .environmentObject(cart)
+                    .environment(\.colorScheme, .dark)),
+            as: .image,
+            record: record)
+    }
+    
+    func testOrderStatusBar_dark_cancelled() {
+        assertSnapshot(
+            matching: UIHostingController(
+                rootView: OrderStatusBar(
+                    status: .cancelled,
+                    cancelAction: {},
+                    reorderAction: {})
+                    .background(Color.lightGray(for: .dark))
+                    .environmentObject(cart)
+                    .environment(\.colorScheme, .dark)),
+            as: .image,
+            record: record)
+    }
+    
     private let cart = Cart(
         items: [RestaurantFoodItem(
             foodItem: GraphFoodItem(id: "0", name: "Hamburger 1", price: 9.99),
