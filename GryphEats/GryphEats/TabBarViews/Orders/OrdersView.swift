@@ -35,7 +35,7 @@ struct OrdersView: View {
         }.sheet(isPresented: $showSelectedOrder) {
             OrderTrackingView(order: self.selectedOrder!) {
                 self.viewModel.fetchOrders(userID: self.loggedInUser.id)
-            }
+            }.environmentObject(self.loggedInUser)
         }.onAppear {
             UITableView.appearance().separatorStyle = .none
             UITableView.appearance().backgroundColor = .lightGray

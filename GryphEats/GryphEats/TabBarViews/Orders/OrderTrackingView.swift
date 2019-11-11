@@ -29,7 +29,7 @@ struct OrderTrackingView: View, Dismissable {
                     .padding(.bottom, 10)
                     .padding(.top, 25)
                 
-                OrderStatusBar(status: viewModel.order.status) {
+                OrderStatusBar(status: viewModel.order.status, cancelAction: {
                     self.viewModel.cancelOrder { success in
                         if success {
                             self.onDismiss()
@@ -38,7 +38,16 @@ struct OrderTrackingView: View, Dismissable {
                             self.error = .cancelError
                         }
                     }
-                }.padding(.vertical)
+                }, reorderAction: {
+                    self.viewModel.reorder(userID: self.loggedInUser.id) { success in
+                        if success {
+                            self.onDismiss()
+                            self.dismiss()
+                        } else {
+                            self.error = .cancelError
+                        }
+                    }
+                }).padding(.vertical)
                 
                 sectionHeader(title: "Items")
                 
@@ -46,9 +55,9 @@ struct OrderTrackingView: View, Dismissable {
                     CartItemCard(item: item)
                 }
                 
-                if viewModel.order.specialInstructions == nil {
+                if viewModel.order.specialInstructions != nil {
                     sectionHeader(title: "Special Instructions").padding(.top)
-                    TextView(text: .constant("This is a super long test.\n This is a super long test.\n This is a super long test.\n This is a super long test.\n This is a super long test.\n This is a super long test.\n This is a super long test.\n This is a super long test.\n This is a super long test.\n "), isEditable: false)
+                    TextView(text: .constant(viewModel.order.specialInstructions!), isEditable: false)
                         .background(Color.white)
                         .cornerRadius(5)
                         .padding([.horizontal], 10)
@@ -66,10 +75,13 @@ struct OrderTrackingView: View, Dismissable {
             // If we do not "unset" the error, and assign an error that is the exact same type of the
             //old value, SwiftUI will not present the alert. Possible SwiftUI Bug?
             self.error = nil
+        }.onDisappear {
+            self.onDismiss()
         }
     }
     
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject private var loggedInUser: User
     
     // MARK: Private
     
