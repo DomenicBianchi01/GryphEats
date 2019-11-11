@@ -96,7 +96,7 @@ struct LoginView: View {
     private let viewModel = LoginViewModel()
     
     private func attemptLogin() {
-        viewModel.attemptLogin(username: "Test", password: "password") { result in
+        viewModel.attemptLogin(username: email, password: password) { result in
             switch result {
             case .success(let user):
                 self.presentPostLoginScreen(for: user)
