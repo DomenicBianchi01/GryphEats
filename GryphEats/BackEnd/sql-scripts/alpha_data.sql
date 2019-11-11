@@ -4,8 +4,8 @@ insert into restaurant values (null, 'Mom''s Kitchen', '519123456', '08:00:00', 
 select @restaurant_id := restaurantid from restaurant where description = 'Best burgers in town';
 select @restaurant_id2 := restaurantid from restaurant where description = 'Homecooked food';
 
-insert into user values (null, 'Scott', 'Riva', '905123456', '10 Stone Rd', 'scott@mail.com' , 'ewr7wefh7', 0);
-insert into user values (null, 'Domenic', 'Bianchi', '519654321', '3 Gordon St', 'dom@mail.com' , '217e177', 1);
+insert into user values (null, 'Scott', 'Riva', '905123456', '10 Stone Rd', 'scott@mail.com' , 'ewr7wefh7', 0, '', '');
+insert into user values (null, 'Domenic', 'Bianchi', '519654321', '3 Gordon St', 'dom@mail.com' , '217e177', 1, '', '');
 
 insert into food values (null, 'Hamburger', 0, 8.49, @restaurant_id, 1, 'Plain Hamburger', 0);
 insert into food values (null, 'Cheeseburger', 0, 8.99, @restaurant_id, 1, 'Burger with cheese', 0);

@@ -43,10 +43,6 @@ module.exports.createDB = () => {
             type: SQL.INTEGER,
             primaryKey: true,
             autoIncrement: true,
-            /*references: {
-                model: 'orderitem', // name of Target model
-                key: 'orderid', // key in Target model that we're referencing
-            },*/
         },
         timeplaced: {
             type: SQL.DATE,
@@ -55,7 +51,8 @@ module.exports.createDB = () => {
         timecompleted: SQL.DATE,
         restaurantid: SQL.INTEGER,
         ordertype: SQL.INTEGER,
-        userid: SQL.INTEGER
+        userid: SQL.INTEGER,
+        instructions: SQL.STRING
     },
         {
             freezeTableName: true
@@ -67,19 +64,9 @@ module.exports.createDB = () => {
             type: SQL.INTEGER,
             primaryKey: true,
             autoIncrement: true,
-            /*references: {
-                model: 'menuitem', // name of Target model
-                key: 'menuid', // key in Target model that we're referencing
-            },*/
         },
         restaurantid: {
             type: SQL.INTEGER,
-            /*references: {
-                model: 'restaurant', // name of Target model
-                key: 'restaurantid', // key in Target model that we're referencing
-            },*/
-            //references: 'restaurant',
-            //referencesKey: 'restaurantid'
         },
         title: SQL.STRING,
         description: SQL.STRING,
@@ -175,7 +162,9 @@ module.exports.createDB = () => {
         address: SQL.STRING,
         email: SQL.STRING,
         encryptedpw: SQL.STRING,
-        usertype: SQL.INTEGER
+        usertype: SQL.INTEGER,
+        securityq: SQL.STRING,
+        securitya: SQL.STRING
     },
         {
             freezeTableName: true
@@ -211,6 +200,19 @@ module.exports.createDB = () => {
         }
     );
 
+    const notif = db.define('notif', {
+        userid: SQL.INTEGER,
+        uuid: {
+            type: SQL.INTEGER,
+            primaryKey: true
+        },
+        token: SQL.STRING
+    },
+        {
+            freezeTableName: true
+        }
+    );
+
     restaurant.hasMany(menu, { foreignKey: 'restaurantid', sourceKey: 'restaurantid' });
     menu.belongsTo(restaurant, { foreignKey: 'restaurantid', sourceKey: 'restaurantid' });
 
@@ -231,5 +233,5 @@ module.exports.createDB = () => {
 
     //toppin
 
-    return { food, foodorder, menu, menuitem, orderitem, restaurant, user, topping, statictopping, db };
+    return { food, foodorder, menu, menuitem, orderitem, restaurant, user, topping, statictopping, notif, db };
 }

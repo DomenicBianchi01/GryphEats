@@ -81,6 +81,39 @@ class GryphAPIS extends DataSource {
     // isavailable: ID
     // description: String
     // foodgroup: ID
+
+    async updateFoodAvailabilityByFoodID({ foodid, isavailable }) {
+        try {
+            const result = await this.database.food.update({ isavailable }, {
+                where: { foodid }
+            });
+            console.log(result);
+            if (result) {
+                return "true";
+            } else {
+                return "false";
+            }
+        } catch (e) {
+
+        }
+    }
+
+    async updatePasswordByEmail({ email, encryptedpw }) {
+        try {
+            const result = await this.database.user.update({ encryptedpw }, {
+                where: { email }
+            });
+            console.log(result);
+            if (result) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (e) {
+
+        }
+    }
+
     async createFood({ displayname, toppingtype, price, restaurantid, isavailable, description, foodgroup }) {
         try {
             const result = await this.database.food.create({
@@ -99,10 +132,10 @@ class GryphAPIS extends DataSource {
         }
     }
 
-    async createUser({ fname, lname, phonenum, address, email, encryptedpw, usertype, pubsub }) {
+    async createUser({ fname, lname, phonenum, address, email, encryptedpw, usertype, securityq, securitya, pubsub }) {
         try {
             const result = await this.database.user.create({
-                fname, lname, phonenum, address, email, encryptedpw, usertype
+                fname, lname, phonenum, address, email, encryptedpw, usertype, securityq, securitya
             });
             if (result) {
                 await pubsub.publish(POST_ADDED, { userAdded: result });
@@ -127,6 +160,36 @@ class GryphAPIS extends DataSource {
             }
         } catch (e) {
             return "Fail";
+        }
+    }
+
+    async registerNotify({ userid, uuid, token }) {
+        try {
+            const result = await this.database.notif.create({
+                 userid, uuid, token
+            });
+            if (result) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (e) {
+            return false;
+        }
+    }
+
+    async deleteNotifByUUID({ userid, uuid }) {
+        try {
+            const result = await this.database.notif.destroy({
+                where: { userid, uuid }
+            });
+            if (result) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (e) {
+            return false;
         }
     }
 
@@ -210,6 +273,46 @@ class GryphAPIS extends DataSource {
 
         }
 
+    }
+
+    async getSecurityQuestionByEmail({ email }) {
+        try {
+            const result = await this.database.user.findAll({
+                where: { email },
+            });
+            if (result[0] != null)
+            {
+                return result[0].dataValues.securityq;
+            }
+            else
+            {
+                return "";
+            }
+        } catch (e) {
+            console.log(e.message);
+            return "";
+        }
+    }
+
+    async validateSecurityQuestion({ email, securitya })
+    {
+        try {
+            const result = await this.database.user.findAll({
+                where: { email, securitya },
+            });
+            if (result[0] != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        } catch (e) {
+            console.log(e.message);
+            return false;
+
+        }
     }
 
     async getAllMenus() {
@@ -314,10 +417,10 @@ class GryphAPIS extends DataSource {
      * An array of foodids will be passed
      * Assume userid is 1
      */
-    async placeOrder({ userid, foodids, restaurantid }) {
+    async placeOrder({ userid, foodids, restaurantid, instructions }) {
         try {
             //create an order for restaurant
-            const order = await this.createOrder({ userid, restaurantid });
+            const order = await this.createOrder({ userid, restaurantid, instructions });
             if (order) {
                 var orderid = order.dataValues.orderid;
                 // console.log(orderid);
@@ -353,10 +456,10 @@ class GryphAPIS extends DataSource {
      * create an order for restaurant
      */
 
-    async createOrder({ userid, restaurantid }) {
+    async createOrder({ userid, restaurantid, instructions }) {
         try {
             const result = await this.database.foodorder.create({
-                userid: userid, restaurantid: restaurantid
+                userid: userid, restaurantid: restaurantid, instructions: instructions
             })
             return result;
         } catch (e) {

@@ -28,8 +28,10 @@ const typeDefs = gql`
         getOrderItemsByOrderID(orderid: ID!): [OrderItem]!
         getOrdersByRestaurantID(restaurantid: ID!): [FoodOrder]!
         getOrdersByUserID(userid: ID!): [FoodOrder]!
+        getSecurityQuestionByEmail(email: String!): String!
         getStaticToppingsByFoodGroup(foodgroup: ID!): [StaticTopping]!
         validateUser(email:String!, pass:String!): Auth!
+        validateSecurityQuestion(email:String!, securitya:String!): Boolean!
     }
 
     type Mutation {
@@ -38,9 +40,13 @@ const typeDefs = gql`
         placeOrder(userid:ID!, foodids:[ID]!, restaurantid:ID!): Finish
         completeOrder(orderid: ID): Finish
         updateFoodPriceByFoodID(foodid:ID!, price:ID!): String
+        updateFoodAvailabilityByFoodID(foodid:ID!, isavailable:ID!): String
+        updatePasswordByEmail(email:String!, encryptedpw:String!): Boolean
         createFood(displayname:String, toppingtype:ID, price:ID, restaurantid:ID, isavailable:ID, description:String, foodgroup:ID): String
-        createUser(fname:String, lname:String, phonenum:String, address:String, email:String, encryptedpw:String, usertype:ID): String
+        createUser(fname:String, lname:String, phonenum:String, address:String, email:String, encryptedpw:String, usertype:ID, securityq: String, securitya: String): String
         deleteFoodByFoodID(foodid:ID): String
+        registerNotify(userid:ID!, uuid:String!, token: String!): Boolean
+        deleteNotifByUUID(userid:ID!, uuid:String!): String
         # createUser(fname:String, lname:String, phonenum:String, address:String, email:String!, pass:String!, usertype:Int!): Finish
     }
 
@@ -86,6 +92,8 @@ const typeDefs = gql`
         address: String
         email: String
         usertype: UserType!
+        securityq: String
+        securitya: String
         foodorders: [FoodOrder]!
     }
 
@@ -120,6 +128,7 @@ const typeDefs = gql`
         restaurantid: ID!
         ordertype: OrderStatus!
         userid: ID!
+        instructions: String
         orderitems: [OrderItem!]!
     }
 
@@ -133,6 +142,12 @@ const typeDefs = gql`
         foodgroup: ID!
         displayname: ID!
         price: ID
+    }
+
+    type Notif {
+        userid: ID!
+        uuid: String!
+        token: String!
     }
 
     type Finish {
