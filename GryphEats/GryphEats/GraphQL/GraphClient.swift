@@ -67,7 +67,7 @@ final class GraphClient {
         subscription: Subscription,
         completion: @escaping (Result<Subscription.Data, ApolloError>) -> Void) -> Cancellable
     {
-        return client.subscribe(subscription: subscription) { result in
+        client.subscribe(subscription: subscription) { result in
             switch result {
             case .success(let graphQLResult):
                 guard let data = graphQLResult.data else {

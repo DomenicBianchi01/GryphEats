@@ -56,7 +56,7 @@ struct SecurityQuestionView: View {
                                 self.state.reset()
                             }
                         }
-                    }.shadow(radius: 5).padding()
+                }.shadow(radius: 5).padding()
                 Spacer()
             }
         }.errorAlert(error: self.$error.wrappedValue) {
@@ -69,9 +69,8 @@ struct SecurityQuestionView: View {
     // MARK: Private
     
     @State private var error: LandingState.LandingError? = nil
-    
     @EnvironmentObject private var state: LandingState
-
+    
 }
 
 struct SecurityQuestionView_Previews: PreviewProvider {

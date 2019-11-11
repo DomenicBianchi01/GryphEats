@@ -228,6 +228,14 @@
 		B0CD88CE236088A200A5C021 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD88CD236088A200A5C021 /* CustomTabBar.swift */; };
 		B0CD88D42360A21200A5C021 /* CustomTabBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD88D32360A21200A5C021 /* CustomTabBarTests.swift */; };
 		B0CD88D72360ABE900A5C021 /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CD88D62360ABE900A5C021 /* OrdersView.swift */; };
+		B0D02E0D2378ED6B009CC49D /* ForgotPassword.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0D02E0C2378ED6B009CC49D /* ForgotPassword.graphql */; };
+		B0D02E0E2378ED6B009CC49D /* ForgotPassword.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0D02E0C2378ED6B009CC49D /* ForgotPassword.graphql */; };
+		B0D02E102378F036009CC49D /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D02E0F2378F036009CC49D /* ForgotPasswordViewModel.swift */; };
+		B0D02E112378F036009CC49D /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D02E0F2378F036009CC49D /* ForgotPasswordViewModel.swift */; };
+		B0D02E132378F293009CC49D /* AnswerQuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D02E122378F293009CC49D /* AnswerQuestionViewModel.swift */; };
+		B0D02E142378F293009CC49D /* AnswerQuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D02E122378F293009CC49D /* AnswerQuestionViewModel.swift */; };
+		B0D02E162378F44B009CC49D /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D02E152378F44B009CC49D /* ResetPasswordViewModel.swift */; };
+		B0D02E172378F44B009CC49D /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D02E152378F44B009CC49D /* ResetPasswordViewModel.swift */; };
 		B0D850F223722DBC00B34F9C /* OrderTrackingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D850F123722DBC00B34F9C /* OrderTrackingViewModel.swift */; };
 		B0D850F323722DBC00B34F9C /* OrderTrackingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D850F123722DBC00B34F9C /* OrderTrackingViewModel.swift */; };
 		B0D9197E23718735006324D3 /* Login.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0D9197D23718735006324D3 /* Login.graphql */; };
@@ -404,6 +412,10 @@
 		B0CD88CD236088A200A5C021 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		B0CD88D32360A21200A5C021 /* CustomTabBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarTests.swift; sourceTree = "<group>"; };
 		B0CD88D62360ABE900A5C021 /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
+		B0D02E0C2378ED6B009CC49D /* ForgotPassword.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ForgotPassword.graphql; sourceTree = "<group>"; };
+		B0D02E0F2378F036009CC49D /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
+		B0D02E122378F293009CC49D /* AnswerQuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerQuestionViewModel.swift; sourceTree = "<group>"; };
+		B0D02E152378F44B009CC49D /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		B0D850F123722DBC00B34F9C /* OrderTrackingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTrackingViewModel.swift; sourceTree = "<group>"; };
 		B0D9197D23718735006324D3 /* Login.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Login.graphql; sourceTree = "<group>"; };
 		B0D9ED2123562296006A1545 /* PriceSummaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSummaryCard.swift; sourceTree = "<group>"; };
@@ -604,6 +616,7 @@
 				EB37D1A7236109A900CD0D9C /* OrdersByRest.graphql */,
 				B01AE8D4236CBE0700827276 /* UserOrders.graphql */,
 				B0D9197D23718735006324D3 /* Login.graphql */,
+				B0D02E0C2378ED6B009CC49D /* ForgotPassword.graphql */,
 			);
 			path = Queries;
 			sourceTree = "<group>";
@@ -828,6 +841,9 @@
 			isa = PBXGroup;
 			children = (
 				B046163C2346F3230033087B /* LoginViewModel.swift */,
+				B0D02E0F2378F036009CC49D /* ForgotPasswordViewModel.swift */,
+				B0D02E122378F293009CC49D /* AnswerQuestionViewModel.swift */,
+				B0D02E152378F44B009CC49D /* ResetPasswordViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1125,6 +1141,7 @@
 				B0187654236B19130031FD2E /* RobotoCondensed-Light.ttf in Resources */,
 				B0187655236B19130031FD2E /* Roboto-BoldItalic.ttf in Resources */,
 				B0187656236B19130031FD2E /* Roboto-Thin.ttf in Resources */,
+				B0D02E0E2378ED6B009CC49D /* ForgotPassword.graphql in Resources */,
 				B0187657236B19130031FD2E /* Roboto-LightItalic.ttf in Resources */,
 				B0187658236B19130031FD2E /* RobotoCondensed-BoldItalic.ttf in Resources */,
 				B0187659236B19130031FD2E /* Roboto-ThinItalic.ttf in Resources */,
@@ -1160,6 +1177,7 @@
 				EB1E4539234CF28800B5C8FD /* RobotoCondensed-Light.ttf in Resources */,
 				EB1E4542234CF28800B5C8FD /* Roboto-BoldItalic.ttf in Resources */,
 				EB1E4547234CF28800B5C8FD /* Roboto-Thin.ttf in Resources */,
+				B0D02E0D2378ED6B009CC49D /* ForgotPassword.graphql in Resources */,
 				EB1E4543234CF28800B5C8FD /* Roboto-LightItalic.ttf in Resources */,
 				EB1E453D234CF28800B5C8FD /* RobotoCondensed-BoldItalic.ttf in Resources */,
 				EB1E4540234CF28800B5C8FD /* Roboto-ThinItalic.ttf in Resources */,
@@ -1242,6 +1260,7 @@
 				B0187605236B19130031FD2E /* BackButton.swift in Sources */,
 				B0187606236B19130031FD2E /* ForgotPasswordView.swift in Sources */,
 				B0187607236B19130031FD2E /* OrderReviewView.swift in Sources */,
+				B0D02E142378F293009CC49D /* AnswerQuestionViewModel.swift in Sources */,
 				B0187608236B19130031FD2E /* OrderCard.swift in Sources */,
 				B0187664236B1B9E0031FD2E /* OrderStatusBar.swift in Sources */,
 				B0187609236B19130031FD2E /* AddCreditCardViewModel.swift in Sources */,
@@ -1277,6 +1296,7 @@
 				B0187624236B19130031FD2E /* PaymentMethod.swift in Sources */,
 				B0187625236B19130031FD2E /* EnvironmentExtensions.swift in Sources */,
 				B0187626236B19130031FD2E /* CheckoutView.swift in Sources */,
+				B0D02E112378F036009CC49D /* ForgotPasswordViewModel.swift in Sources */,
 				B0187627236B19130031FD2E /* OrderSubmittedView.swift in Sources */,
 				B0187628236B19130031FD2E /* PaymentSelectionCard.swift in Sources */,
 				B0187629236B19130031FD2E /* MainTabView.swift in Sources */,
@@ -1300,6 +1320,7 @@
 				B0187639236B19130031FD2E /* ColorExtensions.swift in Sources */,
 				B018763A236B19130031FD2E /* CardProvider.swift in Sources */,
 				B018763B236B19130031FD2E /* User.swift in Sources */,
+				B0D02E172378F44B009CC49D /* ResetPasswordViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1344,6 +1365,7 @@
 				B0843367234CB54700DD325E /* Category.swift in Sources */,
 				B06B513E2349552B0015E960 /* BackButton.swift in Sources */,
 				B06B514D23495C960015E960 /* ForgotPasswordView.swift in Sources */,
+				B0D02E132378F293009CC49D /* AnswerQuestionViewModel.swift in Sources */,
 				B09416A82355F5B40032BA12 /* OrderReviewView.swift in Sources */,
 				B051FF7E234588BD0093C0DC /* OrderCard.swift in Sources */,
 				B0187663236B1B9E0031FD2E /* OrderStatusBar.swift in Sources */,
@@ -1379,6 +1401,7 @@
 				B0D9ED3423568EB2006A1545 /* PaymentMethod.swift in Sources */,
 				B0BBFDB123479EFD00FDEFA4 /* EnvironmentExtensions.swift in Sources */,
 				B09416A52355F3660032BA12 /* CheckoutView.swift in Sources */,
+				B0D02E102378F036009CC49D /* ForgotPasswordViewModel.swift in Sources */,
 				B07F0DFA2357544C00912397 /* OrderSubmittedView.swift in Sources */,
 				B0982AF52357825300E20BB9 /* PaymentSelectionCard.swift in Sources */,
 				B0CD88CB23607F3C00A5C021 /* MainTabView.swift in Sources */,
@@ -1402,6 +1425,7 @@
 				B08F32132348D3C2009A0E61 /* ColorExtensions.swift in Sources */,
 				B05CE801235FE772000DB827 /* CardProvider.swift in Sources */,
 				EB605A32235BB24F00EB7856 /* User.swift in Sources */,
+				B0D02E162378F44B009CC49D /* ResetPasswordViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
