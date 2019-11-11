@@ -29,12 +29,14 @@ module.exports = {
         users: async (_, args, { dataSources }, info) => dataSources.gryphAPI.getAllUsers(),
         menus: async (_, args, { dataSources }, info) => dataSources.gryphAPI.getAllMenus(),
         getStaticToppingsByFoodGroup: async (_, { foodgroup }, { dataSources }, info) => dataSources.gryphAPI.getStaticToppingsByFoodGroup({ foodgroup }),
+        getSecurityQuestionByEmail: async (_, { email }, { dataSources }, info) => dataSources.gryphAPI.getSecurityQuestionByEmail({ email }),
         getMenusByRestaurantID: async (_, { restaurantid }, { dataSources }, info) => dataSources.gryphAPI.getMenusByRestaurantID({ restaurantid }),
         getMenuItemsByMenuID: async (_, { menuid }, { dataSources }, info) => dataSources.gryphAPI.getMenuItemsByMenuID({ menuid }),
         getOrderItemsByOrderID: async (_, { orderid }, { dataSources }, info) => dataSources.gryphAPI.getOrderItemsByOrderID({ orderid }),
         getOrdersByRestaurantID: async (_, { restaurantid }, { dataSources }, info) => dataSources.gryphAPI.getOrdersByRestaurantID({ restaurantid }),
         getOrdersByUserID: async (_, { userid }, { dataSources }, info) => dataSources.gryphAPI.getOrdersByUserID({ userid }),
-        validateUser: async (_, { email, pass }, { dataSources }, info) => dataSources.gryphAPI.validateUser({ email, pass })
+        validateUser: async (_, { email, pass }, { dataSources }, info) => dataSources.gryphAPI.validateUser({ email, pass }),
+        validateSecurityQuestion: async (_, { email, securitya }, { dataSources }, info) => dataSources.gryphAPI.validateSecurityQuestion({ email, securitya })
     },
     Mutation: {
         updateOrder: async (_, { orderid, status, restaurantid }, { dataSources }) => dataSources.gryphAPI.updateOrder({ orderid, status, restaurantid }),
@@ -42,12 +44,15 @@ module.exports = {
         placeOrder: async (_, { userid, foodids, restaurantid }, { dataSources }) => dataSources.gryphAPI.placeOrder({ userid, foodids, restaurantid }),
         completeOrder: async (_, { orderid }, { dataSources }) => dataSources.gryphAPI.completeOrder({ orderid }),
         updateFoodPriceByFoodID: async (_, { foodid, price }, { dataSources }) => dataSources.gryphAPI.updateFoodPriceByFoodID({ foodid, price }),
+        updateFoodAvailabilityByFoodID: async (_, { foodid, isavailable }, { dataSources }) => dataSources.gryphAPI.updateFoodAvailabilityByFoodID({ foodid, isavailable }),
+        updatePasswordByEmail: async (_, { email, encryptedpw }, { dataSources }) => dataSources.gryphAPI.updatePasswordByUserID({ email, encryptedpw }),
         createFood: async (_, { displayname, toppingtype, price, restaurantid, isavailable, description, foodgroup }, { dataSources }) =>
             dataSources.gryphAPI.createFood({ displayname, toppingtype, price, restaurantid, isavailable, description, foodgroup }),
-        createUser: async (_, { fname, lname, phonenum, address, email, encryptedpw, usertype }, { dataSources }) =>
-            dataSources.gryphAPI.createUser({ fname, lname, phonenum, address, email, encryptedpw, usertype }),
-        deleteFoodByFoodID: async (_, { foodid }, { dataSources }) => dataSources.gryphAPI.deleteFoodByFoodID({ foodid })
-
+        createUser: async (_, { fname, lname, phonenum, address, email, encryptedpw, usertype, securityq, securitya }, { dataSources }) =>
+            dataSources.gryphAPI.createUser({ fname, lname, phonenum, address, email, encryptedpw, usertype, securityq, securitya }),
+        deleteFoodByFoodID: async (_, { foodid }, { dataSources }) => dataSources.gryphAPI.deleteFoodByFoodID({ foodid }),
+        registerNotify: async (_, { userid, uuid, token }, { dataSources }) => dataSources.gryphAPI.registerNotify({ userid, uuid, token }),
+        deleteNotifByUUID: async (_, { userid, uuid }, { dataSources }) => dataSources.gryphAPI.deleteNotifByUUID({ userid, uuid })
     },
     Subscription: {
         //     // Additional event labels can be passed to asyncIterator creation

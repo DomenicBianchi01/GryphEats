@@ -4,11 +4,13 @@ insert into restaurant values (null, 'moms kitchen', '905123456', '09:00:00', '2
 
 select @restaurant_id := restaurantid from restaurant where description = 'TESTDATA';
 
-insert into user values (null, 'scott', 'riva', '905123456', 'home', 'a@a.com' , 'ewwt', 0);
+insert into user values (null, 'scott', 'riva', '905123456', 'home', 'a@a.com' , 'ewwt', 0, 'What is your dogs name?', 'Spot');
 
 select @user_id := userid from user where email = 'a@a.com';
 
-insert into foodorder values (null, '2019-12-31 23:59:59', null, @restaurant_id, 0, @user_id);
+insert into foodorder values (null, '2019-12-31 23:59:59', null, @restaurant_id, 0, @user_id, 'Peanut allergy!!!');
+
+insert into notif values(@user_id, 'HF66GG5G8JVX5O0', '#token');
 
 select @order_id := orderid from foodorder where timeplaced ='2019-12-31 23:59:59';
 
