@@ -12,6 +12,12 @@ import SwiftUI
 
 struct OrderReviewView: View {
     
+    // MARK: Lifecycle
+    
+    init(showDismissButton: Bool = true) {
+        self.showDismissButton = showDismissButton
+    }
+    
     // MARK: Internal
     
     var body: some View {
@@ -24,16 +30,19 @@ struct OrderReviewView: View {
                         }
                     }
                 }
-                Spacer()
-                Button(action: {
-                    self.viewControllerHolder.value?.dismiss(animated: true)
-                }) {
-                    Image(systemName: "xmark")
-                }.padding()
+                
+                if showDismissButton {
+                    Spacer()
+                    Button(action: {
+                        self.viewControllerHolder.value?.dismiss(animated: true)
+                    }) {
+                        Image(systemName: "xmark")
+                    }.padding()
+                }
             }
             
             if state.state == .summary {
-                OrderSummaryView().transition(.leftSlide)
+                OrderSummaryView(isDismissButtonVisible: showDismissButton).transition(.leftSlide)
             } else if state.state == .checkout {
                 // SwiftUI Bug: Since we need to extract the payment option from `.checkout` (the associated value),
                 // we would need to use a `switch` or `if-case`. These cannot be used within the `body` (the SwiftUI
@@ -54,6 +63,8 @@ struct OrderReviewView: View {
     @EnvironmentObject private var state: OrderReviewState
     @Environment(\.viewController) private var viewControllerHolder
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
+    
+    private let showDismissButton: Bool
     
 }
 

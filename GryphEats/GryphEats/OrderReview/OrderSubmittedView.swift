@@ -39,8 +39,17 @@ struct OrderSubmittedView: View {
                 Spacer()
             }
             Spacer()
+        }.onAppear {
+            self.viewModel.registerForNotifications(for: self.loggedInUser)
         }
     }
+    
+    // MARK: Private
+    
+    @EnvironmentObject private var loggedInUser: User
+    
+    private let viewModel = OrderSubmittedViewModel()
+    
 }
 
 struct OrderSubmittedView_Previews: PreviewProvider {

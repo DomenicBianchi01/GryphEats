@@ -163,6 +163,10 @@
 		B05B3FDB2348257000547DD1 /* LandingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05B3FDA2348257000547DD1 /* LandingState.swift */; };
 		B05CE801235FE772000DB827 /* CardProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05CE800235FE772000DB827 /* CardProvider.swift */; };
 		B0646912236BA77D00EDC13C /* Totalable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0646911236BA77D00EDC13C /* Totalable.swift */; };
+		B0647A4B2379A38B00D0D2D1 /* OrderSummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0647A4A2379A38B00D0D2D1 /* OrderSummaryViewModel.swift */; };
+		B0647A4C2379A38B00D0D2D1 /* OrderSummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0647A4A2379A38B00D0D2D1 /* OrderSummaryViewModel.swift */; };
+		B0647A4E2379B02000D0D2D1 /* PushNotifications.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0647A4D2379B02000D0D2D1 /* PushNotifications.graphql */; };
+		B0647A4F2379B02000D0D2D1 /* PushNotifications.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0647A4D2379B02000D0D2D1 /* PushNotifications.graphql */; };
 		B06B51322349322F0015E960 /* BasicButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B51312349322F0015E960 /* BasicButtonTests.swift */; };
 		B06B5134234932720015E960 /* CirclularButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B5133234932720015E960 /* CirclularButtonTests.swift */; };
 		B06B5136234934B80015E960 /* CustomTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B5135234934B80015E960 /* CustomTextFieldTests.swift */; };
@@ -248,6 +252,7 @@
 		B0D9ED3423568EB2006A1545 /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D9ED3323568EB2006A1545 /* PaymentMethod.swift */; };
 		B0D9ED382356B362006A1545 /* Valet in Frameworks */ = {isa = PBXBuildFile; productRef = B0D9ED372356B362006A1545 /* Valet */; };
 		B0D9ED3A2356B87B006A1545 /* ApplePayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D9ED392356B87B006A1545 /* ApplePayButton.swift */; };
+		B0EDC11423735A1800D6917D /* OrderSubmittedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EDC11323735A1800D6917D /* OrderSubmittedViewModel.swift */; };
 		B0F3197F236607F7006500AC /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F3197E236607F7006500AC /* AccountView.swift */; };
 		B0F3198723660BE9006500AC /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F3198623660BE9006500AC /* AccountViewModel.swift */; };
 		B0F6E1F6234E370500067B79 /* ItemOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F6E1F5234E370500067B79 /* ItemOverview.swift */; };
@@ -351,6 +356,8 @@
 		B05B3FDA2348257000547DD1 /* LandingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingState.swift; sourceTree = "<group>"; };
 		B05CE800235FE772000DB827 /* CardProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardProvider.swift; sourceTree = "<group>"; };
 		B0646911236BA77D00EDC13C /* Totalable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Totalable.swift; sourceTree = "<group>"; };
+		B0647A4A2379A38B00D0D2D1 /* OrderSummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryViewModel.swift; sourceTree = "<group>"; };
+		B0647A4D2379B02000D0D2D1 /* PushNotifications.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotifications.graphql; sourceTree = "<group>"; };
 		B06B51312349322F0015E960 /* BasicButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButtonTests.swift; sourceTree = "<group>"; };
 		B06B5133234932720015E960 /* CirclularButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclularButtonTests.swift; sourceTree = "<group>"; };
 		B06B5135234934B80015E960 /* CustomTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldTests.swift; sourceTree = "<group>"; };
@@ -431,6 +438,7 @@
 		B0D9ED2B23566AA9006A1545 /* PriceSummaryCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSummaryCardTests.swift; sourceTree = "<group>"; };
 		B0D9ED3323568EB2006A1545 /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
 		B0D9ED392356B87B006A1545 /* ApplePayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayButton.swift; sourceTree = "<group>"; };
+		B0EDC11323735A1800D6917D /* OrderSubmittedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSubmittedViewModel.swift; sourceTree = "<group>"; };
 		B0F3197E236607F7006500AC /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		B0F3198623660BE9006500AC /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		B0F6E1F5234E370500067B79 /* ItemOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemOverview.swift; sourceTree = "<group>"; };
@@ -641,6 +649,7 @@
 			children = (
 				B07B980223673732002E96C8 /* PlaceOrder.graphql */,
 				EB9468012368898E00FAAE56 /* UpdateOrder.graphql */,
+				B0647A4D2379B02000D0D2D1 /* PushNotifications.graphql */,
 			);
 			path = Mutations;
 			sourceTree = "<group>";
@@ -657,6 +666,8 @@
 			isa = PBXGroup;
 			children = (
 				B07F0DF623574B8400912397 /* CheckoutViewModel.swift */,
+				B0647A4A2379A38B00D0D2D1 /* OrderSummaryViewModel.swift */,
+				B0EDC11323735A1800D6917D /* OrderSubmittedViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1167,6 +1178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0187643236B19130031FD2E /* RobotoCondensed-Bold.ttf in Resources */,
+				B0647A4F2379B02000D0D2D1 /* PushNotifications.graphql in Resources */,
 				B0187644236B19130031FD2E /* Roboto-Italic.ttf in Resources */,
 				B0187645236B19130031FD2E /* OrdersByRest.graphql in Resources */,
 				B0187646236B19130031FD2E /* Roboto-Bold.ttf in Resources */,
@@ -1203,6 +1215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB1E4538234CF28800B5C8FD /* RobotoCondensed-Bold.ttf in Resources */,
+				B0647A4E2379B02000D0D2D1 /* PushNotifications.graphql in Resources */,
 				EB1E4544234CF28800B5C8FD /* Roboto-Italic.ttf in Resources */,
 				EB37D1A8236109A900CD0D9C /* OrdersByRest.graphql in Resources */,
 				EB1E4546234CF28800B5C8FD /* Roboto-Bold.ttf in Resources */,
@@ -1281,6 +1294,7 @@
 				B01875ED236B19130031FD2E /* UIViewControllerExtensions.swift in Sources */,
 				B059D1C62375156E009C6E14 /* TextView.swift in Sources */,
 				B01875EE236B19130031FD2E /* MealRow.swift in Sources */,
+				B0647A4C2379A38B00D0D2D1 /* OrderSummaryViewModel.swift in Sources */,
 				B01875EF236B19130031FD2E /* NavigationHeaderView.swift in Sources */,
 				B01875F0236B19130031FD2E /* DoubleExtensions.swift in Sources */,
 				B0D850F323722DBC00B34F9C /* OrderTrackingViewModel.swift in Sources */,
@@ -1413,10 +1427,12 @@
 				B06B514D23495C960015E960 /* ForgotPasswordView.swift in Sources */,
 				B0D02E132378F293009CC49D /* AnswerQuestionViewModel.swift in Sources */,
 				B09416A82355F5B40032BA12 /* OrderReviewView.swift in Sources */,
+				B0EDC11423735A1800D6917D /* OrderSubmittedViewModel.swift in Sources */,
 				B051FF7E234588BD0093C0DC /* OrderCard.swift in Sources */,
 				B0187663236B1B9E0031FD2E /* OrderStatusBar.swift in Sources */,
 				B08A7B42235A918100693E6A /* AddCreditCardViewModel.swift in Sources */,
 				EBC089EF234FFAC400DA3A55 /* OrderDetailsView.swift in Sources */,
+				B0647A4B2379A38B00D0D2D1 /* OrderSummaryViewModel.swift in Sources */,
 				B05B3FD82348253000547DD1 /* SecurityQuestionView.swift in Sources */,
 				B07F0DF723574B8400912397 /* CheckoutViewModel.swift in Sources */,
 				B051FF7B234588AA0093C0DC /* Customer.swift in Sources */,
@@ -1542,14 +1558,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = 65PJ2YP583;
+				DEVELOPMENT_TEAM = 667D8S5SPP;
 				INFOPLIST_FILE = "GryphEatsSwiftUI/GryphEatsSwiftUI-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.thesubwaysquad.GryphEats;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.thesubwaysquad.GryphEats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = YES;
@@ -1566,14 +1582,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = 65PJ2YP583;
+				DEVELOPMENT_TEAM = 667D8S5SPP;
 				INFOPLIST_FILE = "GryphEatsSwiftUI/GryphEatsSwiftUI-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.thesubwaysquad.GryphEats;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.thesubwaysquad.GryphEats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = YES;
@@ -1705,14 +1721,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = 65PJ2YP583;
+				DEVELOPMENT_TEAM = 667D8S5SPP;
 				INFOPLIST_FILE = GryphEats/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.thesubwaysquad.GryphEats;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.thesubwaysquad.GryphEats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = YES;
@@ -1729,14 +1745,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = 65PJ2YP583;
+				DEVELOPMENT_TEAM = 667D8S5SPP;
 				INFOPLIST_FILE = GryphEats/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.thesubwaysquad.GryphEats;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.thesubwaysquad.GryphEats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = YES;

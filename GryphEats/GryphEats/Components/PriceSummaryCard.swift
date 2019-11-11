@@ -139,7 +139,11 @@ struct PriceSummaryCard: View {
                 #else
                 HStack {
                     Spacer()
-                    ApplePayButton().frame(height: 47)
+                    ApplePayButton()
+                        .frame(height: 47)
+                        .onTapGesture {
+                            self.action(.applePay)
+                    }
                     Spacer()
                 }.padding(.horizontal, 10)
                     .cornerRadius(5)

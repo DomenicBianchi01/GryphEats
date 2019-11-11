@@ -107,6 +107,10 @@ struct LoginView: View {
     }
     
     private func presentPostLoginScreen(for user: User) {
+        if user.userType == .customer && UIApplication.shared.isRegisteredForRemoteNotifications {
+            loggedInUserID = user.id
+        }
+        
         self.viewControllerHolder.value?.present(style: .fullScreen) {
             if user.userType == .restaurant {
                 RestTabBarView().environmentObject(user)

@@ -1,0 +1,7 @@
+mutation RegisterForPushNotifications($userID: ID!, $uuid: String!, $token: String!) {
+    didRegister: registerNotify(userid: $userID, uuid: $uuid, token: $token)
+}
+
+mutation UnregisterFromPushNotifications($userID: ID!, $uuid: String!) {
+    didUnregister: deleteNotifByUUID(userid: $userID, uuid: $uuid)
+}

@@ -191,6 +191,110 @@ public final class PlaceOrderMutation: GraphQLMutation {
   }
 }
 
+public final class RegisterForPushNotificationsMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition =
+    """
+    mutation RegisterForPushNotifications($userID: ID!, $uuid: String!, $token: String!) {
+      didRegister: registerNotify(userid: $userID, uuid: $uuid, token: $token)
+    }
+    """
+
+  public let operationName = "RegisterForPushNotifications"
+
+  public var userID: GraphQLID
+  public var uuid: String
+  public var token: String
+
+  public init(userID: GraphQLID, uuid: String, token: String) {
+    self.userID = userID
+    self.uuid = uuid
+    self.token = token
+  }
+
+  public var variables: GraphQLMap? {
+    return ["userID": userID, "uuid": uuid, "token": token]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("registerNotify", alias: "didRegister", arguments: ["userid": GraphQLVariable("userID"), "uuid": GraphQLVariable("uuid"), "token": GraphQLVariable("token")], type: .scalar(Bool.self)),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(didRegister: Bool? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "didRegister": didRegister])
+    }
+
+    public var didRegister: Bool? {
+      get {
+        return resultMap["didRegister"] as? Bool
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "didRegister")
+      }
+    }
+  }
+}
+
+public final class UnregisterFromPushNotificationsMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition =
+    """
+    mutation UnregisterFromPushNotifications($userID: ID!, $uuid: String!) {
+      didUnregister: deleteNotifByUUID(userid: $userID, uuid: $uuid)
+    }
+    """
+
+  public let operationName = "UnregisterFromPushNotifications"
+
+  public var userID: GraphQLID
+  public var uuid: String
+
+  public init(userID: GraphQLID, uuid: String) {
+    self.userID = userID
+    self.uuid = uuid
+  }
+
+  public var variables: GraphQLMap? {
+    return ["userID": userID, "uuid": uuid]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("deleteNotifByUUID", alias: "didUnregister", arguments: ["userid": GraphQLVariable("userID"), "uuid": GraphQLVariable("uuid")], type: .scalar(String.self)),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(didUnregister: String? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "didUnregister": didUnregister])
+    }
+
+    public var didUnregister: String? {
+      get {
+        return resultMap["didUnregister"] as? String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "didUnregister")
+      }
+    }
+  }
+}
+
 public final class UpdateOrderMutation: GraphQLMutation {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition =
