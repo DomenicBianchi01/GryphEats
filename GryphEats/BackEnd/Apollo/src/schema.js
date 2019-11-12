@@ -37,7 +37,7 @@ const typeDefs = gql`
     type Mutation {
         updateOrder(orderid:ID!, status:OrderStatus!, restaurantid:ID!): Finish
         createOrder(userid:ID!, restaurantid: ID!): FoodOrder
-        placeOrder(userid:ID!, foodids:[ID]!, restaurantid:ID!): Finish
+        placeOrder(userid:ID!, foodids:[ID]!, restaurantid:ID!, instructions: String): Finish
         completeOrder(orderid: ID): Finish
         updateFoodPriceByFoodID(foodid:ID!, price:ID!): String
         updateFoodAvailabilityByFoodID(foodid:ID!, isavailable:ID!): String

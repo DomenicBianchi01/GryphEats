@@ -41,11 +41,11 @@ module.exports = {
     Mutation: {
         updateOrder: async (_, { orderid, status, restaurantid }, { dataSources }) => dataSources.gryphAPI.updateOrder({ orderid, status, restaurantid }),
         createOrder: async (_, { userid, restaurantid }, { dataSources }) => dataSources.gryphAPI.createOrder({ userid, restaurantid }),
-        placeOrder: async (_, { userid, foodids, restaurantid }, { dataSources }) => dataSources.gryphAPI.placeOrder({ userid, foodids, restaurantid }),
+        placeOrder: async (_, { userid, foodids, restaurantid, instructions }, { dataSources }) => dataSources.gryphAPI.placeOrder({ userid, foodids, restaurantid, instructions }),
         completeOrder: async (_, { orderid }, { dataSources }) => dataSources.gryphAPI.completeOrder({ orderid }),
         updateFoodPriceByFoodID: async (_, { foodid, price }, { dataSources }) => dataSources.gryphAPI.updateFoodPriceByFoodID({ foodid, price }),
         updateFoodAvailabilityByFoodID: async (_, { foodid, isavailable }, { dataSources }) => dataSources.gryphAPI.updateFoodAvailabilityByFoodID({ foodid, isavailable }),
-        updatePasswordByEmail: async (_, { email, encryptedpw }, { dataSources }) => dataSources.gryphAPI.updatePasswordByUserID({ email, encryptedpw }),
+        updatePasswordByEmail: async (_, { email, encryptedpw }, { dataSources }) => dataSources.gryphAPI.updatePasswordByEmail({ email, encryptedpw }),
         createFood: async (_, { displayname, toppingtype, price, restaurantid, isavailable, description, foodgroup }, { dataSources }) =>
             dataSources.gryphAPI.createFood({ displayname, toppingtype, price, restaurantid, isavailable, description, foodgroup }),
         createUser: async (_, { fname, lname, phonenum, address, email, encryptedpw, usertype, securityq, securitya }, { dataSources }) =>
