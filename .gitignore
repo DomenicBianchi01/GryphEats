@@ -82,3 +82,5 @@ fastlane/test_output
 iOSInjectionProject/
 
 # End of https://www.gitignore.io/api/swift
+node_modules/
+GryphEats/BackEnd/Apollo/node_modules/

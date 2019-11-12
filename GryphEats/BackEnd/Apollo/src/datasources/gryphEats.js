@@ -104,7 +104,7 @@ class GryphAPIS extends DataSource {
             const result = await this.database.user.update({ encryptedpw }, {
                 where: { email }
             });
-            console.log(result);
+            // console.log(result);
             if (result) {
                 return true;
             } else {
@@ -167,7 +167,7 @@ class GryphAPIS extends DataSource {
     async registerNotify({ userid, uuid, token }) {
         try {
             const result = await this.database.notif.create({
-                 userid, uuid, token
+                userid, uuid, token
             });
             if (result) {
                 return true;
@@ -281,12 +281,10 @@ class GryphAPIS extends DataSource {
             const result = await this.database.user.findAll({
                 where: { email },
             });
-            if (result[0] != null)
-            {
+            if (result[0] != null) {
                 return result[0].dataValues.securityq;
             }
-            else
-            {
+            else {
                 return "";
             }
         } catch (e) {
@@ -295,18 +293,15 @@ class GryphAPIS extends DataSource {
         }
     }
 
-    async validateSecurityQuestion({ email, securitya })
-    {
+    async validateSecurityQuestion({ email, securitya }) {
         try {
             const result = await this.database.user.findAll({
                 where: { email, securitya },
             });
-            if (result[0] != null)
-            {
+            if (result[0] != null) {
                 return true;
             }
-            else
-            {
+            else {
                 return false;
             }
         } catch (e) {
@@ -371,6 +366,20 @@ class GryphAPIS extends DataSource {
                 where: {
                     // restaurantid, ordertype: [0, 1, 2, 3]
                     userid
+                }
+            });
+            return result;
+        } catch (e) {
+            console.log(e.message);
+            return "getMenuItemsFailed: " + e.message;
+        }
+    }
+
+    async getOrderByOrderID({ orderid }) {
+        try {
+            const result = await this.database.foodorder.findAll({
+                where: {
+                    orderid
                 }
             });
             return result;
@@ -504,29 +513,34 @@ class GryphAPIS extends DataSource {
                 },
                 production: false
             };
-       
+
             var apnProvider = new apn.Provider(options);
             var note = new apn.Notification();
-            var message = ""
+            var body = ""
 
             if (status == 1) {
-                message = "Your order is now being made!"
+                body = "Your order is now being made!"
             } else if (status == 2) {
-                message = "Your order is ready for pickup!"
+                body = "Your order is ready for pickup!"
             }
 
-            if (status != "") {
+            if (body != "") {
                 note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
                 note.title = "Order Update"
-                note.body = message;
+                note.body = body;
                 note.topic = "ca.thesubwaysquad.GryphEats"
 
                 console.log(note);
-        
+                const currentOrder = await getOrderByOrderID({ orderid });
+                console.log(currentOrder);
+                console.log({ currentOrder });
+
                 //TODO: This token is currently hardcoded. What needs to be done is the following: Given the `orderid`, you need to figure out which user to send the push notification to.
-                apnProvider.send(note, "0373d6d1cfc3ed2fe261460f541a9fa1cd5c966e5e8200c3777cb1e33e310333").then( (result) => {
-                  console.log(result.failed);
-                  apnProvider.shutdown();
+                apnProvider.send(note, "0373d6d1cfc3ed2fe261460f541a9fa1cd5c966e5e8200c3777cb1e33e310333").then((result) => {
+                    console.log(result.failed);
+                    apnProvider.shutdown();
+                }).catch((ex) => {
+                    apn.Provider.shutdown();
                 });
             }
 
