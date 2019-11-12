@@ -58,15 +58,15 @@ struct CheckoutView: View {
                 title: Text("Confirm Payment"),
                 message: Text("Once your confirm your payment, your order will begin to be prepared."),
                 primaryButton: .default(Text("Confirm")) {
-                    withAnimation {
-                        self.viewModel.submitOrder(for: self.loggedInUser.id, with: self.cart) { result in
-                            switch result {
-                            case .success:
+                    self.viewModel.submitOrder(for: self.loggedInUser.id, with: self.cart) { result in
+                        switch result {
+                        case .success:
+                            withAnimation {
                                 self.state.state = .confirmed
                                 self.cart.clear()
-                            case .failure(let error):
-                                self.error = error
                             }
+                        case .failure(let error):
+                            self.error = error
                         }
                     }
                 },
@@ -89,7 +89,7 @@ struct CheckoutView: View {
     @State private var showAddPayment: Bool = false
     @State private var confirmPayment: Bool = false
     @State private var selectedPaymentMethodIndex = 0
-    @State private var error: CheckoutViewModel.CheckoutError? = nil
+    @State private var error: CheckoutViewModel.OrderSubmissionError? = nil
     
     private let viewModel = CheckoutViewModel()
     
@@ -106,9 +106,9 @@ struct CheckoutView: View {
                 studentNumber: String(paymentMethod.accountNumber),
                 balance: 5000))
         case .visa:
-            return AnyView(CreditCard(brand: .visa, lastFourDigits: paymentMethod.lastFourDigits))
+            return AnyView(CreditCard(cardProvider: .visa, lastFourDigits: paymentMethod.lastFourDigits))
         case .mastercard:
-            return AnyView(CreditCard(brand: .mastercard, lastFourDigits: paymentMethod.lastFourDigits))
+            return AnyView(CreditCard(cardProvider: .mastercard, lastFourDigits: paymentMethod.lastFourDigits))
         }
     }
     

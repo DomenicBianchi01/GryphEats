@@ -19,7 +19,7 @@ import SwiftUI
 class Items {
     
     // MARK: PriceType
-
+    
     enum PriceType {
         case onCampus
         case offCampus

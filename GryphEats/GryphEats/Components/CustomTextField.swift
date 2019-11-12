@@ -59,7 +59,7 @@ struct CustomTextField: View {
                         .font(.system(size: textFieldFontSize))
                 }
             }
-
+            
             Rectangle().frame(height: 1)
             
             //SwiftUI does not support `if-let` yet.
@@ -83,7 +83,7 @@ struct CustomTextField: View {
     
     private let headerFontSize: CGFloat
     private let textFieldFontSize: CGFloat
-
+    
 }
 
 struct CustomTextField_Previews: PreviewProvider {

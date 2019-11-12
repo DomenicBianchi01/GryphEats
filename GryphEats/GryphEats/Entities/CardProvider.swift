@@ -14,6 +14,8 @@ enum CardProvider: Int {
     case visa = 4
     case mastercard = 5
     
+    // MARK: Internal
+    
     var imageName: String {
         switch self {
         case .visa:

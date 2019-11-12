@@ -10,7 +10,7 @@ import PassKit
 
 // MARK: - OrderSummaryViewModel
 
-class OrderSummaryViewModel: NSObject {
+class OrderSummaryViewModel: OrderSubmission {
     
     // MARK: Internal
     
@@ -43,6 +43,8 @@ class OrderSummaryViewModel: NSObject {
     }
     
     weak var applePayController: PKPaymentAuthorizationViewController?
+    
+    // MARK: Private
     
     private var completion: ((Bool) -> Void)?
     

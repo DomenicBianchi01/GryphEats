@@ -17,13 +17,13 @@ class CreditCardTests: XCTestCase {
     let record = false
 
     func testCreditCard_visa() {
-        let card = CreditCard(brand: .visa, lastFourDigits: "1234")
+        let card = CreditCard(cardProvider: .visa, lastFourDigits: "1234")
     
         assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
     }
     
     func testCreditCard_mastercard() {
-        let card = CreditCard(brand: .mastercard, lastFourDigits: "1234")
+        let card = CreditCard(cardProvider: .mastercard, lastFourDigits: "1234")
     
         assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
     }

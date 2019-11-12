@@ -63,7 +63,7 @@ struct ItemOverview: View, Dismissable {
                         Ingredient(id: 7, name: "Onion"),
                         Ingredient(id: 8, name: "Pepper"),
                         Ingredient(id: 9, name: "Black Olives"),
-                    ], onTap: { /*TODO*/ })
+                    ], onTap: { /*TODO*/ }).padding(.bottom, 225)
                 }
             }
         }
@@ -80,7 +80,6 @@ struct ItemOverview: View, Dismissable {
 }
 
 struct ItemOverview_Previews: PreviewProvider {
-    
     static var previews: some View {
         ItemOverview(
             item: RestaurantFoodItem(

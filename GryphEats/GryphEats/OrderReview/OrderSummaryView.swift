@@ -60,7 +60,7 @@ struct OrderSummaryView: View {
                     sectionHeader(title: "Special Instructions").padding(.top)
                     
                     // TODO Bug: Lines do not word wrap automatically for some reason
-                    TextView(text: self.$cart.specialInstructions)
+                    TextView(text: self.$cart.specialInstructions.safelyUnwrapped)
                         .background(Color.white)
                         .cornerRadius(5)
                         .padding(.horizontal, 10)
@@ -95,8 +95,11 @@ struct OrderSummaryView: View {
     @Environment(\.viewController) private var viewControllerHolder
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
+    @EnvironmentObject private var loggedInUser: User
     @EnvironmentObject private var cart: Cart
     @EnvironmentObject private var state: OrderReviewState
+    
+    @State private var error: OrderSummaryViewModel.OrderSubmissionError? = nil
     
     private let viewModel = OrderSummaryViewModel()
     private let isDismissButtonVisible: Bool
@@ -114,9 +117,16 @@ struct OrderSummaryView: View {
     private func promptApplePay() {
         let applePayController = viewModel.promptApplePay(for: cart) { success in
             if success {
-                withAnimation {
-                    self.state.state = .confirmed
-                    self.cart.clear()
+                self.viewModel.submitOrder(for: self.loggedInUser.id, with: self.cart) { result in
+                    switch result {
+                    case .success:
+                        withAnimation {
+                            self.state.state = .confirmed
+                            self.cart.clear()
+                        }
+                    case .failure(let error):
+                        self.error = error
+                    }
                 }
             }
         }

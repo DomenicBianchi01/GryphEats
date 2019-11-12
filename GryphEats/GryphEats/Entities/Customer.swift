@@ -13,5 +13,5 @@ struct Customer {
     // MARK: Internal
     
     var name: String
-
+    
 }

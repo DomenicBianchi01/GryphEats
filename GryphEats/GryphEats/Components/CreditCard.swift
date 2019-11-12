@@ -12,17 +12,10 @@ import SwiftUI
 
 struct CreditCard: View {
     
-    // MARK: Brand
-    
-    enum Brand {
-        case mastercard
-        case visa
-    }
-    
     // MARK: Lifeycle
     
-    init(brand: Brand, lastFourDigits: String) {
-        self.brand = brand
+    init(cardProvider: CardProvider, lastFourDigits: String) {
+        self.cardProvider = cardProvider
         self.lastFourDigits = lastFourDigits
     }
     
@@ -61,11 +54,11 @@ struct CreditCard: View {
     
     // MARK: Private
     
-    private let brand: Brand
+    private let cardProvider: CardProvider
     private let lastFourDigits: String
     
     private var gradientStartColor: Color {
-        switch brand {
+        switch cardProvider {
         case .visa:
             return Color(red: 26/255, green: 31/255, blue: 113/255)
         case .mastercard:
@@ -74,7 +67,7 @@ struct CreditCard: View {
     }
     
     private var gradientEndColor: Color {
-        switch brand {
+        switch cardProvider {
         case .visa:
             return Color(red: 247/255, green: 182/255, blue: 0/255)
         case .mastercard:
@@ -83,7 +76,7 @@ struct CreditCard: View {
     }
     
     private var logoView: some View {
-        switch brand {
+        switch cardProvider {
         case .visa:
             return Image("visaLogo")
                 .resizable()
@@ -103,8 +96,8 @@ struct CreditCard: View {
 struct CreditCard_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            CreditCard(brand: .visa, lastFourDigits: "1234")
-            CreditCard(brand: .mastercard, lastFourDigits: "1234")
+            CreditCard(cardProvider: .visa, lastFourDigits: "1234")
+            CreditCard(cardProvider: .mastercard, lastFourDigits: "1234")
         }
     }
 }

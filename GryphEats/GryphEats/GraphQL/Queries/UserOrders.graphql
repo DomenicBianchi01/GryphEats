@@ -4,6 +4,7 @@ query UserOrders($userID: ID!) {
         restaurantId: restaurantid
         timePlaced: timeplaced
         status: ordertype
+        instructions
         items: orderitems {
             item {
                 ...FoodItemDetails

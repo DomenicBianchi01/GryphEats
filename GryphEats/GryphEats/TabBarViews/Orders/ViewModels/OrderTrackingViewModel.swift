@@ -58,22 +58,6 @@ class OrderTrackingViewModel {
         }
     }
     
-    func reorder(userID: String, completion: @escaping (Bool) -> Void) {
-        GraphClient.shared.perform(
-            mutation: PlaceOrderMutation(
-                foodIDs: order.items.map { $0.foodItem.id },
-                restaurantID: order.restaurantID,
-                userID: userID))
-        { result in
-            switch result {
-            case .success(let data):
-                completion(data.placeOrder?.success ?? false)
-            case .failure:
-                completion(false)
-            }
-        }
-    }
-    
     let order: Order
     
 }

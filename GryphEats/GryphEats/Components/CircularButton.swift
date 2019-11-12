@@ -47,7 +47,7 @@ struct CircularButton: View {
     
     private let button: BasicButton
     private let borderColor: Color?
-
+    
 }
 
 struct CircularButton_Previews: PreviewProvider {
