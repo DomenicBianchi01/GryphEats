@@ -48,7 +48,7 @@ struct SlideOverCard<V: View>: View {
     
     private let content: () -> V
     private let handleText: String
-
+    
     private let minimumOffset: CGFloat = 225
     private let maximumHeight: CGFloat = 120
     

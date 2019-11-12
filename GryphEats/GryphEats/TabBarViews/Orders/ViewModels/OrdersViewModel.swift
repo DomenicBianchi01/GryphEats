@@ -29,6 +29,7 @@ class OrdersViewModel: ObservableObject {
                         customer: Customer(name: ""),
                         status: order.status,
                         timePlaced: order.timePlaced,
+                        specialInstructions: order.instructions,
                         items: order.items.map { item in
                             RestaurantFoodItem(
                                 foodItem: item.item.fragments.foodItemDetails,

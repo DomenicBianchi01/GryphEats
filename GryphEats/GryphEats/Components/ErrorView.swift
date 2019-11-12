@@ -19,7 +19,7 @@ struct ErrorView: View {
         self.buttonText = buttonText
         self.onTap = onTap
     }
-
+    
     // MARK: Internal
     
     var body: some View {
@@ -39,7 +39,7 @@ struct ErrorView: View {
     private let infoText: String
     private let buttonText: String
     private let onTap: () -> Void
-
+    
 }
 
 struct ErrorView_Previews: PreviewProvider {

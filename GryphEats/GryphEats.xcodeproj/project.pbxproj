@@ -162,6 +162,8 @@
 		B05B3FD82348253000547DD1 /* SecurityQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05B3FD72348253000547DD1 /* SecurityQuestionView.swift */; };
 		B05B3FDB2348257000547DD1 /* LandingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05B3FDA2348257000547DD1 /* LandingState.swift */; };
 		B05CE801235FE772000DB827 /* CardProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05CE800235FE772000DB827 /* CardProvider.swift */; };
+		B05D53C1237A3017001BC092 /* StringBindingExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D53C0237A3017001BC092 /* StringBindingExtensions.swift */; };
+		B05D53C3237A384A001BC092 /* OrderSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D53C2237A384A001BC092 /* OrderSubmission.swift */; };
 		B0646912236BA77D00EDC13C /* Totalable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0646911236BA77D00EDC13C /* Totalable.swift */; };
 		B0647A4B2379A38B00D0D2D1 /* OrderSummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0647A4A2379A38B00D0D2D1 /* OrderSummaryViewModel.swift */; };
 		B0647A4C2379A38B00D0D2D1 /* OrderSummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0647A4A2379A38B00D0D2D1 /* OrderSummaryViewModel.swift */; };
@@ -355,6 +357,8 @@
 		B05B3FD72348253000547DD1 /* SecurityQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityQuestionView.swift; sourceTree = "<group>"; };
 		B05B3FDA2348257000547DD1 /* LandingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingState.swift; sourceTree = "<group>"; };
 		B05CE800235FE772000DB827 /* CardProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardProvider.swift; sourceTree = "<group>"; };
+		B05D53C0237A3017001BC092 /* StringBindingExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringBindingExtensions.swift; sourceTree = "<group>"; };
+		B05D53C2237A384A001BC092 /* OrderSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSubmission.swift; sourceTree = "<group>"; };
 		B0646911236BA77D00EDC13C /* Totalable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Totalable.swift; sourceTree = "<group>"; };
 		B0647A4A2379A38B00D0D2D1 /* OrderSummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryViewModel.swift; sourceTree = "<group>"; };
 		B0647A4D2379B02000D0D2D1 /* PushNotifications.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotifications.graphql; sourceTree = "<group>"; };
@@ -665,6 +669,7 @@
 		B07F0DF523574B7500912397 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				B05D53C2237A384A001BC092 /* OrderSubmission.swift */,
 				B07F0DF623574B8400912397 /* CheckoutViewModel.swift */,
 				B0647A4A2379A38B00D0D2D1 /* OrderSummaryViewModel.swift */,
 				B0EDC11323735A1800D6917D /* OrderSubmittedViewModel.swift */,
@@ -861,6 +866,7 @@
 				B0D9ED24235650E3006A1545 /* DoubleExtensions.swift */,
 				B09156052359551600FE2CD2 /* ValetExtensions.swift */,
 				B07B97FB23672634002E96C8 /* GraphExtensions.swift */,
+				B05D53C0237A3017001BC092 /* StringBindingExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1388,6 +1394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB94680423688AA700FAAE56 /* OrderDetailsViewModel.swift in Sources */,
+				B05D53C1237A3017001BC092 /* StringBindingExtensions.swift in Sources */,
 				B01DC45323552B4500539D30 /* CartItemCard.swift in Sources */,
 				B0BEF91B234D4941004455DC /* Restaurant.swift in Sources */,
 				B09416AB2355F5C50032BA12 /* OrderReviewState.swift in Sources */,
@@ -1432,6 +1439,7 @@
 				B0187663236B1B9E0031FD2E /* OrderStatusBar.swift in Sources */,
 				B08A7B42235A918100693E6A /* AddCreditCardViewModel.swift in Sources */,
 				EBC089EF234FFAC400DA3A55 /* OrderDetailsView.swift in Sources */,
+				B05D53C3237A384A001BC092 /* OrderSubmission.swift in Sources */,
 				B0647A4B2379A38B00D0D2D1 /* OrderSummaryViewModel.swift in Sources */,
 				B05B3FD82348253000547DD1 /* SecurityQuestionView.swift in Sources */,
 				B07F0DF723574B8400912397 /* CheckoutViewModel.swift in Sources */,

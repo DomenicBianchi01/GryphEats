@@ -13,15 +13,15 @@ import SwiftUI
 class Order: Items, ObservableObject, Identifiable {
     
     // MARK: Lifecycle
-        
+    
     init(
         id: String,
         restaurantID: String,
         customer: Customer,
         status: OrderStatus = .neworder,
         timePlaced: String,
-        items: [RestaurantFoodItem] = [],
-        specialInstructions: String? = nil)
+        specialInstructions: String? = nil,
+        items: [RestaurantFoodItem] = [])
     {
         self.id = id
         self.restaurantID = restaurantID
@@ -45,7 +45,7 @@ class Order: Items, ObservableObject, Identifiable {
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.000Z"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: TimeZone.current.secondsFromGMT())
-
+        
         self.timePlaced = dateFormatter.date(from: timePlaced) ?? Date()
         
         super.init(items: items)
@@ -94,7 +94,7 @@ class Order: Items, ObservableObject, Identifiable {
     let customer: Customer
     let timePlaced: Date
     let specialInstructions: String?
-
+    
     func timePlacedString(expanded: Bool = false) -> String {
         let dateFormatter = DateFormatter()
         

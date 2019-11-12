@@ -102,8 +102,8 @@ public final class PlaceOrderMutation: GraphQLMutation {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition =
     """
-    mutation PlaceOrder($foodIDs: [ID!]!, $restaurantID: ID!, $userID: ID!) {
-      placeOrder(userid: $userID, foodids: $foodIDs, restaurantid: $restaurantID) {
+    mutation PlaceOrder($foodIDs: [ID!]!, $restaurantID: ID!, $userID: ID!, $instructions: String) {
+      placeOrder(userid: $userID, foodids: $foodIDs, restaurantid: $restaurantID, instructions: $instructions) {
         __typename
         success
       }
@@ -115,22 +115,24 @@ public final class PlaceOrderMutation: GraphQLMutation {
   public var foodIDs: [GraphQLID]
   public var restaurantID: GraphQLID
   public var userID: GraphQLID
+  public var instructions: String?
 
-  public init(foodIDs: [GraphQLID], restaurantID: GraphQLID, userID: GraphQLID) {
+  public init(foodIDs: [GraphQLID], restaurantID: GraphQLID, userID: GraphQLID, instructions: String? = nil) {
     self.foodIDs = foodIDs
     self.restaurantID = restaurantID
     self.userID = userID
+    self.instructions = instructions
   }
 
   public var variables: GraphQLMap? {
-    return ["foodIDs": foodIDs, "restaurantID": restaurantID, "userID": userID]
+    return ["foodIDs": foodIDs, "restaurantID": restaurantID, "userID": userID, "instructions": instructions]
   }
 
   public struct Data: GraphQLSelectionSet {
     public static let possibleTypes = ["Mutation"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("placeOrder", arguments: ["userid": GraphQLVariable("userID"), "foodids": GraphQLVariable("foodIDs"), "restaurantid": GraphQLVariable("restaurantID")], type: .object(PlaceOrder.selections)),
+      GraphQLField("placeOrder", arguments: ["userid": GraphQLVariable("userID"), "foodids": GraphQLVariable("foodIDs"), "restaurantid": GraphQLVariable("restaurantID"), "instructions": GraphQLVariable("instructions")], type: .object(PlaceOrder.selections)),
     ]
 
     public private(set) var resultMap: ResultMap
@@ -1538,6 +1540,7 @@ public final class UserOrdersQuery: GraphQLQuery {
         restaurantId: restaurantid
         timePlaced: timeplaced
         status: ordertype
+        instructions
         items: orderitems {
           __typename
           item {
@@ -1598,6 +1601,7 @@ public final class UserOrdersQuery: GraphQLQuery {
         GraphQLField("restaurantid", alias: "restaurantId", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("timeplaced", alias: "timePlaced", type: .nonNull(.scalar(String.self))),
         GraphQLField("ordertype", alias: "status", type: .nonNull(.scalar(OrderStatus.self))),
+        GraphQLField("instructions", type: .scalar(String.self)),
         GraphQLField("orderitems", alias: "items", type: .nonNull(.list(.nonNull(.object(Item.selections))))),
       ]
 
@@ -1607,8 +1611,8 @@ public final class UserOrdersQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: GraphQLID, restaurantId: GraphQLID, timePlaced: String, status: OrderStatus, items: [Item]) {
-        self.init(unsafeResultMap: ["__typename": "FoodOrder", "id": id, "restaurantId": restaurantId, "timePlaced": timePlaced, "status": status, "items": items.map { (value: Item) -> ResultMap in value.resultMap }])
+      public init(id: GraphQLID, restaurantId: GraphQLID, timePlaced: String, status: OrderStatus, instructions: String? = nil, items: [Item]) {
+        self.init(unsafeResultMap: ["__typename": "FoodOrder", "id": id, "restaurantId": restaurantId, "timePlaced": timePlaced, "status": status, "instructions": instructions, "items": items.map { (value: Item) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -1653,6 +1657,15 @@ public final class UserOrdersQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "status")
+        }
+      }
+
+      public var instructions: String? {
+        get {
+          return resultMap["instructions"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "instructions")
         }
       }
 

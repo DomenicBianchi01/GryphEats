@@ -48,8 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
         
-        print(uuid)
-        
         GraphClient.shared.perform(mutation: RegisterForPushNotificationsMutation(
             userID: userID,
             uuid: uuid,

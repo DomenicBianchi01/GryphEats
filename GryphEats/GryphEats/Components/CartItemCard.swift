@@ -55,7 +55,7 @@ struct CartItemCard: View {
     
     private let item: RestaurantFoodItem
     private let deleteAction: (() -> Void)?
-
+    
 }
 
 struct CartItemCard_Previews: PreviewProvider {
@@ -68,11 +68,11 @@ struct CartItemCard_Previews: PreviewProvider {
                     restaurantName: "100 Mile Grill"),
                 deleteAction: {})
             CartItemCard(
-            item: RestaurantFoodItem(
-                foodItem: GraphFoodItem(id: "2", name: "Hamburger 2", price: 2),
-                restaurantId: "1",
-                restaurantName: "100 Mile Grill"),
-            deleteAction: {})
+                item: RestaurantFoodItem(
+                    foodItem: GraphFoodItem(id: "2", name: "Hamburger 2", price: 2),
+                    restaurantId: "1",
+                    restaurantName: "100 Mile Grill"),
+                deleteAction: {})
         }.background(Color.lightGray(for: .light))
     }
 }
