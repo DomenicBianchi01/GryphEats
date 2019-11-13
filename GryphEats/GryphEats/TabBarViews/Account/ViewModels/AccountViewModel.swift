@@ -50,7 +50,6 @@ class AccountViewModel {
             case .success(let data):
                 print(data.didUnregister ?? false)
             case .failure(let error):
-                print("UNREGISTER ERROR")
                 print(error)
             }
         }
