@@ -213,6 +213,10 @@
 		B0B2057C2333D45000694587 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B2057B2333D45000694587 /* SceneDelegate.swift */; };
 		B0B205832333D45200694587 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0B205822333D45200694587 /* Assets.xcassets */; };
 		B0B205862333D45200694587 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B205842333D45200694587 /* LaunchScreen.storyboard */; };
+		B0B85175237C8554009510A9 /* RegisterUser.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0B85174237C8554009510A9 /* RegisterUser.graphql */; };
+		B0B85176237C8554009510A9 /* RegisterUser.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0B85174237C8554009510A9 /* RegisterUser.graphql */; };
+		B0B85178237C8AA8009510A9 /* CreateAccoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B85177237C8AA8009510A9 /* CreateAccoutViewModel.swift */; };
+		B0B85179237C8AA8009510A9 /* CreateAccoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B85177237C8AA8009510A9 /* CreateAccoutViewModel.swift */; };
 		B0BBFDAE23477D3C00FDEFA4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BBFDAD23477D3C00FDEFA4 /* HomeView.swift */; };
 		B0BBFDB123479EFD00FDEFA4 /* EnvironmentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BBFDB023479EFD00FDEFA4 /* EnvironmentExtensions.swift */; };
 		B0BBFDB423479F2E00FDEFA4 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BBFDB323479F2E00FDEFA4 /* UIViewControllerExtensions.swift */; };
@@ -409,6 +413,8 @@
 		B0B205872333D45200694587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0B2058C2333D45200694587 /* GryphEatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GryphEatsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0B205922333D45200694587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0B85174237C8554009510A9 /* RegisterUser.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = RegisterUser.graphql; sourceTree = "<group>"; };
+		B0B85177237C8AA8009510A9 /* CreateAccoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccoutViewModel.swift; sourceTree = "<group>"; };
 		B0BBFDAD23477D3C00FDEFA4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B0BBFDB023479EFD00FDEFA4 /* EnvironmentExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentExtensions.swift; sourceTree = "<group>"; };
 		B0BBFDB323479F2E00FDEFA4 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
@@ -653,6 +659,7 @@
 				B07B980223673732002E96C8 /* PlaceOrder.graphql */,
 				EB9468012368898E00FAAE56 /* UpdateOrder.graphql */,
 				B0647A4D2379B02000D0D2D1 /* PushNotifications.graphql */,
+				B0B85174237C8554009510A9 /* RegisterUser.graphql */,
 			);
 			path = Mutations;
 			sourceTree = "<group>";
@@ -876,6 +883,7 @@
 				B0D02E0F2378F036009CC49D /* ForgotPasswordViewModel.swift */,
 				B0D02E122378F293009CC49D /* AnswerQuestionViewModel.swift */,
 				B0D02E152378F44B009CC49D /* ResetPasswordViewModel.swift */,
+				B0B85177237C8AA8009510A9 /* CreateAccoutViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1181,6 +1189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0187643236B19130031FD2E /* RobotoCondensed-Bold.ttf in Resources */,
+				B0B85176237C8554009510A9 /* RegisterUser.graphql in Resources */,
 				B0647A4F2379B02000D0D2D1 /* PushNotifications.graphql in Resources */,
 				B0187644236B19130031FD2E /* Roboto-Italic.ttf in Resources */,
 				B0187645236B19130031FD2E /* OrdersByRest.graphql in Resources */,
@@ -1219,6 +1228,7 @@
 			files = (
 				EB1E4538234CF28800B5C8FD /* RobotoCondensed-Bold.ttf in Resources */,
 				B0647A4E2379B02000D0D2D1 /* PushNotifications.graphql in Resources */,
+				B0B85175237C8554009510A9 /* RegisterUser.graphql in Resources */,
 				EB1E4544234CF28800B5C8FD /* Roboto-Italic.ttf in Resources */,
 				EB37D1A8236109A900CD0D9C /* OrdersByRest.graphql in Resources */,
 				EB1E4546234CF28800B5C8FD /* Roboto-Bold.ttf in Resources */,
@@ -1331,6 +1341,7 @@
 				B018760C236B19130031FD2E /* CheckoutViewModel.swift in Sources */,
 				B018760D236B19130031FD2E /* Customer.swift in Sources */,
 				B018760E236B19130031FD2E /* PaymentInfoTextField.swift in Sources */,
+				B0B85179237C8AA8009510A9 /* CreateAccoutViewModel.swift in Sources */,
 				B018760F236B19130031FD2E /* OrderTrackingView.swift in Sources */,
 				B0187610236B19130031FD2E /* CreditCard.swift in Sources */,
 				B0187611236B19130031FD2E /* OrderSummaryView.swift in Sources */,
@@ -1463,6 +1474,7 @@
 				EB1E4A03236E204B00B93EEF /* CheckBoxView.swift in Sources */,
 				B0A7C406234C2CEC001555B7 /* MenuCard.swift in Sources */,
 				EB6200572375FF1A0098787A /* RestStationsView.swift in Sources */,
+				B0B85178237C8AA8009510A9 /* CreateAccoutViewModel.swift in Sources */,
 				B0F3197F236607F7006500AC /* AccountView.swift in Sources */,
 				B0A2D0A723462BE700391DD6 /* StudentCard.swift in Sources */,
 				B06B5146234958990015E960 /* HeaderView.swift in Sources */,

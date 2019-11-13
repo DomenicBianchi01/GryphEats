@@ -49,11 +49,27 @@ struct SecurityQuestionView: View {
                     text: Text("Register"),
                     backgroundColor: .white,
                     foregroundColor: .black) {
-                        if let error = self.state.validateSecurityQuestion() {
-                            self.error = error
+                        if self.state.validateSecurityQuestion() != nil {
+                            self.error = .accountCreationError
                         } else {
-                            withAnimation {
-                                self.state.reset()
+                            //TODO: Update registration to include two input fields rather than one for name input.
+                            let firstName = String(self.state.name.split(separator: " ").first ?? "")
+                            let lastName = String(self.state.name.split(separator: " ").last ?? "")
+                            
+                            self.viewModel.createAccount(
+                                firstName: firstName,
+                                lastName: lastName,
+                                email: self.state.email,
+                                password: self.state.password,
+                                question: self.state.question,
+                                answer: self.state.password)
+                            { result in
+                                switch result {
+                                case .success:
+                                    self.showConfirmationAlert = true
+                                case .failure(let error):
+                                    self.error = error
+                                }
                             }
                         }
                 }.shadow(radius: 5).padding()
@@ -63,13 +79,25 @@ struct SecurityQuestionView: View {
             // If we do not "unset" the error, and assign an error that is the exact same type of the
             //old value, SwiftUI will not present the alert. Possible SwiftUI Bug?
             self.error = nil
+        }.alert(isPresented: $showConfirmationAlert) {
+            Alert(
+                title: Text("Welcome to GryphEats!"),
+                message: Text("You can now login to your account!"),
+                dismissButton: .default(Text("OK")) {
+                    withAnimation {
+                        self.state.reset()
+                    }
+                })
         }
     }
     
     // MARK: Private
     
-    @State private var error: LandingState.LandingError? = nil
+    @State private var showConfirmationAlert = false
+    @State private var error: CreateAccountViewModel.CreateAccountError? = nil
     @EnvironmentObject private var state: LandingState
+    
+    private let viewModel = CreateAccountViewModel()
     
 }
 
