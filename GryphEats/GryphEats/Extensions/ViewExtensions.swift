@@ -44,6 +44,20 @@ extension View {
         
         return AnyView(updatedView)
     }
+    
+    /// Places a single line of text in the center of the view
+    func centerText(_ text: String) -> some View {
+        Group {
+            Spacer()
+            HStack {
+                Spacer()
+                Text(text)
+                    .foregroundColor(.secondary)
+                Spacer()
+            }
+            Spacer()
+        }
+    }
 }
 
 // MARK: - Dismissable

@@ -59,14 +59,19 @@ struct OrdersView: View {
         case .loaded(let orders):
             // Swift UI Bug: `listRowBackground` and `listRowInsets` do not work without nesting a `ForEach` within
             // `List`
-            return AnyView(List {
-                ForEach(orders) { order in
-                    OrderHistoryCard(order: order).onTapGesture {
-                        self.selectedOrder = order
-                        self.showSelectedOrder = true
-                    }
-                }.listConfiguration(backgroundColor: .lightGray(for: colorScheme), removeInsets: true)
-            }.navigationBarItems(trailing: self.trailingNavigationBarItems))
+            if orders.isEmpty {
+                return AnyView(centerText("You haven't placed any orders yet!")
+                    .navigationBarItems(trailing: self.trailingNavigationBarItems))
+            } else {
+                return AnyView(List {
+                    ForEach(orders) { order in
+                        OrderHistoryCard(order: order).onTapGesture {
+                            self.selectedOrder = order
+                            self.showSelectedOrder = true
+                        }
+                    }.listConfiguration(backgroundColor: .lightGray(for: colorScheme), removeInsets: true)
+                }.navigationBarItems(trailing: self.trailingNavigationBarItems))
+            }
         case .error:
             return AnyView(ErrorView(infoText: "Whoops! We could not fetch your orders.", buttonText: "Try Again") {
                 self.viewModel.fetchOrders(userID: self.loggedInUser.id)

@@ -96,19 +96,6 @@ struct HomeView: View {
         }
     }
     
-    private func centerText(_ text: String) -> some View {
-        Group {
-            Spacer()
-            HStack {
-                Spacer()
-                Text(text)
-                    .foregroundColor(.secondary)
-                Spacer()
-            }
-            Spacer()
-        }
-    }
-    
     private func presentItemDetails(for foodItem: RestaurantFoodItem) {
         HomeView.selectedItem = foodItem
         pushItemActive = true
