@@ -297,6 +297,105 @@ public final class UnregisterFromPushNotificationsMutation: GraphQLMutation {
   }
 }
 
+public final class RegisterUserMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition =
+    """
+    mutation RegisterUser($firstName: String!, $lastName: String!, $email: String!, $password: String!, $question: String!, $answer: String!) {
+      createUser(fname: $firstName, lname: $lastName, email: $email, encryptedpw: $password, usertype: customer, securityq: $question, securitya: $answer) {
+        __typename
+        success
+      }
+    }
+    """
+
+  public let operationName = "RegisterUser"
+
+  public var firstName: String
+  public var lastName: String
+  public var email: String
+  public var password: String
+  public var question: String
+  public var answer: String
+
+  public init(firstName: String, lastName: String, email: String, password: String, question: String, answer: String) {
+    self.firstName = firstName
+    self.lastName = lastName
+    self.email = email
+    self.password = password
+    self.question = question
+    self.answer = answer
+  }
+
+  public var variables: GraphQLMap? {
+    return ["firstName": firstName, "lastName": lastName, "email": email, "password": password, "question": question, "answer": answer]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("createUser", arguments: ["fname": GraphQLVariable("firstName"), "lname": GraphQLVariable("lastName"), "email": GraphQLVariable("email"), "encryptedpw": GraphQLVariable("password"), "usertype": "customer", "securityq": GraphQLVariable("question"), "securitya": GraphQLVariable("answer")], type: .object(CreateUser.selections)),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(createUser: CreateUser? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "createUser": createUser.flatMap { (value: CreateUser) -> ResultMap in value.resultMap }])
+    }
+
+    public var createUser: CreateUser? {
+      get {
+        return (resultMap["createUser"] as? ResultMap).flatMap { CreateUser(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "createUser")
+      }
+    }
+
+    public struct CreateUser: GraphQLSelectionSet {
+      public static let possibleTypes = ["Finish"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("success", type: .nonNull(.scalar(Bool.self))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(success: Bool) {
+        self.init(unsafeResultMap: ["__typename": "Finish", "success": success])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var success: Bool {
+        get {
+          return resultMap["success"]! as! Bool
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "success")
+        }
+      }
+    }
+  }
+}
+
 public final class UpdateOrderMutation: GraphQLMutation {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition =

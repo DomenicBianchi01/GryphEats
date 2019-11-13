@@ -1,0 +1,5 @@
+mutation RegisterUser($firstName: String!, $lastName: String!, $email: String!, $password: String!, $question: String!, $answer: String!) {
+    createUser(fname: $firstName, lname: $lastName, email: $email, encryptedpw: $password, usertype: customer, securityq: $question, securitya: $answer) {
+        success
+    }
+}
