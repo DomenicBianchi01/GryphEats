@@ -54,10 +54,7 @@ struct ResetPasswordView: View {
                             { result in
                                 switch result {
                                 case .success:
-                                    //TODO
-                                    withAnimation {
-                                        self.state.reset()
-                                    }
+                                    self.showConfirmationAlert = true
                                 case .failure(let error):
                                     self.error = error
                                 }
@@ -70,11 +67,21 @@ struct ResetPasswordView: View {
             // If we do not "unset" the error, and assign an error that is the exact same type of the
             //old value, SwiftUI will not present the alert. Possible SwiftUI Bug?
             self.error = nil
+        }.alert(isPresented: $showConfirmationAlert) {
+            Alert(
+                title: Text("Password Reset"),
+                message: Text("You can now login using your new password."),
+                dismissButton: .default(Text("OK")) {
+                    withAnimation {
+                        self.state.reset()
+                    }
+                })
         }
     }
     
     // MARK: Private
     
+    @State private var showConfirmationAlert = false
     @State private var error: ResetPasswordViewModel.ResetPasswordError? = nil
     @EnvironmentObject private var state: LandingState
     

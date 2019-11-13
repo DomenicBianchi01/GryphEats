@@ -76,6 +76,7 @@ struct RestaurantItemsView_Previews: PreviewProvider {
             restaurant: GraphRestaurant(
                 id: "1",
                 name: "100 Mile Grill",
+                isActive: true,
                 menu: [
                     Menu(isActive: true, menuItems: [
                         Menu.MenuItem(item:

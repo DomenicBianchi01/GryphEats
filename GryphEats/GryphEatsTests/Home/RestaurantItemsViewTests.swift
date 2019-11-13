@@ -21,6 +21,7 @@ class RestaurantItemsViewTests: XCTestCase {
             restaurant: GraphRestaurant(
                 id: "0",
                 name: "100 Mile Grill",
+                isActive: true,
                 menu: [
                     Menu(isActive: true, menuItems: [
                         Menu.MenuItem(item:

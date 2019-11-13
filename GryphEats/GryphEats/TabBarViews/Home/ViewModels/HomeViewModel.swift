@@ -17,13 +17,10 @@ class HomeViewModel: ObservableObject {
     
     @Published private(set) var loadingState: LoadingState<[GraphRestaurant]> = .loading
     
-    let categories: [Category] = [
-        Category(id: 0, name: "Fish"),
-        Category(id: 1, name: "Pasta"),
-        Category(id: 2, name: "Pizza"),
-        Category(id: 3, name: "Meat"),
-        Category(id: 4, name: "Desert")
-    ]
+    /// Use this to determine if there is at least one restaurant that is open
+    var restaurantsAreOpen: Bool {
+        !allRestaurantData.isEmpty
+    }
     
     func fetchRestaurants() {
         self.loadingState = .loading
@@ -31,7 +28,24 @@ class HomeViewModel: ObservableObject {
         GraphClient.shared.fetch(query: RestaurantMenusQuery()) { result in
             switch result {
             case .success(let data):
-                self.allRestaurantData = data.restaurants.compactMap({ $0 })
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "HH:mm:ss"
+                
+                let dateString = dateFormatter.string(from: Date())
+                let currentDate = dateFormatter.date(from: dateString)
+                
+                self.allRestaurantData = data.restaurants.compactMap({ $0 }).filter {
+                    guard $0.isActive,
+                        let currentDate = currentDate,
+                        let openingTime = dateFormatter.date(from: $0.openingTime ?? ""),
+                        let closingTime = dateFormatter.date(from: $0.closingTime ?? "") else {
+                            return false
+                    }
+                    
+                    return currentDate.compare(openingTime) == .orderedDescending &&
+                        currentDate.compare(closingTime) == .orderedAscending
+                }
+
                 self.loadingState = .loaded(self.allRestaurantData)
             case .failure:
                 self.loadingState = .error
@@ -53,6 +67,7 @@ class HomeViewModel: ObservableObject {
             return GraphRestaurant(
                 id: $0.id,
                 name: $0.name,
+                isActive: $0.isActive,
                 menu: [
                     RestaurantMenusQuery.Data.Restaurant.Menu(
                         isActive: true,
