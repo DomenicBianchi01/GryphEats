@@ -53,7 +53,8 @@ class RestOrdersViewModel: ObservableObject {
                             foodItem: GraphFoodItem(
                                 id: orderItem.foodid,
                                 name: orderItem.item.fragments.foodItemDetails.name,
-                                price: orderItem.item.fragments.foodItemDetails.price),
+                                price: orderItem.item.fragments.foodItemDetails.price,
+                                isavailable: orderItem.item.fragments.foodItemDetails.isavailable),
                             restaurantId: order.restaurantid,
                             restaurantName: "TODO"))
                     }
@@ -68,6 +69,7 @@ class RestOrdersViewModel: ObservableObject {
                         customer: Customer(name: "John Doe"),
                         status: order.ordertype,
                         timePlaced: dateString,
+                        specialInstructions: order.instructions,
                         items: foodItems
                     ))
                 }
@@ -107,7 +109,8 @@ class RestOrdersViewModel: ObservableObject {
                             foodItem: GraphFoodItem(
                                 id: orderItem.foodid,
                                 name: orderItem.item.fragments.foodItemDetails.name,
-                                price: orderItem.item.fragments.foodItemDetails.price),
+                                price: orderItem.item.fragments.foodItemDetails.price,
+                                isavailable: orderItem.item.fragments.foodItemDetails.isavailable),
                             restaurantId: order.restaurantid,
                             restaurantName: "TODO"))
                     }

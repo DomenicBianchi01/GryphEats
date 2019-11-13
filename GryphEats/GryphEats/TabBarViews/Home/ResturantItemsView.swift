@@ -83,22 +83,26 @@ struct RestaurantItemsView_Previews: PreviewProvider {
                             RestaurantMenusQuery.Data.Restaurant.Menu.MenuItem.Item(
                                 id: "1",
                                 name: "Hamburger 1",
-                                price: 2)),
+                                price: 2,
+                                isavailable: true)),
                         Menu.MenuItem(item:
                             RestaurantMenusQuery.Data.Restaurant.Menu.MenuItem.Item(
                                 id: "2",
                                 name: "Hamburger 2",
-                                price: 2)),
+                                price: 2,
+                                isavailable: true)),
                         Menu.MenuItem(item:
                             RestaurantMenusQuery.Data.Restaurant.Menu.MenuItem.Item(
                                 id: "3",
                                 name: "Hamburger 3",
-                                price: 2)),
+                                price: 2,
+                                isavailable: true)),
                         Menu.MenuItem(item:
                             RestaurantMenusQuery.Data.Restaurant.Menu.MenuItem.Item(
                                 id: "4",
                                 name: "Hamburger 4",
-                                price: 2))
+                                price: 2,
+                                isavailable: true))
                     ])
                 ]
         )) { _ in }

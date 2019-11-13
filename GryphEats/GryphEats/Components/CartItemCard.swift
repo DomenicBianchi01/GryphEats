@@ -63,13 +63,13 @@ struct CartItemCard_Previews: PreviewProvider {
         VStack(spacing: 0) {
             CartItemCard(
                 item: RestaurantFoodItem(
-                    foodItem: GraphFoodItem(id: "1", name: "Hamburger 1", price: 2),
+                    foodItem: GraphFoodItem(id: "1", name: "Hamburger 1", price: 2, isavailable: true),
                     restaurantId: "1",
                     restaurantName: "100 Mile Grill"),
                 deleteAction: {})
             CartItemCard(
                 item: RestaurantFoodItem(
-                    foodItem: GraphFoodItem(id: "2", name: "Hamburger 2", price: 2),
+                    foodItem: GraphFoodItem(id: "2", name: "Hamburger 2", price: 2, isavailable: true),
                     restaurantId: "1",
                     restaurantName: "100 Mile Grill"),
                 deleteAction: {})

@@ -31,7 +31,7 @@ struct OrderDetailsView: View {
                 Text("Additional Info:")
                     .font(Font.custom("Roboto-Bold", size: 28))
                     .foregroundColor(Color.secondary)
-                Text("Nut Allergy").font(Font.custom("Roboto-Regular", size: 28)).padding(.leading).foregroundColor(Color.primary)
+                Text(order.specialInstructions ?? "").font(Font.custom("Roboto-Regular", size: 28)).padding(.leading).foregroundColor(Color.primary)
             }.padding(.leading)
             Divider()
             List(order.items, id: \.foodItem.id) { restaurantFoodItem in

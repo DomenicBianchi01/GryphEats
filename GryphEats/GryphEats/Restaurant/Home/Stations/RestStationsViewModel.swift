@@ -29,7 +29,9 @@ class RestStationsViewModel: ObservableObject {
                 for restaurant in data.restaurants.compactMap({ $0 }) {
                     restaurants.append(Restaurant(
                         id: restaurant.id,
-                        name: restaurant.name))
+                        name: restaurant.name,
+                        isOpen: restaurant.isActive,
+                        foodItems: []))
                 }
 
                 self.loadingState = .loaded(restaurants)

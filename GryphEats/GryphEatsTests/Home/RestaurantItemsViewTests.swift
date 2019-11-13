@@ -28,27 +28,33 @@ class RestaurantItemsViewTests: XCTestCase {
                             RestaurantMenusQuery.Data.Restaurant.Menu.MenuItem.Item(
                                 id: "0",
                                 name: "Hamburger 1",
-                                price: 9.99)),
+                                price: 9.99,
+                                isavailable: true)),
                         Menu.MenuItem(item:
                             RestaurantMenusQuery.Data.Restaurant.Menu.MenuItem.Item(
                                 id: "1",
                                 name: "Hamburger 2",
-                                price: 9.99)),
+                                price: 9.99,
+                                isavailable: true)),
                         Menu.MenuItem(item:
                             RestaurantMenusQuery.Data.Restaurant.Menu.MenuItem.Item(
                                 id: "2",
                                 name: "Hamburger 3",
-                                price: 9.99)),
+                                price: 9.99,
+                                isavailable: true)),
                         Menu.MenuItem(item:
                             RestaurantMenusQuery.Data.Restaurant.Menu.MenuItem.Item(
                                 id: "3",
                                 name: "Hamburger 4",
-                                price: 9.99)),
+                                price: 9.99,
+                                isavailable: true)),
                         Menu.MenuItem(item:
                             RestaurantMenusQuery.Data.Restaurant.Menu.MenuItem.Item(
                                 id: "4",
                                 name: "Hamburger 5",
-                                price: 9.99))
+                                price: 9.99,
+                                isavailable: true
+                        ))
                     ])
             ])) { _ in }
         
