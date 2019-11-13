@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 // MARK: - HomeView
 
@@ -38,12 +39,17 @@ struct HomeView: View {
     @EnvironmentObject private var loggedInUser: User
     @EnvironmentObject private var state: LandingState
     
-    func displayOrderReview() {
+    @State private var pushItemActive = false
+    
+    // A terrible hack...
+    static private var selectedItem: RestaurantFoodItem? = nil
+    
+    private func displayOrderReview() {
         viewControllerHolder.value?.present(style: .fullScreen) {
             OrderReviewView()
-            .environmentObject(self.loggedInUser)
-            .environmentObject(self.cart)
-            .environmentObject(OrderReviewState())
+                .environmentObject(self.loggedInUser)
+                .environmentObject(self.cart)
+                .environmentObject(OrderReviewState())
         }
     }
     
@@ -53,9 +59,9 @@ struct HomeView: View {
             return AnyView(ActivityIndicatorView())
         case .loaded(let restaurants):
             return AnyView(VStack(alignment: .leading, spacing: 0) {
-                SliderView(type: .categories(self.viewModel.categories)) { index in
-                    print("Tapped category card \(index)")
-                }.background(Color.cardBackground(for: colorScheme))
+                SearchBar(placeholder: "Search for food") { searchText in
+                    self.viewModel.filterRestaurants(by: searchText)
+                }
                 
                 Divider()
                 
@@ -63,10 +69,16 @@ struct HomeView: View {
                 // `List`
                 List {
                     ForEach(restaurants, id: \.id) { restaurant in
-                        RestaurantItemsView(restaurant: restaurant) { _ in }
+                        RestaurantItemsView(restaurant: restaurant) { item in
+                            self.presentItemDetails(for: item)
+                        }
                     }.listConfiguration(backgroundColor: .lightGray(for: colorScheme), removeInsets: true)
                 }
-            }.navigationBarItems(trailing: self.trailingNavigationBarItems))
+            }.sheet(isPresented: $pushItemActive) {
+                ItemOverview(item: HomeView.selectedItem!)
+                    .environmentObject(self.cart)
+            }.navigationBarItems(trailing: self.trailingNavigationBarItems)
+                .dismissKeyboardOnTapGesture())
         case .error:
             return AnyView(ErrorView(infoText: "Whoops! We could not fetch the menus.", buttonText: "Try Again") {
                 self.viewModel.fetchRestaurants()
@@ -83,6 +95,11 @@ struct HomeView: View {
             Image(systemName: "cart")
                 .padding(.all, 10)
         }
+    }
+    
+    private func presentItemDetails(for foodItem: RestaurantFoodItem) {
+        HomeView.selectedItem = foodItem
+        pushItemActive = true
     }
 }
 

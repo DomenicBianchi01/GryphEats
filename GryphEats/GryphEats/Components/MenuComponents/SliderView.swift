@@ -15,13 +15,12 @@ struct SliderView: View {
     // MARK: SliderType
     
     enum SliderType {
-        case categories([Category])
         case foodItems([RestaurantFoodItem])
     }
     
     // MARK: Lifecycle
     
-    init(type: SliderType, onTap: @escaping (Int) -> Void) {
+    init(type: SliderType, onTap: @escaping (RestaurantFoodItem) -> Void) {
         self.type = type
         self.onTap = onTap
     }
@@ -39,22 +38,15 @@ struct SliderView: View {
     // MARK: Private
     
     private let type: SliderType
-    private let onTap: (Int) -> Void
+    private let onTap: (RestaurantFoodItem) -> Void
     
     private var sliderContent: AnyView {
         switch type {
-        case .categories(let categories):
-            return AnyView(ForEach(categories.indices) { index in
-                CategoryCard(name: categories[index].name) {
-                    self.onTap(index)
-                }
-            })
         case .foodItems(let items):
-            return AnyView(ForEach(items.indices) { index in
-                NavigationLink(destination: ItemOverview(item: items[index])) {
-                    self.menuCard(for: items.map({ $0.foodItem })[index], atIndex: index, onTap: { _ in })
-                        .disabled(true)
-                }
+            return AnyView(ForEach(items.indices, id: \.self) { index in
+                self.menuCard(for: items.map({ $0.foodItem })[index], atIndex: index, onTap: { _ in
+                    self.onTap(items[index])
+                })
             })
         }
     }
@@ -99,16 +91,7 @@ struct SliderView_Previews: PreviewProvider {
                         restaurantId: "1",
                         restaurantName: "100 Mile Grill")
                 ]),
-                onTap: { _ in print("Tapped") })
-            SliderView(
-                type: .categories([
-                    Category(id: 0, name: "Fish"),
-                    Category(id: 1, name: "Pasta"),
-                    Category(id: 2, name: "Pizza"),
-                    Category(id: 3, name: "Meat"),
-                    Category(id: 4, name: "Dessert")
-                ]),
-                onTap: { _ in print("Tapped") })
+                onTap: { _ in })
         }
     }
 }

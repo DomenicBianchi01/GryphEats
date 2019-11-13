@@ -41,7 +41,7 @@ struct ItemOverview: View, Dismissable {
                         .fontWeight(.semibold)
                 }.padding(.leading, 20)
                 Spacer()
-            }.padding(.top, 50)
+            }.padding(.top, 75)
             
             SlideOverCard(handleText: "Pull Up To Customize") {
                 VStack(alignment: .leading) {
@@ -63,7 +63,7 @@ struct ItemOverview: View, Dismissable {
                         Ingredient(id: 7, name: "Onion"),
                         Ingredient(id: 8, name: "Pepper"),
                         Ingredient(id: 9, name: "Black Olives"),
-                    ], onTap: { /*TODO*/ }).padding(.bottom, 225)
+                    ], onTap: { /*TODO*/ }).padding(.bottom, 150)
                 }
             }
         }

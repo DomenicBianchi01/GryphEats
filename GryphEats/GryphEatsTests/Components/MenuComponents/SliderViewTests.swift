@@ -16,18 +16,6 @@ class SliderViewTests: XCTestCase {
     
     let record = false
     
-    func testCategorySliderView() {
-        let view = SliderView(type: .categories([
-            Category(id: 0, name: "Fish"),
-            Category(id: 1, name: "Pasta"),
-            Category(id: 2, name: "Pizza"),
-            Category(id: 3, name: "Meat"),
-            Category(id: 4, name: "Dessert")
-        ])) { _ in }
-        
-        assertSnapshot(matching: UIHostingController(rootView: view), as: .image, record: record)
-    }
-    
     func testFoodItemsSliderView() {
         let view = SliderView(type: .foodItems([
             RestaurantFoodItem(

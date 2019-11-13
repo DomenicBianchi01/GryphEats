@@ -44,13 +44,13 @@ struct SlideOverCard<V: View>: View {
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     @GestureState private var dragState: DragState = .inactive
-    @State private var position: CGFloat = UIScreen.main.bounds.height - 225
+    @State private var position: CGFloat = UIScreen.main.bounds.height - 150
     
     private let content: () -> V
     private let handleText: String
     
-    private let minimumOffset: CGFloat = 225
-    private let maximumHeight: CGFloat = 120
+    private let minimumOffset: CGFloat = 150
+    private let maximumHeight: CGFloat = 145
     
     private func onDragEnded(drag: DragGesture.Value) {
         if drag.location.y < maximumHeight {
