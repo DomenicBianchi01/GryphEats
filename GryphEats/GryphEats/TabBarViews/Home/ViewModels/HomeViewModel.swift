@@ -31,10 +31,44 @@ class HomeViewModel: ObservableObject {
         GraphClient.shared.fetch(query: RestaurantMenusQuery()) { result in
             switch result {
             case .success(let data):
-                self.loadingState = .loaded(data.restaurants.compactMap({ $0 }))
+                self.allRestaurantData = data.restaurants.compactMap({ $0 })
+                self.loadingState = .loaded(self.allRestaurantData)
             case .failure:
                 self.loadingState = .error
             }
         }
     }
+    
+    func filterRestaurants(by searchText: String) {
+        if searchText.isEmpty {
+            loadingState = .loaded(allRestaurantData)
+            return
+        }
+        
+        let filteredRestaurants: [GraphRestaurant] = allRestaurantData.compactMap {
+            guard let items = $0.menu.first(where: { $0?.isActive == true })??.menuItems.compactMap({ $0 }) else {
+                return nil
+            }
+            
+            return GraphRestaurant(
+                id: $0.id,
+                name: $0.name,
+                menu: [
+                    RestaurantMenusQuery.Data.Restaurant.Menu(
+                        isActive: true,
+                        menuItems: items.filter {
+                            $0.item.fragments.foodItemDetails.name.lowercased().contains(searchText.lowercased())
+                        }
+                    )
+                ]
+            )
+        }
+        
+        loadingState = .loaded(filteredRestaurants.filter { !($0.menu.first??.menuItems.isEmpty ?? true) })
+    }
+    
+    // MARK: Private
+    
+    private var allRestaurantData: [GraphRestaurant] = []
+    
 }

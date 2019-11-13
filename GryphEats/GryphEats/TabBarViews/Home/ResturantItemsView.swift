@@ -14,7 +14,7 @@ struct RestaurantItemsView: View {
     
     // MARK: Lifecycle
     
-    init(restaurant: GraphRestaurant, onTap: @escaping (Int) -> Void) {
+    init(restaurant: GraphRestaurant, onTap: @escaping (RestaurantFoodItem) -> Void) {
         self.restaurant = restaurant
         self.onTap = onTap
     }
@@ -52,7 +52,7 @@ struct RestaurantItemsView: View {
     
     // MARK: Private
     
-    private let onTap: (Int) -> Void
+    private let onTap: (RestaurantFoodItem) -> Void
     private let restaurant: GraphRestaurant
     
     private var foodItems: [RestaurantFoodItem] {
