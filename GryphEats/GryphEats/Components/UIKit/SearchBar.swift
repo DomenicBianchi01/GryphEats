@@ -12,7 +12,7 @@ import UIKit
 // MARK: - SearchBar
 
 /// `UISearchBar` bridged over to SwiftUI
-final class SearchBar: NSObject, UIViewRepresentable {
+struct SearchBar: UIViewRepresentable {
     
     // MARK: Lifecycle
     
@@ -26,13 +26,15 @@ final class SearchBar: NSObject, UIViewRepresentable {
     func makeUIView(context: UIViewRepresentableContext<SearchBar>) -> UISearchBar {
         let searchBar = UISearchBar()
         searchBar.placeholder = placeholder
-        searchBar.delegate = self
+        searchBar.delegate = context.coordinator
         
         return searchBar
     }
     
-    func updateUIView(_ uiView: UISearchBar, context: UIViewRepresentableContext<SearchBar>) {
-        uiView.delegate = self
+    func updateUIView(_ uiView: UISearchBar, context: UIViewRepresentableContext<SearchBar>) {}
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self, textDidChange: textDidChange)
     }
     
     // MARK: Private
@@ -40,15 +42,25 @@ final class SearchBar: NSObject, UIViewRepresentable {
     private let placeholder: String
     private let textDidChange: (String) -> Void
     
-}
-
-// MARK: UISearchBarDelegate
-
-extension SearchBar: UISearchBarDelegate {
+    // MARK: - Coordinator
     
-    // MARK: Internal
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        textDidChange(searchText)
+    class Coordinator: NSObject, UISearchBarDelegate {
+        
+        // MARK: Lifecycle
+        
+        init(_ view: SearchBar, textDidChange: @escaping (String) -> Void) {
+            self.textDidChange = textDidChange
+        }
+        
+        // MARK: Internal
+
+        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            textDidChange(searchText)
+        }
+        
+        // MARK: Private
+        
+        private let textDidChange: (String) -> Void
+        
     }
 }
