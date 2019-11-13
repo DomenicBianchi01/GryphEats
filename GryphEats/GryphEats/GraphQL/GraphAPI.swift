@@ -415,7 +415,7 @@ public final class SecurityQuestionQuery: GraphQLQuery {
     public static let possibleTypes = ["Query"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("getSecurityQuestionByEmail", alias: "question", arguments: ["email": GraphQLVariable("email")], type: .nonNull(.scalar(String.self))),
+      GraphQLField("getSecurityQuestionByEmail", alias: "question", arguments: ["email": GraphQLVariable("email")], type: .scalar(String.self)),
     ]
 
     public private(set) var resultMap: ResultMap
@@ -424,13 +424,13 @@ public final class SecurityQuestionQuery: GraphQLQuery {
       self.resultMap = unsafeResultMap
     }
 
-    public init(question: String) {
+    public init(question: String? = nil) {
       self.init(unsafeResultMap: ["__typename": "Query", "question": question])
     }
 
-    public var question: String {
+    public var question: String? {
       get {
-        return resultMap["question"]! as! String
+        return resultMap["question"] as? String
       }
       set {
         resultMap.updateValue(newValue, forKey: "question")
@@ -1284,6 +1284,9 @@ public final class RestaurantMenusQuery: GraphQLQuery {
         __typename
         id: restaurantid
         name: displayname
+        isActive: isactive
+        openingTime: openingtime
+        closingTime: closingtime
         menu {
           __typename
           isActive: isactive
@@ -1339,6 +1342,9 @@ public final class RestaurantMenusQuery: GraphQLQuery {
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
         GraphQLField("restaurantid", alias: "id", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("displayname", alias: "name", type: .nonNull(.scalar(String.self))),
+        GraphQLField("isactive", alias: "isActive", type: .nonNull(.scalar(Bool.self))),
+        GraphQLField("openingtime", alias: "openingTime", type: .scalar(String.self)),
+        GraphQLField("closingtime", alias: "closingTime", type: .scalar(String.self)),
         GraphQLField("menu", type: .nonNull(.list(.object(Menu.selections)))),
       ]
 
@@ -1348,8 +1354,8 @@ public final class RestaurantMenusQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: GraphQLID, name: String, menu: [Menu?]) {
-        self.init(unsafeResultMap: ["__typename": "Restaurant", "id": id, "name": name, "menu": menu.map { (value: Menu?) -> ResultMap? in value.flatMap { (value: Menu) -> ResultMap in value.resultMap } }])
+      public init(id: GraphQLID, name: String, isActive: Bool, openingTime: String? = nil, closingTime: String? = nil, menu: [Menu?]) {
+        self.init(unsafeResultMap: ["__typename": "Restaurant", "id": id, "name": name, "isActive": isActive, "openingTime": openingTime, "closingTime": closingTime, "menu": menu.map { (value: Menu?) -> ResultMap? in value.flatMap { (value: Menu) -> ResultMap in value.resultMap } }])
       }
 
       public var __typename: String {
@@ -1376,6 +1382,33 @@ public final class RestaurantMenusQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "name")
+        }
+      }
+
+      public var isActive: Bool {
+        get {
+          return resultMap["isActive"]! as! Bool
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "isActive")
+        }
+      }
+
+      public var openingTime: String? {
+        get {
+          return resultMap["openingTime"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "openingTime")
+        }
+      }
+
+      public var closingTime: String? {
+        get {
+          return resultMap["closingTime"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "closingTime")
         }
       }
 

@@ -40,7 +40,11 @@ class ForgotPasswordViewModel {
         GraphClient.shared.fetch(query: SecurityQuestionQuery(email: email)) { result in
             switch result {
             case .success(let data):
-                completion(.success(data.question))
+                if let question = data.question {
+                    completion(.success(question))
+                } else {
+                    completion(.failure(.invalidEmail))
+                }
             case .failure:
                 completion(.failure(.invalidEmail))
             }

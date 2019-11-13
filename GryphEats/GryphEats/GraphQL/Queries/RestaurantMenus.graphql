@@ -2,6 +2,9 @@ query RestaurantMenus {
     restaurants {
         id: restaurantid
         name: displayname
+        isActive: isactive
+        openingTime: openingtime
+        closingTime: closingtime
         menu {
             isActive: isactive
             menuItems {

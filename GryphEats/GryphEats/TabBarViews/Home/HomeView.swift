@@ -44,35 +44,34 @@ struct HomeView: View {
     // A terrible hack...
     static private var selectedItem: RestaurantFoodItem? = nil
     
-    private func displayOrderReview() {
-        viewControllerHolder.value?.present(style: .fullScreen) {
-            OrderReviewView()
-                .environmentObject(self.loggedInUser)
-                .environmentObject(self.cart)
-                .environmentObject(OrderReviewState())
-        }
-    }
-    
     private var content: AnyView {
         switch viewModel.loadingState {
         case .loading:
             return AnyView(ActivityIndicatorView())
         case .loaded(let restaurants):
             return AnyView(VStack(alignment: .leading, spacing: 0) {
-                SearchBar(placeholder: "Search for food") { searchText in
-                    self.viewModel.filterRestaurants(by: searchText)
-                }
+                Group {
+                    SearchBar(placeholder: "Search for food") { searchText in
+                        self.viewModel.filterRestaurants(by: searchText)
+                    }
+                    
+                    Divider()
+                }.opacity(!viewModel.restaurantsAreOpen ? 0 : 1)
                 
-                Divider()
-                
-                // Swift UI Bug: `listRowBackground` and `listRowInsets` do not work without nesting a `ForEach` within
-                // `List`
-                List {
-                    ForEach(restaurants, id: \.id) { restaurant in
-                        RestaurantItemsView(restaurant: restaurant) { item in
-                            self.presentItemDetails(for: item)
-                        }
-                    }.listConfiguration(backgroundColor: .lightGray(for: colorScheme), removeInsets: true)
+                if !viewModel.restaurantsAreOpen {
+                    centerText("No restaurants are currently open")
+                } else if restaurants.isEmpty {
+                    centerText("No items match your search")
+                } else {
+                    // Swift UI Bug: `listRowBackground` and `listRowInsets` do not work without nesting a `ForEach`
+                    // within `List`
+                    List {
+                        ForEach(restaurants, id: \.id) { restaurant in
+                            RestaurantItemsView(restaurant: restaurant) { item in
+                                self.presentItemDetails(for: item)
+                            }
+                        }.listConfiguration(backgroundColor: .lightGray(for: colorScheme), removeInsets: true)
+                    }
                 }
             }.sheet(isPresented: $pushItemActive) {
                 ItemOverview(item: HomeView.selectedItem!)
@@ -97,9 +96,31 @@ struct HomeView: View {
         }
     }
     
+    private func centerText(_ text: String) -> some View {
+        Group {
+            Spacer()
+            HStack {
+                Spacer()
+                Text(text)
+                    .foregroundColor(.secondary)
+                Spacer()
+            }
+            Spacer()
+        }
+    }
+    
     private func presentItemDetails(for foodItem: RestaurantFoodItem) {
         HomeView.selectedItem = foodItem
         pushItemActive = true
+    }
+    
+    private func displayOrderReview() {
+        viewControllerHolder.value?.present(style: .fullScreen) {
+            OrderReviewView()
+                .environmentObject(self.loggedInUser)
+                .environmentObject(self.cart)
+                .environmentObject(OrderReviewState())
+        }
     }
 }
 
