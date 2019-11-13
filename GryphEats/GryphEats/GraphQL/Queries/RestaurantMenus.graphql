@@ -20,4 +20,5 @@ fragment FoodItemDetails on Food {
     id: foodid
     name: displayname
     price
+    isavailable
 }

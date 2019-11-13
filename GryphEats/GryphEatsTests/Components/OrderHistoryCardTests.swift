@@ -75,7 +75,7 @@ class OrderHistoryCardTests: XCTestCase {
             timePlaced: "2019-11-05T11:03:09.000Z",
             items: [
                 RestaurantFoodItem(
-                    foodItem: GraphFoodItem(id: "1", name: "Hamburger", price: 9.99),
+                    foodItem: GraphFoodItem(id: "1", name: "Hamburger", price: 9.99, isavailable: true),
                     restaurantId: "1",
                     restaurantName: "Mom's Kitchen")])
     }

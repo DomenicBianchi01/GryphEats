@@ -9,9 +9,10 @@
 import SwiftUI
 
 struct FoodCard: View {
-    init(itemName: String, currentPrice: String, onTap: @escaping () -> Void) {
-        self.itemName = itemName
-        self.currentPrice = currentPrice
+    
+    init(foodItem: GraphFoodItem, onTap: @escaping () -> Void) {
+        self.foodItem = foodItem
+        _isSelected = State(initialValue: foodItem.isavailable)
         self.onTap = onTap
     }
     
@@ -31,14 +32,14 @@ struct FoodCard: View {
                         .frame(width: 30, height: 30, alignment: .center)
                         .cornerRadius(5)
                         .shadow(radius: 2)
-                    Text(itemName)
+                    Text(foodItem.name)
                         .foregroundColor(Color.black)
                         .font(.system(size: 26, weight: .semibold))
                         .padding(.leading)
                     Spacer()
                 }
             }.padding(.bottom)
-            CustomTextField(header: "Price", placeholder: currentPrice, text: self.$price, headerFontSize: 22, textFieldFontSize: 24)
+            CustomTextField(header: "Price", placeholder: String(foodItem.price), text: self.$price, headerFontSize: 22, textFieldFontSize: 24)
         }.padding(.all)
             .contentShape(Rectangle())
             .background(Color.white)
@@ -50,11 +51,9 @@ struct FoodCard: View {
     
     // MARK: Private
     
-    @State private var isSelected: Bool = false
+    @State private var isSelected: Bool
     @State private var price: String = ""
     
     private let onTap: () -> Void
-    private let itemName: String
-    //    private let frameSize = CGSize(width: 150, height: 200)
-    private let currentPrice: String
+    private let foodItem: GraphFoodItem
 }

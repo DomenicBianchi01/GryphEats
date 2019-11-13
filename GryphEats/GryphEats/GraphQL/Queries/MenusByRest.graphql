@@ -1,7 +1,6 @@
 query MenusByRest($restID: ID!) {
     getMenusByRestaurantID(restaurantid: $restID) {
         menuid
-        restaurantid
         title
         description
         isactive
@@ -10,7 +9,7 @@ query MenusByRest($restID: ID!) {
         }
         menuItems {
             item {
-                isavailable
+                ...FoodItemDetails
             }
         }
     }
@@ -21,5 +20,5 @@ fragment RestaurantDetails on Restaurant {
     name: displayname
     openingtime
     closingtime
-    isactive
+    isOpen: isactive
 }

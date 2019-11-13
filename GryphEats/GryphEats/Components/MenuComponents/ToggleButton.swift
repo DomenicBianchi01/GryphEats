@@ -10,7 +10,23 @@ import SwiftUI
 
 struct ToggleButton: View {
     
-    init(text1: String, text2: String, onTap: @escaping () -> Void) {
+    enum Selected {
+        case left
+        case right
+        
+        // MARK: Fileprivate
+        
+        fileprivate mutating func toggleLeft() {
+            self = .left
+        }
+        
+        fileprivate mutating func toggleRight() {
+            self = .right
+        }
+    }
+    
+    init(selectedState: Selected, text1: String, text2: String, onTap: @escaping () -> Void) {
+        _selected = State(initialValue: selectedState)
         self.button1Text = text1
         self.button2Text = text2
         self.onTap = onTap
@@ -20,7 +36,7 @@ struct ToggleButton: View {
         HStack() {
             Button (action: {
                 self.onTap()
-                self.toggleButton1()
+                self.selected.toggleLeft()
             }){
                 HStack {
                     Spacer()
@@ -32,11 +48,10 @@ struct ToggleButton: View {
                 }
             }.padding(.vertical, 15)
                 .contentShape(Rectangle())
-                .background(isSelected ? Color.guelphYellow : Color.white)
-            
+                .background(selected == Selected.left ? Color.guelphYellow : Color.white)
             Button (action: {
                 self.onTap()
-                self.toggleButton2()
+                self.selected.toggleRight()
             }){
                 HStack {
                     Spacer()
@@ -47,28 +62,27 @@ struct ToggleButton: View {
                     Spacer()
                 }
             }.padding(.vertical, 15).contentShape(Rectangle())
-                .background(isSelected ? Color.white : Color.guelphYellow)
+                .background(selected == Selected.left ? Color.white : Color.guelphYellow)
         }.contentShape(Rectangle())
             .cornerRadius(5)
             .shadow(radius: 2)
             .padding(.horizontal)
     }
     
-    @State var isSelected: Bool = false
-    
+    @State private var selected: Selected
     private let onTap: () -> Void
     private let button1Text: String
     private let button2Text: String
     
-    private func toggleButton1() {
-        if (!isSelected) {
-            isSelected.toggle()
-        }
-    }
-    
-    private func toggleButton2() {
-        if (isSelected) {
-            isSelected.toggle()
-        }
-    }
+//    private func toggleButton1() {
+//        if (!isSelected) {
+//            isSelected.toggle()
+//        }
+//    }
+//
+//    private func toggleButton2() {
+//        if (isSelected) {
+//            isSelected.toggle()
+//        }
+//    }
 }

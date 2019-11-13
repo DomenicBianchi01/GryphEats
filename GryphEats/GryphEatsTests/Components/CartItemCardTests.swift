@@ -19,7 +19,7 @@ class CartItemCardTests: XCTestCase {
     func testCartItemCard() {
         let card = CartItemCard(
             item: RestaurantFoodItem(
-                foodItem: GraphFoodItem(id: "0", name: "Hamburger", price: 9.99),
+                foodItem: GraphFoodItem(id: "0", name: "Hamburger", price: 9.99, isavailable: true),
                 restaurantId: "1",
                 restaurantName: "Mom's Kitchen"),
             deleteAction: {})
@@ -30,7 +30,7 @@ class CartItemCardTests: XCTestCase {
     func testCartItemCard_dark() {
         let card = CartItemCard(
             item: RestaurantFoodItem(
-                foodItem: GraphFoodItem(id: "0", name: "Hamburger", price: 9.99),
+                foodItem: GraphFoodItem(id: "0", name: "Hamburger", price: 9.99, isavailable: true),
                 restaurantId: "1",
                 restaurantName: "Mom's Kitchen"),
             deleteAction: {}).environment(\.colorScheme, .dark)

@@ -110,7 +110,7 @@ struct OrderTrackingView_Previews: PreviewProvider {
                 status: .neworder,
                 timePlaced: "12:00pm",
                 items: [RestaurantFoodItem(
-                    foodItem: GraphFoodItem(id: "0", name: "Hamburger 1", price: 9.99),
+                    foodItem: GraphFoodItem(id: "0", name: "Hamburger 1", price: 9.99, isavailable: true),
                     restaurantId: "1",
                     restaurantName: "100 Mile Grill")])) {}
     }

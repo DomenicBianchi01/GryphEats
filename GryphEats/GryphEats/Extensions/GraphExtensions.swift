@@ -29,3 +29,7 @@ extension GraphFoodItem: Equatable {
             lhs.price == rhs.price
     }
 }
+
+extension GraphFoodItem: Identifiable {
+    
+}

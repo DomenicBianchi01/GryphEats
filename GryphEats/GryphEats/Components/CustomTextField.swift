@@ -83,7 +83,7 @@ struct CustomTextField: View {
     
     private let headerFontSize: CGFloat
     private let textFieldFontSize: CGFloat
-    
+
 }
 
 struct CustomTextField_Previews: PreviewProvider {

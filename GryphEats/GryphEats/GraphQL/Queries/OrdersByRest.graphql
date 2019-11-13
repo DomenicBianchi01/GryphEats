@@ -5,6 +5,7 @@ query OrdersByRest($restID: ID!) {
     timeplaced
     timecompleted
     restaurantid
+    instructions
     orderitems {
         orderid
         foodid

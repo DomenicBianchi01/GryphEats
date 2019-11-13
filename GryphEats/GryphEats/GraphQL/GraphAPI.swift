@@ -702,7 +702,6 @@ public final class MenusByRestQuery: GraphQLQuery {
       getMenusByRestaurantID(restaurantid: $restID) {
         __typename
         menuid
-        restaurantid
         title
         description
         isactive
@@ -714,7 +713,7 @@ public final class MenusByRestQuery: GraphQLQuery {
           __typename
           item {
             __typename
-            isavailable
+            ...FoodItemDetails
           }
         }
       }
@@ -723,7 +722,7 @@ public final class MenusByRestQuery: GraphQLQuery {
 
   public let operationName = "MenusByRest"
 
-  public var queryDocument: String { return operationDefinition.appending(RestaurantDetails.fragmentDefinition) }
+  public var queryDocument: String { return operationDefinition.appending(RestaurantDetails.fragmentDefinition).appending(FoodItemDetails.fragmentDefinition) }
 
   public var restID: GraphQLID
 
@@ -767,7 +766,6 @@ public final class MenusByRestQuery: GraphQLQuery {
       public static let selections: [GraphQLSelection] = [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
         GraphQLField("menuid", type: .nonNull(.scalar(GraphQLID.self))),
-        GraphQLField("restaurantid", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("title", type: .nonNull(.scalar(String.self))),
         GraphQLField("description", type: .scalar(String.self)),
         GraphQLField("isactive", type: .nonNull(.scalar(Bool.self))),
@@ -781,8 +779,8 @@ public final class MenusByRestQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(menuid: GraphQLID, restaurantid: GraphQLID, title: String, description: String? = nil, isactive: Bool, restaurant: Restaurant, menuItems: [MenuItem?]) {
-        self.init(unsafeResultMap: ["__typename": "Menu", "menuid": menuid, "restaurantid": restaurantid, "title": title, "description": description, "isactive": isactive, "restaurant": restaurant.resultMap, "menuItems": menuItems.map { (value: MenuItem?) -> ResultMap? in value.flatMap { (value: MenuItem) -> ResultMap in value.resultMap } }])
+      public init(menuid: GraphQLID, title: String, description: String? = nil, isactive: Bool, restaurant: Restaurant, menuItems: [MenuItem?]) {
+        self.init(unsafeResultMap: ["__typename": "Menu", "menuid": menuid, "title": title, "description": description, "isactive": isactive, "restaurant": restaurant.resultMap, "menuItems": menuItems.map { (value: MenuItem?) -> ResultMap? in value.flatMap { (value: MenuItem) -> ResultMap in value.resultMap } }])
       }
 
       public var __typename: String {
@@ -800,15 +798,6 @@ public final class MenusByRestQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "menuid")
-        }
-      }
-
-      public var restaurantid: GraphQLID {
-        get {
-          return resultMap["restaurantid"]! as! GraphQLID
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "restaurantid")
         }
       }
 
@@ -871,8 +860,8 @@ public final class MenusByRestQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(id: GraphQLID, name: String, openingtime: String? = nil, closingtime: String? = nil, isactive: Bool) {
-          self.init(unsafeResultMap: ["__typename": "Restaurant", "id": id, "name": name, "openingtime": openingtime, "closingtime": closingtime, "isactive": isactive])
+        public init(id: GraphQLID, name: String, openingtime: String? = nil, closingtime: String? = nil, isOpen: Bool) {
+          self.init(unsafeResultMap: ["__typename": "Restaurant", "id": id, "name": name, "openingtime": openingtime, "closingtime": closingtime, "isOpen": isOpen])
         }
 
         public var __typename: String {
@@ -952,7 +941,7 @@ public final class MenusByRestQuery: GraphQLQuery {
 
           public static let selections: [GraphQLSelection] = [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("isavailable", type: .nonNull(.scalar(Bool.self))),
+            GraphQLFragmentSpread(FoodItemDetails.self),
           ]
 
           public private(set) var resultMap: ResultMap
@@ -961,8 +950,8 @@ public final class MenusByRestQuery: GraphQLQuery {
             self.resultMap = unsafeResultMap
           }
 
-          public init(isavailable: Bool) {
-            self.init(unsafeResultMap: ["__typename": "Food", "isavailable": isavailable])
+          public init(id: GraphQLID, name: String, price: Double, isavailable: Bool) {
+            self.init(unsafeResultMap: ["__typename": "Food", "id": id, "name": name, "price": price, "isavailable": isavailable])
           }
 
           public var __typename: String {
@@ -974,12 +963,29 @@ public final class MenusByRestQuery: GraphQLQuery {
             }
           }
 
-          public var isavailable: Bool {
+          public var fragments: Fragments {
             get {
-              return resultMap["isavailable"]! as! Bool
+              return Fragments(unsafeResultMap: resultMap)
             }
             set {
-              resultMap.updateValue(newValue, forKey: "isavailable")
+              resultMap += newValue.resultMap
+            }
+          }
+
+          public struct Fragments {
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public var foodItemDetails: FoodItemDetails {
+              get {
+                return FoodItemDetails(unsafeResultMap: resultMap)
+              }
+              set {
+                resultMap += newValue.resultMap
+              }
             }
           }
         }
@@ -1000,6 +1006,7 @@ public final class OrdersByRestQuery: GraphQLQuery {
         timeplaced
         timecompleted
         restaurantid
+        instructions
         orderitems {
           __typename
           orderid
@@ -1065,6 +1072,7 @@ public final class OrdersByRestQuery: GraphQLQuery {
         GraphQLField("timeplaced", type: .nonNull(.scalar(String.self))),
         GraphQLField("timecompleted", type: .scalar(String.self)),
         GraphQLField("restaurantid", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("instructions", type: .scalar(String.self)),
         GraphQLField("orderitems", type: .nonNull(.list(.nonNull(.object(Orderitem.selections))))),
       ]
 
@@ -1074,8 +1082,8 @@ public final class OrdersByRestQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(orderid: GraphQLID, ordertype: OrderStatus, timeplaced: String, timecompleted: String? = nil, restaurantid: GraphQLID, orderitems: [Orderitem]) {
-        self.init(unsafeResultMap: ["__typename": "FoodOrder", "orderid": orderid, "ordertype": ordertype, "timeplaced": timeplaced, "timecompleted": timecompleted, "restaurantid": restaurantid, "orderitems": orderitems.map { (value: Orderitem) -> ResultMap in value.resultMap }])
+      public init(orderid: GraphQLID, ordertype: OrderStatus, timeplaced: String, timecompleted: String? = nil, restaurantid: GraphQLID, instructions: String? = nil, orderitems: [Orderitem]) {
+        self.init(unsafeResultMap: ["__typename": "FoodOrder", "orderid": orderid, "ordertype": ordertype, "timeplaced": timeplaced, "timecompleted": timecompleted, "restaurantid": restaurantid, "instructions": instructions, "orderitems": orderitems.map { (value: Orderitem) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -1129,6 +1137,15 @@ public final class OrdersByRestQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "restaurantid")
+        }
+      }
+
+      public var instructions: String? {
+        get {
+          return resultMap["instructions"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "instructions")
         }
       }
 
@@ -1222,8 +1239,8 @@ public final class OrdersByRestQuery: GraphQLQuery {
             self.resultMap = unsafeResultMap
           }
 
-          public init(id: GraphQLID, name: String, price: Double, description: String? = nil) {
-            self.init(unsafeResultMap: ["__typename": "Food", "id": id, "name": name, "price": price, "description": description])
+          public init(id: GraphQLID, name: String, price: Double, isavailable: Bool, description: String? = nil) {
+            self.init(unsafeResultMap: ["__typename": "Food", "id": id, "name": name, "price": price, "isavailable": isavailable, "description": description])
           }
 
           public var __typename: String {
@@ -1517,8 +1534,8 @@ public final class RestaurantMenusQuery: GraphQLQuery {
               self.resultMap = unsafeResultMap
             }
 
-            public init(id: GraphQLID, name: String, price: Double) {
-              self.init(unsafeResultMap: ["__typename": "Food", "id": id, "name": name, "price": price])
+            public init(id: GraphQLID, name: String, price: Double, isavailable: Bool) {
+              self.init(unsafeResultMap: ["__typename": "Food", "id": id, "name": name, "price": price, "isavailable": isavailable])
             }
 
             public var __typename: String {
@@ -1761,8 +1778,8 @@ public final class UserOrdersQuery: GraphQLQuery {
             self.resultMap = unsafeResultMap
           }
 
-          public init(id: GraphQLID, name: String, price: Double) {
-            self.init(unsafeResultMap: ["__typename": "Food", "id": id, "name": name, "price": price])
+          public init(id: GraphQLID, name: String, price: Double, isavailable: Bool) {
+            self.init(unsafeResultMap: ["__typename": "Food", "id": id, "name": name, "price": price, "isavailable": isavailable])
           }
 
           public var __typename: String {
@@ -2028,8 +2045,8 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
             self.resultMap = unsafeResultMap
           }
 
-          public init(id: GraphQLID, name: String, price: Double, description: String? = nil) {
-            self.init(unsafeResultMap: ["__typename": "Food", "id": id, "name": name, "price": price, "description": description])
+          public init(id: GraphQLID, name: String, price: Double, isavailable: Bool, description: String? = nil) {
+            self.init(unsafeResultMap: ["__typename": "Food", "id": id, "name": name, "price": price, "isavailable": isavailable, "description": description])
           }
 
           public var __typename: String {
@@ -2091,7 +2108,7 @@ public struct RestaurantDetails: GraphQLFragment {
       name: displayname
       openingtime
       closingtime
-      isactive
+      isOpen: isactive
     }
     """
 
@@ -2103,7 +2120,7 @@ public struct RestaurantDetails: GraphQLFragment {
     GraphQLField("displayname", alias: "name", type: .nonNull(.scalar(String.self))),
     GraphQLField("openingtime", type: .scalar(String.self)),
     GraphQLField("closingtime", type: .scalar(String.self)),
-    GraphQLField("isactive", type: .nonNull(.scalar(Bool.self))),
+    GraphQLField("isactive", alias: "isOpen", type: .nonNull(.scalar(Bool.self))),
   ]
 
   public private(set) var resultMap: ResultMap
@@ -2112,8 +2129,8 @@ public struct RestaurantDetails: GraphQLFragment {
     self.resultMap = unsafeResultMap
   }
 
-  public init(id: GraphQLID, name: String, openingtime: String? = nil, closingtime: String? = nil, isactive: Bool) {
-    self.init(unsafeResultMap: ["__typename": "Restaurant", "id": id, "name": name, "openingtime": openingtime, "closingtime": closingtime, "isactive": isactive])
+  public init(id: GraphQLID, name: String, openingtime: String? = nil, closingtime: String? = nil, isOpen: Bool) {
+    self.init(unsafeResultMap: ["__typename": "Restaurant", "id": id, "name": name, "openingtime": openingtime, "closingtime": closingtime, "isOpen": isOpen])
   }
 
   public var __typename: String {
@@ -2161,12 +2178,12 @@ public struct RestaurantDetails: GraphQLFragment {
     }
   }
 
-  public var isactive: Bool {
+  public var isOpen: Bool {
     get {
-      return resultMap["isactive"]! as! Bool
+      return resultMap["isOpen"]! as! Bool
     }
     set {
-      resultMap.updateValue(newValue, forKey: "isactive")
+      resultMap.updateValue(newValue, forKey: "isOpen")
     }
   }
 }
@@ -2180,6 +2197,7 @@ public struct FoodItemDetails: GraphQLFragment {
       id: foodid
       name: displayname
       price
+      isavailable
     }
     """
 
@@ -2190,6 +2208,7 @@ public struct FoodItemDetails: GraphQLFragment {
     GraphQLField("foodid", alias: "id", type: .nonNull(.scalar(GraphQLID.self))),
     GraphQLField("displayname", alias: "name", type: .nonNull(.scalar(String.self))),
     GraphQLField("price", type: .nonNull(.scalar(Double.self))),
+    GraphQLField("isavailable", type: .nonNull(.scalar(Bool.self))),
   ]
 
   public private(set) var resultMap: ResultMap
@@ -2198,8 +2217,8 @@ public struct FoodItemDetails: GraphQLFragment {
     self.resultMap = unsafeResultMap
   }
 
-  public init(id: GraphQLID, name: String, price: Double) {
-    self.init(unsafeResultMap: ["__typename": "Food", "id": id, "name": name, "price": price])
+  public init(id: GraphQLID, name: String, price: Double, isavailable: Bool) {
+    self.init(unsafeResultMap: ["__typename": "Food", "id": id, "name": name, "price": price, "isavailable": isavailable])
   }
 
   public var __typename: String {
@@ -2235,6 +2254,15 @@ public struct FoodItemDetails: GraphQLFragment {
     }
     set {
       resultMap.updateValue(newValue, forKey: "price")
+    }
+  }
+
+  public var isavailable: Bool {
+    get {
+      return resultMap["isavailable"]! as! Bool
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "isavailable")
     }
   }
 }
