@@ -1,4 +1,5 @@
 const { DataSource } = require('apollo-datasource');
+const { ApolloError } = require("apollo-server");
 const ps = require('../pubsub');
 const pubsub = ps.pubsub;
 const Sequelize = require('sequelize');
@@ -24,6 +25,18 @@ class GryphAPIS extends DataSource {
     /**
      * Functions
      */
+
+
+    async customTest({ foodwrappers }) {
+        try {
+            const result = await this.database.food.findAll();
+            return result;
+        } catch (e) {
+            console.log(e.message);
+            return "fail";
+        }
+    }
+
     async getAllFood() {
         try {
             // console.log(this.config);
@@ -133,19 +146,28 @@ class GryphAPIS extends DataSource {
         }
     }
 
-    async createUser({ fname, lname, phonenum, address, email, encryptedpw, usertype, securityq, securitya, pubsub }) {
+    async createUser({ fname, lname, phonenum, address, email, encryptedpw, usertype, securityq, securitya }) {
         try {
             const result = await this.database.user.create({
                 fname, lname, phonenum, address, email, encryptedpw, usertype, securityq, securitya
             });
             if (result) {
                 await pubsub.publish(POST_ADDED, { userAdded: result });
-                return "Created";
+                return {
+                    success: true,
+                    message: 'User created',
+                }
             } else {
-                return "failed to create";
+                return {
+                    success: true,
+                    message: 'Could not create user',
+                }
             }
         } catch (e) {
-
+            return {
+                success: false,
+                message: e,
+            }
         }
     }
 
@@ -238,6 +260,18 @@ class GryphAPIS extends DataSource {
         }
     }
 
+    async getUserNotif({ userid }) {
+        try {
+            const result = await this.database.notif.findOne({
+                where: { userid }
+            })
+            return result;
+        } catch (e) {
+            console.log(e.message);
+            return null;
+        }
+    }
+
     async getOrders() {
         try {
             const result = await this.database.foodorder.findAll();
@@ -259,7 +293,42 @@ class GryphAPIS extends DataSource {
             return "getOrderItemsFailed: " + e.message;
 
         }
+    }
 
+    async getToppingsByIdentifier({ identifier }) {
+        try {
+            const result = await this.database.topping.findAll({
+                where: { identifier },
+            });
+            return result;
+        } catch (e) {
+            console.log(e.message);
+            return "getToppingsByIdentifier: " + e.message;
+        }
+    }
+
+    async getStaticToppingByID({ toppingid }) {
+        try {
+            const result = await this.database.statictopping.findOne({
+                where: { toppingid },
+            });
+            return result;
+        } catch (e) {
+            console.log(e.message);
+            return "getStaticToppingByID: " + e.message;
+        }
+    }
+
+    async getStaticToppingsByFoodGroup({ foodgroup }) {
+        try {
+            const result = await this.database.statictopping.findAll({
+                where: { foodgroup },
+            });
+            return result;
+        } catch (e) {
+            console.log(e.message);
+            return "getStaticToppingByID: " + e.message;
+        }
     }
 
     async getStaticToppingsByFoodGroup({ foodgroup }) {
@@ -281,16 +350,16 @@ class GryphAPIS extends DataSource {
             const result = await this.database.user.findAll({
                 where: { email },
             });
+
             if (result[0] != null) {
                 return result[0].dataValues.securityq;
             }
-            else {
-                return "";
-            }
         } catch (e) {
             console.log(e.message);
-            return "";
+            return null;
         }
+
+        throw new ApolloError("No email found", 404);
     }
 
     async validateSecurityQuestion({ email, securitya }) {
@@ -325,6 +394,19 @@ class GryphAPIS extends DataSource {
         try {
             // console.log("help" + restaurantid);
             const result = await this.database.menu.findAll({
+                where: { restaurantid },
+            });
+            return result;
+        } catch (e) {
+            console.log(e.message);
+            return "getMenusFailed: " + e.message;
+        }
+    }
+
+    async getRestaurantByRestaurantID({ restaurantid }) {
+        try {
+            // console.log(restaurantid);
+            const result = await this.database.restaurant.findOne({
                 where: { restaurantid },
             });
             return result;
@@ -377,7 +459,7 @@ class GryphAPIS extends DataSource {
 
     async getOrderByOrderID({ orderid }) {
         try {
-            const result = await this.database.foodorder.findAll({
+            const result = await this.database.foodorder.findOne({
                 where: {
                     orderid
                 }
@@ -427,19 +509,29 @@ class GryphAPIS extends DataSource {
      * An array of foodids will be passed
      * Assume userid is 1
      */
-    async placeOrder({ userid, foodids, restaurantid, instructions }) {
+    async placeOrder({ userid, foodwrappers, restaurantid, instructions }) {
         try {
             //create an order for restaurant
             const order = await this.createOrder({ userid, restaurantid, instructions });
             if (order) {
                 var orderid = order.dataValues.orderid;
                 // console.log(orderid);
-                for (var foodid in foodids) {
+                for (var foodwrapper in foodwrappers) {
                     // console.log(foodids[foodid]);
-                    var fid = foodids[foodid];
-                    const result = await this.database.orderitem.create({
+                    var thisFood = foodwrappers[foodwrapper];
+                    var fid = thisFood.foodid;
+                    const food = await this.createOrderItem({
                         orderid: orderid, foodid: fid
                     });
+                    if (food) {
+                        for (var i = 0; i < thisFood.toppingids.length; i++)
+                        {
+                            console.log(i);
+                            var toppingid = thisFood.toppingids[i];
+                            var identifier = food.identifier
+                            const result = await this.createTopping({ toppingid, identifier} );
+                        }
+                    }
                 }
                 // var newOrders = await this.getOrdersByRestaurantID({ restaurantid });
                 // console.log(newOrders);
@@ -462,6 +554,21 @@ class GryphAPIS extends DataSource {
         }
     }
 
+    async createTopping({ toppingid, identifier })
+    {
+        try {
+            const result = await this.database.topping.create({
+                toppingid: toppingid, identifier: identifier
+            });
+            return "success";
+        } catch (e) {
+            return {
+                success: false,
+                message: "create topping failed: " + e.message
+            };
+        }
+    }
+
     /**
      * create an order for restaurant
      */
@@ -479,6 +586,18 @@ class GryphAPIS extends DataSource {
             };
         }
     }
+
+    async createOrderItem({ orderid, foodid }){
+        try {
+            const result = await this.database.orderitem.create({
+                orderid: orderid, foodid: foodid
+            });
+            return result;
+        } catch (e) {
+            return null;
+        }
+    }
+
     /**
      * Update an order, return updated ordered
      */
@@ -531,20 +650,21 @@ class GryphAPIS extends DataSource {
                 note.topic = "ca.thesubwaysquad.GryphEats"
 
                 console.log(note);
-                const currentOrder = await getOrderByOrderID({ orderid });
-                console.log(currentOrder);
-                console.log({ currentOrder });
-
+                const currentOrder = await this.getOrderByOrderID({ orderid });
+                const userid = currentOrder.dataValues.userid;
+                const userNotif = await this.getUserNotif({ userid });
+                const token = userNotif.dataValues.token;
                 //TODO: This token is currently hardcoded. What needs to be done is the following: Given the `orderid`, you need to figure out which user to send the push notification to.
-                apnProvider.send(note, "0373d6d1cfc3ed2fe261460f541a9fa1cd5c966e5e8200c3777cb1e33e310333").then((result) => {
+                // apnProvider.send(note, "0373d6d1cfc3ed2fe261460f541a9fa1cd5c966e5e8200c3777cb1e33e310333").then((result) => {
+                apnProvider.send(note, token).then((result) => {
                     console.log(result.failed);
                     apnProvider.shutdown();
                 }).catch((ex) => {
                     apn.Provider.shutdown();
                 });
             }
-
-            if (result == 1) {
+            console.log(result);
+            if (result) {
                 return {
                     success: true,
                     message: 'Order update done',
@@ -568,7 +688,7 @@ class GryphAPIS extends DataSource {
         try {
             //check
             //return auth = 
-            console.log(email);
+            // console.log(email);
             const result = await this.database.user.findOne({
                 where: {
                     email: email,
@@ -576,7 +696,7 @@ class GryphAPIS extends DataSource {
                 },
             });
             //can do select with binary for case insensitive rn idc
-            console.log(result);
+            // console.log(result);
             if (result) {
                 return {
                     isValid: true,
