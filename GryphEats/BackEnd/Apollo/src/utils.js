@@ -216,6 +216,9 @@ module.exports.createDB = () => {
     restaurant.hasMany(menu, { foreignKey: 'restaurantid', sourceKey: 'restaurantid' });
     menu.belongsTo(restaurant, { foreignKey: 'restaurantid', sourceKey: 'restaurantid' });
 
+    // menu.hasOne(restaurant, { foreignKey: 'restaurantid', sourceKey: 'restaurantid' });
+    // restaurant.hasMany(menu, { foreignKey: 'restaurantid', sourceKey: 'restaurantid' });
+
     menu.hasMany(menuitem, { foreignKey: 'menuid', sourceKey: 'menuid' });
     menuitem.belongsTo(menu, { foreignKey: 'menuid', sourceKey: 'menuid' });
 
@@ -228,8 +231,18 @@ module.exports.createDB = () => {
     orderitem.hasOne(food, { foreignKey: 'foodid', sourceKey: 'foodid' });
     food.belongsTo(orderitem, { foreignKey: 'foodid', sourceKey: 'foodid' });
 
+    food.hasMany(statictopping, { foreignKey: 'foodgroup', sourceKey: 'foodgroup'});
+    statictopping.belongsTo(food, { foreignKey: 'foodgroup', sourceKey: 'foodgroup'});
+
     user.hasMany(foodorder, { foreignKey: 'userid', sourceKey: 'userid' });
     foodorder.belongsTo(user, { foreignKey: 'userid', sourceKey: 'userid' });
+
+    orderitem.hasMany(topping, {foreignKey: 'identifier', sourceKey: 'identifier'});
+    topping.hasOne(orderitem, {foreignKey: 'identifier', sourceKey: 'identifier'});
+
+    topping.hasOne(statictopping, {foreignKey: 'toppingid', sourceKey: 'toppingid'});
+    statictopping.belongsTo(topping, {foreignKey: 'toppingid', sourceKey: 'toppingid'});
+
 
     //toppin
 

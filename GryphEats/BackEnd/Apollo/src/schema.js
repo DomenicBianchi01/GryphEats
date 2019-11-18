@@ -1,4 +1,5 @@
 const { gql } = require('apollo-server');
+
 const typeDefs = gql`
 
     scalar Date
@@ -17,19 +18,23 @@ const typeDefs = gql`
     }
 
     type Query {
+        customTest(foodwrappers:[FoodWrapper!]): [Food]!
         foods: [Food]!
         getFoodByFoodID(foodid: ID!): Food
         getFoodByDisplayName(displayname:String!):Food
         restaurants: [Restaurant]!
         users: [User]!
         menus: [Menu]!
+        getRestaurantByRestaurantID(restaurantid:ID!):Restaurant!
         getMenusByRestaurantID(restaurantid: ID!): [Menu]!
         getMenuItemsByMenuID(menuid: ID!): [MenuItem]!
         getOrderItemsByOrderID(orderid: ID!): [OrderItem]!
         getOrdersByRestaurantID(restaurantid: ID!): [FoodOrder]!
         getOrdersByUserID(userid: ID!): [FoodOrder]!
-        getSecurityQuestionByEmail(email: String!): String!
+        getSecurityQuestionByEmail(email: String!): String
         getStaticToppingsByFoodGroup(foodgroup: ID!): [StaticTopping]!
+        getStaticToppingByID(toppingid: ID!): StaticTopping
+        getToppingsByIdentifier(identifier: ID!): [Topping!]
         validateUser(email:String!, pass:String!): Auth!
         validateSecurityQuestion(email:String!, securitya:String!): Boolean!
     }
@@ -37,13 +42,15 @@ const typeDefs = gql`
     type Mutation {
         updateOrder(orderid:ID!, status:OrderStatus!, restaurantid:ID!): Finish
         createOrder(userid:ID!, restaurantid: ID!): FoodOrder
-        placeOrder(userid:ID!, foodids:[ID]!, restaurantid:ID!, instructions: String): Finish
+        createOrderItem(orderid: ID!, foodid: ID!): OrderItem
+        placeOrder(userid:ID!, foodwrappers:[FoodWrapper]!, restaurantid:ID!, instructions: String): Finish
+        createTopping(toppingid:ID!, identifier: ID!): String
         completeOrder(orderid: ID): Finish
         updateFoodPriceByFoodID(foodid:ID!, price:ID!): String
         updateFoodAvailabilityByFoodID(foodid:ID!, isavailable:ID!): String
         updatePasswordByEmail(email:String!, encryptedpw:String!): Boolean
         createFood(displayname:String, toppingtype:ID, price:ID, restaurantid:ID, isavailable:ID, description:String, foodgroup:ID): String
-        createUser(fname:String, lname:String, phonenum:String, address:String, email:String, encryptedpw:String, usertype:ID, securityq: String, securitya: String): String
+        createUser(fname:String!, lname:String!, phonenum:String, address:String, email:String!, encryptedpw:String!, usertype:UserType!, securityq: String!, securitya: String!): Finish
         deleteFoodByFoodID(foodid:ID): String
         registerNotify(userid:ID!, uuid:String!, token: String!): Boolean
         deleteNotifByUUID(userid:ID!, uuid:String!): String
@@ -65,6 +72,7 @@ const typeDefs = gql`
         isavailable: Boolean!
         description: String
         foodgroup: ID!
+        toppings: [StaticTopping!]
     }
 
     type Restaurant {
@@ -119,6 +127,7 @@ const typeDefs = gql`
         identifier: ID!
         foodorder: FoodOrder!
         item: Food!
+        toppings: [Topping!]
     }
 
     type FoodOrder {
@@ -135,6 +144,7 @@ const typeDefs = gql`
     type Topping {
         toppingid: ID!
         identifier: ID!
+        statictopping: StaticTopping
     }
 
     type StaticTopping {
@@ -153,6 +163,11 @@ const typeDefs = gql`
     type Finish {
         success: Boolean!
         message: String
+    }
+
+    input FoodWrapper {
+        foodid: ID!
+        toppingids: [ID!]
     }
 `;
 

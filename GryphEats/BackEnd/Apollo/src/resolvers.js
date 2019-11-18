@@ -22,6 +22,7 @@ module.exports = {
     },
     Query: {
         // foods: (parent, args, { dataSources }, info) => datasources.food.findAll(),
+        customTest: async (_, { foodwrappers }, { dataSources }, info) => dataSources.gryphAPI.customTest({ foodwrappers }),
         foods: async (_, args, { dataSources }, info) => dataSources.gryphAPI.getAllFood(),
         getFoodByFoodID: (_, { foodid }, { dataSources }, info) => dataSources.gryphAPI.getFoodByFoodID({ foodid }),
         getFoodByDisplayName: (_, { displayname }, { dataSources }, info) => dataSources.gryphAPI.getFoodByDisplayName({ displayname }),
@@ -29,19 +30,24 @@ module.exports = {
         users: async (_, args, { dataSources }, info) => dataSources.gryphAPI.getAllUsers(),
         menus: async (_, args, { dataSources }, info) => dataSources.gryphAPI.getAllMenus(),
         getStaticToppingsByFoodGroup: async (_, { foodgroup }, { dataSources }, info) => dataSources.gryphAPI.getStaticToppingsByFoodGroup({ foodgroup }),
+        getStaticToppingByID: async (_, { toppingid }, { dataSources }, info) => dataSources.gryphAPI.getStaticToppingByID({ toppingid }),
         getSecurityQuestionByEmail: async (_, { email }, { dataSources }, info) => dataSources.gryphAPI.getSecurityQuestionByEmail({ email }),
         getMenusByRestaurantID: async (_, { restaurantid }, { dataSources }, info) => dataSources.gryphAPI.getMenusByRestaurantID({ restaurantid }),
+        getRestaurantByRestaurantID: async (_, { restaurantid }, { dataSources }, info) => dataSources.gryphAPI.getRestaurantByRestaurantID({ restaurantid }),
         getMenuItemsByMenuID: async (_, { menuid }, { dataSources }, info) => dataSources.gryphAPI.getMenuItemsByMenuID({ menuid }),
         getOrderItemsByOrderID: async (_, { orderid }, { dataSources }, info) => dataSources.gryphAPI.getOrderItemsByOrderID({ orderid }),
         getOrdersByRestaurantID: async (_, { restaurantid }, { dataSources }, info) => dataSources.gryphAPI.getOrdersByRestaurantID({ restaurantid }),
         getOrdersByUserID: async (_, { userid }, { dataSources }, info) => dataSources.gryphAPI.getOrdersByUserID({ userid }),
+        getToppingsByIdentifier: async (_, { identifier }, { dataSources }, info) => dataSources.gryphAPI.getToppingsByIdentifier({ identifier }),
         validateUser: async (_, { email, pass }, { dataSources }, info) => dataSources.gryphAPI.validateUser({ email, pass }),
         validateSecurityQuestion: async (_, { email, securitya }, { dataSources }, info) => dataSources.gryphAPI.validateSecurityQuestion({ email, securitya })
     },
     Mutation: {
         updateOrder: async (_, { orderid, status, restaurantid }, { dataSources }) => dataSources.gryphAPI.updateOrder({ orderid, status, restaurantid }),
         createOrder: async (_, { userid, restaurantid }, { dataSources }) => dataSources.gryphAPI.createOrder({ userid, restaurantid }),
-        placeOrder: async (_, { userid, foodids, restaurantid, instructions }, { dataSources }) => dataSources.gryphAPI.placeOrder({ userid, foodids, restaurantid, instructions }),
+        createOrderItem: async (_, { orderid, foodid }, { dataSources }) => dataSources.gryphAPI.createOrderItem({ orderid, foodid }),
+        placeOrder: async (_, { userid, foodwrappers, restaurantid, instructions }, { dataSources }) => dataSources.gryphAPI.placeOrder({ userid, foodwrappers, restaurantid, instructions }),
+        createTopping: async (_, { toppingid, identifier }, { dataSources }) => dataSources.gryphAPI.createTopping({ toppingid, identifier }),
         completeOrder: async (_, { orderid }, { dataSources }) => dataSources.gryphAPI.completeOrder({ orderid }),
         updateFoodPriceByFoodID: async (_, { foodid, price }, { dataSources }) => dataSources.gryphAPI.updateFoodPriceByFoodID({ foodid, price }),
         updateFoodAvailabilityByFoodID: async (_, { foodid, isavailable }, { dataSources }) => dataSources.gryphAPI.updateFoodAvailabilityByFoodID({ foodid, isavailable }),
@@ -91,6 +97,7 @@ module.exports = {
         menu: async (restaurant, _, { dataSources }) => dataSources.gryphAPI.getMenusByRestaurantID({ restaurantid: restaurant.restaurantid })
     },
     Menu: {
+        restaurant: async (menu, _, { dataSources }) => dataSources.gryphAPI.getRestaurantByRestaurantID({ restaurantid: menu.restaurantid }),
         menuItems: async (menu, _, { dataSources }) => dataSources.gryphAPI.getMenuItemsByMenuID({ menuid: menu.menuid })
     },
     MenuItem: {
@@ -100,7 +107,14 @@ module.exports = {
         orderitems: async (FoodOrder, _, { dataSources }) => dataSources.gryphAPI.getOrderItemsByOrderID({ orderid: FoodOrder.orderid })
     },
     OrderItem: {
-        item: async (OrderItem, _, { dataSources }) => dataSources.gryphAPI.getFoodByFoodID({ foodid: OrderItem.foodid })
+        item: async (OrderItem, _, { dataSources }) => dataSources.gryphAPI.getFoodByFoodID({ foodid: OrderItem.foodid }),
+        toppings: async (OrderItem, _, { dataSources }) => dataSources.gryphAPI.getToppingsByIdentifier({ identifier: OrderItem.identifier })
+    },
+    Topping: {
+        statictopping: async (Topping, _, { dataSources }) => dataSources.gryphAPI.getStaticToppingByID({ toppingid: Topping.toppingid })
+    },
+    Food: {
+        toppings: async (Food, _, { dataSources }) => dataSources.gryphAPI.getStaticToppingsByFoodGroup({ foodgroup: Food.foodgroup })
     }
 };
 
