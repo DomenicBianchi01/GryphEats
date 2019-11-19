@@ -21,4 +21,8 @@ fragment FoodItemDetails on Food {
     name: displayname
     price
     isavailable
+    ingredients: toppings {
+        id: toppingid
+        name: displayname
+    }
 }

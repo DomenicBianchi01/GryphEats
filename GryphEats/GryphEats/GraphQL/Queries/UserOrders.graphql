@@ -9,6 +9,12 @@ query UserOrders($userID: ID!) {
             item {
                 ...FoodItemDetails
             }
+            ingredientsWrapper: toppings {
+                ingredient: statictopping {
+                    id: toppingid
+                    name: displayname
+                }
+            }
         }
     }
 }

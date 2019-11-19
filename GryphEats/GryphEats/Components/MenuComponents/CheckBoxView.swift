@@ -14,7 +14,7 @@ struct CheckBoxView: View {
     
     // MARK: Lifecycle
     
-    init(ingredients: [Ingredient], onTap: @escaping () -> Void) {
+    init(ingredients: [GraphFoodItem.Ingredient], onTap: @escaping (GraphFoodItem.Ingredient) -> Void) {
         self.ingredients = ingredients
         self.onTap = onTap
     }
@@ -24,10 +24,13 @@ struct CheckBoxView: View {
     var body: some View {
         List {
             ForEach(ingredients) { ingredient in
-                CheckBoxRow(itemName: ingredient.name, onTap: self.onTap)
+                CheckBoxRow(itemName: ingredient.name) {
+                    self.onTap(ingredient)
+                }
             }.listConfiguration(backgroundColor: .cardBackground(for: colorScheme))
         }.onAppear {
             UITableViewCell.appearance().selectionStyle = .none
+            UITableView.appearance().backgroundColor = .cardBackground
         }.onDisappear {
             UITableViewCell.appearance().selectionStyle = .default
         }
@@ -37,7 +40,7 @@ struct CheckBoxView: View {
     
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
-    private let ingredients: [Ingredient]
-    private let onTap: () -> Void
+    private let ingredients: [GraphFoodItem.Ingredient]
+    private let onTap: (GraphFoodItem.Ingredient) -> Void
     
 }

@@ -15,7 +15,7 @@ typealias Menu = GraphRestaurant.Menu
 typealias GraphFoodItem = FoodItemDetails
 typealias GraphOrder = UserOrdersQuery.Data.GetOrdersByUserId
 
-// GraphQL structs do not conform to `Equatable` by default.
+// GraphQL structs do not conform to `Equatable` or `Identifiable` by default.
 
 // MARK: - GraphFoodItem
 
@@ -24,12 +24,20 @@ extension GraphFoodItem: Equatable {
     // MARK: Public
     
     public static func == (lhs: FoodItemDetails, rhs: FoodItemDetails) -> Bool {
-        lhs.id == rhs.id &&
+        return lhs.id == rhs.id &&
             lhs.name == rhs.name &&
             lhs.price == rhs.price
     }
 }
 
-extension GraphFoodItem: Identifiable {
-    
+extension GraphFoodItem: Identifiable { }
+
+// MARK: - GraphFoodItem.Ingredient
+
+extension FoodItemDetails.Ingredient: Equatable {
+    public static func == (lhs: FoodItemDetails.Ingredient, rhs: FoodItemDetails.Ingredient) -> Bool {
+        return lhs.id == rhs.id && lhs.name == rhs.name
+    }
 }
+
+extension GraphFoodItem.Ingredient: Identifiable { }

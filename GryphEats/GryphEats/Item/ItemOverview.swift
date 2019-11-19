@@ -46,24 +46,28 @@ struct ItemOverview: View, Dismissable {
             SlideOverCard(handleText: "Pull Up To Customize") {
                 VStack(alignment: .leading) {
                     ActionButton(text: "Add To Order") {
-                        self.cart.items.append(self.item)
+                        var mutableItem = self.item
+                        mutableItem.selectedFoodItemIngredients = self.ingredientsHolder.selectedIngredients
+                        
+                        self.cart.items.append(mutableItem)
                         self.dismiss()
                     }.padding(.bottom, 30)
                     
-                    Text("Ingredients").bold().padding(.leading)
+                    Text("Ingredients")
+                        .bold()
+                        .padding(.leading)
                     
-                    CheckBoxView(ingredients: [
-                        Ingredient(id: 0, name: "Tomato"),
-                        Ingredient(id: 1, name: "Lettuce"),
-                        Ingredient(id: 2, name: "Onion"),
-                        Ingredient(id: 3, name: "Pepper"),
-                        Ingredient(id: 4, name: "Black Olives"),
-                        Ingredient(id: 5, name: "Tomato"),
-                        Ingredient(id: 6, name: "Lettuce"),
-                        Ingredient(id: 7, name: "Onion"),
-                        Ingredient(id: 8, name: "Pepper"),
-                        Ingredient(id: 9, name: "Black Olives"),
-                    ], onTap: { /*TODO*/ }).padding(.bottom, 150)
+                    CheckBoxView(
+                        ingredients: self.item.foodItem.ingredients ?? [],
+                        onTap: { selectedIngredient in
+                            if let index = self.ingredientsHolder.selectedIngredients.firstIndex(where:
+                                { $0 == selectedIngredient })
+                            {
+                                self.ingredientsHolder.selectedIngredients.remove(at: index)
+                            } else {
+                                self.ingredientsHolder.selectedIngredients.append(selectedIngredient)
+                            }
+                    }).padding(.bottom, 150)
                 }
             }
         }
@@ -76,8 +80,21 @@ struct ItemOverview: View, Dismissable {
     @EnvironmentObject private var cart: Cart
     
     private let item: RestaurantFoodItem
+    private let ingredientsHolder = IngredientsHolder()
     
 }
+
+// MARK: - IngredientsHolder
+
+private class IngredientsHolder {
+    
+    // MARK: Internal
+    
+    var selectedIngredients: [GraphFoodItem.Ingredient] = []
+    
+}
+
+// MARK: - ItemOverview_Previews
 
 struct ItemOverview_Previews: PreviewProvider {
     static var previews: some View {
