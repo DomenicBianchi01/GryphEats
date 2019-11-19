@@ -15,6 +15,7 @@ struct RestaurantFoodItem {
     // MARK: Internal
     
     let foodItem: GraphFoodItem
+    var selectedFoodItemIngredients: [GraphFoodItem.Ingredient] = []
     let restaurantId: String
     let restaurantName: String
     

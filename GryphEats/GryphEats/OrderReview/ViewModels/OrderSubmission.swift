@@ -45,13 +45,13 @@ class OrderSubmission: NSObject {
         completion: @escaping (Result<Bool, OrderSubmissionError>) -> Void)
     {
         // If an order has items from different restaurants, we need to split the order into "one order per restaurant"
-        var splitItems: [String: [GraphFoodItem]] = [:]
+        var splitItems: [String: [RestaurantFoodItem]] = [:]
         
         cart.items.forEach { item in
             if splitItems[item.restaurantId] != nil {
-                splitItems[item.restaurantId]?.append(item.foodItem)
+                splitItems[item.restaurantId]?.append(item)
             } else {
-                splitItems[item.restaurantId] = [item.foodItem]
+                splitItems[item.restaurantId] = [item]
             }
         }
         
@@ -62,7 +62,9 @@ class OrderSubmission: NSObject {
             dispatchGroup.enter()
             GraphClient.shared.perform(
                 mutation: PlaceOrderMutation(
-                    foodIDs: element.value.compactMap { $0.id },
+                    items: element.value.compactMap {
+                        FoodWrapper(foodid: $0.foodItem.id, toppingids: $0.selectedFoodItemIngredients.compactMap { $0.id })
+                    },
                     restaurantID: element.key,
                     userID: userID,
                     instructions: cart.specialInstructions))
@@ -78,7 +80,7 @@ class OrderSubmission: NSObject {
         }
         
         dispatchGroup.notify(queue: .main) {
-            //TODO: If an order fails, cancel all the previous ones just placd
+            //TODO: If an order fails, cancel all the previous ones just placed
             completion(.success(placedOrder))
         }
     }
