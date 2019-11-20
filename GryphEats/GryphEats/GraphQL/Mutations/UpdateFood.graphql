@@ -1,0 +1,7 @@
+mutation UpdateFoodAvailable($foodID: ID!, $isAvailable: ID!) {
+    didUpdate: updateFoodAvailabilityByFoodID(foodid: $foodID, isavailable: $isAvailable)
+}
+
+mutation UpdateFoodPrice($foodID: ID!, $price: ID!) {
+    didUpdate: updateFoodPriceByFoodID(foodid: $foodID, price: $price)
+}

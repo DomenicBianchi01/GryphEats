@@ -36,7 +36,7 @@ struct RestEditStationsView: View {
                                      vPadding: 1,
                                      hPadding: 20) {
                                         restaurant in RestCell(restaurant: restaurant) {
-                                            RestEditMenuView(restID: restaurant.id)
+                                            RestEditMenuView(restID: restaurant.id, restName: restaurant.name)
                                         }
                 })
         case .error:

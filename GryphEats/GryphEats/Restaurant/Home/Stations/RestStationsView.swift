@@ -15,9 +15,7 @@ struct RestStationsView: View {
     
     var body: some View {
         NavigationHeaderView(title: "Stations", navigationColor: .guelphYellow, contentBackgroundColor: .white) {
-            self.content.navigationBarItems(trailing: CircularButton(text: Text("Logout"), backgroundColor: .white, foregroundColor: .black) {
-                self.viewControllerHolder.value?.dismiss(animated: true)
-            }.padding(.top))
+            self.content
         }.onAppear {
             self.viewModel.fetchRestaurants()
         }

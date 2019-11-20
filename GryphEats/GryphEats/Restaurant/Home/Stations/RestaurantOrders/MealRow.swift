@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import QGrid
 
 struct MealRow: View {
     var body: some View {
@@ -14,28 +15,31 @@ struct MealRow: View {
             VStack(alignment: .leading) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 10).fill(Color.guelphYellow)
-                    HStack(alignment: .top, spacing: 8) {
-                        Text("1x").font(Font.custom("Roboto-Bold", size: 28)).padding(.leading)
-                        Text(foodItem.name).font(Font.custom("Roboto-Bold", size: 28))
+                    HStack(alignment: .top) {
+                        Text("1x").font(.system(size: 28, weight: .bold)).padding(.leading)
+                        Text(foodItem.name).font(.system(size: 28, weight: .bold))
                         Spacer()
                     }.scaledToFill()
                 }
                 HStack (alignment: .top, spacing: 6){
                     VStack(alignment: .leading, spacing: 6) {
-                        //below needed to write ingridients
-                        Text("")
-                        //                            ForEach(foodItem.ingredients) { ingredient in
-                        //                                HStack {
-                        //                                    Text("1x")
-                        //                                    Text(ingredient.name)
-                        //                                }
-                        //                            }
+                        ForEach(foodItem.ingredients ?? []) { ingredient in
+                            HStack {
+                                Text("1x")
+                                Text(ingredient.name)
+                            }
+                        }
                     }.padding(.bottom).padding(.leading, 40)
-                    Spacer()
-                }.font(Font.custom("Roboto-Bold", size: 28))
+                    .font(Font.custom("Roboto-Bold",size: 28))
                     .foregroundColor(.gray)
-            }.padding(.top)
-        }
+                    Spacer()
+                }
+            }
+        }.padding(.all)
+        .contentShape(Rectangle())
+        .background(Color(red: 245/255, green: 245/255, blue: 245/255))
+        .cornerRadius(14)
+//        .shadow(radius: 2)
     }
     
     var foodItem: GraphFoodItem
