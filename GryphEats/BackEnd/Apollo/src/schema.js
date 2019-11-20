@@ -49,6 +49,7 @@ const typeDefs = gql`
         updateFoodPriceByFoodID(foodid:ID!, price:ID!): String
         updateFoodAvailabilityByFoodID(foodid:ID!, isavailable:ID!): String
         updatePasswordByEmail(email:String!, encryptedpw:String!): Boolean
+        updateisActiveByRestID(restaurantid:ID!, isactive:Boolean!):String
         createFood(displayname:String, toppingtype:ID, price:ID, restaurantid:ID, isavailable:ID, description:String, foodgroup:ID): String
         createUser(fname:String!, lname:String!, phonenum:String, address:String, email:String!, encryptedpw:String!, usertype:UserType!, securityq: String!, securitya: String!): Finish
         deleteFoodByFoodID(foodid:ID): String
@@ -150,7 +151,7 @@ const typeDefs = gql`
     type StaticTopping {
         toppingid: ID!
         foodgroup: ID!
-        displayname: ID!
+        displayname: String!
         price: ID
     }
 

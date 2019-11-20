@@ -87,6 +87,22 @@ class GryphAPIS extends DataSource {
 
         }
     }
+
+    async updateisActiveByRestID({ restaurantid, isactive }) {
+        try {
+            const result = await this.database.restaurant.update({ isactive }, {
+                where: { restaurantid }
+            });
+            console.log(result);
+            if (result) {
+                return "true";
+            } else {
+                return "false";
+            }
+        } catch (e) {
+
+        }
+    }
     // foodid: ID!
     // displayname: String
     // toppingtype: ID

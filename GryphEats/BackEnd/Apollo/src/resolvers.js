@@ -52,6 +52,7 @@ module.exports = {
         updateFoodPriceByFoodID: async (_, { foodid, price }, { dataSources }) => dataSources.gryphAPI.updateFoodPriceByFoodID({ foodid, price }),
         updateFoodAvailabilityByFoodID: async (_, { foodid, isavailable }, { dataSources }) => dataSources.gryphAPI.updateFoodAvailabilityByFoodID({ foodid, isavailable }),
         updatePasswordByEmail: async (_, { email, encryptedpw }, { dataSources }) => dataSources.gryphAPI.updatePasswordByEmail({ email, encryptedpw }),
+        updateisActiveByRestID: async (_, { restaurantid, isactive }, { dataSources }) => dataSources.gryphAPI.updateisActiveByRestID({ restaurantid, isactive }),
         createFood: async (_, { displayname, toppingtype, price, restaurantid, isavailable, description, foodgroup }, { dataSources }) =>
             dataSources.gryphAPI.createFood({ displayname, toppingtype, price, restaurantid, isavailable, description, foodgroup }),
         createUser: async (_, { fname, lname, phonenum, address, email, encryptedpw, usertype, securityq, securitya }, { dataSources }) =>
