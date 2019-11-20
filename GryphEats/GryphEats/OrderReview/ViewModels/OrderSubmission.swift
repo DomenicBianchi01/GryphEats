@@ -63,7 +63,7 @@ class OrderSubmission: NSObject {
             GraphClient.shared.perform(
                 mutation: PlaceOrderMutation(
                     items: element.value.compactMap {
-                        FoodWrapper(foodid: $0.foodItem.id, toppingids: $0.selectedFoodItemIngredients.compactMap { $0.id })
+                        FoodWrapper(foodid: $0.foodItem.id, toppingids: $0.selectedIngredients.compactMap { $0.id })
                     },
                     restaurantID: element.key,
                     userID: userID,

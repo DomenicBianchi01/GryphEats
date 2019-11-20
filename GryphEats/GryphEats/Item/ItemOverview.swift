@@ -12,10 +12,21 @@ import SwiftUI
 
 struct ItemOverview: View, Dismissable {
     
+    // MARK: DisplayMode
+    
+    enum DisplayMode {
+        /// Use this if this view is being displayed because the user tapped on a menu item
+        case new
+        /// Use this if this view is being displayed because the user wants to edit an item already added to their cart
+        case edit
+    }
+    
     // MARK: Lifecycle
     
-    init(item: RestaurantFoodItem) {
+    init(item: RestaurantFoodItem, displayMode: DisplayMode = .new) {
         self.item = item
+        self.displayMode = displayMode
+        self.ingredientsHolder.selectedIngredients = item.selectedIngredients
     }
     
     // MARK: Internal
@@ -45,11 +56,20 @@ struct ItemOverview: View, Dismissable {
             
             SlideOverCard(handleText: "Pull Up To Customize") {
                 VStack(alignment: .leading) {
-                    ActionButton(text: "Add To Order") {
-                        var mutableItem = self.item
-                        mutableItem.selectedFoodItemIngredients = self.ingredientsHolder.selectedIngredients
+                    ActionButton(text: self.displayMode == .new ? "Add To Order" : "Update Item") {
+                        if self.displayMode == .new {
+                            var mutableItem = self.item
+                            mutableItem.selectedIngredients = self.ingredientsHolder.selectedIngredients
+                            
+                            self.cart.items.append(mutableItem)
+                        } else {
+                            guard let index = self.cart.items.firstIndex(where: { $0 == self.item }) else {
+                                return
+                            }
+                            
+                            self.cart.items[index].selectedIngredients = self.ingredientsHolder.selectedIngredients
+                        }
                         
-                        self.cart.items.append(mutableItem)
                         self.dismiss()
                     }.padding(.bottom, 30)
                     
@@ -58,7 +78,11 @@ struct ItemOverview: View, Dismissable {
                         .padding(.leading)
                     
                     CheckBoxView(
-                        ingredients: self.item.foodItem.ingredients ?? [],
+                        ingredients: self.item.foodItem.ingredients?.map {
+                            IngredientSelection(
+                                ingredient: $0,
+                                isSelected: self.ingredientsHolder.selectedIngredients.contains($0))
+                            } ?? [],
                         onTap: { selectedIngredient in
                             if let index = self.ingredientsHolder.selectedIngredients.firstIndex(where:
                                 { $0 == selectedIngredient })
@@ -80,6 +104,7 @@ struct ItemOverview: View, Dismissable {
     @EnvironmentObject private var cart: Cart
     
     private let item: RestaurantFoodItem
+    private let displayMode: DisplayMode
     private let ingredientsHolder = IngredientsHolder()
     
 }

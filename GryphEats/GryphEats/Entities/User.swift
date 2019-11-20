@@ -10,7 +10,7 @@ import SwiftUI
 
 // MARK: - User
 
-class User: Codable, ObservableObject {
+class User: ObservableObject {
     
     // MARK: Lifecycle
     
@@ -29,5 +29,3 @@ class User: Codable, ObservableObject {
     let password: String
     
 }
-
-extension UserType: Codable {}

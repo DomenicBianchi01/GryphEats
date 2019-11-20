@@ -21,22 +21,29 @@ class LoginViewModel {
         // MARK: Internal
         
         var recoverySuggestion: String? {
-            "Please check that your email and password are correct"
+            return "Please check that your email and password are correct"
         }
         
         var errorDescription: String? {
-            "Login Error"
+            return "Login Error"
         }
     }
     
     // MARK: Internal
     
-    var loggedInUser: User? {
-        guard let data = Valet.keychain.object(forKey: Valet.Key.user.rawValue) else {
-            return nil
+    var canAutoLoginUser: Bool {
+        return Valet.keychain.string(forKey: Valet.Key.userUsername.rawValue) != nil &&
+            Valet.keychain.string(forKey: Valet.Key.userPassword.rawValue) != nil
+    }
+    
+    func attemptAutoLogin(completion: @escaping (Result<User, LoginViewModel.LoginError>) -> Void) {
+        guard let username = Valet.keychain.string(forKey: Valet.Key.userUsername.rawValue),
+            let password = Valet.keychain.string(forKey: Valet.Key.userPassword.rawValue) else {
+                completion(.failure(.invalidCredentials))
+                return
         }
         
-        return try? JSONDecoder().decode(User.self, from: data)
+        attemptLogin(username: username, password: password, completion: completion)
     }
     
     func attemptLogin(
@@ -56,13 +63,15 @@ class LoginViewModel {
                     return completion(.failure(.invalidCredentials))
                 }
                 
-                let user = User(id: account.userId, type: account.userType, username: username, password: "")
+                if account.userType == .customer {
+                    self.saveCredentials(username: username, password: password)
+                }
                 
-//                if account.userType == .customer {
-                    self.saveCredentials(for: user)
-//                }
-                
-                return completion(.success(user))
+                return completion(.success(User(
+                    id: account.userId,
+                    type: account.userType,
+                    username: username,
+                    password: "")))
             case .failure:
                 return completion(.failure(.invalidCredentials))
             }
@@ -73,9 +82,8 @@ class LoginViewModel {
     
     private let restaurantUser = User(id: "1", type: .restaurant, username: "Test", password: "password")
     
-    private func saveCredentials(for user: User) {
-        if let data = try? JSONEncoder().encode(user) {
-            Valet.keychain.set(object: data, forKey: Valet.Key.user.rawValue)
-        }
+    private func saveCredentials(username: String, password: String) {
+        Valet.keychain.set(string: username, forKey: Valet.Key.userUsername.rawValue)
+        Valet.keychain.set(string: password, forKey: Valet.Key.userPassword.rawValue)
     }
 }

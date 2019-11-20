@@ -75,8 +75,15 @@ struct LoginView: View {
             //old value, SwiftUI will not present the alert. Possible SwiftUI Bug?
             self.error = nil
         }.onAppear {
-            if let user = self.viewModel.loggedInUser {
-                self.presentPostLoginScreen(for: user)
+            if self.viewModel.canAutoLoginUser {
+                self.viewModel.attemptAutoLogin { result in
+                    switch result {
+                    case .success(let user):
+                        self.presentPostLoginScreen(for: user)
+                    case .failure(let error):
+                        self.error = error
+                    }
+                }
             }
             
             self.email = ""

@@ -14,8 +14,9 @@ struct CartItemCard: View {
     
     // MARK: Lifecycle
     
-    init(item: RestaurantFoodItem, deleteAction: (() -> Void)? = nil) {
+    init(item: RestaurantFoodItem, editAction: (() -> Void)? = nil, deleteAction: (() -> Void)? = nil) {
         self.item = item
+        self.editAction = editAction
         self.deleteAction = deleteAction
     }
     
@@ -31,7 +32,7 @@ struct CartItemCard: View {
                     .foregroundColor(.gray)
                     .padding(.bottom, 10)
                 
-                ForEach(item.selectedFoodItemIngredients) { ingredient in
+                ForEach(item.selectedIngredients) { ingredient in
                     Text("• " + ingredient.name)
                         .font(.footnote)
                         .foregroundColor(.gray)
@@ -40,7 +41,7 @@ struct CartItemCard: View {
                 Text((item.foodItem.price).asDollarString)
                     .font(.subheadline)
                     .foregroundColor(.guelphRed(for: colorScheme))
-                    .padding(.top, item.selectedFoodItemIngredients.isEmpty ? 0 : 10)
+                    .padding(.top, item.selectedIngredients.isEmpty ? 0 : 10)
             }.padding(.horizontal, 20)
                 .padding([.top, .bottom], 10)
             
@@ -55,6 +56,9 @@ struct CartItemCard: View {
             .cornerRadius(5)
             .padding(.all, 10)
             .shadow(radius: 2)
+            .onTapGesture {
+                self.editAction?()
+        }
     }
     
     // MARK: Private
@@ -63,6 +67,7 @@ struct CartItemCard: View {
     
     private let item: RestaurantFoodItem
     private let deleteAction: (() -> Void)?
+    private let editAction: (() -> Void)?
     
 }
 
@@ -72,7 +77,7 @@ struct CartItemCard_Previews: PreviewProvider {
             CartItemCard(
                 item: RestaurantFoodItem(
                     foodItem: GraphFoodItem(id: "1", name: "Hamburger 1", price: 2.00, isavailable: true),
-                    selectedFoodItemIngredients: [
+                    selectedIngredients: [
                         GraphFoodItem.Ingredient(id: "0", name: "Lettuce"),
                         GraphFoodItem.Ingredient(id: "1", name: "Lettuce"),
                         GraphFoodItem.Ingredient(id: "2", name: "Lettuce")

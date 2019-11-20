@@ -52,9 +52,14 @@ struct OrderSummaryView: View {
                     sectionHeader(title: "Items")
                     
                     ForEach(cart.items, id: \.foodItem.id) { item in
-                        CartItemCard(item: item) {
+                        CartItemCard(
+                            item: item,
+                            editAction: {
+                                OrderSummaryView.itemToEdit = item
+                                self.displayEditItem = true
+                        }, deleteAction: {
                             self.cart.delete(item: item)
-                        }
+                        })
                     }
                     
                     sectionHeader(title: "Special Instructions").padding(.top)
@@ -87,6 +92,9 @@ struct OrderSummaryView: View {
                 
                 Spacer()
             }
+        }.sheet(isPresented: $displayEditItem) {
+            ItemOverview(item: OrderSummaryView.itemToEdit!, displayMode: .edit)
+                .environmentObject(self.cart)
         }.dismissKeyboardOnTapGesture()
     }
     
@@ -100,9 +108,13 @@ struct OrderSummaryView: View {
     @EnvironmentObject private var state: OrderReviewState
     
     @State private var error: OrderSummaryViewModel.OrderSubmissionError? = nil
+    @State private var displayEditItem = false
     
     private let viewModel = OrderSummaryViewModel()
     private let isDismissButtonVisible: Bool
+    
+    // A terrible hack...
+    static private var itemToEdit: RestaurantFoodItem? = nil
     
     private func sectionHeader(title: String) -> some View {
         HStack {
