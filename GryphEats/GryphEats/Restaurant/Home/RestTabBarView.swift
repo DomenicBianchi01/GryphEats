@@ -25,8 +25,8 @@ struct RestTabBarView: View {
             }
             
             CustomTabBar(selectedIndex: $selection, items: [
-                CustomTabBarItem(icon: .system(name: "house"), title: "Stations"),
-                CustomTabBarItem(icon: .system(name: "dollarsign.square"), title: "Edit Menu"),
+                CustomTabBarItem(icon: .system(name: "book"), title: "Stations"),
+                CustomTabBarItem(icon: .system(name: "pencil.circle"), title: "Menus"),
                 CustomTabBarItem(icon: .system(name: "person"), title: "Account"),
             ])
         }.edgesIgnoringSafeArea(.bottom)

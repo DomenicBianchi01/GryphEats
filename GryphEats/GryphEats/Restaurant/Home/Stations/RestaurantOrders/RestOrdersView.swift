@@ -23,9 +23,7 @@ struct RestOrdersView: View {
     
     var body: some View {
         Group {
-            self.content.navigationBarItems(trailing: CircularButton(text: Text("Refresh"), backgroundColor: .guelphYellow, foregroundColor: .white) {
-                self.viewModel.fetchOrders()
-            }.padding(.top)).layoutPriority(-1)
+            self.content.navigationBarTitle("Orders")
         }.onAppear() {
             self.viewModel.fetchOrders()
             UITableView.appearance().separatorColor = .clear

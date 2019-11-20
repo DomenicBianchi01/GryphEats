@@ -1,0 +1,3 @@
+mutation UpdateRestaurantActive($restaurantID: ID!, $isActive: Boolean!) {
+    didUpdate: updateisActiveByRestID(restaurantid: $restaurantID, isactive: $isActive)
+}

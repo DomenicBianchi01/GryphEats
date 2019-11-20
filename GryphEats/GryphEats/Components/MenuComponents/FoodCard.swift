@@ -10,10 +10,11 @@ import SwiftUI
 
 struct FoodCard: View {
     
-    init(foodItem: GraphFoodItem, onTap: @escaping () -> Void) {
+    init(foodItem: GraphFoodItem, onTap: @escaping () -> Void, onCommit: @escaping (String) -> Void) {
         self.foodItem = foodItem
         _isSelected = State(initialValue: foodItem.isavailable)
         self.onTap = onTap
+        self.onCommit = onCommit
     }
     
     // MARK: Internal
@@ -23,7 +24,7 @@ struct FoodCard: View {
     var body: some View {
         VStack {
             Button (action: {
-                self.onTap()
+                self.onTap()//{(self.price:String) in }
                 self.isSelected.toggle()
             }) {
                 HStack(alignment: .top) {
@@ -39,7 +40,13 @@ struct FoodCard: View {
                     Spacer()
                 }
             }.padding(.bottom)
-            CustomTextField(header: "Price", placeholder: String(foodItem.price), text: self.$price, headerFontSize: 22, textFieldFontSize: 24)
+            CustomTextField(header: "Price", subtitle: "", placeholder: String(foodItem.price), text: self.$price, editingChanged: { isChanged in
+                if (isChanged) {
+                    self.onCommit(self.price)
+                }
+            }, commit: {
+                self.onCommit(self.price)
+            }, headerFontSize: 22, textFieldFontSize: 24)
         }.padding(.all)
             .contentShape(Rectangle())
             .background(Color.white)
@@ -54,6 +61,7 @@ struct FoodCard: View {
     @State private var isSelected: Bool
     @State private var price: String = ""
     
+    private let onCommit: (String) -> Void
     private let onTap: () -> Void
     private let foodItem: GraphFoodItem
 }

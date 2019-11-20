@@ -313,6 +313,8 @@
 		EB6200662378DBA60098787A /* RestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6200652378DBA60098787A /* RestCell.swift */; };
 		EB62006B2379B67F0098787A /* RestEditStationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB62006A2379B67F0098787A /* RestEditStationsView.swift */; };
 		EB62006D2379BA9A0098787A /* MenusByRest.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB62006C2379BA9A0098787A /* MenusByRest.graphql */; };
+		EB7D43092384542E00562E5A /* UpdateFood.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB7D43082384542E00562E5A /* UpdateFood.graphql */; };
+		EB7D430B23858D1900562E5A /* UpdateRestaurant.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB7D430A23858D1900562E5A /* UpdateRestaurant.graphql */; };
 		EB9468022368898E00FAAE56 /* UpdateOrder.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB9468012368898E00FAAE56 /* UpdateOrder.graphql */; };
 		EB94680423688AA700FAAE56 /* OrderDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB94680323688AA700FAAE56 /* OrderDetailsViewModel.swift */; };
 		EB9468092368CB2200FAAE56 /* OrdersUpdated.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB9468082368CB2200FAAE56 /* OrdersUpdated.graphql */; };
@@ -499,6 +501,8 @@
 		EB6200652378DBA60098787A /* RestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestCell.swift; sourceTree = "<group>"; };
 		EB62006A2379B67F0098787A /* RestEditStationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestEditStationsView.swift; sourceTree = "<group>"; };
 		EB62006C2379BA9A0098787A /* MenusByRest.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = MenusByRest.graphql; sourceTree = "<group>"; };
+		EB7D43082384542E00562E5A /* UpdateFood.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = UpdateFood.graphql; sourceTree = "<group>"; };
+		EB7D430A23858D1900562E5A /* UpdateRestaurant.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = UpdateRestaurant.graphql; sourceTree = "<group>"; };
 		EB9468012368898E00FAAE56 /* UpdateOrder.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = UpdateOrder.graphql; sourceTree = "<group>"; };
 		EB94680323688AA700FAAE56 /* OrderDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewModel.swift; sourceTree = "<group>"; };
 		EB9468082368CB2200FAAE56 /* OrdersUpdated.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = OrdersUpdated.graphql; sourceTree = "<group>"; };
@@ -668,6 +672,8 @@
 				EB9468012368898E00FAAE56 /* UpdateOrder.graphql */,
 				B0647A4D2379B02000D0D2D1 /* PushNotifications.graphql */,
 				B0B85174237C8554009510A9 /* RegisterUser.graphql */,
+				EB7D43082384542E00562E5A /* UpdateFood.graphql */,
+				EB7D430A23858D1900562E5A /* UpdateRestaurant.graphql */,
 			);
 			path = Mutations;
 			sourceTree = "<group>";
@@ -794,8 +800,8 @@
 			children = (
 				B0A7C402234C2CE0001555B7 /* SliderView.swift */,
 				EB1E49FF236DD96D00B93EEF /* CheckBoxRow.swift */,
-				EB62005F23775B930098787A /* FoodCard.swift */,
 				EB62005D237756150098787A /* ToggleButton.swift */,
+				EB62005F23775B930098787A /* FoodCard.swift */,
 				EB1E4A02236E204B00B93EEF /* CheckBoxView.swift */,
 				B0A7C405234C2CEC001555B7 /* MenuCard.swift */,
 			);
@@ -1237,6 +1243,7 @@
 				EB1E4538234CF28800B5C8FD /* RobotoCondensed-Bold.ttf in Resources */,
 				B0647A4E2379B02000D0D2D1 /* PushNotifications.graphql in Resources */,
 				B0B85175237C8554009510A9 /* RegisterUser.graphql in Resources */,
+				EB7D430B23858D1900562E5A /* UpdateRestaurant.graphql in Resources */,
 				EB1E4544234CF28800B5C8FD /* Roboto-Italic.ttf in Resources */,
 				EB37D1A8236109A900CD0D9C /* OrdersByRest.graphql in Resources */,
 				EB1E4546234CF28800B5C8FD /* Roboto-Bold.ttf in Resources */,
@@ -1255,6 +1262,7 @@
 				B0CA762C23454A38003E7FBD /* RestaurantMenus.graphql in Resources */,
 				EB1E4545234CF28800B5C8FD /* Roboto-BlackItalic.ttf in Resources */,
 				EB1E4537234CF28800B5C8FD /* Roboto-Light.ttf in Resources */,
+				EB7D43092384542E00562E5A /* UpdateFood.graphql in Resources */,
 				EB1E4539234CF28800B5C8FD /* RobotoCondensed-Light.ttf in Resources */,
 				EB1E4542234CF28800B5C8FD /* Roboto-BoldItalic.ttf in Resources */,
 				EB1E4547234CF28800B5C8FD /* Roboto-Thin.ttf in Resources */,

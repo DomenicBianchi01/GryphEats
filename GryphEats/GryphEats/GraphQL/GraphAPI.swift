@@ -422,6 +422,108 @@ public final class RegisterUserMutation: GraphQLMutation {
   }
 }
 
+public final class UpdateFoodAvailableMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition =
+    """
+    mutation UpdateFoodAvailable($foodID: ID!, $isAvailable: ID!) {
+      didUpdate: updateFoodAvailabilityByFoodID(foodid: $foodID, isavailable: $isAvailable)
+    }
+    """
+
+  public let operationName = "UpdateFoodAvailable"
+
+  public var foodID: GraphQLID
+  public var isAvailable: GraphQLID
+
+  public init(foodID: GraphQLID, isAvailable: GraphQLID) {
+    self.foodID = foodID
+    self.isAvailable = isAvailable
+  }
+
+  public var variables: GraphQLMap? {
+    return ["foodID": foodID, "isAvailable": isAvailable]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("updateFoodAvailabilityByFoodID", alias: "didUpdate", arguments: ["foodid": GraphQLVariable("foodID"), "isavailable": GraphQLVariable("isAvailable")], type: .scalar(String.self)),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(didUpdate: String? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "didUpdate": didUpdate])
+    }
+
+    public var didUpdate: String? {
+      get {
+        return resultMap["didUpdate"] as? String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "didUpdate")
+      }
+    }
+  }
+}
+
+public final class UpdateFoodPriceMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition =
+    """
+    mutation UpdateFoodPrice($foodID: ID!, $price: ID!) {
+      didUpdate: updateFoodPriceByFoodID(foodid: $foodID, price: $price)
+    }
+    """
+
+  public let operationName = "UpdateFoodPrice"
+
+  public var foodID: GraphQLID
+  public var price: GraphQLID
+
+  public init(foodID: GraphQLID, price: GraphQLID) {
+    self.foodID = foodID
+    self.price = price
+  }
+
+  public var variables: GraphQLMap? {
+    return ["foodID": foodID, "price": price]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("updateFoodPriceByFoodID", alias: "didUpdate", arguments: ["foodid": GraphQLVariable("foodID"), "price": GraphQLVariable("price")], type: .scalar(String.self)),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(didUpdate: String? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "didUpdate": didUpdate])
+    }
+
+    public var didUpdate: String? {
+      get {
+        return resultMap["didUpdate"] as? String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "didUpdate")
+      }
+    }
+  }
+}
+
 public final class UpdateOrderMutation: GraphQLMutation {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition =
@@ -510,6 +612,57 @@ public final class UpdateOrderMutation: GraphQLMutation {
         set {
           resultMap.updateValue(newValue, forKey: "success")
         }
+      }
+    }
+  }
+}
+
+public final class UpdateRestaurantActiveMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition =
+    """
+    mutation UpdateRestaurantActive($restaurantID: ID!, $isActive: Boolean!) {
+      didUpdate: updateisActiveByRestID(restaurantid: $restaurantID, isactive: $isActive)
+    }
+    """
+
+  public let operationName = "UpdateRestaurantActive"
+
+  public var restaurantID: GraphQLID
+  public var isActive: Bool
+
+  public init(restaurantID: GraphQLID, isActive: Bool) {
+    self.restaurantID = restaurantID
+    self.isActive = isActive
+  }
+
+  public var variables: GraphQLMap? {
+    return ["restaurantID": restaurantID, "isActive": isActive]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("updateisActiveByRestID", alias: "didUpdate", arguments: ["restaurantid": GraphQLVariable("restaurantID"), "isactive": GraphQLVariable("isActive")], type: .scalar(String.self)),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(didUpdate: String? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "didUpdate": didUpdate])
+    }
+
+    public var didUpdate: String? {
+      get {
+        return resultMap["didUpdate"] as? String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "didUpdate")
       }
     }
   }

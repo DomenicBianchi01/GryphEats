@@ -25,7 +25,7 @@ struct ToggleButton: View {
         }
     }
     
-    init(selectedState: Selected, text1: String, text2: String, onTap: @escaping () -> Void) {
+    init(selectedState: Selected, text1: String, text2: String, onTap: @escaping ( Selected ) -> Void) {
         _selected = State(initialValue: selectedState)
         self.button1Text = text1
         self.button2Text = text2
@@ -35,8 +35,8 @@ struct ToggleButton: View {
     var body: some View {
         HStack() {
             Button (action: {
-                self.onTap()
                 self.selected.toggleLeft()
+                self.onTap( self.selected )
             }){
                 HStack {
                     Spacer()
@@ -50,8 +50,8 @@ struct ToggleButton: View {
                 .contentShape(Rectangle())
                 .background(selected == Selected.left ? Color.guelphYellow : Color.white)
             Button (action: {
-                self.onTap()
                 self.selected.toggleRight()
+                self.onTap( self.selected )
             }){
                 HStack {
                     Spacer()
@@ -70,19 +70,8 @@ struct ToggleButton: View {
     }
     
     @State private var selected: Selected
-    private let onTap: () -> Void
+    private let onTap: ( Selected ) -> Void
     private let button1Text: String
     private let button2Text: String
     
-//    private func toggleButton1() {
-//        if (!isSelected) {
-//            isSelected.toggle()
-//        }
-//    }
-//
-//    private func toggleButton2() {
-//        if (isSelected) {
-//            isSelected.toggle()
-//        }
-//    }
 }
