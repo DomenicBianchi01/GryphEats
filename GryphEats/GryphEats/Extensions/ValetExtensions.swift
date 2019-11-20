@@ -16,7 +16,8 @@ extension Valet {
     
     enum Key: String {
         case paymentMethods
-        case user
+        case userUsername
+        case userPassword
     }
     
     // MARK: Internal

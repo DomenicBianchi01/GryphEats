@@ -10,12 +10,12 @@ import SwiftUI
 
 // MARK: - RestaurantFoodItem
 
-struct RestaurantFoodItem {
+struct RestaurantFoodItem: Equatable {
     
     // MARK: Internal
     
     let foodItem: GraphFoodItem
-    var selectedFoodItemIngredients: [GraphFoodItem.Ingredient] = []
+    var selectedIngredients: [GraphFoodItem.Ingredient] = []
     let restaurantId: String
     let restaurantName: String
     

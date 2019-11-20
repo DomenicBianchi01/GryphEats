@@ -8,13 +8,33 @@
 
 import SwiftUI
 
+// MARK: - IngredientSelection
+
+struct IngredientSelection: Identifiable {
+    
+    // MARK: Lifecycle
+    
+    init(ingredient: GraphFoodItem.Ingredient, isSelected: Bool) {
+        self.ingredient = ingredient
+        self.isSelected = isSelected
+        self.id = ingredient.id
+    }
+    
+    // MARK: Internal
+    
+    let ingredient: GraphFoodItem.Ingredient
+    let isSelected: Bool
+    let id: String
+    
+}
+
 // MARK: - CheckBoxView
 
 struct CheckBoxView: View {
     
     // MARK: Lifecycle
     
-    init(ingredients: [GraphFoodItem.Ingredient], onTap: @escaping (GraphFoodItem.Ingredient) -> Void) {
+    init(ingredients: [IngredientSelection], onTap: @escaping (GraphFoodItem.Ingredient) -> Void) {
         self.ingredients = ingredients
         self.onTap = onTap
     }
@@ -23,9 +43,12 @@ struct CheckBoxView: View {
     
     var body: some View {
         List {
-            ForEach(ingredients) { ingredient in
-                CheckBoxRow(itemName: ingredient.name) {
-                    self.onTap(ingredient)
+            ForEach(ingredients) { ingredientSelection in
+                CheckBoxRow(
+                    itemName: ingredientSelection.ingredient.name,
+                    isSelected: ingredientSelection.isSelected)
+                {
+                    self.onTap(ingredientSelection.ingredient)
                 }
             }.listConfiguration(backgroundColor: .cardBackground(for: colorScheme))
         }.onAppear {
@@ -40,7 +63,7 @@ struct CheckBoxView: View {
     
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
-    private let ingredients: [GraphFoodItem.Ingredient]
+    private let ingredients: [IngredientSelection]
     private let onTap: (GraphFoodItem.Ingredient) -> Void
     
 }

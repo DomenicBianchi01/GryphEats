@@ -25,7 +25,6 @@ class HomeViewModel: ObservableObject {
     func fetchRestaurants() {
         self.loadingState = .loading
         
-        
         GraphClient.shared.fetch(query: RestaurantMenusQuery()) { result in
             switch result {
             case .success(let data):
@@ -43,9 +42,10 @@ class HomeViewModel: ObservableObject {
                             return false
                     }
                     
-                    return true
+                    return currentDate.compare(openingTime) == .orderedDescending &&
+                        currentDate.compare(closingTime) == .orderedAscending
                 }
-
+                
                 self.loadingState = .loaded(self.allRestaurantData)
             case .failure:
                 self.loadingState = .error

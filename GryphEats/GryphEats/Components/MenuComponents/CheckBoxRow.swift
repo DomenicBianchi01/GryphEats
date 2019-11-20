@@ -14,8 +14,9 @@ struct CheckBoxRow: View {
     
     // MARK: Lifecycle
     
-    init(itemName: String, onTap: @escaping () -> Void) {
+    init(itemName: String, isSelected: Bool, onTap: @escaping () -> Void) {
         self.itemName = itemName
+        self._isSelected = State(initialValue: isSelected)
         self.onTap = onTap
     }
     
@@ -50,7 +51,7 @@ struct CheckBoxRow: View {
     
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
-    @State var isSelected: Bool = false
+    @State private var isSelected: Bool
     
     private let onTap: () -> Void
     private let itemName: String
@@ -60,6 +61,6 @@ struct CheckBoxRow: View {
 
 struct CheckBoxCard_Previews: PreviewProvider {
     static var previews: some View {
-        CheckBoxRow(itemName: "Ketchup", onTap: { print("Tapped") })
+        CheckBoxRow(itemName: "Ketchup", isSelected: false, onTap: { print("Tapped") })
     }
 }
