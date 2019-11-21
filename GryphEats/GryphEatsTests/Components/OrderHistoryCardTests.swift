@@ -69,6 +69,7 @@ class OrderHistoryCardTests: XCTestCase {
     private func order(status: OrderStatus) -> Order {
         Order(
             id: "0",
+            restaurantName: "Mom's Kitchen",
             restaurantID: "1",
             customer: Customer(name: "Billy Bob"),
             status: status,

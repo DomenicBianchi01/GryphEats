@@ -34,10 +34,15 @@ struct ItemOverview: View, Dismissable {
     var body: some View {
         ZStack(alignment: .top) {
             GeometryReader { geometry in
-                Image("hamburger") //TODO
-                    .resizable()
-                    .scaledToFill()
-                    .edgesIgnoringSafeArea(.vertical)
+                Group {
+                    if self.image == nil {
+                        ActivityIndicatorView(color: .white)
+                    } else {
+                        Image(uiImage: self.image!)
+                            .resizable()
+                            .scaledToFill()
+                    }
+                }.edgesIgnoringSafeArea(.vertical)
                     .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height)
             }
             
@@ -54,7 +59,10 @@ struct ItemOverview: View, Dismissable {
                 Spacer()
             }.padding(.top, 75)
             
-            SlideOverCard(handleText: "Pull Up To Customize") {
+            SlideOverCard(
+                handleText: "Pull Up To Customize",
+                isSlidingDisabled: !itemHasIngredients)
+            {
                 VStack(alignment: .leading) {
                     ActionButton(text: self.displayMode == .new ? "Add To Order" : "Update Item") {
                         if self.displayMode == .new {
@@ -73,27 +81,31 @@ struct ItemOverview: View, Dismissable {
                         self.dismiss()
                     }.padding(.bottom, 30)
                     
-                    Text("Ingredients")
-                        .bold()
-                        .padding(.leading)
-                    
-                    CheckBoxView(
-                        ingredients: self.item.foodItem.ingredients?.map {
-                            IngredientSelection(
-                                ingredient: $0,
-                                isSelected: self.ingredientsHolder.selectedIngredients.contains($0))
-                            } ?? [],
-                        onTap: { selectedIngredient in
-                            if let index = self.ingredientsHolder.selectedIngredients.firstIndex(where:
-                                { $0 == selectedIngredient })
-                            {
-                                self.ingredientsHolder.selectedIngredients.remove(at: index)
-                            } else {
-                                self.ingredientsHolder.selectedIngredients.append(selectedIngredient)
-                            }
-                    }).padding(.bottom, 150)
+                    if self.itemHasIngredients {
+                        Text("Ingredients")
+                            .bold()
+                            .padding(.leading)
+                        
+                        CheckBoxView(
+                            ingredients: self.item.foodItem.ingredients?.map {
+                                IngredientSelection(
+                                    ingredient: $0,
+                                    isSelected: self.ingredientsHolder.selectedIngredients.contains($0))
+                                } ?? [],
+                            onTap: { selectedIngredient in
+                                if let index = self.ingredientsHolder.selectedIngredients.firstIndex(where:
+                                    { $0 == selectedIngredient })
+                                {
+                                    self.ingredientsHolder.selectedIngredients.remove(at: index)
+                                } else {
+                                    self.ingredientsHolder.selectedIngredients.append(selectedIngredient)
+                                }
+                        }).padding(.bottom, 150)
+                    }
                 }
             }
+        }.onAppear {
+            self.fetchImage()
         }
     }
     
@@ -102,11 +114,30 @@ struct ItemOverview: View, Dismissable {
     // MARK: Private
     
     @EnvironmentObject private var cart: Cart
+    @State private var image: UIImage? = nil
     
     private let item: RestaurantFoodItem
     private let displayMode: DisplayMode
     private let ingredientsHolder = IngredientsHolder()
     
+    private var itemHasIngredients: Bool {
+        return !(item.foodItem.ingredients?.isEmpty ?? false)
+    }
+    
+    private func fetchImage() {
+        guard let imageUrl = item.imageURL, let url = URL(string: imageUrl) else {
+            return
+        }
+        
+        ImageClient().fetchImage(from: url) { result in
+            switch result {
+            case .success(let image):
+                self.image = image
+            case .failure:
+                break
+            }
+        }
+    }
 }
 
 // MARK: - IngredientsHolder

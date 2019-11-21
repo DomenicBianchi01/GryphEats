@@ -9,6 +9,7 @@ query RestaurantMenus {
             isActive: isactive
             menuItems {
                 item {
+                    imageUrl: imageurl
                     ...FoodItemDetails
                 }
             }

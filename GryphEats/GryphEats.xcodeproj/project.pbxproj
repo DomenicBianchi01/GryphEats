@@ -157,6 +157,7 @@
 		B021DEA2234FF55A00DBF1AA /* ErrorViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B021DEA1234FF55A00DBF1AA /* ErrorViewTests.swift */; };
 		B022F709235E0EA1005269FB /* AddCreditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B022F708235E0EA1005269FB /* AddCreditCardView.swift */; };
 		B022F70B235E0EAC005269FB /* AddMealPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B022F70A235E0EAC005269FB /* AddMealPlanView.swift */; };
+		B03780D12385C1B200CD9309 /* ImageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03780D02385C1B200CD9309 /* ImageClient.swift */; };
 		B03C5EE0237B459C004B9656 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03C5EDF237B459C004B9656 /* SearchBar.swift */; };
 		B03C5EE1237B459C004B9656 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03C5EDF237B459C004B9656 /* SearchBar.swift */; };
 		B03E283C235E772D0000EDA2 /* AddMealPlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03E283B235E772D0000EDA2 /* AddMealPlanViewModel.swift */; };
@@ -358,6 +359,7 @@
 		B021DEA1234FF55A00DBF1AA /* ErrorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewTests.swift; sourceTree = "<group>"; };
 		B022F708235E0EA1005269FB /* AddCreditCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCreditCardView.swift; sourceTree = "<group>"; };
 		B022F70A235E0EAC005269FB /* AddMealPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealPlanView.swift; sourceTree = "<group>"; };
+		B03780D02385C1B200CD9309 /* ImageClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClient.swift; sourceTree = "<group>"; };
 		B03C5EDF237B459C004B9656 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		B03E283B235E772D0000EDA2 /* AddMealPlanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealPlanViewModel.swift; sourceTree = "<group>"; };
 		B04229022362670C00F2B822 /* OrderHistoryCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryCardTests.swift; sourceTree = "<group>"; };
@@ -835,7 +837,7 @@
 				B00E90702368865100469785 /* GryphEats.entitlements */,
 				EB1E44F7234CF13E00B5C8FD /* Resources */,
 				B0BBFDAF23479EDD00FDEFA4 /* Extensions */,
-				B0CA762A23454A20003E7FBD /* GraphQL */,
+				B0CA762A23454A20003E7FBD /* Networking */,
 				B051FF7C234588BD0093C0DC /* Components */,
 				B051FF77234588AA0093C0DC /* Entities */,
 				B0A2D0A52346107F00391DD6 /* Login */,
@@ -919,16 +921,17 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		B0CA762A23454A20003E7FBD /* GraphQL */ = {
+		B0CA762A23454A20003E7FBD /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				B03780D02385C1B200CD9309 /* ImageClient.swift */,
 				B021DE94234FBA6D00DBF1AA /* GraphClient.swift */,
 				B0CA762D23454B1F003E7FBD /* GraphAPI.swift */,
 				B07194962369F2F200E6253F /* Subscriptions */,
 				B07194952369F2E500E6253F /* Mutations */,
 				B07194942369F2C600E6253F /* Queries */,
 			);
-			path = GraphQL;
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		B0CD88D52360ABD600A5C021 /* Orders */ = {
@@ -1303,7 +1306,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nAPOLLO_SCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${APOLLO_SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${APOLLO_SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=**/*.graphql --localSchemaFile=\"schema.json\" GraphQL/GraphAPI.swift\n";
+			shellScript = "# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nAPOLLO_SCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${APOLLO_SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${APOLLO_SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=**/*.graphql --localSchemaFile=\"schema.json\" Networking/GraphAPI.swift\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1506,6 +1509,7 @@
 				B0A2D0A723462BE700391DD6 /* StudentCard.swift in Sources */,
 				B06B5146234958990015E960 /* HeaderView.swift in Sources */,
 				B084336B234CEC5300DD325E /* HomeViewModel.swift in Sources */,
+				B03780D12385C1B200CD9309 /* ImageClient.swift in Sources */,
 				B0BBFDBB2347D11E00FDEFA4 /* RegisterView.swift in Sources */,
 				B0D9ED3423568EB2006A1545 /* PaymentMethod.swift in Sources */,
 				B0BBFDB123479EFD00FDEFA4 /* EnvironmentExtensions.swift in Sources */,

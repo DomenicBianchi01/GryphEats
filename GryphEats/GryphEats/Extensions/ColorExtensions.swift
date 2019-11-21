@@ -38,6 +38,14 @@ extension Color {
         }
     }
     
+    static func loadingCardBackground(for colorScheme: ColorScheme) -> Color {
+        if colorScheme == .dark {
+            return Color(red: 75/255, green: 75/255, blue: 75/255)
+        } else {
+            return Color(red: 200/255, green: 200/255, blue: 200/255)
+        }
+    }
+    
     static func tabBarBackground(for colorScheme: ColorScheme) -> Color {
         if colorScheme == .dark {
             return Color(red: 25/255, green: 25/255, blue: 25/255)

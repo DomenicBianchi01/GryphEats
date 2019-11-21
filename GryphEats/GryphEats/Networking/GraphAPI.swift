@@ -1581,6 +1581,7 @@ public final class RestaurantMenusQuery: GraphQLQuery {
             __typename
             item {
               __typename
+              imageUrl: imageurl
               ...FoodItemDetails
             }
           }
@@ -1795,6 +1796,7 @@ public final class RestaurantMenusQuery: GraphQLQuery {
 
             public static let selections: [GraphQLSelection] = [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("imageurl", alias: "imageUrl", type: .nonNull(.scalar(String.self))),
               GraphQLFragmentSpread(FoodItemDetails.self),
             ]
 
@@ -1810,6 +1812,15 @@ public final class RestaurantMenusQuery: GraphQLQuery {
               }
               set {
                 resultMap.updateValue(newValue, forKey: "__typename")
+              }
+            }
+
+            public var imageUrl: String {
+              get {
+                return resultMap["imageUrl"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "imageUrl")
               }
             }
 
@@ -1853,6 +1864,7 @@ public final class UserOrdersQuery: GraphQLQuery {
       getOrdersByUserID(userid: $userID) {
         __typename
         id: orderid
+        restaurantName: restaurantname
         restaurantId: restaurantid
         timePlaced: timeplaced
         status: ordertype
@@ -1922,6 +1934,7 @@ public final class UserOrdersQuery: GraphQLQuery {
       public static let selections: [GraphQLSelection] = [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
         GraphQLField("orderid", alias: "id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("restaurantname", alias: "restaurantName", type: .scalar(String.self)),
         GraphQLField("restaurantid", alias: "restaurantId", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("timeplaced", alias: "timePlaced", type: .nonNull(.scalar(String.self))),
         GraphQLField("ordertype", alias: "status", type: .nonNull(.scalar(OrderStatus.self))),
@@ -1935,8 +1948,8 @@ public final class UserOrdersQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: GraphQLID, restaurantId: GraphQLID, timePlaced: String, status: OrderStatus, instructions: String? = nil, items: [Item]) {
-        self.init(unsafeResultMap: ["__typename": "FoodOrder", "id": id, "restaurantId": restaurantId, "timePlaced": timePlaced, "status": status, "instructions": instructions, "items": items.map { (value: Item) -> ResultMap in value.resultMap }])
+      public init(id: GraphQLID, restaurantName: String? = nil, restaurantId: GraphQLID, timePlaced: String, status: OrderStatus, instructions: String? = nil, items: [Item]) {
+        self.init(unsafeResultMap: ["__typename": "FoodOrder", "id": id, "restaurantName": restaurantName, "restaurantId": restaurantId, "timePlaced": timePlaced, "status": status, "instructions": instructions, "items": items.map { (value: Item) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -1954,6 +1967,15 @@ public final class UserOrdersQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var restaurantName: String? {
+        get {
+          return resultMap["restaurantName"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "restaurantName")
         }
       }
 

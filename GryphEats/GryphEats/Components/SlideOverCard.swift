@@ -16,8 +16,9 @@ struct SlideOverCard<V: View>: View {
     
     // MARK: Lifecycle
     
-    init(handleText: String, content: @escaping () -> V) {
+    init(handleText: String, isSlidingDisabled: Bool = true, content: @escaping () -> V) {
         self.handleText = handleText
+        self.isSlidingDisabled = isSlidingDisabled
         self.content = content
     }
     
@@ -28,15 +29,27 @@ struct SlideOverCard<V: View>: View {
             state = .dragging(translation: drag.translation)
         }.onEnded(onDragEnded)
         
-        return VStack {
-            Handle(text: handleText)
-            content()
+        let view = VStack {
+            if !isSlidingDisabled {
+                Handle(text: handleText)
+            }
+            
+            content().padding(.top, isSlidingDisabled ? 20 : 0)
+            
+            if isSlidingDisabled {
+                Spacer()
+            }
         }.frame(height: UIScreen.main.bounds.height)
             .background(Color.cardBackground(for: colorScheme))
             .cornerRadius(15)
             .offset(y: offset)
             .animation(dragState.isDragging ? nil : .interpolatingSpring(stiffness: 300, damping: 20, initialVelocity: 10))
-            .gesture(drag)
+        
+        if isSlidingDisabled {
+            return AnyView(view)
+        } else {
+            return AnyView(view.gesture(drag))
+        }
     }
     
     // MARK: Private
@@ -48,9 +61,13 @@ struct SlideOverCard<V: View>: View {
     
     private let content: () -> V
     private let handleText: String
+    private let isSlidingDisabled: Bool
     
-    private let minimumOffset: CGFloat = 150
     private let maximumHeight: CGFloat = 145
+    
+    private var minimumOffset: CGFloat {
+        return isSlidingDisabled ? 100 : 150
+    }
     
     private func onDragEnded(drag: DragGesture.Value) {
         if drag.location.y < maximumHeight {
@@ -61,6 +78,10 @@ struct SlideOverCard<V: View>: View {
     }
     
     private var offset: CGFloat {
+        if isSlidingDisabled {
+            return UIScreen.main.bounds.height - minimumOffset
+        }
+        
         if position + dragState.translation.height > UIScreen.main.bounds.height - minimumOffset {
             // Prevent card from being dragged too LOW
             return UIScreen.main.bounds.height - minimumOffset
