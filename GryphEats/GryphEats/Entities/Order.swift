@@ -16,6 +16,7 @@ class Order: Items, ObservableObject, Identifiable {
     
     init(
         id: String,
+        restaurantName: String? = nil,
         restaurantID: String,
         customer: Customer,
         status: OrderStatus = .neworder,
@@ -24,6 +25,7 @@ class Order: Items, ObservableObject, Identifiable {
         items: [RestaurantFoodItem] = [])
     {
         self.id = id
+        self.restaurantName = restaurantName ?? ""
         self.restaurantID = restaurantID
         self.customer = customer
         self.specialInstructions = specialInstructions
@@ -90,6 +92,7 @@ class Order: Items, ObservableObject, Identifiable {
     @Published var status: Status
     
     let id: String
+    let restaurantName: String
     let restaurantID: String
     let customer: Customer
     let timePlaced: Date

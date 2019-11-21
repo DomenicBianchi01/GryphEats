@@ -27,10 +27,14 @@ struct CartItemCard: View {
             VStack(alignment: .leading) {
                 Text(item.foodItem.name)
                     .font(.headline)
-                Text(item.restaurantName)
+                    .padding(.bottom, item.restaurantName.isEmpty ? 10 : 0)
+                
+                if !item.restaurantName.isEmpty {
+                    Text(item.restaurantName)
                     .font(.footnote)
                     .foregroundColor(.gray)
                     .padding(.bottom, 10)
+                }
                 
                 ForEach(item.selectedIngredients) { ingredient in
                     Text("• " + ingredient.name)

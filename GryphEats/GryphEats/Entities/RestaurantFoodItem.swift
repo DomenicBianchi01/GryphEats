@@ -12,10 +12,27 @@ import SwiftUI
 
 struct RestaurantFoodItem: Equatable {
     
+    // MARK: Lifecycle
+    
+    init(
+        foodItem: GraphFoodItem,
+        imageURL: String? = nil,
+        selectedIngredients: [GraphFoodItem.Ingredient] = [],
+        restaurantId: String,
+        restaurantName: String)
+    {
+        self.foodItem = foodItem
+        self.imageURL = imageURL
+        self.selectedIngredients = selectedIngredients
+        self.restaurantId = restaurantId
+        self.restaurantName = restaurantName
+    }
+    
     // MARK: Internal
     
     let foodItem: GraphFoodItem
-    var selectedIngredients: [GraphFoodItem.Ingredient] = []
+    let imageURL: String? //Temp solution. Need to update `foodItem` to not be `GraphFoodItem`, rather a `MenuItem`
+    var selectedIngredients: [GraphFoodItem.Ingredient]
     let restaurantId: String
     let restaurantName: String
     

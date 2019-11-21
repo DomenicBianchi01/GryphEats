@@ -44,15 +44,15 @@ struct SliderView: View {
         switch type {
         case .foodItems(let items):
             return AnyView(ForEach(items.indices, id: \.self) { index in
-                self.menuCard(for: items.map({ $0.foodItem })[index], atIndex: index, onTap: { _ in
+                self.menuCard(for: items[index], atIndex: index, onTap: { _ in
                     self.onTap(items[index])
                 })
             })
         }
     }
     
-    private func menuCard(for item: GraphFoodItem, atIndex index: Int, onTap: @escaping (Int) -> Void) -> AnyView {
-        let card = MenuCard(itemName: item.name, imageName: "hamburger") {
+    private func menuCard(for item: RestaurantFoodItem, atIndex index: Int, onTap: @escaping (Int) -> Void) -> AnyView {
+        let card = MenuCard(itemName: item.foodItem.name, imageUrl: item.imageURL ?? "") {
             onTap(index)
         }
         

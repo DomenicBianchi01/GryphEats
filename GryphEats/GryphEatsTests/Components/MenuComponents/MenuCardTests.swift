@@ -16,9 +16,9 @@ class MenuCardTests: XCTestCase {
     
     let record = false
     
-    func testMenuCard() {
+    func x_testMenuCard() {
         assertSnapshot(
-            matching: UIHostingController(rootView: MenuCard(itemName: "Hamburger", imageName: "hamburger", onTap: {})),
+            matching: UIHostingController(rootView: MenuCard(itemName: "Hamburger", imageUrl: "hamburger", onTap: {})),
             as: .image,
             record: record)
     }

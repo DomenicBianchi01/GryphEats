@@ -24,9 +24,7 @@ struct OrderHistoryCard: View {
         VStack {
             HStack {
                 VStack(alignment: .leading) {
-                    // An order object will only contain items from a single restaurant. Not a huge fan of this line
-                    // but it'll do for now
-                    Text(order.items.first?.restaurantName ?? "")
+                    Text(order.restaurantName)
                         .bold()
                         .padding(.bottom, 5)
                     Text("#" + String(order.id))

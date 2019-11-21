@@ -23,26 +23,27 @@ struct RestaurantItemsView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
+//            HStack {
                 Text(restaurant.name)
                     .font(.title)
                     .fontWeight(.semibold)
-                    .padding(.top, 10)
-                    .padding(.leading, 20)
+                    .padding([.top, .leading])
                 
-                Spacer()
+//                Spacer()
+              
+                //TODO: Do we even need the button that is commented out below?
                 
-                ZStack(alignment: .leading) {
-                    Button(action: {}) {
-                        Text("View All")
-                    }.padding(.vertical, 10)
-                        .padding(.trailing, 30)
-                    
-                    Image(systemName: "chevron.right")
-                        .padding(.leading, 70)
-                }.foregroundColor(.gray)
-                    .padding(.top, 10)
-            }
+//                ZStack(alignment: .leading) {
+//                    Button(action: {}) {
+//                        Text("View All")
+//                    }.padding(.vertical, 10)
+//                        .padding(.trailing, 30)
+//
+//                    Image(systemName: "chevron.right")
+//                        .padding(.leading, 70)
+//                }.foregroundColor(.gray)
+//                    .padding(.top, 10)
+//            }
             
             SliderView(type: .foodItems(foodItems)) { index in
                 self.onTap(index)
@@ -64,6 +65,7 @@ struct RestaurantItemsView: View {
         return menuItems.map {
             RestaurantFoodItem(
                 foodItem: $0.item.fragments.foodItemDetails,
+                imageURL: $0.item.imageUrl,
                 restaurantId: restaurant.id,
                 restaurantName: restaurant.name)
         }

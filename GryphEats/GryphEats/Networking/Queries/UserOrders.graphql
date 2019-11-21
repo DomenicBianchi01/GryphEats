@@ -1,6 +1,7 @@
 query UserOrders($userID: ID!) {
     getOrdersByUserID(userid: $userID) {
         id: orderid
+        restaurantName: restaurantname
         restaurantId: restaurantid
         timePlaced: timeplaced
         status: ordertype

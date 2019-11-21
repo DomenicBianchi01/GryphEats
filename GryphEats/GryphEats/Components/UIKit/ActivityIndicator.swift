@@ -16,15 +16,22 @@ struct ActivityIndicator: UIViewRepresentable {
     
     // MARK: Lifecycle
     
-    init(isAnimating: Binding<Bool> = .constant(true), style: UIActivityIndicatorView.Style) {
+    init(isAnimating: Binding<Bool> = .constant(true), style: UIActivityIndicatorView.Style, color: UIColor? = nil) {
         self._isAnimating = isAnimating
         self.style = style
+        self.color = color
     }
     
     // MARK: Internal
     
     func makeUIView(context: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
-        UIActivityIndicatorView(style: style)
+        let view = UIActivityIndicatorView(style: style)
+        
+        if let color = color {
+           view.color = color
+        }
+        
+        return view
     }
     
     func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityIndicator>) {
@@ -35,6 +42,7 @@ struct ActivityIndicator: UIViewRepresentable {
     
     @Binding private var isAnimating: Bool
     private let style: UIActivityIndicatorView.Style
+    private let color: UIColor?
     
 }
 
@@ -42,13 +50,24 @@ struct ActivityIndicator: UIViewRepresentable {
 
 struct ActivityIndicatorView: View {
     
+    // MARK: Lifecycle
+    
+    init(color: UIColor? = nil) {
+        self.color = color
+    }
+    
     // MARK: Internal
     
     var body: some View {
         VStack {
             Spacer()
-            ActivityIndicator(style: .large)
+            ActivityIndicator(style: .large, color: color)
             Spacer()
         }
     }
+    
+    // MARK: Private
+    
+    private let color: UIColor?
+    
 }
