@@ -25,7 +25,7 @@ struct OrderStatusBar: View {
     var body: some View {
         VStack {
             HStack(spacing: 0) {
-                ForEach(Order.Status.allCases) { stepStatus in
+                ForEach(Order.Status.trackingCases) { stepStatus in
                     self.orderStatusStepView(for: stepStatus)
                 }
             }
@@ -68,7 +68,7 @@ struct OrderStatusBar: View {
         
         if stepStatus.rawValue == 0 {
             barStyle = .trailing
-        } else if stepStatus.rawValue == Order.Status.allCases.count - 1 {
+        } else if stepStatus.rawValue == Order.Status.trackingCases.count - 1 {
             barStyle = .leading
         }
         

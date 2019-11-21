@@ -49,7 +49,7 @@ class RestOrdersViewModel: ObservableObject {
                                 id: orderItem.foodid,
                                 name: orderItem.item.fragments.foodItemDetails.name,
                                 price: orderItem.item.fragments.foodItemDetails.price,
-                                isavailable: orderItem.item.fragments.foodItemDetails.isavailable,
+                                inStock: orderItem.item.fragments.foodItemDetails.inStock,
                                 ingredients: itemIngredients),
                             restaurantId: order.restaurantid,
                             restaurantName: "TODO?"))
@@ -95,7 +95,7 @@ class RestOrdersViewModel: ObservableObject {
                                 id: orderItem.foodid,
                                 name: orderItem.item.fragments.foodItemDetails.name,
                                 price: orderItem.item.fragments.foodItemDetails.price,
-                                isavailable: orderItem.item.fragments.foodItemDetails.isavailable,
+                                inStock: orderItem.item.fragments.foodItemDetails.inStock,
                                 ingredients: itemIngredients),
                             restaurantId: order.restaurantid,
                             restaurantName: "TODO?"))

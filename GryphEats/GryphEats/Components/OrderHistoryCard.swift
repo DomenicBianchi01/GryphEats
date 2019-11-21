@@ -44,12 +44,17 @@ struct OrderHistoryCard: View {
                 .padding([.horizontal, .top])
             
             HStack {
-                Spacer()
-                Image(systemName: orderStatusIcon)
-                Text(order.status.asString)
+                if order.status.isActive && order.estimatedTimeRemaining != nil {
+                    Text("Estimated Time Remaining: \(order.estimatedTimeRemaining!) minutes")
                     .font(.caption)
-            }.foregroundColor(orderStatusColor)
-                .padding([.trailing, .bottom])
+                    .foregroundColor(.secondary)
+                }
+                Spacer()
+                Group {
+                    Image(systemName: orderStatusIcon)
+                    Text(order.status.asString).font(.caption)
+                }.foregroundColor(orderStatusColor)
+            }.padding([.horizontal, .bottom])
         }.contentShape(Rectangle()) //Not sure why this is need but without it tap gestures are not recognized if the
             // tap occurs on a `Spacer`: https://stackoverflow.com/a/58138763
             .background(Color.cardBackground(for: colorScheme))

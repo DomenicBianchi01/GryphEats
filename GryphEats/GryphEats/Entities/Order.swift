@@ -21,6 +21,7 @@ class Order: Items, ObservableObject, Identifiable {
         customer: Customer,
         status: OrderStatus = .neworder,
         timePlaced: String,
+        estimatedTimeRemaining: String? = nil,
         specialInstructions: String? = nil,
         items: [RestaurantFoodItem] = [])
     {
@@ -28,6 +29,7 @@ class Order: Items, ObservableObject, Identifiable {
         self.restaurantName = restaurantName ?? ""
         self.restaurantID = restaurantID
         self.customer = customer
+        self.estimatedTimeRemaining = estimatedTimeRemaining
         self.specialInstructions = specialInstructions
         
         switch status {
@@ -64,7 +66,8 @@ class Order: Items, ObservableObject, Identifiable {
         
         // MARK: Internal
         
-        static var allCases: [Status] {
+        /// This does NOT include the `.cancelled` state
+        static var trackingCases: [Status] {
             return [.new, .inProgress, .readyForPickup, .pickedUp]
         }
         
@@ -83,6 +86,10 @@ class Order: Items, ObservableObject, Identifiable {
             }
         }
         
+        var isActive: Bool {
+            return self == .new || self == .inProgress || self == .readyForPickup
+        }
+        
         var id: Status { self }
         
     }
@@ -96,6 +103,7 @@ class Order: Items, ObservableObject, Identifiable {
     let restaurantID: String
     let customer: Customer
     let timePlaced: Date
+    let estimatedTimeRemaining: String?
     let specialInstructions: String?
     
     func timePlacedString(expanded: Bool = false) -> String {

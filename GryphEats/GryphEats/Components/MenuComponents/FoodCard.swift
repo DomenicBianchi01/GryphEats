@@ -12,7 +12,7 @@ struct FoodCard: View {
     
     init(foodItem: GraphFoodItem, onTap: @escaping () -> Void, onCommit: @escaping (String) -> Void) {
         self.foodItem = foodItem
-        _isSelected = State(initialValue: foodItem.isavailable)
+        _isSelected = State(initialValue: foodItem.inStock)
         self.onTap = onTap
         self.onCommit = onCommit
     }

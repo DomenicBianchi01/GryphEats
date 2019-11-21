@@ -17,7 +17,7 @@ class OrderReviewState: ObservableObject {
     enum State: Equatable {
         case summary
         case checkout
-        case confirmed
+        case confirmed(numberOfOrders: Int)
     }
 
     // MARK: Internal

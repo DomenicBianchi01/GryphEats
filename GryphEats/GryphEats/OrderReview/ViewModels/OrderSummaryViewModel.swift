@@ -54,7 +54,9 @@ class OrderSummaryViewModel: OrderSubmission {
 
 extension OrderSummaryViewModel: PKPaymentAuthorizationViewControllerDelegate {
     func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
-        applePayController?.dismiss(animated: true)
+        applePayController?.dismiss(animated: true) {
+            self.completion?(true)
+        }
     }
     
     func paymentAuthorizationViewController(
@@ -63,6 +65,5 @@ extension OrderSummaryViewModel: PKPaymentAuthorizationViewControllerDelegate {
         handler completion: @escaping (PKPaymentAuthorizationResult) -> Void)
     {
         completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
-        self.completion?(true)
     }
 }

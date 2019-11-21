@@ -50,7 +50,7 @@ struct OrderReviewView: View {
                 // private variable that returns AnyView and uses a switch, however, when doing so, the custom
                 // transitions would not work (another SwiftUI bug?)
                 CheckoutView().transition(.rightSlide)
-            } else if state.state == .confirmed {
+            } else {
                 OrderSubmittedView().transition(.rightSlide)
             }
         }.background(Rectangle()

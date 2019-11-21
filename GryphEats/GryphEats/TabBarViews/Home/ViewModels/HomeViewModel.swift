@@ -46,7 +46,7 @@ class HomeViewModel: ObservableObject {
                         currentDate.compare(closingTime) == .orderedAscending
                 }
                 
-                self.loadingState = .loaded(self.allRestaurantData)
+                self.loadingState = .loaded(self.filterInStockOnly())
             case .failure:
                 self.loadingState = .error
             }
@@ -55,11 +55,11 @@ class HomeViewModel: ObservableObject {
     
     func filterRestaurants(by searchText: String) {
         if searchText.isEmpty {
-            loadingState = .loaded(allRestaurantData)
+            loadingState = .loaded(filterInStockOnly())
             return
         }
         
-        let filteredRestaurants: [GraphRestaurant] = allRestaurantData.compactMap {
+        let filteredRestaurants: [GraphRestaurant] = filterInStockOnly().compactMap {
             guard let items = $0.menu.first(where: { $0?.isActive == true })??.menuItems.compactMap({ $0 }) else {
                 return nil
             }
@@ -80,6 +80,28 @@ class HomeViewModel: ObservableObject {
         }
         
         loadingState = .loaded(filteredRestaurants.filter { !($0.menu.first??.menuItems.isEmpty ?? true) })
+    }
+    
+    func filterInStockOnly() -> [GraphRestaurant] {
+        return allRestaurantData.compactMap { restaurant in
+            guard let items = restaurant.menu.first(where: { $0?.isActive == true })??.menuItems.compactMap({ $0 }) else {
+                return nil
+            }
+            
+            return GraphRestaurant(
+                id: restaurant.id,
+                name: restaurant.name,
+                isActive: restaurant.isActive,
+                menu: [
+                    RestaurantMenusQuery.Data.Restaurant.Menu(
+                        isActive: true,
+                        menuItems: items.filter {
+                            $0.item.fragments.foodItemDetails.inStock
+                        }
+                    )
+                ]
+            )
+        }
     }
     
     // MARK: Private
