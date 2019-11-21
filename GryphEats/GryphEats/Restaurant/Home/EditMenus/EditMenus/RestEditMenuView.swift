@@ -58,7 +58,7 @@ struct RestEditMenuView: View {
                           vPadding: 5,
                           hPadding: 20) { item in
                             FoodCard(foodItem: item, onTap: {
-                                self.viewModel.mutateFoodAvailability(foodID: item.id, isAvailable: item.isavailable ? "0" : "1")
+                                self.viewModel.mutateFoodAvailability(foodID: item.id, isAvailable: item.inStock ? "0" : "1")
                                 self.viewModel.ninjaFetchMenus()
                             }, onCommit: { price in
                                 self.viewModel.mutateFoodPrice(foodID: item.id, price: price)

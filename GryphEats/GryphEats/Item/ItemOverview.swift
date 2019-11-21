@@ -156,7 +156,7 @@ struct ItemOverview_Previews: PreviewProvider {
     static var previews: some View {
         ItemOverview(
             item: RestaurantFoodItem(
-                foodItem: GraphFoodItem(id: "1", name: "Hamburger 1", price: 2, isavailable: true),
+                foodItem: GraphFoodItem(id: "1", name: "Hamburger 1", price: 2, inStock: true),
                 restaurantId: "1",
                 restaurantName: "100 Mile Grill"))
             .environmentObject(Cart(items: []))

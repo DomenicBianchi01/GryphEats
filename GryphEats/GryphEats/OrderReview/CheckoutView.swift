@@ -60,9 +60,9 @@ struct CheckoutView: View {
                 primaryButton: .default(Text("Confirm")) {
                     self.viewModel.submitOrder(for: self.loggedInUser.id, with: self.cart) { result in
                         switch result {
-                        case .success:
+                        case .success(let orderDetails):
                             withAnimation {
-                                self.state.state = .confirmed
+                                self.state.state = .confirmed(numberOfOrders: orderDetails.numberOfOrders)
                                 self.cart.clear()
                             }
                         case .failure(let error):
@@ -131,11 +131,11 @@ struct CheckoutView_Previews: PreviewProvider {
         CheckoutView()
             .environmentObject(Cart(items: [
                 RestaurantFoodItem(
-                    foodItem: GraphFoodItem(id: "1", name: "Hamburger 1", price: 2, isavailable: true),
+                    foodItem: GraphFoodItem(id: "1", name: "Hamburger 1", price: 2, inStock: true),
                     restaurantId: "1",
                     restaurantName: "100 Mile Grill"),
                 RestaurantFoodItem(
-                    foodItem: GraphFoodItem(id: "2", name: "Hamburger 2", price: 2, isavailable: true),
+                    foodItem: GraphFoodItem(id: "2", name: "Hamburger 2", price: 2, inStock: true),
                     restaurantId: "1",
                     restaurantName: "100 Mile Grill")
             ]))

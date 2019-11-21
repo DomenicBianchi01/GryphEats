@@ -54,9 +54,17 @@ class RestEditMenuViewModel: ObservableObject {
                 for menu in data.getMenusByRestaurantId.compactMap({ $0 }) {
                     for menuItem in menu.menuItems {
                         let foodItem = menuItem?.item.fragments.foodItemDetails
-                        foodItems.append(GraphFoodItem(id: foodItem!.id, name: foodItem!.name, price: foodItem!.price, isavailable: foodItem!.isavailable))
+                        foodItems.append(GraphFoodItem(
+                            id: foodItem!.id,
+                            name: foodItem!.name,
+                            price: foodItem!.price,
+                            inStock: foodItem!.inStock))
                     }
-                    restaurantMenu = Restaurant(id: menu.restaurant.fragments.restaurantDetails.id, name: menu.restaurant.fragments.restaurantDetails.name, isOpen: menu.restaurant.fragments.restaurantDetails.isOpen, foodItems: foodItems)
+                    restaurantMenu = Restaurant(
+                        id: menu.restaurant.fragments.restaurantDetails.id,
+                        name: menu.restaurant.fragments.restaurantDetails.name,
+                        isOpen: menu.restaurant.fragments.restaurantDetails.isOpen,
+                        foodItems: foodItems)
                 }
                 self.loadingState = .loaded(restaurantMenu)
             case .failure:
@@ -79,9 +87,17 @@ class RestEditMenuViewModel: ObservableObject {
                 for menu in data.getMenusByRestaurantId.compactMap({ $0 }) {
                     for menuItem in menu.menuItems {
                         let foodItem = menuItem?.item.fragments.foodItemDetails
-                        foodItems.append(GraphFoodItem(id: foodItem!.id, name: foodItem!.name, price: foodItem!.price, isavailable: foodItem!.isavailable))
+                        foodItems.append(GraphFoodItem(
+                            id: foodItem!.id,
+                            name: foodItem!.name,
+                            price: foodItem!.price,
+                            inStock: foodItem!.inStock))
                     }
-                    restaurant = Restaurant(id: menu.restaurant.fragments.restaurantDetails.id, name: menu.restaurant.fragments.restaurantDetails.name, isOpen: menu.restaurant.fragments.restaurantDetails.isOpen, foodItems: foodItems)
+                    restaurant = Restaurant(
+                        id: menu.restaurant.fragments.restaurantDetails.id,
+                        name: menu.restaurant.fragments.restaurantDetails.name,
+                        isOpen: menu.restaurant.fragments.restaurantDetails.isOpen,
+                        foodItems: foodItems)
                 }
                 self.loadingState = .loaded(restaurant)
             case .failure:

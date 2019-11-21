@@ -41,12 +41,23 @@ struct OrderSubmittedView: View {
             Spacer()
         }.onAppear {
             self.viewModel.registerForNotifications(for: self.loggedInUser)
+            
+            if case .confirmed(let numberOfOrders) = self.state.state {
+                self.numberOfOrders = numberOfOrders
+            }
+        }.alert(isPresented: .constant(numberOfOrders > 1)) {
+            Alert(
+                title: Text("Multiple Orders"),
+                message: Text("You ordered items from \(numberOfOrders) different restaurants. As a result, your original order has been split into \(numberOfOrders) seperate orders; one for each restaurant. Please note that these orders may be ready for pickup at different times."),
+                dismissButton: .default(Text("OK")))
         }
     }
     
     // MARK: Private
     
+    @EnvironmentObject private var state: OrderReviewState
     @EnvironmentObject private var loggedInUser: User
+    @State private var numberOfOrders: Int = 1
     
     private let viewModel = OrderSubmittedViewModel()
     

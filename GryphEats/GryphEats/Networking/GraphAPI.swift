@@ -1867,6 +1867,7 @@ public final class UserOrdersQuery: GraphQLQuery {
         restaurantName: restaurantname
         restaurantId: restaurantid
         timePlaced: timeplaced
+        estimatedTimeRemaining: estimatedtime
         status: ordertype
         instructions
         items: orderitems {
@@ -1937,6 +1938,7 @@ public final class UserOrdersQuery: GraphQLQuery {
         GraphQLField("restaurantname", alias: "restaurantName", type: .scalar(String.self)),
         GraphQLField("restaurantid", alias: "restaurantId", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("timeplaced", alias: "timePlaced", type: .nonNull(.scalar(String.self))),
+        GraphQLField("estimatedtime", alias: "estimatedTimeRemaining", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("ordertype", alias: "status", type: .nonNull(.scalar(OrderStatus.self))),
         GraphQLField("instructions", type: .scalar(String.self)),
         GraphQLField("orderitems", alias: "items", type: .nonNull(.list(.nonNull(.object(Item.selections))))),
@@ -1948,8 +1950,8 @@ public final class UserOrdersQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: GraphQLID, restaurantName: String? = nil, restaurantId: GraphQLID, timePlaced: String, status: OrderStatus, instructions: String? = nil, items: [Item]) {
-        self.init(unsafeResultMap: ["__typename": "FoodOrder", "id": id, "restaurantName": restaurantName, "restaurantId": restaurantId, "timePlaced": timePlaced, "status": status, "instructions": instructions, "items": items.map { (value: Item) -> ResultMap in value.resultMap }])
+      public init(id: GraphQLID, restaurantName: String? = nil, restaurantId: GraphQLID, timePlaced: String, estimatedTimeRemaining: GraphQLID, status: OrderStatus, instructions: String? = nil, items: [Item]) {
+        self.init(unsafeResultMap: ["__typename": "FoodOrder", "id": id, "restaurantName": restaurantName, "restaurantId": restaurantId, "timePlaced": timePlaced, "estimatedTimeRemaining": estimatedTimeRemaining, "status": status, "instructions": instructions, "items": items.map { (value: Item) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -1994,6 +1996,15 @@ public final class UserOrdersQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "timePlaced")
+        }
+      }
+
+      public var estimatedTimeRemaining: GraphQLID {
+        get {
+          return resultMap["estimatedTimeRemaining"]! as! GraphQLID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "estimatedTimeRemaining")
         }
       }
 
@@ -2579,7 +2590,7 @@ public struct FoodItemDetails: GraphQLFragment {
       id: foodid
       name: displayname
       price
-      isavailable
+      inStock: isavailable
       ingredients: toppings {
         __typename
         id: toppingid
@@ -2595,7 +2606,7 @@ public struct FoodItemDetails: GraphQLFragment {
     GraphQLField("foodid", alias: "id", type: .nonNull(.scalar(GraphQLID.self))),
     GraphQLField("displayname", alias: "name", type: .nonNull(.scalar(String.self))),
     GraphQLField("price", type: .nonNull(.scalar(Double.self))),
-    GraphQLField("isavailable", type: .nonNull(.scalar(Bool.self))),
+    GraphQLField("isavailable", alias: "inStock", type: .nonNull(.scalar(Bool.self))),
     GraphQLField("toppings", alias: "ingredients", type: .list(.nonNull(.object(Ingredient.selections)))),
   ]
 
@@ -2605,8 +2616,8 @@ public struct FoodItemDetails: GraphQLFragment {
     self.resultMap = unsafeResultMap
   }
 
-  public init(id: GraphQLID, name: String, price: Double, isavailable: Bool, ingredients: [Ingredient]? = nil) {
-    self.init(unsafeResultMap: ["__typename": "Food", "id": id, "name": name, "price": price, "isavailable": isavailable, "ingredients": ingredients.flatMap { (value: [Ingredient]) -> [ResultMap] in value.map { (value: Ingredient) -> ResultMap in value.resultMap } }])
+  public init(id: GraphQLID, name: String, price: Double, inStock: Bool, ingredients: [Ingredient]? = nil) {
+    self.init(unsafeResultMap: ["__typename": "Food", "id": id, "name": name, "price": price, "inStock": inStock, "ingredients": ingredients.flatMap { (value: [Ingredient]) -> [ResultMap] in value.map { (value: Ingredient) -> ResultMap in value.resultMap } }])
   }
 
   public var __typename: String {
@@ -2645,12 +2656,12 @@ public struct FoodItemDetails: GraphQLFragment {
     }
   }
 
-  public var isavailable: Bool {
+  public var inStock: Bool {
     get {
-      return resultMap["isavailable"]! as! Bool
+      return resultMap["inStock"]! as! Bool
     }
     set {
-      resultMap.updateValue(newValue, forKey: "isavailable")
+      resultMap.updateValue(newValue, forKey: "inStock")
     }
   }
 

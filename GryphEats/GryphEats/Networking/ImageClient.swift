@@ -23,12 +23,12 @@ final class ImageClient {
     // MARK: Internal
     
     func fetchImage(from url: URL, completion: @escaping (Result<UIImage, ImageError>) -> Void) {
-        if let cachedImage = ImageCache.shared.image(forKey: url.absoluteString) {
+        if let cachedImage = ImageCache.shared.image(for: url.absoluteString) {
             completion(.success(cachedImage))
             return
         }
         
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data, error == nil else {
                 completion(.failure(.invalidURL))
                 return
@@ -39,7 +39,7 @@ final class ImageClient {
                 return
             }
             
-            ImageCache.shared.save(image: image, forKey: url.absoluteString)
+            ImageCache.shared.save(image: image, for: url.absoluteString)
             completion(.success(image))
         }
         
@@ -61,11 +61,11 @@ private final class ImageCache {
 
     static let shared = ImageCache()
 
-    func image(forKey key: String) -> UIImage? {
+    func image(for key: String) -> UIImage? {
         return cache.object(forKey: key as NSString)
     }
 
-    func save(image: UIImage, forKey key: String) {
+    func save(image: UIImage, for key: String) {
         cache.setObject(image, forKey: key as NSString)
     }
     

@@ -21,7 +21,7 @@ fragment FoodItemDetails on Food {
     id: foodid
     name: displayname
     price
-    isavailable
+    inStock: isavailable
     ingredients: toppings {
         id: toppingid
         name: displayname

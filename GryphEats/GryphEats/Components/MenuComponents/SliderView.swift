@@ -71,23 +71,23 @@ struct SliderView_Previews: PreviewProvider {
             SliderView(
                 type: .foodItems([
                     RestaurantFoodItem(
-                        foodItem: GraphFoodItem(id: "1", name: "Hamburger 1", price: 2, isavailable: true),
+                        foodItem: GraphFoodItem(id: "1", name: "Hamburger 1", price: 2, inStock: true),
                         restaurantId: "1",
                         restaurantName: "100 Mile Grill"),
                     RestaurantFoodItem(
-                        foodItem: GraphFoodItem(id: "2", name: "Hamburger 2", price: 2, isavailable: true),
+                        foodItem: GraphFoodItem(id: "2", name: "Hamburger 2", price: 2, inStock: true),
                         restaurantId: "1",
                         restaurantName: "100 Mile Grill"),
                     RestaurantFoodItem(
-                        foodItem: GraphFoodItem(id: "3", name: "Hamburger 3", price: 2, isavailable: true),
+                        foodItem: GraphFoodItem(id: "3", name: "Hamburger 3", price: 2, inStock: true),
                         restaurantId: "1",
                         restaurantName: "100 Mile Grill"),
                     RestaurantFoodItem(
-                        foodItem: GraphFoodItem(id: "4", name: "Hamburger 4", price: 2, isavailable: true),
+                        foodItem: GraphFoodItem(id: "4", name: "Hamburger 4", price: 2, inStock: true),
                         restaurantId: "1",
                         restaurantName: "100 Mile Grill"),
                     RestaurantFoodItem(
-                        foodItem: GraphFoodItem(id: "5", name: "Hamburger 5", price: 2, isavailable: true),
+                        foodItem: GraphFoodItem(id: "5", name: "Hamburger 5", price: 2, inStock: true),
                         restaurantId: "1",
                         restaurantName: "100 Mile Grill")
                 ]),

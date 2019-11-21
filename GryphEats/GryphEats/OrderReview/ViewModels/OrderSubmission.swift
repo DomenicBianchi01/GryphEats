@@ -39,10 +39,21 @@ class OrderSubmission: NSObject {
         }
     }
     
+    // MARK: OrderSubmissionResult
+    
+    struct OrderSubmissionResult {
+        
+        // MARK: Internal
+        
+        let success: Bool
+        let numberOfOrders: Int
+        
+    }
+    
     func submitOrder(
         for userID: String,
         with cart: Cart,
-        completion: @escaping (Result<Bool, OrderSubmissionError>) -> Void)
+        completion: @escaping (Result<OrderSubmissionResult, OrderSubmissionError>) -> Void)
     {
         // If an order has items from different restaurants, we need to split the order into "one order per restaurant"
         var splitItems: [String: [RestaurantFoodItem]] = [:]
@@ -81,7 +92,7 @@ class OrderSubmission: NSObject {
         
         dispatchGroup.notify(queue: .main) {
             //TODO: If an order fails, cancel all the previous ones just placed
-            completion(.success(placedOrder))
+            completion(.success(OrderSubmissionResult(success: placedOrder, numberOfOrders: splitItems.count)))
         }
     }
 }
