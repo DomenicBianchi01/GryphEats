@@ -12,6 +12,12 @@ import SwiftUI
 
 struct OrderSubmittedView: View {
     
+    // MARK: Lifecycle
+    
+    init() {
+        self.hapticGenerator.prepare()
+    }
+    
     // MARK: Internal
     
     var body: some View {
@@ -40,6 +46,7 @@ struct OrderSubmittedView: View {
             }
             Spacer()
         }.onAppear {
+            self.hapticGenerator.generate()
             self.viewModel.registerForNotifications(for: self.loggedInUser)
             
             if case .confirmed(let numberOfOrders) = self.state.state {
@@ -60,6 +67,7 @@ struct OrderSubmittedView: View {
     @State private var numberOfOrders: Int = 1
     
     private let viewModel = OrderSubmittedViewModel()
+    private let hapticGenerator = HapticGenerator(feedbackStyle: .success)
     
 }
 

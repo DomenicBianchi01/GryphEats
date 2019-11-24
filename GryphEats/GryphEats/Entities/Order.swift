@@ -22,6 +22,7 @@ class Order: Items, ObservableObject, Identifiable {
         status: OrderStatus = .neworder,
         timePlaced: String,
         estimatedTimeRemaining: String? = nil,
+        paymentType: PaymentType,
         specialInstructions: String? = nil,
         items: [RestaurantFoodItem] = [])
     {
@@ -30,6 +31,7 @@ class Order: Items, ObservableObject, Identifiable {
         self.restaurantID = restaurantID
         self.customer = customer
         self.estimatedTimeRemaining = estimatedTimeRemaining
+        self.paymentType = paymentType
         self.specialInstructions = specialInstructions
         
         switch status {
@@ -104,6 +106,7 @@ class Order: Items, ObservableObject, Identifiable {
     let customer: Customer
     let timePlaced: Date
     let estimatedTimeRemaining: String?
+    let paymentType: PaymentType
     let specialInstructions: String?
     
     func timePlacedString(expanded: Bool = false) -> String {

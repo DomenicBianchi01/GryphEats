@@ -60,6 +60,7 @@ class RestOrdersViewModel: ObservableObject {
                         customer: Customer(name: "John Doe"),
                         status: order.ordertype,
                         timePlaced: order.timeplaced,
+                        paymentType: .credit,
                         specialInstructions: order.instructions,
                         items: foodItems
                     ))
@@ -107,6 +108,7 @@ class RestOrdersViewModel: ObservableObject {
                         customer: Customer(name: "John Doe"),
                         status: order.ordertype,
                         timePlaced: order.timeplaced,
+                        paymentType: .credit,
                         items: foodItems
                     ))
                 }

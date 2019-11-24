@@ -58,7 +58,11 @@ struct CheckoutView: View {
                 title: Text("Confirm Payment"),
                 message: Text("Once your confirm your payment, your order will begin to be prepared."),
                 primaryButton: .default(Text("Confirm")) {
-                    self.viewModel.submitOrder(for: self.loggedInUser.id, with: self.cart) { result in
+                    self.viewModel.submitOrder(
+                        for: self.loggedInUser.id,
+                        with: self.cart,
+                        using: self.selectedPaymentMethodToType())
+                    { result in
                         switch result {
                         case .success(let orderDetails):
                             withAnimation {
@@ -122,6 +126,15 @@ struct CheckoutView: View {
             return mealPlanType == .onCampus ? .onCampusMealPlan : .ultraMealPlan
         case .visa, .mastercard:
             return .noDiscounts
+        }
+    }
+    
+    private func selectedPaymentMethodToType() -> PaymentType {
+        switch viewModel.paymentMethods[selectedPaymentMethodIndex].cardType {
+        case .mastercard, .visa:
+            return .credit
+        case .student(let mealPlanType):
+            return mealPlanType == .onCampus ? .oncampus : .offcampus
         }
     }
 }

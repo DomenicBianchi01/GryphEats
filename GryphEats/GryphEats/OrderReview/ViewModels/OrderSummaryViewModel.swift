@@ -36,16 +36,14 @@ class OrderSummaryViewModel: OrderSubmission {
         let applePayController = PKPaymentAuthorizationViewController(paymentRequest: request)
         applePayController?.delegate = self
         
-        self.applePayController = applePayController
         self.completion = completion
         
         return applePayController
     }
     
-    weak var applePayController: PKPaymentAuthorizationViewController?
-    
     // MARK: Private
     
+    private var paymentAuthorized = false
     private var completion: ((Bool) -> Void)?
     
 }
@@ -54,8 +52,10 @@ class OrderSummaryViewModel: OrderSubmission {
 
 extension OrderSummaryViewModel: PKPaymentAuthorizationViewControllerDelegate {
     func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
-        applePayController?.dismiss(animated: true) {
-            self.completion?(true)
+        controller.dismiss(animated: true) {
+            if self.paymentAuthorized {
+                self.completion?(true)
+            }
         }
     }
     
@@ -64,6 +64,7 @@ extension OrderSummaryViewModel: PKPaymentAuthorizationViewControllerDelegate {
         didAuthorizePayment payment: PKPayment,
         handler completion: @escaping (PKPaymentAuthorizationResult) -> Void)
     {
+        paymentAuthorized = true
         completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
     }
 }
