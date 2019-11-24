@@ -129,7 +129,7 @@ struct OrderSummaryView: View {
     private func promptApplePay() {
         let applePayController = viewModel.promptApplePay(for: cart) { success in
             if success {
-                self.viewModel.submitOrder(for: self.loggedInUser.id, with: self.cart) { result in
+                self.viewModel.submitOrder(for: self.loggedInUser.id, with: self.cart, using: .credit) { result in
                     switch result {
                     case .success(let orderDetails):
                         withAnimation {

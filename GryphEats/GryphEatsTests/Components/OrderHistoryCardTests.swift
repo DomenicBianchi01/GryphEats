@@ -74,6 +74,7 @@ class OrderHistoryCardTests: XCTestCase {
             customer: Customer(name: "Billy Bob"),
             status: status,
             timePlaced: "2019-11-05T11:03:09.000Z",
+            paymentType: .credit,
             items: [
                 RestaurantFoodItem(
                     foodItem: GraphFoodItem(id: "1", name: "Hamburger", price: 9.99, inStock: true),

@@ -193,6 +193,8 @@
 		B06B514B23495BD90015E960 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B514A23495BD90015E960 /* ViewExtensions.swift */; };
 		B06B514D23495C960015E960 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B514C23495C960015E960 /* ForgotPasswordView.swift */; };
 		B06B515023496B070015E960 /* AnswerQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B514F23496B070015E960 /* AnswerQuestionView.swift */; };
+		B070B90A23871FAD001CB9B1 /* HapticGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B070B90923871FAD001CB9B1 /* HapticGenerator.swift */; };
+		B070B90B23871FAD001CB9B1 /* HapticGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B070B90923871FAD001CB9B1 /* HapticGenerator.swift */; };
 		B071949B236A025100E6253F /* ApolloWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = B071949A236A025100E6253F /* ApolloWebSocket */; };
 		B077747D2361D74100316DA1 /* UIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B077747C2361D74100316DA1 /* UIApplicationExtensions.swift */; };
 		B07B97FC23672634002E96C8 /* GraphExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07B97FB23672634002E96C8 /* GraphExtensions.swift */; };
@@ -391,6 +393,7 @@
 		B06B514A23495BD90015E960 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		B06B514C23495C960015E960 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		B06B514F23496B070015E960 /* AnswerQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerQuestionView.swift; sourceTree = "<group>"; };
+		B070B90923871FAD001CB9B1 /* HapticGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticGenerator.swift; sourceTree = "<group>"; };
 		B077747C2361D74100316DA1 /* UIApplicationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtensions.swift; sourceTree = "<group>"; };
 		B07B97FB23672634002E96C8 /* GraphExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphExtensions.swift; sourceTree = "<group>"; };
 		B07B980223673732002E96C8 /* PlaceOrder.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = PlaceOrder.graphql; sourceTree = "<group>"; };
@@ -622,6 +625,7 @@
 				EB605A31235BB24F00EB7856 /* User.swift */,
 				B0D9ED3323568EB2006A1545 /* PaymentMethod.swift */,
 				B05CE800235FE772000DB827 /* CardProvider.swift */,
+				B070B90923871FAD001CB9B1 /* HapticGenerator.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1351,6 +1355,7 @@
 				B0187601236B19130031FD2E /* UIApplicationExtensions.swift in Sources */,
 				B0187602236B19130031FD2E /* Order.swift in Sources */,
 				B0180CCE238396E1003090CF /* RestEditStationsView.swift in Sources */,
+				B070B90B23871FAD001CB9B1 /* HapticGenerator.swift in Sources */,
 				B0187604236B19130031FD2E /* Category.swift in Sources */,
 				B0187605236B19130031FD2E /* BackButton.swift in Sources */,
 				B0187606236B19130031FD2E /* ForgotPasswordView.swift in Sources */,
@@ -1535,6 +1540,7 @@
 				B0B2057C2333D45000694587 /* SceneDelegate.swift in Sources */,
 				B0F3198723660BE9006500AC /* AccountViewModel.swift in Sources */,
 				EB1E4A00236DD96D00B93EEF /* CheckBoxRow.swift in Sources */,
+				B070B90A23871FAD001CB9B1 /* HapticGenerator.swift in Sources */,
 				B06B515023496B070015E960 /* AnswerQuestionView.swift in Sources */,
 				EBC089F323524B5800DA3A55 /* OrderRow.swift in Sources */,
 				B08F32132348D3C2009A0E61 /* ColorExtensions.swift in Sources */,

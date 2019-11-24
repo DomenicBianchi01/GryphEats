@@ -1,5 +1,5 @@
-mutation PlaceOrder($items: [FoodWrapper!]!, $restaurantID: ID!, $userID: ID!, $instructions: String) {
-    placeOrder(userid: $userID, foodwrappers: $items, restaurantid: $restaurantID, instructions: $instructions) {
+mutation PlaceOrder($items: [FoodWrapper!]!, $restaurantID: ID!, $userID: ID!, $instructions: String, $paymentMethod: PaymentType!) {
+    placeOrder(userid: $userID, foodwrappers: $items, restaurantid: $restaurantID, instructions: $instructions, paymenttype: $paymentMethod) {
         success
     }
 }

@@ -17,22 +17,22 @@ class OrderCardTests: XCTestCase {
     var record = false
 
     func testOrderCard_New() {
-        let card = OrderCard(order: Order(id: "0", restaurantID: "1", customer: customer, status: .neworder, timePlaced: time))
+        let card = OrderCard(order: Order(id: "0", restaurantID: "1", customer: customer, status: .neworder, timePlaced: time, paymentType: .credit))
         assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
     }
     
     func testOrderCard_InProgress() {
-        let card = OrderCard(order: Order(id: "0", restaurantID: "1", customer: customer, status: .inprogress, timePlaced: time))
+        let card = OrderCard(order: Order(id: "0", restaurantID: "1", customer: customer, status: .inprogress, timePlaced: time, paymentType: .credit))
         assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
     }
     
     func testOrderCard_ReadyForPickup() {
-        let card = OrderCard(order: Order(id: "0", restaurantID: "1", customer: customer, status: .ready, timePlaced: time))
+        let card = OrderCard(order: Order(id: "0", restaurantID: "1", customer: customer, status: .ready, timePlaced: time, paymentType: .credit))
         assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
     }
     
     func testOrderCard_PickedUp() {
-        let card = OrderCard(order: Order(id: "0", restaurantID: "1", customer: customer, status: .pickedup, timePlaced: time))
+        let card = OrderCard(order: Order(id: "0", restaurantID: "1", customer: customer, status: .pickedup, timePlaced: time, paymentType: .credit))
         assertSnapshot(matching: UIHostingController(rootView: card), as: .image, record: record)
     }
     

@@ -61,7 +61,7 @@ struct OrderTrackingView: View, Dismissable {
                 
                 sectionHeader(title: "Summary").padding(.top)
                 
-                PriceSummaryCard(displayMode: .onCampusMealPlan, isPayButtonHidden: true) { _ in }
+                PriceSummaryCard(displayMode: priceSummaryCardDisplayMode, isPayButtonHidden: true) { _ in }
                     .environmentObject(Cart(items: viewModel.order.items))
             }
         }.errorAlert(error: self.$error.wrappedValue) {
@@ -89,6 +89,19 @@ struct OrderTrackingView: View, Dismissable {
     private let viewModel: OrderTrackingViewModel
     private let onDismiss: () -> Void
     
+    private var priceSummaryCardDisplayMode: PriceSummaryCard.DisplayMode {
+        switch viewModel.order.paymentType {
+        case .credit:
+            return .noDiscounts
+        case .oncampus:
+            return .onCampusMealPlan
+        case .offcampus:
+            return .ultraMealPlan
+        default:
+            return .noDiscounts
+        }
+    }
+    
     private func sectionHeader(title: String) -> some View {
         HStack {
             Text(title)
@@ -109,6 +122,7 @@ struct OrderTrackingView_Previews: PreviewProvider {
                 customer: Customer(name: ""),
                 status: .neworder,
                 timePlaced: "12:00pm",
+                paymentType: .credit,
                 items: [RestaurantFoodItem(
                     foodItem: GraphFoodItem(id: "0", name: "Hamburger 1", price: 9.99, inStock: true),
                     restaurantId: "1",

@@ -33,7 +33,7 @@ struct OrderHistoryCard: View {
                 }
                 Spacer()
                 VStack(alignment: .trailing) {
-                    Text(order.total().asDollarString)
+                    Text(order.total(for: paymentTypeToPriceType).asDollarString)
                         .fontWeight(.semibold)
                         .padding(.bottom, 5)
                     Text(order.timePlacedString())
@@ -46,8 +46,8 @@ struct OrderHistoryCard: View {
             HStack {
                 if order.status.isActive && order.estimatedTimeRemaining != nil {
                     Text("Estimated Time Remaining: \(order.estimatedTimeRemaining!) minutes")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
                 }
                 Spacer()
                 Group {
@@ -96,16 +96,29 @@ struct OrderHistoryCard: View {
             return .gray
         }
     }
+    
+    private var paymentTypeToPriceType: Items.PriceType {
+        switch order.paymentType {
+        case .credit:
+            return .regular
+        case .oncampus:
+            return .onCampus
+        case .offcampus:
+            return .offCampus
+        default:
+            return .regular
+        }
+    }
 }
 
 struct OrderHistoryCard_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             Spacer()
-            OrderHistoryCard(order: Order(id: "1", restaurantID: "1", customer: Customer(name: "Domenic Bianchi"), status: .neworder, timePlaced: "12:00pm"))
-            OrderHistoryCard(order: Order(id: "1", restaurantID: "1", customer: Customer(name: "Domenic Bianchi"), status: .inprogress, timePlaced: "12:00pm"))
-            OrderHistoryCard(order: Order(id: "1", restaurantID: "1", customer: Customer(name: "Domenic Bianchi"), status: .ready, timePlaced: "12:00pm"))
-            OrderHistoryCard(order: Order(id: "1", restaurantID: "1", customer: Customer(name: "Domenic Bianchi"), status: .pickedup, timePlaced: "12:00pm"))
+            OrderHistoryCard(order: Order(id: "1", restaurantID: "1", customer: Customer(name: "Domenic Bianchi"), status: .neworder, timePlaced: "12:00pm", paymentType: .credit))
+            OrderHistoryCard(order: Order(id: "1", restaurantID: "1", customer: Customer(name: "Domenic Bianchi"), status: .inprogress, timePlaced: "12:00pm", paymentType: .credit))
+            OrderHistoryCard(order: Order(id: "1", restaurantID: "1", customer: Customer(name: "Domenic Bianchi"), status: .ready, timePlaced: "12:00pm", paymentType: .credit))
+            OrderHistoryCard(order: Order(id: "1", restaurantID: "1", customer: Customer(name: "Domenic Bianchi"), status: .pickedup, timePlaced: "12:00pm", paymentType: .credit))
             Spacer()
         }.background(Color.lightGray(for: .light))
             .edgesIgnoringSafeArea(.all)

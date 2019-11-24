@@ -53,6 +53,7 @@ class OrderSubmission: NSObject {
     func submitOrder(
         for userID: String,
         with cart: Cart,
+        using paymentMethod: PaymentType,
         completion: @escaping (Result<OrderSubmissionResult, OrderSubmissionError>) -> Void)
     {
         // If an order has items from different restaurants, we need to split the order into "one order per restaurant"
@@ -78,7 +79,8 @@ class OrderSubmission: NSObject {
                     },
                     restaurantID: element.key,
                     userID: userID,
-                    instructions: cart.specialInstructions))
+                    instructions: cart.specialInstructions,
+                    paymentMethod: paymentMethod))
             { result in
                 dispatchGroup.leave()
                 switch result {

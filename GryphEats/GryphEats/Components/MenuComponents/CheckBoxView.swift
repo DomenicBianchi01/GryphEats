@@ -37,6 +37,7 @@ struct CheckBoxView: View {
     init(ingredients: [IngredientSelection], onTap: @escaping (GraphFoodItem.Ingredient) -> Void) {
         self.ingredients = ingredients
         self.onTap = onTap
+        self.hapticGenerator.prepare()
     }
     
     // MARK: Internal
@@ -48,6 +49,7 @@ struct CheckBoxView: View {
                     itemName: ingredientSelection.ingredient.name,
                     isSelected: ingredientSelection.isSelected)
                 {
+                    self.hapticGenerator.generate()
                     self.onTap(ingredientSelection.ingredient)
                 }
             }.listConfiguration(backgroundColor: .cardBackground(for: colorScheme))
@@ -65,5 +67,6 @@ struct CheckBoxView: View {
     
     private let ingredients: [IngredientSelection]
     private let onTap: (GraphFoodItem.Ingredient) -> Void
+    private let hapticGenerator = HapticGenerator(feedbackStyle: .medium)
     
 }
