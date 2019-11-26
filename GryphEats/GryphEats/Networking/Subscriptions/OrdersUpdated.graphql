@@ -4,6 +4,7 @@ subscription OrderUpdated($restaurantID: ID!) {
         ordertype
         timeplaced
         restaurantid
+        instructions
         orderitems {
             orderid
             foodid
@@ -11,6 +12,12 @@ subscription OrderUpdated($restaurantID: ID!) {
             item {
                 ...FoodItemDetails
                 description
+            }
+            ingredientsWrapper: toppings {
+                ingredient: statictopping {
+                    id: toppingid
+                    name: displayname
+                }
             }
         }
     }

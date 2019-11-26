@@ -10,7 +10,7 @@ import SwiftUI
 
 struct RestOrdersView: View {
     
-    var orders: [Order] = []
+    @State var orders: [Order] = []
     @State var isSelected = false
     
     @ObservedObject private var viewModel: RestOrdersViewModel
@@ -39,18 +39,22 @@ struct RestOrdersView: View {
             return AnyView(ActivityIndicatorView())
         case .loaded(let orders):
             if UIDevice.current.userInterfaceIdiom == .pad {
-                return AnyView(
-                    NavigationView {
-                        List(orders) { order in
-                            NavigationLink(destination: OrderDetailsView(order: order).navigationBarTitle("Order Details")) {
-                                OrderCard(order: order, enableShadow: false, isCollapsable: false, fillSpace: true)
+                if orders.isEmpty {
+                    return AnyView(Text("Select an order from the list to get started"))
+                } else {
+                    return AnyView(
+                        NavigationView {
+                            List(orders) { order in
+                                NavigationLink(destination: OrderDetailsView(order: order).navigationBarTitle("Order Details")) {
+                                    OrderCard(order: order, enableShadow: false, isCollapsable: false, fillSpace: true)
+                                }
+                            }
+                            if UIDevice.current.userInterfaceIdiom == .pad {
+                                Text("Select an order from the list to get started")
                             }
                         }
-                        if UIDevice.current.userInterfaceIdiom == .pad {
-                            Text("Select an order from the list to get started")
-                        }
-                    }
-                )
+                    )
+                }
             } else {
                 return AnyView(
                     List(orders) { order in
