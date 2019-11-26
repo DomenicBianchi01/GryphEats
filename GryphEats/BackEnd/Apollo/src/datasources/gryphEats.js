@@ -4,6 +4,7 @@ const ps = require('../pubsub');
 const pubsub = ps.pubsub;
 const Sequelize = require('sequelize');
 const apn = require('@parse/node-apn');
+const bcrypt = require("bcrypt");
 const Op = Sequelize.Op;
 const POST_ADDED = 'POST_ADDED';
 // const ORDER_PLACED = 'ORDER_PLACED';
@@ -130,6 +131,7 @@ class GryphAPIS extends DataSource {
 
     async updatePasswordByEmail({ email, encryptedpw }) {
         try {
+            encryptedpw = await this.generateHash(encryptedpw);
             const result = await this.database.user.update({ encryptedpw }, {
                 where: { email }
             });
@@ -162,8 +164,14 @@ class GryphAPIS extends DataSource {
         }
     }
 
+    async generateHash(encryptedpw) {
+        return bcrypt.hash(encryptedpw, bcrypt.genSaltSync(8));
+    }
+
     async createUser({ fname, lname, phonenum, address, email, encryptedpw, usertype, securityq, securitya }) {
         try {
+            // console.log(await this.generateHash(encryptedpw));
+            encryptedpw = await this.generateHash(encryptedpw);
             const result = await this.database.user.create({
                 fname, lname, phonenum, address, email, encryptedpw, usertype, securityq, securitya
             });
@@ -336,14 +344,16 @@ class GryphAPIS extends DataSource {
     }
 
     async getStaticToppingsByFoodGroup({ foodgroup }) {
-        try {
-            const result = await this.database.statictopping.findAll({
-                where: { foodgroup },
-            });
-            return result;
-        } catch (e) {
-            console.log(e.message);
-            return "getStaticToppingByID: " + e.message;
+        if (foodgroup != null) {
+            try {
+                const result = await this.database.statictopping.findAll({
+                    where: { foodgroup },
+                });
+                return result;
+            } catch (e) {
+                console.log(e.message);
+                return "getStaticToppingByID: " + e.message;
+            }
         }
     }
 
@@ -525,10 +535,10 @@ class GryphAPIS extends DataSource {
      * An array of foodids will be passed
      * Assume userid is 1
      */
-    async placeOrder({ userid, foodwrappers, restaurantid, instructions }) {
+    async placeOrder({ userid, foodwrappers, restaurantid, instructions, paymenttype }) {
         try {
             //create an order for restaurant
-            const order = await this.createOrder({ userid, restaurantid, instructions });
+            const order = await this.createOrder({ userid, restaurantid, instructions, paymenttype });
             if (order) {
                 var orderid = order.dataValues.orderid;
                 // console.log(orderid);
@@ -589,10 +599,17 @@ class GryphAPIS extends DataSource {
      * create an order for restaurant
      */
 
-    async createOrder({ userid, restaurantid, instructions }) {
+    async createOrder({ userid, restaurantid, instructions, paymenttype }) {
         try {
+
+            const restaurant = await this.database.restaurant.findOne({
+                where: {
+                    restaurantid: restaurantid
+                },
+            });
+
             const result = await this.database.foodorder.create({
-                userid: userid, restaurantid: restaurantid, instructions: instructions
+                userid: userid, restaurantid: restaurantid, instructions: instructions, estimatedtime: 30, restaurantname: restaurant.displayname, paymenttype: paymenttype
             })
             return result;
         } catch (e) {
@@ -623,15 +640,20 @@ class GryphAPIS extends DataSource {
             // console.log("ordertype" + status);
             var result;
             if (status == 3) {
-                result = await this.database.foodorder.update({ ordertype: status, timecompleted: this.database.db.fn('NOW') }, {
+                result = await this.database.foodorder.update({ ordertype: status, timecompleted: this.database.db.fn('NOW'), estimatedtime: 0 }, {
                     where: { orderid }
                 });
             } else if (status == 4) {
-                result = await this.database.foodorder.update({ ordertype: status, timecompleted: this.database.db.fn('NOW') }, {
+                result = await this.database.foodorder.update({ ordertype: status, timecompleted: this.database.db.fn('NOW'), estimatedtime: 0 }, {
                     where: { orderid, ordertype: 0 }
                 });
-            } else {
-                result = await this.database.foodorder.update({ ordertype: status, timecompleted: null }, {
+            } else if (status == 2) {
+                result = await this.database.foodorder.update({ ordertype: status, timecompleted: null, estimatedtime: 0 }, {
+                    where: { orderid }
+                });
+            }
+            else {
+                result = await this.database.foodorder.update({ ordertype: status, timecompleted: null, estimatedtime: 20 }, {
                     where: { orderid }
                 });
             }
@@ -707,13 +729,11 @@ class GryphAPIS extends DataSource {
             // console.log(email);
             const result = await this.database.user.findOne({
                 where: {
-                    email: email,
-                    encryptedpw: pass
+                    email: email
                 },
             });
-            //can do select with binary for case insensitive rn idc
             // console.log(result);
-            if (result) {
+            if (result && result.validPassword(pass)) {
                 return {
                     isValid: true,
                     account: result,

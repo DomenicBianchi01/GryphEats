@@ -1,4 +1,5 @@
 const SQL = require('sequelize');
+const bcrypt = require("bcrypt");
 
 module.exports.createDB = () => {
     const db = new SQL('test', 'root', 'ResinMotion', {
@@ -31,7 +32,8 @@ module.exports.createDB = () => {
         restaurantid: SQL.INTEGER,
         isavailable: SQL.INTEGER,
         description: SQL.STRING,
-        foodgroup: SQL.INTEGER
+        foodgroup: SQL.INTEGER,
+        imageurl: SQL.STRING
     },
         {
             freezeTableName: true
@@ -52,7 +54,10 @@ module.exports.createDB = () => {
         restaurantid: SQL.INTEGER,
         ordertype: SQL.INTEGER,
         userid: SQL.INTEGER,
-        instructions: SQL.STRING
+        instructions: SQL.STRING,
+        estimatedtime: SQL.INTEGER,
+        restaurantname: SQL.STRING,
+        paymenttype: SQL.INTEGER
     },
         {
             freezeTableName: true
@@ -171,6 +176,10 @@ module.exports.createDB = () => {
         }
     );
 
+    user.prototype.validPassword = function (encryptedpw) {
+        return bcrypt.compare(encryptedpw, this.encryptedpw);
+    }
+
     const topping = db.define('topping', {
         toppingid: {
             type: SQL.INTEGER,
@@ -231,17 +240,17 @@ module.exports.createDB = () => {
     orderitem.hasOne(food, { foreignKey: 'foodid', sourceKey: 'foodid' });
     food.belongsTo(orderitem, { foreignKey: 'foodid', sourceKey: 'foodid' });
 
-    food.hasMany(statictopping, { foreignKey: 'foodgroup', sourceKey: 'foodgroup'});
-    statictopping.belongsTo(food, { foreignKey: 'foodgroup', sourceKey: 'foodgroup'});
+    food.hasMany(statictopping, { foreignKey: 'foodgroup', sourceKey: 'foodgroup' });
+    statictopping.belongsTo(food, { foreignKey: 'foodgroup', sourceKey: 'foodgroup' });
 
     user.hasMany(foodorder, { foreignKey: 'userid', sourceKey: 'userid' });
     foodorder.belongsTo(user, { foreignKey: 'userid', sourceKey: 'userid' });
 
-    orderitem.hasMany(topping, {foreignKey: 'identifier', sourceKey: 'identifier'});
-    topping.hasOne(orderitem, {foreignKey: 'identifier', sourceKey: 'identifier'});
+    orderitem.hasMany(topping, { foreignKey: 'identifier', sourceKey: 'identifier' });
+    topping.hasOne(orderitem, { foreignKey: 'identifier', sourceKey: 'identifier' });
 
-    topping.hasOne(statictopping, {foreignKey: 'toppingid', sourceKey: 'toppingid'});
-    statictopping.belongsTo(topping, {foreignKey: 'toppingid', sourceKey: 'toppingid'});
+    topping.hasOne(statictopping, { foreignKey: 'toppingid', sourceKey: 'toppingid' });
+    statictopping.belongsTo(topping, { foreignKey: 'toppingid', sourceKey: 'toppingid' });
 
 
     //toppin
