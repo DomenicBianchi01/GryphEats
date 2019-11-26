@@ -37,7 +37,7 @@ class OrdersViewModel: ObservableObject {
                             RestaurantFoodItem(
                                 foodItem: item.item.fragments.foodItemDetails,
                                 selectedIngredients: item.ingredientsWrapper?.compactMap {
-                                    guard let ingredient = $0.ingredient else {
+                                    guard let ingredient = $0.fragments.toppings.ingredient else {
                                         return nil
                                     }
                                     
