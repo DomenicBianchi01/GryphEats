@@ -40,6 +40,8 @@ struct OrderDetailsView: View {
         }.padding(.all)
     }
     
+    @State var refresh: Bool = false
+    
     private var headerContent: AnyView {
         return AnyView(
             Group {
@@ -61,7 +63,7 @@ struct OrderDetailsView: View {
                         backgroundColor: exitButtonColor,
                         foregroundColor: .black) {
                             self.backOrder()
-                    }.padding(.trailing).disabled(!isNew).opacity(isNew ? 1 : 0)
+                    }.padding(.trailing).disabled(true).opacity(refresh ? 0 : 0)
                     CircularButton(
                         text: Text(continueButtonText).font(Font.custom("Roboto-Light", size: 22)),
                         backgroundColor: continueButtonColor,
@@ -89,12 +91,14 @@ struct OrderDetailsView: View {
             update(order: order, status: .pickedup)
         case .pickedUp:
             order.status = .pickedUp
+            refresh.toggle()
         default:
             return
         }
     }
     
     private func update(order: Order, status: OrderStatus) {
+        refresh.toggle()
         self.viewModel.update(order: order, status: status) { result in
             switch result {
             case .success:

@@ -1338,6 +1338,14 @@ public final class OrdersByRestQuery: GraphQLQuery {
             ...FoodItemDetails
             description
           }
+          ingredientsWrapper: toppings {
+            __typename
+            ingredient: statictopping {
+              __typename
+              id: toppingid
+              name: displayname
+            }
+          }
         }
       }
     }
@@ -1488,6 +1496,7 @@ public final class OrdersByRestQuery: GraphQLQuery {
           GraphQLField("foodid", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("identifier", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("item", type: .nonNull(.object(Item.selections))),
+          GraphQLField("toppings", alias: "ingredientsWrapper", type: .list(.nonNull(.object(IngredientsWrapper.selections)))),
         ]
 
         public private(set) var resultMap: ResultMap
@@ -1496,8 +1505,8 @@ public final class OrdersByRestQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(orderid: GraphQLID, foodid: GraphQLID, identifier: GraphQLID, item: Item) {
-          self.init(unsafeResultMap: ["__typename": "OrderItem", "orderid": orderid, "foodid": foodid, "identifier": identifier, "item": item.resultMap])
+        public init(orderid: GraphQLID, foodid: GraphQLID, identifier: GraphQLID, item: Item, ingredientsWrapper: [IngredientsWrapper]? = nil) {
+          self.init(unsafeResultMap: ["__typename": "OrderItem", "orderid": orderid, "foodid": foodid, "identifier": identifier, "item": item.resultMap, "ingredientsWrapper": ingredientsWrapper.flatMap { (value: [IngredientsWrapper]) -> [ResultMap] in value.map { (value: IngredientsWrapper) -> ResultMap in value.resultMap } }])
         }
 
         public var __typename: String {
@@ -1542,6 +1551,15 @@ public final class OrdersByRestQuery: GraphQLQuery {
           }
           set {
             resultMap.updateValue(newValue.resultMap, forKey: "item")
+          }
+        }
+
+        public var ingredientsWrapper: [IngredientsWrapper]? {
+          get {
+            return (resultMap["ingredientsWrapper"] as? [ResultMap]).flatMap { (value: [ResultMap]) -> [IngredientsWrapper] in value.map { (value: ResultMap) -> IngredientsWrapper in IngredientsWrapper(unsafeResultMap: value) } }
+          }
+          set {
+            resultMap.updateValue(newValue.flatMap { (value: [IngredientsWrapper]) -> [ResultMap] in value.map { (value: IngredientsWrapper) -> ResultMap in value.resultMap } }, forKey: "ingredientsWrapper")
           }
         }
 
@@ -1600,6 +1618,90 @@ public final class OrdersByRestQuery: GraphQLQuery {
               }
               set {
                 resultMap += newValue.resultMap
+              }
+            }
+          }
+        }
+
+        public struct IngredientsWrapper: GraphQLSelectionSet {
+          public static let possibleTypes = ["Topping"]
+
+          public static let selections: [GraphQLSelection] = [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("statictopping", alias: "ingredient", type: .object(Ingredient.selections)),
+          ]
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(ingredient: Ingredient? = nil) {
+            self.init(unsafeResultMap: ["__typename": "Topping", "ingredient": ingredient.flatMap { (value: Ingredient) -> ResultMap in value.resultMap }])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var ingredient: Ingredient? {
+            get {
+              return (resultMap["ingredient"] as? ResultMap).flatMap { Ingredient(unsafeResultMap: $0) }
+            }
+            set {
+              resultMap.updateValue(newValue?.resultMap, forKey: "ingredient")
+            }
+          }
+
+          public struct Ingredient: GraphQLSelectionSet {
+            public static let possibleTypes = ["StaticTopping"]
+
+            public static let selections: [GraphQLSelection] = [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("toppingid", alias: "id", type: .nonNull(.scalar(GraphQLID.self))),
+              GraphQLField("displayname", alias: "name", type: .nonNull(.scalar(String.self))),
+            ]
+
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public init(id: GraphQLID, name: String) {
+              self.init(unsafeResultMap: ["__typename": "StaticTopping", "id": id, "name": name])
+            }
+
+            public var __typename: String {
+              get {
+                return resultMap["__typename"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "__typename")
+              }
+            }
+
+            public var id: GraphQLID {
+              get {
+                return resultMap["id"]! as! GraphQLID
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "id")
+              }
+            }
+
+            public var name: String {
+              get {
+                return resultMap["name"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "name")
               }
             }
           }
@@ -2288,6 +2390,7 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
         ordertype
         timeplaced
         restaurantid
+        instructions
         orderitems {
           __typename
           orderid
@@ -2297,6 +2400,14 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
             __typename
             ...FoodItemDetails
             description
+          }
+          ingredientsWrapper: toppings {
+            __typename
+            ingredient: statictopping {
+              __typename
+              id: toppingid
+              name: displayname
+            }
           }
         }
       }
@@ -2352,6 +2463,7 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
         GraphQLField("ordertype", type: .nonNull(.scalar(OrderStatus.self))),
         GraphQLField("timeplaced", type: .nonNull(.scalar(String.self))),
         GraphQLField("restaurantid", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("instructions", type: .scalar(String.self)),
         GraphQLField("orderitems", type: .nonNull(.list(.nonNull(.object(Orderitem.selections))))),
       ]
 
@@ -2361,8 +2473,8 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
         self.resultMap = unsafeResultMap
       }
 
-      public init(orderid: GraphQLID, ordertype: OrderStatus, timeplaced: String, restaurantid: GraphQLID, orderitems: [Orderitem]) {
-        self.init(unsafeResultMap: ["__typename": "FoodOrder", "orderid": orderid, "ordertype": ordertype, "timeplaced": timeplaced, "restaurantid": restaurantid, "orderitems": orderitems.map { (value: Orderitem) -> ResultMap in value.resultMap }])
+      public init(orderid: GraphQLID, ordertype: OrderStatus, timeplaced: String, restaurantid: GraphQLID, instructions: String? = nil, orderitems: [Orderitem]) {
+        self.init(unsafeResultMap: ["__typename": "FoodOrder", "orderid": orderid, "ordertype": ordertype, "timeplaced": timeplaced, "restaurantid": restaurantid, "instructions": instructions, "orderitems": orderitems.map { (value: Orderitem) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -2410,6 +2522,15 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
         }
       }
 
+      public var instructions: String? {
+        get {
+          return resultMap["instructions"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "instructions")
+        }
+      }
+
       public var orderitems: [Orderitem] {
         get {
           return (resultMap["orderitems"] as! [ResultMap]).map { (value: ResultMap) -> Orderitem in Orderitem(unsafeResultMap: value) }
@@ -2428,6 +2549,7 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
           GraphQLField("foodid", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("identifier", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("item", type: .nonNull(.object(Item.selections))),
+          GraphQLField("toppings", alias: "ingredientsWrapper", type: .list(.nonNull(.object(IngredientsWrapper.selections)))),
         ]
 
         public private(set) var resultMap: ResultMap
@@ -2436,8 +2558,8 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
           self.resultMap = unsafeResultMap
         }
 
-        public init(orderid: GraphQLID, foodid: GraphQLID, identifier: GraphQLID, item: Item) {
-          self.init(unsafeResultMap: ["__typename": "OrderItem", "orderid": orderid, "foodid": foodid, "identifier": identifier, "item": item.resultMap])
+        public init(orderid: GraphQLID, foodid: GraphQLID, identifier: GraphQLID, item: Item, ingredientsWrapper: [IngredientsWrapper]? = nil) {
+          self.init(unsafeResultMap: ["__typename": "OrderItem", "orderid": orderid, "foodid": foodid, "identifier": identifier, "item": item.resultMap, "ingredientsWrapper": ingredientsWrapper.flatMap { (value: [IngredientsWrapper]) -> [ResultMap] in value.map { (value: IngredientsWrapper) -> ResultMap in value.resultMap } }])
         }
 
         public var __typename: String {
@@ -2482,6 +2604,15 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
           }
           set {
             resultMap.updateValue(newValue.resultMap, forKey: "item")
+          }
+        }
+
+        public var ingredientsWrapper: [IngredientsWrapper]? {
+          get {
+            return (resultMap["ingredientsWrapper"] as? [ResultMap]).flatMap { (value: [ResultMap]) -> [IngredientsWrapper] in value.map { (value: ResultMap) -> IngredientsWrapper in IngredientsWrapper(unsafeResultMap: value) } }
+          }
+          set {
+            resultMap.updateValue(newValue.flatMap { (value: [IngredientsWrapper]) -> [ResultMap] in value.map { (value: IngredientsWrapper) -> ResultMap in value.resultMap } }, forKey: "ingredientsWrapper")
           }
         }
 
@@ -2540,6 +2671,90 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
               }
               set {
                 resultMap += newValue.resultMap
+              }
+            }
+          }
+        }
+
+        public struct IngredientsWrapper: GraphQLSelectionSet {
+          public static let possibleTypes = ["Topping"]
+
+          public static let selections: [GraphQLSelection] = [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("statictopping", alias: "ingredient", type: .object(Ingredient.selections)),
+          ]
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(ingredient: Ingredient? = nil) {
+            self.init(unsafeResultMap: ["__typename": "Topping", "ingredient": ingredient.flatMap { (value: Ingredient) -> ResultMap in value.resultMap }])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var ingredient: Ingredient? {
+            get {
+              return (resultMap["ingredient"] as? ResultMap).flatMap { Ingredient(unsafeResultMap: $0) }
+            }
+            set {
+              resultMap.updateValue(newValue?.resultMap, forKey: "ingredient")
+            }
+          }
+
+          public struct Ingredient: GraphQLSelectionSet {
+            public static let possibleTypes = ["StaticTopping"]
+
+            public static let selections: [GraphQLSelection] = [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("toppingid", alias: "id", type: .nonNull(.scalar(GraphQLID.self))),
+              GraphQLField("displayname", alias: "name", type: .nonNull(.scalar(String.self))),
+            ]
+
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public init(id: GraphQLID, name: String) {
+              self.init(unsafeResultMap: ["__typename": "StaticTopping", "id": id, "name": name])
+            }
+
+            public var __typename: String {
+              get {
+                return resultMap["__typename"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "__typename")
+              }
+            }
+
+            public var id: GraphQLID {
+              get {
+                return resultMap["id"]! as! GraphQLID
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "id")
+              }
+            }
+
+            public var name: String {
+              get {
+                return resultMap["name"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "name")
               }
             }
           }

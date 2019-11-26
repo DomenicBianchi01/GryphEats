@@ -41,8 +41,8 @@ class RestOrdersViewModel: ObservableObject {
                     var foodItems: [RestaurantFoodItem] = []
                     for orderItem in (order.orderitems.compactMap({ $0 })) {
                         var itemIngredients: [FoodItemDetails.Ingredient] = []
-                        for ingredient in ((orderItem.item.fragments.foodItemDetails.ingredients?.compactMap({ $0 }))!) {
-                            itemIngredients.append(FoodItemDetails.Ingredient( id: ingredient.id, name: ingredient.name ))
+                        for ingredient in ((orderItem.ingredientsWrapper?.compactMap({ $0 }))!) {
+                            itemIngredients.append(FoodItemDetails.Ingredient( id: ingredient.ingredient!.id, name: ingredient.ingredient!.name ))
                         }
                         foodItems.append(RestaurantFoodItem(
                             foodItem: GraphFoodItem(
@@ -88,8 +88,8 @@ class RestOrdersViewModel: ObservableObject {
                     var foodItems: [RestaurantFoodItem] = []
                     for orderItem in (order.orderitems.compactMap({ $0 })) {
                         var itemIngredients: [FoodItemDetails.Ingredient] = []
-                        for ingredient in ((orderItem.item.fragments.foodItemDetails.ingredients?.compactMap({ $0 }))!) {
-                            itemIngredients.append(FoodItemDetails.Ingredient( id: ingredient.id, name: ingredient.name ))
+                        for ingredient in ((orderItem.ingredientsWrapper?.compactMap({ $0 }))!) {
+                            itemIngredients.append(FoodItemDetails.Ingredient( id: ingredient.ingredient!.id, name: ingredient.ingredient!.name ))
                         }
                         foodItems.append(RestaurantFoodItem(
                             foodItem: GraphFoodItem(
@@ -109,6 +109,7 @@ class RestOrdersViewModel: ObservableObject {
                         status: order.ordertype,
                         timePlaced: order.timeplaced,
                         paymentType: .credit,
+                        specialInstructions: order.instructions,
                         items: foodItems
                     ))
                 }
