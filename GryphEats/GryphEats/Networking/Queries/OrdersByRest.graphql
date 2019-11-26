@@ -15,10 +15,7 @@ query OrdersByRest($restID: ID!) {
                 description
             }
             ingredientsWrapper: toppings {
-                ingredient: statictopping {
-                    id: toppingid
-                    name: displayname
-                }
+                ...Toppings
             }
         }
     }

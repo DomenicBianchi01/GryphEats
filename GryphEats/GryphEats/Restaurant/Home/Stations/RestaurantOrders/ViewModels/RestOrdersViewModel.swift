@@ -42,7 +42,7 @@ class RestOrdersViewModel: ObservableObject {
                     for orderItem in (order.orderitems.compactMap({ $0 })) {
                         var itemIngredients: [FoodItemDetails.Ingredient] = []
                         for ingredient in ((orderItem.ingredientsWrapper?.compactMap({ $0 }))!) {
-                            itemIngredients.append(FoodItemDetails.Ingredient( id: ingredient.ingredient!.id, name: ingredient.ingredient!.name ))
+                            itemIngredients.append(FoodItemDetails.Ingredient( id: ingredient.fragments.toppings.ingredient!.id, name: ingredient.fragments.toppings.ingredient!.name ))
                         }
                         foodItems.append(RestaurantFoodItem(
                             foodItem: GraphFoodItem(

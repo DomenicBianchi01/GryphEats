@@ -13,11 +13,15 @@ query UserOrders($userID: ID!) {
                 ...FoodItemDetails
             }
             ingredientsWrapper: toppings {
-                ingredient: statictopping {
-                    id: toppingid
-                    name: displayname
-                }
+                ...Toppings
             }
         }
+    }
+}
+
+fragment Toppings on Topping {
+    ingredient: statictopping {
+        id: toppingid
+        name: displayname
     }
 }
