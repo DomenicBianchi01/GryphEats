@@ -22,7 +22,7 @@ struct RestCell<V: View>: View {
     var body: some View {
         VStack {
             NavigationLink(destination: destinationView()) {
-                Image("Borger").renderingMode(.original)
+                Image("hospitalityLogo").renderingMode(.original)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .clipShape(Circle())

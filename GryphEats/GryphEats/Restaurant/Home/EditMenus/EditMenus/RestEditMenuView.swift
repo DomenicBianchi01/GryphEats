@@ -80,7 +80,7 @@ struct RestMenuItemCell: View {
     
     var body: some View {
         VStack{
-            Image("Borger")
+            Image("hospitalityLogo")
             CheckBoxRow(itemName: itemName, isSelected: false, onTap: {})
         }
     }
