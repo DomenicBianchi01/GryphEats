@@ -26,7 +26,7 @@ select @restaurant_id := restaurantid from restaurant where description = 'idk';
 select @restaurant_id2 := restaurantid from restaurant where description = 'Homecooked food';
 
 insert into user values (null, 'Scott', 'Riva', '905123456', '10 Stone Rd', 'scott@mail.com' , '$2b$08$CX3U70uOW6EafdOfWdNOfe9pQeO1xi.zBrl0Fzs1nspX1/gTyLLnq', 0, '', '');
-insert into user values (null, 'Domenic', 'Bianchi', '519654321', '3 Gordon St', 'creelman@hospitality.ca.com' , '$2b$08$CX3U70uOW6EafdOfWdNOfe9pQeO1xi.zBrl0Fzs1nspX1/gTyLLnq', 1, '', '');
+insert into user values (null, 'Domenic', 'Bianchi', '519654321', '3 Gordon St', 'creelman@hospitality.ca' , '$2b$08$CX3U70uOW6EafdOfWdNOfe9pQeO1xi.zBrl0Fzs1nspX1/gTyLLnq', 1, '', '');
 
 insert into food values (null, 'Hamburger', 0, 8.49, @restaurant_id, 1, 'Plain Hamburger', 0, 'https://i.imgur.com/RGUwk0F.jpg');
 insert into food values (null, 'Cheeseburger', 0, 8.99, @restaurant_id, 1, 'Burger with cheese', 0, 'https://i.imgur.com/RGUwk0F.jpg');
@@ -46,17 +46,21 @@ select @food_id4 := foodid from food where displayname = 'Chicken fingers';
 select @food_id5 := foodid from food where displayname = 'Pizza';
 select @food_id6 := foodid from food where displayname = 'Chicken tenders';
 
+/*
 insert into foodorder values (null, '2019-12-31 23:59:59', null, @restaurant_id, 0, @user_id, 'Peanut allergy!!!', 20, 'Thousand Mile Grill', 1);
 
 select @order_id := orderid from foodorder where timeplaced = '2019-12-31 23:59:59';
 
-
 insert into orderitem values (@order_id, @food_id1 ,null);
+*/
+
 insert into menu values (null, @restaurant_id, 'TESTMENU', 'cool foods', 0);
 
+/*
 select @identifier := identifier from orderitem inner join foodorder where timeplaced = '2019-12-31 23:59:59';
 
 insert into topping values (0, @identifier);
+*/
 
 insert into menu values (null, @restaurant_id, 'The Classics', 'Best burgers in town', 1);
 insert into menu values (null, @restaurant_id2, 'All Day Menu', 'Moms Kitchen All Day Menu', 1);
