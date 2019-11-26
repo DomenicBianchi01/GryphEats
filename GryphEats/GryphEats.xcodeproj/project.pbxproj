@@ -242,6 +242,8 @@
 		B0BEF921234D525C004455DC /* MenuCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BEF920234D525C004455DC /* MenuCardTests.swift */; };
 		B0BEF925234D546D004455DC /* SliderViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BEF924234D546D004455DC /* SliderViewTests.swift */; };
 		B0BEF928234D558E004455DC /* RestaurantItemsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BEF927234D558E004455DC /* RestaurantItemsViewTests.swift */; };
+		B0BF0CE8238DDA05002E128F /* MenusUpdated.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0BF0CE7238DDA05002E128F /* MenusUpdated.graphql */; };
+		B0BF0CE9238DDA05002E128F /* MenusUpdated.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0BF0CE7238DDA05002E128F /* MenusUpdated.graphql */; };
 		B0C9B198234A8EF700605D23 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C9B197234A8EF700605D23 /* ResetPasswordView.swift */; };
 		B0CA762C23454A38003E7FBD /* RestaurantMenus.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B0CA762B23454A38003E7FBD /* RestaurantMenus.graphql */; };
 		B0CA762E23454B1F003E7FBD /* GraphAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CA762D23454B1F003E7FBD /* GraphAPI.swift */; };
@@ -443,6 +445,7 @@
 		B0BEF920234D525C004455DC /* MenuCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCardTests.swift; sourceTree = "<group>"; };
 		B0BEF924234D546D004455DC /* SliderViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewTests.swift; sourceTree = "<group>"; };
 		B0BEF927234D558E004455DC /* RestaurantItemsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantItemsViewTests.swift; sourceTree = "<group>"; };
+		B0BF0CE7238DDA05002E128F /* MenusUpdated.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = MenusUpdated.graphql; sourceTree = "<group>"; };
 		B0C9B197234A8EF700605D23 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		B0CA762B23454A38003E7FBD /* RestaurantMenus.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = RestaurantMenus.graphql; sourceTree = "<group>"; };
 		B0CA762D23454B1F003E7FBD /* GraphAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphAPI.swift; sourceTree = "<group>"; };
@@ -688,6 +691,7 @@
 			isa = PBXGroup;
 			children = (
 				EB9468082368CB2200FAAE56 /* OrdersUpdated.graphql */,
+				B0BF0CE7238DDA05002E128F /* MenusUpdated.graphql */,
 			);
 			path = Subscriptions;
 			sourceTree = "<group>";
@@ -1236,6 +1240,7 @@
 				B0187657236B19130031FD2E /* Roboto-LightItalic.ttf in Resources */,
 				B0187658236B19130031FD2E /* RobotoCondensed-BoldItalic.ttf in Resources */,
 				B0187659236B19130031FD2E /* Roboto-ThinItalic.ttf in Resources */,
+				B0BF0CE9238DDA05002E128F /* MenusUpdated.graphql in Resources */,
 				B018765A236B19130031FD2E /* Roboto-MediumItalic.ttf in Resources */,
 				B018765B236B19130031FD2E /* Assets.xcassets in Resources */,
 				B018765C236B19130031FD2E /* RobotoCondensed-Italic.ttf in Resources */,
@@ -1259,6 +1264,7 @@
 				EB1E4536234CF28800B5C8FD /* Roboto-Medium.ttf in Resources */,
 				EB9468022368898E00FAAE56 /* UpdateOrder.graphql in Resources */,
 				EB1E4548234CF28800B5C8FD /* Roboto-Black.ttf in Resources */,
+				B0BF0CE8238DDA05002E128F /* MenusUpdated.graphql in Resources */,
 				EB9468092368CB2200FAAE56 /* OrdersUpdated.graphql in Resources */,
 				B01AE8D5236CBE0700827276 /* UserOrders.graphql in Resources */,
 				EB1E4541234CF28800B5C8FD /* RobotoCondensed-Regular.ttf in Resources */,

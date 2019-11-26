@@ -28,9 +28,9 @@ class RestStationsViewModel: ObservableObject {
 
                 for restaurant in data.restaurants.compactMap({ $0 }) {
                     restaurants.append(Restaurant(
-                        id: restaurant.id,
-                        name: restaurant.name,
-                        isOpen: restaurant.isActive,
+                        id: restaurant.fragments.restaurantDetails.id,
+                        name: restaurant.fragments.restaurantDetails.name,
+                        isOpen: restaurant.fragments.restaurantDetails.isActive,
                         foodItems: []))
                 }
 

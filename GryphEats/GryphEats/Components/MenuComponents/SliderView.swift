@@ -40,14 +40,14 @@ struct SliderView: View {
     private let type: SliderType
     private let onTap: (RestaurantFoodItem) -> Void
     
-    private var sliderContent: AnyView {
+    private var sliderContent: some View {
         switch type {
         case .foodItems(let items):
-            return AnyView(ForEach(items.indices, id: \.self) { index in
+            return ForEach(items.indices, id: \.self) { index in
                 self.menuCard(for: items[index], atIndex: index, onTap: { _ in
                     self.onTap(items[index])
                 })
-            })
+            }
         }
     }
     

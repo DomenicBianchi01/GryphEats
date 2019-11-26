@@ -28,29 +28,27 @@ class HomeViewModel: ObservableObject {
         GraphClient.shared.fetch(query: RestaurantMenusQuery()) { result in
             switch result {
             case .success(let data):
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "HH:mm:ss"
-                
-                let dateString = dateFormatter.string(from: Date())
-                let currentDate = dateFormatter.date(from: dateString)
-                
-                self.allRestaurantData = data.restaurants.compactMap({ $0 }).filter {
-                    guard $0.isActive,
-                        let currentDate = currentDate,
-                        let openingTime = dateFormatter.date(from: $0.openingTime ?? ""),
-                        let closingTime = dateFormatter.date(from: $0.closingTime ?? "") else {
-                            return false
-                    }
-                    
-                    return currentDate.compare(openingTime) == .orderedDescending &&
-                        currentDate.compare(closingTime) == .orderedAscending
-                }
-                
-                self.loadingState = .loaded(self.filterInStockOnly())
+                self.parseRestaurantDetails(data.restaurants.compactMap({ $0?.fragments.restaurantDetails }))
             case .failure:
                 self.loadingState = .error
             }
         }
+        
+        menuSubscription?.cancel()
+        
+        menuSubscription = GraphClient.shared.subscribe(subscription: MenusUpdatedSubscription()) { result in
+            switch result {
+            case .success(let data):
+                self.parseRestaurantDetails(data.menuUpdated.compactMap({ $0?.fragments.restaurantDetails }))
+            case .failure:
+                self.loadingState = .error
+            }
+        }
+    }
+    
+    func cancelSubscription() {
+        menuSubscription?.cancel()
+        menuSubscription = nil
     }
     
     func filterRestaurants(by searchText: String) {
@@ -69,7 +67,7 @@ class HomeViewModel: ObservableObject {
                 name: $0.name,
                 isActive: $0.isActive,
                 menu: [
-                    RestaurantMenusQuery.Data.Restaurant.Menu(
+                    RestaurantDetails.Menu(
                         isActive: true,
                         menuItems: items.filter {
                             $0.item.fragments.foodItemDetails.name.lowercased().contains(searchText.lowercased())
@@ -82,7 +80,12 @@ class HomeViewModel: ObservableObject {
         loadingState = .loaded(filteredRestaurants.filter { !($0.menu.first??.menuItems.isEmpty ?? true) })
     }
     
-    func filterInStockOnly() -> [GraphRestaurant] {
+    // MARK: Private
+    
+    private var allRestaurantData: [GraphRestaurant] = []
+    private var menuSubscription: Cancellable? = nil
+    
+    private func filterInStockOnly() -> [GraphRestaurant] {
         return allRestaurantData.compactMap { restaurant in
             guard let items = restaurant.menu.first(where: { $0?.isActive == true })??.menuItems.compactMap({ $0 }) else {
                 return nil
@@ -93,7 +96,7 @@ class HomeViewModel: ObservableObject {
                 name: restaurant.name,
                 isActive: restaurant.isActive,
                 menu: [
-                    RestaurantMenusQuery.Data.Restaurant.Menu(
+                    RestaurantDetails.Menu(
                         isActive: true,
                         menuItems: items.filter {
                             $0.item.fragments.foodItemDetails.inStock
@@ -104,8 +107,25 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    // MARK: Private
-    
-    private var allRestaurantData: [GraphRestaurant] = []
-    
+    private func parseRestaurantDetails(_ data: [RestaurantDetails]) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        
+        let dateString = dateFormatter.string(from: Date())
+        let currentDate = dateFormatter.date(from: dateString)
+        
+        self.allRestaurantData = data.filter {
+            guard $0.isActive,
+                let currentDate = currentDate,
+                let openingTime = dateFormatter.date(from: $0.openingTime ?? ""),
+                let closingTime = dateFormatter.date(from: $0.closingTime ?? "") else {
+                    return false
+            }
+            
+            return currentDate.compare(openingTime) == .orderedDescending &&
+                currentDate.compare(closingTime) == .orderedAscending
+        }
+        
+        self.loadingState = .loaded(self.filterInStockOnly())
+    }
 }

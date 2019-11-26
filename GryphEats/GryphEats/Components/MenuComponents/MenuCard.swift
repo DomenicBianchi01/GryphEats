@@ -16,8 +16,13 @@ struct MenuCard: View {
     
     init(itemName: String, imageUrl: String, onTap: @escaping () -> Void) {
         self.itemName = itemName
-        self.imageUrl = imageUrl
         self.onTap = onTap
+        
+        guard let url = URL(string: imageUrl) else {
+            return
+        }
+        
+        imageLoader.fetchImage(from: url)
     }
     
     // MARK: Internal
@@ -25,10 +30,10 @@ struct MenuCard: View {
     var body: some View {
         ZStack(alignment: .leading) {
             Group {
-                if image == nil {
+                if imageLoader.image == nil {
                     ActivityIndicatorView(color: .white)
                 } else {
-                    Image(uiImage: image!).resizable()
+                    Image(uiImage: imageLoader.image!).resizable()
                 }
             }.aspectRatio(contentMode: .fill)
                 .frame(width: frameSize.width, height: frameSize.height)
@@ -44,35 +49,17 @@ struct MenuCard: View {
             .padding(.horizontal, 10)
             .onTapGesture {
                 self.onTap()
-        }.onAppear {
-            self.fetchImage()
         }
     }
     
     // MARK: Private
     
-    @State private var image: UIImage? = nil
+    @ObservedObject private var imageLoader = ImageClient()
     
     private let onTap: () -> Void
     private let itemName: String
-    private let imageUrl: String
-    
     private let frameSize = CGSize(width: 150, height: 200)
     
-    private func fetchImage() {
-        guard let url = URL(string: imageUrl) else {
-            return
-        }
-        
-        ImageClient().fetchImage(from: url) { result in
-            switch result {
-            case .success(let image):
-                self.image = image
-            case .failure:
-                break
-            }
-        }
-    }
 }
 
 struct MenuCard_Previews: PreviewProvider {

@@ -1,19 +1,6 @@
 query RestaurantMenus {
     restaurants {
-        id: restaurantid
-        name: displayname
-        isActive: isactive
-        openingTime: openingtime
-        closingTime: closingtime
-        menu {
-            isActive: isactive
-            menuItems {
-                item {
-                    imageUrl: imageurl
-                    ...FoodItemDetails
-                }
-            }
-        }
+        ...RestaurantDetails
     }
 }
 
@@ -25,5 +12,22 @@ fragment FoodItemDetails on Food {
     ingredients: toppings {
         id: toppingid
         name: displayname
+    }
+}
+
+fragment RestaurantDetails on Restaurant {
+    id: restaurantid
+    name: displayname
+    isActive: isactive
+    openingTime: openingtime
+    closingTime: closingtime
+    menu {
+        isActive: isactive
+        menuItems {
+            item {
+                imageUrl: imageurl
+                ...FoodItemDetails
+            }
+        }
     }
 }

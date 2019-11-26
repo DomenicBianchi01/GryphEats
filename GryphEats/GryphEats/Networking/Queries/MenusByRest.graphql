@@ -5,7 +5,7 @@ query MenusByRest($restID: ID!) {
         description
         isactive
         restaurant {
-            ...RestaurantDetails
+            ...SimpleRestaurantDetails
         }
         menuItems {
             item {
@@ -15,7 +15,7 @@ query MenusByRest($restID: ID!) {
     }
 }
 
-fragment RestaurantDetails on Restaurant {
+fragment SimpleRestaurantDetails on Restaurant {
     id: restaurantid
     name: displayname
     openingtime

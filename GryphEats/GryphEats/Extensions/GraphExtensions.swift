@@ -10,8 +10,8 @@ import Foundation
 
 // The typealias' below exist just for convenience
 
-typealias GraphRestaurant = RestaurantMenusQuery.Data.Restaurant
-typealias Menu = GraphRestaurant.Menu
+typealias GraphRestaurant = RestaurantDetails
+typealias Menu = RestaurantDetails.Menu
 typealias GraphFoodItem = FoodItemDetails
 typealias GraphOrder = UserOrdersQuery.Data.GetOrdersByUserId
 
