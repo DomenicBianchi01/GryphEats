@@ -8,39 +8,82 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 // MARK: - ImageClient
 
-final class ImageClient {
+//final class ImageClient {
+//
+//    // MARK: ImageError
+//
+//    enum ImageError: Error {
+//        case invalidURL
+//        case decodingError
+//    }
+//
+//    // MARK: Internal
+//
+//    func fetchImage(from url: URL, completion: @escaping (Result<UIImage, ImageError>) -> Void) {
+//        if let cachedImage = ImageCache.shared.image(for: url.absoluteString) {
+//            completion(.success(cachedImage))
+//            return
+//        }
+//
+//        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+//            guard let data = data, error == nil else {
+//                completion(.failure(.invalidURL))
+//                return
+//            }
+//
+//            guard let image = UIImage(data: data) else {
+//                completion(.failure(.decodingError))
+//                return
+//            }
+//
+//            ImageCache.shared.save(image: image, for: url.absoluteString)
+//            completion(.success(image))
+//        }
+//
+//        task.resume()
+//    }
+//}
+
+final class ImageClient: ObservableObject {
     
     // MARK: ImageError
     
-    enum ImageError: Error {
-        case invalidURL
-        case decodingError
-    }
+//    enum ImageError: Error {
+//        case invalidURL
+//        case decodingError
+//    }
     
     // MARK: Internal
     
-    func fetchImage(from url: URL, completion: @escaping (Result<UIImage, ImageError>) -> Void) {
+    @Published var image: UIImage? = nil
+    
+    func fetchImage(from url: URL) {
         if let cachedImage = ImageCache.shared.image(for: url.absoluteString) {
-            completion(.success(cachedImage))
+            DispatchQueue.main.async {
+                self.image = cachedImage
+            }
             return
         }
         
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data, error == nil else {
-                completion(.failure(.invalidURL))
+                //throw ImageError.invalidURL
                 return
             }
             
             guard let image = UIImage(data: data) else {
-                completion(.failure(.decodingError))
+                //throw ImageError.decodingError
                 return
             }
             
-            ImageCache.shared.save(image: image, for: url.absoluteString)
-            completion(.success(image))
+            //ImageCache.shared.save(image: image, for: url.absoluteString)
+            DispatchQueue.main.async {
+                self.image = image
+            }
         }
         
         task.resume()

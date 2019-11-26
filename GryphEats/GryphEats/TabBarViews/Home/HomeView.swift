@@ -26,6 +26,8 @@ struct HomeView: View {
             UITableView.appearance().separatorStyle = .none
             UITableView.appearance().backgroundColor = .lightGray
             self.viewModel.fetchRestaurants()
+        }.onDisappear {
+            self.viewModel.cancelSubscription()
         }
     }
     

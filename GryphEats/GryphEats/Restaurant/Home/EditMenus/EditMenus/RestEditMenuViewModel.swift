@@ -61,9 +61,9 @@ class RestEditMenuViewModel: ObservableObject {
                             inStock: foodItem!.inStock))
                     }
                     restaurantMenu = Restaurant(
-                        id: menu.restaurant.fragments.restaurantDetails.id,
-                        name: menu.restaurant.fragments.restaurantDetails.name,
-                        isOpen: menu.restaurant.fragments.restaurantDetails.isOpen,
+                        id: menu.restaurant.fragments.simpleRestaurantDetails.id,
+                        name: menu.restaurant.fragments.simpleRestaurantDetails.name,
+                        isOpen: menu.restaurant.fragments.simpleRestaurantDetails.isOpen,
                         foodItems: foodItems)
                 }
                 self.loadingState = .loaded(restaurantMenu)
@@ -94,9 +94,9 @@ class RestEditMenuViewModel: ObservableObject {
                             inStock: foodItem!.inStock))
                     }
                     restaurant = Restaurant(
-                        id: menu.restaurant.fragments.restaurantDetails.id,
-                        name: menu.restaurant.fragments.restaurantDetails.name,
-                        isOpen: menu.restaurant.fragments.restaurantDetails.isOpen,
+                        id: menu.restaurant.fragments.simpleRestaurantDetails.id,
+                        name: menu.restaurant.fragments.simpleRestaurantDetails.name,
+                        isOpen: menu.restaurant.fragments.simpleRestaurantDetails.isOpen,
                         foodItems: foodItems)
                 }
                 self.loadingState = .loaded(restaurant)

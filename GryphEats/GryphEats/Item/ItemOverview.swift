@@ -35,10 +35,10 @@ struct ItemOverview: View, Dismissable {
         ZStack(alignment: .top) {
             GeometryReader { geometry in
                 Group {
-                    if self.image == nil {
+                    if self.imageLoader.image == nil {
                         ActivityIndicatorView(color: .white)
                     } else {
-                        Image(uiImage: self.image!)
+                        Image(uiImage: self.imageLoader.image!)
                             .resizable()
                             .scaledToFill()
                     }
@@ -105,7 +105,11 @@ struct ItemOverview: View, Dismissable {
                 }
             }
         }.onAppear {
-            self.fetchImage()
+            guard let imageUrl = self.item.imageURL, let url = URL(string: imageUrl) else {
+                return
+            }
+            
+            self.imageLoader.fetchImage(from: url)
         }
     }
     
@@ -114,7 +118,7 @@ struct ItemOverview: View, Dismissable {
     // MARK: Private
     
     @EnvironmentObject private var cart: Cart
-    @State private var image: UIImage? = nil
+    @ObservedObject private var imageLoader = ImageClient()
     
     private let item: RestaurantFoodItem
     private let displayMode: DisplayMode
@@ -122,21 +126,6 @@ struct ItemOverview: View, Dismissable {
     
     private var itemHasIngredients: Bool {
         return !(item.foodItem.ingredients?.isEmpty ?? false)
-    }
-    
-    private func fetchImage() {
-        guard let imageUrl = item.imageURL, let url = URL(string: imageUrl) else {
-            return
-        }
-        
-        ImageClient().fetchImage(from: url) { result in
-            switch result {
-            case .success(let image):
-                self.image = image
-            case .failure:
-                break
-            }
-        }
     }
 }
 
