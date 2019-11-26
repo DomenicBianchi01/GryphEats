@@ -12,6 +12,12 @@ const typeDefs = gql`
         cancelled
     }
 
+    enum PaymentType {
+        credit
+        oncampus
+        offcampus
+    }
+
     enum UserType {
         customer
         restaurant
@@ -43,7 +49,7 @@ const typeDefs = gql`
         updateOrder(orderid:ID!, status:OrderStatus!, restaurantid:ID!): Finish
         createOrder(userid:ID!, restaurantid: ID!): FoodOrder
         createOrderItem(orderid: ID!, foodid: ID!): OrderItem
-        placeOrder(userid:ID!, foodwrappers:[FoodWrapper]!, restaurantid:ID!, instructions: String): Finish
+        placeOrder(userid:ID!, foodwrappers:[FoodWrapper]!, restaurantid:ID!, instructions: String, paymenttype: PaymentType!): Finish
         createTopping(toppingid:ID!, identifier: ID!): String
         completeOrder(orderid: ID): Finish
         updateFoodPriceByFoodID(foodid:ID!, price:ID!): String
@@ -73,6 +79,7 @@ const typeDefs = gql`
         isavailable: Boolean!
         description: String
         foodgroup: ID!
+        imageurl: String!
         toppings: [StaticTopping!]
     }
 
@@ -103,6 +110,7 @@ const typeDefs = gql`
         usertype: UserType!
         securityq: String
         securitya: String
+        paymenttype: PaymentType!
         foodorders: [FoodOrder]!
     }
 
@@ -139,6 +147,9 @@ const typeDefs = gql`
         ordertype: OrderStatus!
         userid: ID!
         instructions: String
+        estimatedtime: ID!
+        restaurantname: String
+        paymenttype: PaymentType!
         orderitems: [OrderItem!]!
     }
 

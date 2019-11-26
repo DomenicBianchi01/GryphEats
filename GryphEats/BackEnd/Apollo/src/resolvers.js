@@ -20,6 +20,11 @@ module.exports = {
         customer: 0,
         restaurant: 1,
     },
+    PaymentType: {
+        credit: 0,
+        oncampus: 1,
+        offcampus: 2,
+    },
     Query: {
         // foods: (parent, args, { dataSources }, info) => datasources.food.findAll(),
         customTest: async (_, { foodwrappers }, { dataSources }, info) => dataSources.gryphAPI.customTest({ foodwrappers }),
@@ -46,7 +51,7 @@ module.exports = {
         updateOrder: async (_, { orderid, status, restaurantid }, { dataSources }) => dataSources.gryphAPI.updateOrder({ orderid, status, restaurantid }),
         createOrder: async (_, { userid, restaurantid }, { dataSources }) => dataSources.gryphAPI.createOrder({ userid, restaurantid }),
         createOrderItem: async (_, { orderid, foodid }, { dataSources }) => dataSources.gryphAPI.createOrderItem({ orderid, foodid }),
-        placeOrder: async (_, { userid, foodwrappers, restaurantid, instructions }, { dataSources }) => dataSources.gryphAPI.placeOrder({ userid, foodwrappers, restaurantid, instructions }),
+        placeOrder: async (_, { userid, foodwrappers, restaurantid, instructions, paymenttype }, { dataSources }) => dataSources.gryphAPI.placeOrder({ userid, foodwrappers, restaurantid, instructions, paymenttype }),
         createTopping: async (_, { toppingid, identifier }, { dataSources }) => dataSources.gryphAPI.createTopping({ toppingid, identifier }),
         completeOrder: async (_, { orderid }, { dataSources }) => dataSources.gryphAPI.completeOrder({ orderid }),
         updateFoodPriceByFoodID: async (_, { foodid, price }, { dataSources }) => dataSources.gryphAPI.updateFoodPriceByFoodID({ foodid, price }),
