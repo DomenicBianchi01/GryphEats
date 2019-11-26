@@ -62,7 +62,7 @@ struct SecurityQuestionView: View {
                                 email: self.state.email,
                                 password: self.state.password,
                                 question: self.state.question,
-                                answer: self.state.password)
+                                answer: self.state.answer)
                             { result in
                                 switch result {
                                 case .success:
