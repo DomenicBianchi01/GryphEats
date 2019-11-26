@@ -9,6 +9,8 @@ const Op = Sequelize.Op;
 const POST_ADDED = 'POST_ADDED';
 // const ORDER_PLACED = 'ORDER_PLACED';
 const ORDER_UPDATED = 'ORDER_UPDATED';
+const MENU_UPDATED = 'MENU_UPDATED';
+
 class GryphAPIS extends DataSource {
     constructor({ database }) {
         super();
@@ -95,6 +97,8 @@ class GryphAPIS extends DataSource {
                 where: { restaurantid }
             });
             console.log(result);
+            await pubsub.publish(MENU_UPDATED, { menuUpdated: result });
+            
             if (result) {
                 return "true";
             } else {
@@ -119,6 +123,8 @@ class GryphAPIS extends DataSource {
                 where: { foodid }
             });
             console.log(result);
+            await pubsub.publish(MENU_UPDATED, { menuUpdated: result });
+
             if (result) {
                 return "true";
             } else {

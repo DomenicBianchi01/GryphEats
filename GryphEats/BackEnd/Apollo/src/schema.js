@@ -68,6 +68,7 @@ const typeDefs = gql`
         foodAdded: Food
         # orderPlaced(restaurantid:ID!): [FoodOrder]
         orderUpdated(restaurantid:ID!): [FoodOrder]
+        menuUpdated: [Restaurant]!
     }
 
     type Food {

@@ -7,6 +7,7 @@ const ps = require('./pubsub');
 const pubsub = ps.pubsub;
 const POST_ADDED = 'POST_ADDED';
 const ORDER_UPDATED = 'ORDER_UPDATED';
+const MENU_UPDATED = 'MENU_UPDATED';
 
 module.exports = {
     OrderStatus: {
@@ -87,6 +88,12 @@ module.exports = {
             }),
             resolve: (payload, { restaurantid }, { dataSources }, info) => {
                 return dataSources.gryphAPI.getOrdersByRestaurantID({ restaurantid })
+            }
+        },
+        menuUpdated: {
+            subscribe: () => pubsub.asyncIterator([MENU_UPDATED]),
+            resolve: (payload, { }, { dataSources }, info) => {
+                return dataSources.gryphAPI.getAllRestaurants()
             }
         }
         // export const resolvers = {
