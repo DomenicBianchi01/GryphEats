@@ -50,12 +50,7 @@ class LoginViewModel {
         username: String,
         password: String,
         completion: @escaping (Result<User, LoginViewModel.LoginError>) -> Void)
-    {
-        if username == restaurantUser.username && password == restaurantUser.password {
-            completion(.success(restaurantUser))
-            return
-        }
-        
+    {        
         GraphClient.shared.fetch(query: LoginUserQuery(email: username, password: password)) { result in
             switch result {
             case .success(let data):
@@ -79,8 +74,6 @@ class LoginViewModel {
     }
     
     // MARK: Private
-    
-    private let restaurantUser = User(id: "1", type: .restaurant, username: "Test", password: "password")
     
     private func saveCredentials(username: String, password: String) {
         Valet.keychain.set(string: username, forKey: Valet.Key.userUsername.rawValue)
