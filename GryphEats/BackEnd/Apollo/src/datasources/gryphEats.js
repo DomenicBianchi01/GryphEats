@@ -81,6 +81,7 @@ class GryphAPIS extends DataSource {
                 where: { foodid }
             });
             console.log(result);
+            await pubsub.publish(MENU_UPDATED, { menuUpdated: result });
             if (result) {
                 return "true";
             } else {
