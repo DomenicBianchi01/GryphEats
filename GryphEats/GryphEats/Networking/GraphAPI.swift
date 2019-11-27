@@ -1789,6 +1789,7 @@ public final class UserOrdersQuery: GraphQLQuery {
           __typename
           item {
             __typename
+            imageUrl: imageurl
             ...FoodItemDetails
           }
           ingredientsWrapper: toppings {
@@ -2007,6 +2008,7 @@ public final class UserOrdersQuery: GraphQLQuery {
 
           public static let selections: [GraphQLSelection] = [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("imageurl", alias: "imageUrl", type: .nonNull(.scalar(String.self))),
             GraphQLFragmentSpread(FoodItemDetails.self),
           ]
 
@@ -2022,6 +2024,15 @@ public final class UserOrdersQuery: GraphQLQuery {
             }
             set {
               resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var imageUrl: String {
+            get {
+              return resultMap["imageUrl"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "imageUrl")
             }
           }
 
