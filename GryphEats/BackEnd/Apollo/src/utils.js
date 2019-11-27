@@ -179,6 +179,9 @@ module.exports.createDB = () => {
     user.prototype.validPassword = function (encryptedpw) {
         return bcrypt.compare(encryptedpw, this.encryptedpw);
     }
+    user.prototype.validAnswer = function (securitya) {
+        return bcrypt.compare(securitya, this.securitya);
+    }
 
     const topping = db.define('topping', {
         toppingid: {

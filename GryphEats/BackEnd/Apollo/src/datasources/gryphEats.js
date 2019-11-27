@@ -98,7 +98,7 @@ class GryphAPIS extends DataSource {
             });
             console.log(result);
             await pubsub.publish(MENU_UPDATED, { menuUpdated: result });
-            
+
             if (result) {
                 return "true";
             } else {
@@ -178,6 +178,9 @@ class GryphAPIS extends DataSource {
         try {
             // console.log(await this.generateHash(encryptedpw));
             encryptedpw = await this.generateHash(encryptedpw);
+            if (securitya) {
+                securitya = await this.generateHash(securitya);
+            }
             const result = await this.database.user.create({
                 fname, lname, phonenum, address, email, encryptedpw, usertype, securityq, securitya
             });
@@ -396,13 +399,22 @@ class GryphAPIS extends DataSource {
 
     async validateSecurityQuestion({ email, securitya }) {
         try {
-            const result = await this.database.user.findAll({
-                where: { email, securitya },
+            const result = await this.database.user.findOne({
+                where: { email },
             });
-            if (result[0] != null) {
+            // if (result[0] != null) {
+            //     return true;
+            // }
+            // else {
+            //     return false;
+            // }
+            // console.log(securitya);
+            // console.log(result);
+            // console.log(result.validAnswer(securitya));
+
+            if (result && await result.validAnswer(securitya)) {
                 return true;
-            }
-            else {
+            } else {
                 return false;
             }
         } catch (e) {
@@ -556,12 +568,11 @@ class GryphAPIS extends DataSource {
                         orderid: orderid, foodid: fid
                     });
                     if (food) {
-                        for (var i = 0; i < thisFood.toppingids.length; i++)
-                        {
+                        for (var i = 0; i < thisFood.toppingids.length; i++) {
                             console.log(i);
                             var toppingid = thisFood.toppingids[i];
                             var identifier = food.identifier
-                            const result = await this.createTopping({ toppingid, identifier} );
+                            const result = await this.createTopping({ toppingid, identifier });
                         }
                     }
                 }
@@ -586,8 +597,7 @@ class GryphAPIS extends DataSource {
         }
     }
 
-    async createTopping({ toppingid, identifier })
-    {
+    async createTopping({ toppingid, identifier }) {
         try {
             const result = await this.database.topping.create({
                 toppingid: toppingid, identifier: identifier
@@ -626,7 +636,7 @@ class GryphAPIS extends DataSource {
         }
     }
 
-    async createOrderItem({ orderid, foodid }){
+    async createOrderItem({ orderid, foodid }) {
         try {
             const result = await this.database.orderitem.create({
                 orderid: orderid, foodid: foodid
@@ -739,7 +749,7 @@ class GryphAPIS extends DataSource {
                 },
             });
             // console.log(result);
-            if (result && result.validPassword(pass)) {
+            if (result && await result.validPassword(pass)) {
                 return {
                     isValid: true,
                     account: result,
