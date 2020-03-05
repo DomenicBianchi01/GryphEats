@@ -201,6 +201,7 @@
 		B07B980323673732002E96C8 /* PlaceOrder.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B07B980223673732002E96C8 /* PlaceOrder.graphql */; };
 		B07F0DF723574B8400912397 /* CheckoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F0DF623574B8400912397 /* CheckoutViewModel.swift */; };
 		B07F0DFA2357544C00912397 /* OrderSubmittedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F0DF92357544C00912397 /* OrderSubmittedView.swift */; };
+		B07F636F2411693000A9C5A8 /* ImageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03780D02385C1B200CD9309 /* ImageClient.swift */; };
 		B0816FEC23624016001A04F3 /* OrderHistoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0816FEB23624016001A04F3 /* OrderHistoryCard.swift */; };
 		B0843367234CB54700DD325E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0843366234CB54700DD325E /* Category.swift */; };
 		B084336B234CEC5300DD325E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B084336A234CEC5300DD325E /* HomeViewModel.swift */; };
@@ -1385,6 +1386,7 @@
 				B0187613236B19130031FD2E /* BadgeButton.swift in Sources */,
 				B0180CD323839745003090CF /* RestEditMenuViewModel.swift in Sources */,
 				B0187614236B19130031FD2E /* ItemOverview.swift in Sources */,
+				B07F636F2411693000A9C5A8 /* ImageClient.swift in Sources */,
 				B0180CCF238396EA003090CF /* OrderSubmission.swift in Sources */,
 				B0187615236B19130031FD2E /* GraphClient.swift in Sources */,
 				B0187668236B21D00031FD2E /* OrderStatusStepView.swift in Sources */,
