@@ -42,6 +42,6 @@ struct MealRow: View {
 //        .shadow(radius: 2)
     }
     
-    var foodItem: GraphFoodItem
+    var foodItem: FoodItemDetails
     
 }

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct FoodCard: View {
     
-    init(foodItem: GraphFoodItem, onTap: @escaping () -> Void, onCommit: @escaping (String) -> Void) {
+    init(foodItem: FoodItemDetails, onTap: @escaping () -> Void, onCommit: @escaping (String) -> Void) {
         self.foodItem = foodItem
         _isSelected = State(initialValue: foodItem.inStock)
         self.onTap = onTap
@@ -63,5 +63,5 @@ struct FoodCard: View {
     
     private let onCommit: (String) -> Void
     private let onTap: () -> Void
-    private let foodItem: GraphFoodItem
+    private let foodItem: FoodItemDetails
 }

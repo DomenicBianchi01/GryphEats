@@ -18,7 +18,7 @@ class RestaurantItemsViewTests: XCTestCase {
     
     func x_testRestaurantItemsView() {
 //        let view = RestaurantItemsView(
-//            restaurant: GraphRestaurant(
+//            restaurant: RestaurantDetails(
 //                id: "0",
 //                name: "100 Mile Grill",
 //                isActive: true,

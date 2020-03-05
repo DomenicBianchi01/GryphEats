@@ -14,7 +14,7 @@ struct RestaurantItemsView: View {
     
     // MARK: Lifecycle
     
-    init(restaurant: GraphRestaurant, onTap: @escaping (RestaurantFoodItem) -> Void) {
+    init(restaurant: RestaurantDetails, onTap: @escaping (RestaurantFoodItem) -> Void) {
         self.restaurant = restaurant
         self.onTap = onTap
     }
@@ -54,7 +54,7 @@ struct RestaurantItemsView: View {
     // MARK: Private
     
     private let onTap: (RestaurantFoodItem) -> Void
-    private let restaurant: GraphRestaurant
+    private let restaurant: RestaurantDetails
     
     private var foodItems: [RestaurantFoodItem] {
         guard let activeItems = restaurant.menu.first(where: { $0?.isActive == true }),
@@ -75,7 +75,7 @@ struct RestaurantItemsView: View {
 //struct RestaurantItemsView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        RestaurantItemsView(
-//            restaurant: GraphRestaurant(
+//            restaurant: RestaurantDetails(
 //                id: "1",
 //                name: "100 Mile Grill",
 //                isActive: true,

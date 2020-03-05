@@ -45,7 +45,7 @@ class RestOrdersViewModel: ObservableObject {
                             itemIngredients.append(FoodItemDetails.Ingredient( id: ingredient.fragments.toppings.ingredient!.id, name: ingredient.fragments.toppings.ingredient!.name ))
                         }
                         foodItems.append(RestaurantFoodItem(
-                            foodItem: GraphFoodItem(
+                            foodItem: FoodItemDetails(
                                 id: orderItem.foodid,
                                 name: orderItem.item.fragments.foodItemDetails.name,
                                 price: orderItem.item.fragments.foodItemDetails.price,
@@ -92,7 +92,7 @@ class RestOrdersViewModel: ObservableObject {
                             itemIngredients.append(FoodItemDetails.Ingredient( id: ingredient.ingredient!.id, name: ingredient.ingredient!.name ))
                         }
                         foodItems.append(RestaurantFoodItem(
-                            foodItem: GraphFoodItem(
+                            foodItem: FoodItemDetails(
                                 id: orderItem.foodid,
                                 name: orderItem.item.fragments.foodItemDetails.name,
                                 price: orderItem.item.fragments.foodItemDetails.price,

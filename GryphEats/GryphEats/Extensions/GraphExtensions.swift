@@ -8,18 +8,11 @@
 
 import Foundation
 
-// The typealias' below exist just for convenience
-
-typealias GraphRestaurant = RestaurantDetails
-typealias Menu = RestaurantDetails.Menu
-typealias GraphFoodItem = FoodItemDetails
-typealias GraphOrder = UserOrdersQuery.Data.GetOrdersByUserId
-
 // GraphQL structs do not conform to `Equatable` or `Identifiable` by default.
 
-// MARK: - GraphFoodItem
+// MARK: - FoodItemDetails
 
-extension GraphFoodItem: Equatable {
+extension FoodItemDetails: Equatable {
     
     // MARK: Public
     
@@ -30,14 +23,17 @@ extension GraphFoodItem: Equatable {
     }
 }
 
-extension GraphFoodItem: Identifiable { }
+extension FoodItemDetails: Identifiable { }
 
-// MARK: - GraphFoodItem.Ingredient
+// MARK: - FoodItemDetails.Ingredient
 
 extension FoodItemDetails.Ingredient: Equatable {
+    
+    // MARK: Public
+    
     public static func == (lhs: FoodItemDetails.Ingredient, rhs: FoodItemDetails.Ingredient) -> Bool {
         return lhs.id == rhs.id && lhs.name == rhs.name
     }
 }
 
-extension GraphFoodItem.Ingredient: Identifiable { }
+extension FoodItemDetails.Ingredient: Identifiable { }

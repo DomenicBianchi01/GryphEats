@@ -77,7 +77,7 @@ class OrderHistoryCardTests: XCTestCase {
             paymentType: .credit,
             items: [
                 RestaurantFoodItem(
-                    foodItem: GraphFoodItem(id: "1", name: "Hamburger", price: 9.99, inStock: true),
+                    foodItem: FoodItemDetails(id: "1", name: "Hamburger", price: 9.99, inStock: true),
                     restaurantId: "1",
                     restaurantName: "Mom's Kitchen")])
     }
