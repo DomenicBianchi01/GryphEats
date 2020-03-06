@@ -43,7 +43,7 @@ const server = new ApolloServer({
     resolvers,
     dataSources,
 });
-const port = 4040;
+const port = 4000;
 
 // The `listen` method launches a web server.
 server.listen({ port }).then(({ url, subscriptionsUrl }) => {

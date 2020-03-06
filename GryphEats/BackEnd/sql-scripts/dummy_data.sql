@@ -15,9 +15,9 @@ insert into menuitem values (@menu_id, @food_id);*/
 /*insert into user values (null, 'scott', 'riva', '905123456', 'home', 'a@a.com' , 'ewwt', 0, 'What is your dogs name?', 'Spot');
 */
 
-select @user_id := userid from user where email = 'a@a.com';
+-- select @user_id := userid from user where email = 'a@a.com';
 
-insert into notif values(@user_id, 'HF66GG5G8JVX5O0', '#token');
+-- insert into notif values(@user_id, 'HF66GG5G8JVX5O0', '#token');
 
 insert into restaurant values (null, 'Thousand Mile Grill', '519123456', '08:00:00', '20:00:00', 'idk', 1);
 insert into restaurant values (null, 'Mom''s Kitchen', '519123456', '08:00:00', '20:00:00', 'Homecooked food', 1);

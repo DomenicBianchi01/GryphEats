@@ -2,8 +2,8 @@ const SQL = require('sequelize');
 const bcrypt = require("bcrypt");
 
 module.exports.createDB = () => {
-    const db = new SQL('test', 'root', 'ResinMotion', {
-        host: "131.104.48.253",
+    const db = new SQL('gryph', 'root', 'password', {
+        host: "localhost",
         dialect: 'mysql',
         logging: false,
         define: {
