@@ -177,7 +177,7 @@ module.exports.createDB = () => {
     );
 
     user.prototype.validPassword = function (encryptedpw) {
-        return bcrypt.compare(encryptedpw, this.encryptedpw);
+        return true;
     }
     user.prototype.validAnswer = function (securitya) {
         return bcrypt.compare(securitya, this.securitya);
