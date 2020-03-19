@@ -8,6 +8,10 @@
 
 import Apollo
 import SwiftUI
+import AWSTranslate
+
+var credentialsProvider = AWSStaticCredentialsProvider(accessKey: AWSKeys.accessKey, secretKey: AWSKeys.secretKey)
+var configuration = AWSServiceConfiguration(region: AWSRegionType.USEast1, credentialsProvider: credentialsProvider)
 
 // MARK: - HomeViewModel
 
@@ -86,10 +90,37 @@ class HomeViewModel: ObservableObject {
     private var menuSubscription: Cancellable? = nil
     
     private func filterInStockOnly() -> [RestaurantDetails] {
+        
+        //AWS Translate
+        AWSServiceManager.default().defaultServiceConfiguration = configuration
+
+        let translateClient = AWSTranslate.default()
+        let translateRequest = AWSTranslateTranslateTextRequest()
+        translateRequest?.sourceLanguageCode = "en"
+        translateRequest?.targetLanguageCode = Locale.current.languageCode
+                
+        let callback: (AWSTranslateTranslateTextResponse?, Error?) -> Void = { (response, error) in
+           guard let response = response else {
+              print("Got error \(error)")
+              return
+           }
+                    
+           if let translatedText = response.translatedText {
+              print (translatedText)
+           }
+        }
+        //AWS Translate
+                        
         return allRestaurantData.compactMap { restaurant in
             guard let items = restaurant.menu.first(where: { $0?.isActive == true })??.menuItems.compactMap({ $0 }) else {
                 return nil
             }
+
+            items.forEach({ item in
+                translateRequest?.text = item.item.fragments.foodItemDetails.name
+                translateClient.translateText(translateRequest!, completionHandler: callback)
+//                print(item.item.fragments.foodItemDetails.name)
+            })
             
             return RestaurantDetails(
                 id: restaurant.id,
