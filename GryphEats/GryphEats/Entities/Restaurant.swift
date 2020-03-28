@@ -17,6 +17,6 @@ struct Restaurant: Identifiable {
     let id: String
     let name: String
     let isOpen: Bool
-    let foodItems: [GraphFoodItem]
+    let foodItems: [FoodItemDetails]
     
 }

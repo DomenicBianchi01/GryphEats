@@ -124,7 +124,7 @@ struct OrderTrackingView_Previews: PreviewProvider {
                 timePlaced: "12:00pm",
                 paymentType: .credit,
                 items: [RestaurantFoodItem(
-                    foodItem: GraphFoodItem(id: "0", name: "Hamburger 1", price: 9.99, inStock: true),
+                    foodItem: FoodItemDetails(id: "0", name: "Hamburger 1", price: 9.99, inStock: true),
                     restaurantId: "1",
                     restaurantName: "100 Mile Grill")])) {}
     }

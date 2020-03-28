@@ -15,9 +15,9 @@ struct RestaurantFoodItem: Equatable {
     // MARK: Lifecycle
     
     init(
-        foodItem: GraphFoodItem,
+        foodItem: FoodItemDetails,
         imageURL: String? = nil,
-        selectedIngredients: [GraphFoodItem.Ingredient] = [],
+        selectedIngredients: [FoodItemDetails.Ingredient] = [],
         restaurantId: String,
         restaurantName: String)
     {
@@ -30,9 +30,9 @@ struct RestaurantFoodItem: Equatable {
     
     // MARK: Internal
     
-    let foodItem: GraphFoodItem
-    let imageURL: String? //Temp solution. Need to update `foodItem` to not be `GraphFoodItem`, rather a `MenuItem`
-    var selectedIngredients: [GraphFoodItem.Ingredient]
+    let foodItem: FoodItemDetails
+    let imageURL: String? //Temp solution. Need to update `foodItem` to not be `FoodItemDetails`, rather a `MenuItem`
+    var selectedIngredients: [FoodItemDetails.Ingredient]
     let restaurantId: String
     let restaurantName: String
     

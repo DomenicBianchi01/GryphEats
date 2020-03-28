@@ -14,7 +14,7 @@ struct IngredientSelection: Identifiable {
     
     // MARK: Lifecycle
     
-    init(ingredient: GraphFoodItem.Ingredient, isSelected: Bool) {
+    init(ingredient: FoodItemDetails.Ingredient, isSelected: Bool) {
         self.ingredient = ingredient
         self.isSelected = isSelected
         self.id = ingredient.id
@@ -22,7 +22,7 @@ struct IngredientSelection: Identifiable {
     
     // MARK: Internal
     
-    let ingredient: GraphFoodItem.Ingredient
+    let ingredient: FoodItemDetails.Ingredient
     let isSelected: Bool
     let id: String
     
@@ -34,7 +34,7 @@ struct CheckBoxView: View {
     
     // MARK: Lifecycle
     
-    init(ingredients: [IngredientSelection], onTap: @escaping (GraphFoodItem.Ingredient) -> Void) {
+    init(ingredients: [IngredientSelection], onTap: @escaping (FoodItemDetails.Ingredient) -> Void) {
         self.ingredients = ingredients
         self.onTap = onTap
         self.hapticGenerator.prepare()
@@ -66,7 +66,7 @@ struct CheckBoxView: View {
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     private let ingredients: [IngredientSelection]
-    private let onTap: (GraphFoodItem.Ingredient) -> Void
+    private let onTap: (FoodItemDetails.Ingredient) -> Void
     private let hapticGenerator = HapticGenerator(feedbackStyle: .medium)
     
 }

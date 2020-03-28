@@ -15,7 +15,7 @@ class HomeViewModel: ObservableObject {
     
     // MARK: Internal
     
-    @Published private(set) var loadingState: LoadingState<[GraphRestaurant]> = .loading
+    @Published private(set) var loadingState: LoadingState<[RestaurantDetails]> = .loading
     
     /// Use this to determine if there is at least one restaurant that is open
     var restaurantsAreOpen: Bool {
@@ -57,12 +57,12 @@ class HomeViewModel: ObservableObject {
             return
         }
         
-        let filteredRestaurants: [GraphRestaurant] = filterInStockOnly().compactMap {
+        let filteredRestaurants: [RestaurantDetails] = filterInStockOnly().compactMap {
             guard let items = $0.menu.first(where: { $0?.isActive == true })??.menuItems.compactMap({ $0 }) else {
                 return nil
             }
             
-            return GraphRestaurant(
+            return RestaurantDetails(
                 id: $0.id,
                 name: $0.name,
                 isActive: $0.isActive,
@@ -82,16 +82,16 @@ class HomeViewModel: ObservableObject {
     
     // MARK: Private
     
-    private var allRestaurantData: [GraphRestaurant] = []
+    private var allRestaurantData: [RestaurantDetails] = []
     private var menuSubscription: Cancellable? = nil
     
-    private func filterInStockOnly() -> [GraphRestaurant] {
+    private func filterInStockOnly() -> [RestaurantDetails] {
         return allRestaurantData.compactMap { restaurant in
             guard let items = restaurant.menu.first(where: { $0?.isActive == true })??.menuItems.compactMap({ $0 }) else {
                 return nil
             }
             
-            return GraphRestaurant(
+            return RestaurantDetails(
                 id: restaurant.id,
                 name: restaurant.name,
                 isActive: restaurant.isActive,

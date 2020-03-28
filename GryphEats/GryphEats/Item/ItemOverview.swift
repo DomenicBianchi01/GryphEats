@@ -135,7 +135,7 @@ private class IngredientsHolder {
     
     // MARK: Internal
     
-    var selectedIngredients: [GraphFoodItem.Ingredient] = []
+    var selectedIngredients: [FoodItemDetails.Ingredient] = []
     
 }
 
@@ -145,7 +145,7 @@ struct ItemOverview_Previews: PreviewProvider {
     static var previews: some View {
         ItemOverview(
             item: RestaurantFoodItem(
-                foodItem: GraphFoodItem(id: "1", name: "Hamburger 1", price: 2, inStock: true),
+                foodItem: FoodItemDetails(id: "1", name: "Hamburger 1", price: 2, inStock: true),
                 restaurantId: "1",
                 restaurantName: "100 Mile Grill"))
             .environmentObject(Cart(items: []))

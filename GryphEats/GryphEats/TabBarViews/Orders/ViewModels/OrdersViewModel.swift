@@ -42,7 +42,7 @@ class OrdersViewModel: ObservableObject {
                                         return nil
                                     }
                                     
-                                    return GraphFoodItem.Ingredient(id: ingredient.id, name: ingredient.name)
+                                    return FoodItemDetails.Ingredient(id: ingredient.id, name: ingredient.name)
                                     } ?? [],
                                 restaurantId: order.restaurantId,
                                 restaurantName: "") // TODO: Need restaurant name

@@ -49,12 +49,12 @@ class RestEditMenuViewModel: ObservableObject {
                 self.loadingState = .loading
 
                 var restaurantMenu: Restaurant = Restaurant(id: "", name: "", isOpen: true, foodItems: [])
-                var foodItems: [GraphFoodItem] = []
+                var foodItems: [FoodItemDetails] = []
                                 
                 for menu in data.getMenusByRestaurantId.compactMap({ $0 }) {
                     for menuItem in menu.menuItems {
                         let foodItem = menuItem?.item.fragments.foodItemDetails
-                        foodItems.append(GraphFoodItem(
+                        foodItems.append(FoodItemDetails(
                             id: foodItem!.id,
                             name: foodItem!.name,
                             price: foodItem!.price,
@@ -82,12 +82,12 @@ class RestEditMenuViewModel: ObservableObject {
 //                self.loadingState = .loading
 
                 var restaurant: Restaurant = Restaurant(id: "", name: "", isOpen: true, foodItems: [])
-                var foodItems: [GraphFoodItem] = []
+                var foodItems: [FoodItemDetails] = []
                                 
                 for menu in data.getMenusByRestaurantId.compactMap({ $0 }) {
                     for menuItem in menu.menuItems {
                         let foodItem = menuItem?.item.fragments.foodItemDetails
-                        foodItems.append(GraphFoodItem(
+                        foodItems.append(FoodItemDetails(
                             id: foodItem!.id,
                             name: foodItem!.name,
                             price: foodItem!.price,

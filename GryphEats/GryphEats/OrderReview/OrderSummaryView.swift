@@ -156,11 +156,11 @@ struct OrderSummaryView_Previews: PreviewProvider {
         OrderSummaryView()
             .environmentObject(Cart(items: [
                 RestaurantFoodItem(
-                    foodItem: GraphFoodItem(id: "1", name: "Hamburger 1", price: 2, inStock: true),
+                    foodItem: FoodItemDetails(id: "1", name: "Hamburger 1", price: 2, inStock: true),
                     restaurantId: "1",
                     restaurantName: "100 Mile Grill"),
                 RestaurantFoodItem(
-                    foodItem: GraphFoodItem(id: "2", name: "Hamburger 2", price: 2, inStock: true),
+                    foodItem: FoodItemDetails(id: "2", name: "Hamburger 2", price: 2, inStock: true),
                     restaurantId: "1",
                     restaurantName: "100 Mile Grill"),
             ]))
