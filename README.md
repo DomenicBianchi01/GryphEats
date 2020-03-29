@@ -29,6 +29,6 @@ The iPhone on the left is the student facing version of the app. The iPad on the
 
 ### Placing An Order
 
-After a student places an order, it appears immediatly on to the restaurant/staff (on the iPad app). This is accomplished by using a GraphQL subscription.
+After a student places an order, it appears immediately on to the restaurant/staff (on the iPad app). This is accomplished by using a GraphQL subscription.
 
 ![alt-text](https://github.com/DomenicBianchi01/GryphEats/blob/master/Videos/PlaceOrder.gif)
