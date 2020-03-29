@@ -53,7 +53,7 @@ struct HomeView: View {
         case .loaded(let restaurants):
             return AnyView(VStack(alignment: .leading, spacing: 0) {
                 Group {
-                    SearchBar(placeholder: "Search for food") { searchText in
+                    SearchBar(placeholder: "Search for food".translateText()) { searchText in
                         self.viewModel.filterRestaurants(by: searchText)
                     }
                     
@@ -61,9 +61,9 @@ struct HomeView: View {
                 }.opacity(!viewModel.restaurantsAreOpen ? 0 : 1)
                 
                 if !viewModel.restaurantsAreOpen {
-                    centerText("No restaurants are currently open")
+                    centerText("No restaurants are currently open".translateText())
                 } else if restaurants.isEmpty {
-                    centerText("No items match your search")
+                    centerText("No items match your search".translateText())
                 } else {
                     // Swift UI Bug: `listRowBackground` and `listRowInsets` do not work without nesting a `ForEach`
                     // within `List`
@@ -81,7 +81,7 @@ struct HomeView: View {
             }.navigationBarItems(trailing: self.trailingNavigationBarItems)
                 .dismissKeyboardOnTapGesture())
         case .error:
-            return AnyView(ErrorView(infoText: "Whoops! We could not fetch the menus.", buttonText: "Try Again") {
+            return AnyView(ErrorView(infoText: "Whoops! We could not fetch the menus.".translateText(), buttonText: "Try Again".translateText()) {
                 self.viewModel.fetchRestaurants()
             })
         }

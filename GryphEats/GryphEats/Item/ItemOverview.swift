@@ -31,6 +31,11 @@ struct ItemOverview: View, Dismissable {
     
     // MARK: Internal
     
+    let ingredientsTag = "Ingredients".translateText()
+    let pullTag = "Pull Up To Customize".translateText()
+    let addTag = "Add To Order".translateText()
+    let updateTag = "Update Item".translateText()
+
     var body: some View {
         ZStack(alignment: .top) {
             GeometryReader { geometry in
@@ -60,11 +65,11 @@ struct ItemOverview: View, Dismissable {
             }.padding(.top, 75)
             
             SlideOverCard(
-                handleText: "Pull Up To Customize",
+                handleText: self.pullTag,
                 isSlidingDisabled: !itemHasIngredients)
             {
                 VStack(alignment: .leading) {
-                    ActionButton(text: self.displayMode == .new ? "Add To Order" : "Update Item") {
+                    ActionButton(text: self.displayMode == .new ? self.addTag : self.updateTag) {
                         if self.displayMode == .new {
                             var mutableItem = self.item
                             mutableItem.selectedIngredients = self.ingredientsHolder.selectedIngredients
@@ -82,7 +87,7 @@ struct ItemOverview: View, Dismissable {
                     }.padding(.bottom, 30)
                     
                     if self.itemHasIngredients {
-                        Text("Ingredients")
+                        Text(self.ingredientsTag)
                             .bold()
                             .padding(.leading)
                         

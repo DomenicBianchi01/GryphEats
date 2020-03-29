@@ -25,11 +25,11 @@ struct MainTabView: View {
             }
             
             CustomTabBar(selectedIndex: $selection, items: [
-                CustomTabBarItem(icon: .system(name: "house"), title: "Menus"),
-                CustomTabBarItem(icon: .system(name: "dollarsign.square"), title: "Orders"),
-                CustomTabBarItem(icon: .system(name: "person"), title: "Account")
+                CustomTabBarItem(icon: .system(name: "house"), title: menusTag),
+                CustomTabBarItem(icon: .system(name: "dollarsign.square"), title: ordersTag),
+                CustomTabBarItem(icon: .system(name: "person"), title: accTag)
             ])
-        }.edgesIgnoringSafeArea(.bottom)
+            }.edgesIgnoringSafeArea(.bottom)
     }
     
     // MARK: Private
@@ -39,6 +39,10 @@ struct MainTabView: View {
     private let homeView = AnyView(HomeView().environmentObject(Cart()))
     private let ordersView = OrdersView()
     private let accountView = AccountView()
+    
+    private let menusTag = "Menus"
+    private let ordersTag = "Orders"
+    private let accTag = "Account"
     
 }
 
