@@ -40,4 +40,4 @@ After placing an order, the student will receive two notifications:
 1. Once the restaurant/staff members acknowledges the order and taps the "Begin Order" button.
 2. Once the order is ready for pick up and the restaurant/staff member taps on the "Complete Order" button.
 
-![Order-Notifications](https://github.com/DomenicBianchi01/GryphEats/blob/master/Videos/OrderNotifications.gif)
+![Order-Notifications](https://github.com/DomenicBianchi01/GryphEats/blob/master/Videos/OrderStatusNotifications.gif)
