@@ -41,3 +41,11 @@ After placing an order, the student will receive two notifications:
 2. Once the order is ready for pick up and the restaurant/staff member taps on the "Complete Order" button.
 
 ![Order-Notifications](https://github.com/DomenicBianchi01/GryphEats/blob/master/Videos/OrderStatusNotifications.gif)
+
+### Checking Order Status
+
+If the student has disabled push notifications, they can check the status of their order directly through the app. As shown in the GIF below, there are 4 states that an order can be in; Order Received, In Progress, Ready For Pickup, and Picked Up.
+
+![Order-Status](https://github.com/DomenicBianchi01/GryphEats/blob/master/Videos/OrderStatusUpdates.gif)
+
+At some point in the future I intend to replace the need to manually refresh the screen with a GraphQL subscription (https://github.com/DomenicBianchi01/GryphEats/issues/1)
