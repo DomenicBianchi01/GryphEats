@@ -13,11 +13,11 @@ Since this project started in September 2019 and SwiftUI was recently announced,
 - Have the iPad app listen for new orders
 - Staff members could use the iPad to app to mark a menu item "out of stock". If an item is marked out of stock, the student facing app would immediately remove the item from the menu to prevent students from ordering that item.
 
-## Roles
+## Roles/Contributors
 
-Domenic Bianchi: iOS app - Student facing
+Domenic Bianchi: iOS app - Student facing (iPhone)
 
-Matthew Bebis: iOS app - Restaurant/staff facing
+Matthew Bebis: iOS app - Restaurant/staff facing (iPad)
 
 Scott Riva: Backend - SQL
 
@@ -31,4 +31,13 @@ The iPhone on the left is the student facing version of the app. The iPad on the
 
 After a student places an order, it appears immediately on to the restaurant/staff (on the iPad app). This is accomplished by using a GraphQL subscription.
 
-![alt-text](https://github.com/DomenicBianchi01/GryphEats/blob/master/Videos/PlaceOrder.gif)
+![Place-Order](https://github.com/DomenicBianchi01/GryphEats/blob/master/Videos/PlaceOrder.gif)
+
+### Order Updates
+
+After placing an order, the student will receive two notifications:
+
+1. Once the restaurant/staff members acknowledges the order and taps the "Begin Order" button.
+2. Once the order is ready for pick up and the restaurant/staff member taps on the "Complete Order" button.
+
+![Order-Notifications](https://github.com/DomenicBianchi01/GryphEats/blob/master/Videos/OrderNotifications.gif)
