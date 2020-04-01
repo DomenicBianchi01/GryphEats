@@ -81,40 +81,6 @@ class HomeViewModel: ObservableObject {
         loadingState = .loaded(filteredRestaurants.filter { !($0.menu.first??.menuItems.isEmpty ?? true) })
     }
     
-//    public func translateText(text: String) -> String {
-//        
-//        var toReturn: String = text
-//        
-//        let myGroup = DispatchGroup()
-//        myGroup.enter()
-//        
-//        let translateClient = AWSTranslate.default()
-//        let translateRequest = AWSTranslateTranslateTextRequest()
-//        translateRequest?.sourceLanguageCode = "en"
-//        translateRequest?.targetLanguageCode = Locale.current.languageCode
-//        
-//        translateRequest?.text = text
-//        let task = translateClient.translateText(translateRequest!)
-//        task.continueWith(block: { task in
-//            guard let response = task.result else {
-//                print("Got error \(String(describing: task.error))")
-//                myGroup.leave()
-//                return task.error
-//            }
-//            
-//            if let translatedText = response.translatedText {
-//                toReturn = translatedText
-//                myGroup.leave()
-//                return translatedText
-//            }
-//            myGroup.leave()
-//            return nil
-//        })
-//        
-//        myGroup.wait()
-//        return toReturn
-//    }
-    
     // MARK: Private
     
     private var allRestaurantData: [RestaurantDetails] = []
@@ -142,7 +108,6 @@ class HomeViewModel: ObservableObject {
             if (Locale.current.languageCode != "en") {
                 
                 let myGroup = DispatchGroup()
-//                let ingredientGroup = DispatchGroup()
                 
                 menuItems = []
                 
@@ -152,30 +117,11 @@ class HomeViewModel: ObservableObject {
                     var translatedIngredients: [FoodItemDetails.Ingredient] = []
                     item.item.fragments.foodItemDetails.ingredients?.forEach({ ingredient in
                         ingredientGroup.enter()
-                        
-                        translateRequest?.text = ingredient.name
-                        let task = translateClient.translateText(translateRequest!)
-                        task.continueWith(block: { task in
-                            guard let response = task.result else {
-                                print("Got error \(String(describing: task.error))")
-                                ingredientGroup.leave()
-                                return task.error
-                            }
-                            
-                            if let translatedText = response.translatedText {
-                                print(translatedText)
-                                let tempIngredient:FoodItemDetails.Ingredient = ingredient
-                                let translatedIngredient = FoodItemDetails.Ingredient(id: tempIngredient.id, name: translatedText)
-                                
+                        let translatedIngredient = FoodItemDetails.Ingredient(id: ingredient.id, name: ingredient.name.translateText())
                                 translatedIngredients.append(translatedIngredient)
-                                ingredientGroup.leave()
-                                return translatedText
-                            }
                             ingredientGroup.leave()
-                            return nil
-                        })
                     })
-                    //
+
                     ingredientGroup.wait()
                     ingredientGroup.notify(queue: .main) {
                         print("ingredients done")
@@ -185,84 +131,19 @@ class HomeViewModel: ObservableObject {
                     var menuItemX: RestaurantDetails.Menu.MenuItem = RestaurantDetails.Menu.MenuItem(item: item.item)
                     
                     translateRequest?.text = item.item.fragments.foodItemDetails.name
-                    let task = translateClient.translateText(translateRequest!)
-                    task.continueWith(block: { task in
-                        guard let response = task.result else {
-                            print("Got error \(String(describing: task.error))")
-                            myGroup.leave()
-                            return task.error
-                        }
-                        
-                        if let translatedText = response.translatedText {
-                            
-                            let temp = item.item.fragments.foodItemDetails
-                            
-//                            ingredientGroup.wait()
-//                            ingredientGroup.notify(queue: .main) {
-//                                print("ingredients done")
-//                            }
-                            let translatedItem = FoodItemDetails(id: temp.id, name: translatedText, price: temp.price, inStock: temp.inStock, ingredients: translatedIngredients)
+
+                    let translatedItem = FoodItemDetails(id: item.item.fragments.foodItemDetails.id, name: item.item.fragments.foodItemDetails.name.translateText(), price: item.item.fragments.foodItemDetails.price, inStock: item.item.fragments.foodItemDetails.inStock, ingredients: translatedIngredients)
                             menuItemX.item.fragments.foodItemDetails = translatedItem
                             menuItems.append(menuItemX)
 
-                            //                            menuItemX.item.fragments.foodItemDetails.ingredients = []
-                            
-                            myGroup.leave()
-                            return translatedText
-                        }
                         myGroup.leave()
-                        return nil
-                        //                    }).continueWith(block: {_ in
-                        //                        var translatedIngredients: [FoodItemDetails.Ingredient] = []
-                        //                        item.item.fragments.foodItemDetails.ingredients?.forEach({ ingredient in
-                        //                            ingredientGroup.enter()
-                        //
-                        //                            translateRequest?.text = ingredient.name
-                        //                            let task = translateClient.translateText(translateRequest!)
-                        //                            task.continueWith(block: { task in
-                        //                                guard let response = task.result else {
-                        //                                    print("Got error \(String(describing: task.error))")
-                        //                                    ingredientGroup.leave()
-                        //                                    return task.error
-                        //                                }
-                        //
-                        //                                if let translatedText = response.translatedText {
-                        //                                    print(translatedText)
-                        //                                    let tempIngredient:FoodItemDetails.Ingredient = ingredient
-                        //                                    let translatedIngredient = FoodItemDetails.Ingredient(id: tempIngredient.id, name: translatedText)
-                        //
-                        //                                    translatedIngredients.append(translatedIngredient)
-                        //                                    ingredientGroup.leave()
-                        //                                    return translatedText
-                        //                                }
-                        //                                ingredientGroup.leave()
-                        //                                return nil
-                        //                            })
-                        //                        })
-                        ////                        ingredientGroup.wait()
-                        //
-                        //                        ingredientGroup.notify(queue: .main) {
-                        //                            print("Finished ingredient requests.")
-                        //                            menuItemX.item.fragments.foodItemDetails.ingredients = translatedIngredients
-                        //                            print(menuItemX.item.fragments.foodItemDetails.ingredients)
-                        //                        }
-                        //                        return nil
-//                    }).continueWith(block: {_ in
-//                        //                        myGroup.leave()
-////                        ingredientGroup.wait()
-//                        menuItemX.item.fragments.foodItemDetails.ingredients = translatedIngredients
-//                        menuItems.append(menuItemX)
-//                        return nil
-                    })
-                    
-                    
+
                 })
                 myGroup.wait()
                 
                 myGroup.notify(queue: .main) {
                     print("Finished all requests.")
                 }
-                //                ingredientGroup.wait()
                 
             }
             
