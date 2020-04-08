@@ -23,12 +23,17 @@ const typeDefs = gql`
         restaurant
     }
 
+    enum Language {
+        english
+        french
+    }
+
     type Query {
         customTest(foodwrappers:[FoodWrapper!]): [Food]!
         foods: [Food]!
         getFoodByFoodID(foodid: ID!): Food
         getFoodByDisplayName(displayname:String!):Food
-        restaurants: [Restaurant]!
+        restaurants(language: Language!): [Restaurant]!
         users: [User]!
         menus: [Menu]!
         getRestaurantByRestaurantID(restaurantid:ID!):Restaurant!
@@ -73,7 +78,8 @@ const typeDefs = gql`
 
     type Food {
         foodid: ID!
-        displayname: String!
+        displayname_en: String!
+        displayname_fr: String!
         toppingtype: ID!
         price: Float!
         restaurantid: ID!
@@ -163,7 +169,8 @@ const typeDefs = gql`
     type StaticTopping {
         toppingid: ID!
         foodgroup: ID!
-        displayname: String!
+        displayname_en: String!
+        displayname_fr: String!
         price: ID
     }
 

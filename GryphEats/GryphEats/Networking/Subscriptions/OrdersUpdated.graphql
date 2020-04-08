@@ -16,7 +16,7 @@ subscription OrderUpdated($restaurantID: ID!) {
             ingredientsWrapper: toppings {
                 ingredient: statictopping {
                     id: toppingid
-                    name: displayname
+                    name: displayname_en
                 }
             }
         }

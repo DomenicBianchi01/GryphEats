@@ -14,7 +14,7 @@ struct ErrorView: View {
     
     // MARK: Lifecycle
     
-    init(infoText: String, buttonText: String, onTap: @escaping () -> Void) {
+    init(infoText: String, buttonText: LocalizedStringKey, onTap: @escaping () -> Void) {
         self.infoText = infoText
         self.buttonText = buttonText
         self.onTap = onTap
@@ -37,7 +37,7 @@ struct ErrorView: View {
     // MARK: Private
     
     private let infoText: String
-    private let buttonText: String
+    private let buttonText: LocalizedStringKey
     private let onTap: () -> Void
     
 }

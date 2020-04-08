@@ -26,13 +26,17 @@ module.exports = {
         oncampus: 1,
         offcampus: 2,
     },
+    Language: {
+        english: "en",
+        french: "fr",
+    },
     Query: {
         // foods: (parent, args, { dataSources }, info) => datasources.food.findAll(),
         customTest: async (_, { foodwrappers }, { dataSources }, info) => dataSources.gryphAPI.customTest({ foodwrappers }),
         foods: async (_, args, { dataSources }, info) => dataSources.gryphAPI.getAllFood(),
         getFoodByFoodID: (_, { foodid }, { dataSources }, info) => dataSources.gryphAPI.getFoodByFoodID({ foodid }),
         getFoodByDisplayName: (_, { displayname }, { dataSources }, info) => dataSources.gryphAPI.getFoodByDisplayName({ displayname }),
-        restaurants: async (_, args, { dataSources }, info) => dataSources.gryphAPI.getAllRestaurants(),
+        restaurants: async (_, { language }, { dataSources }, info) => dataSources.gryphAPI.getAllRestaurants({ language }),
         users: async (_, args, { dataSources }, info) => dataSources.gryphAPI.getAllUsers(),
         menus: async (_, args, { dataSources }, info) => dataSources.gryphAPI.getAllMenus(),
         getStaticToppingsByFoodGroup: async (_, { foodgroup }, { dataSources }, info) => dataSources.gryphAPI.getStaticToppingsByFoodGroup({ foodgroup }),

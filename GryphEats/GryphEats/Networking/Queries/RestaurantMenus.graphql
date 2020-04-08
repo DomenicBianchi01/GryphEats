@@ -1,17 +1,17 @@
-query RestaurantMenus {
-    restaurants {
+query RestaurantMenus($language: Language!) {
+    restaurants(language: $language) {
         ...RestaurantDetails
     }
 }
 
 fragment FoodItemDetails on Food {
     id: foodid
-    name: displayname
+    name: displayname_en
     price
     inStock: isavailable
     ingredients: toppings {
         id: toppingid
-        name: displayname
+        name: displayname_en
     }
 }
 

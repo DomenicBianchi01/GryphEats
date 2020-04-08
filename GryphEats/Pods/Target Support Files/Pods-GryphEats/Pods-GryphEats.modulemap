@@ -1,0 +1,6 @@
+framework module Pods_GryphEats {
+  umbrella header "Pods-GryphEats-umbrella.h"
+
+  export *
+  module * { export * }
+}

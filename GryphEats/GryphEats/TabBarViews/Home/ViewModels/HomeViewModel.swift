@@ -25,7 +25,15 @@ class HomeViewModel: ObservableObject {
     func fetchRestaurants() {
         self.loadingState = .loading
         
-        GraphClient.shared.fetch(query: RestaurantMenusQuery()) { result in
+        let language: Language
+        
+        if Locale.current.languageCode ?? "" == "fr" {
+            language = .french
+        } else {
+            language = .english
+        }
+        
+        GraphClient.shared.fetch(query: RestaurantMenusQuery(language: language)) { result in
             switch result {
             case .success(let data):
                 self.parseRestaurantDetails(data.restaurants.compactMap({ $0?.fragments.restaurantDetails }))

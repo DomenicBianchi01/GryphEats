@@ -15,6 +15,7 @@ class GryphAPIS extends DataSource {
     constructor({ database }) {
         super();
         this.database = database;
+        this.language = "en";
     }
 
     /**
@@ -56,8 +57,17 @@ class GryphAPIS extends DataSource {
     async getFoodByFoodID({ foodid }) {
         try {
             const result = await this.database.food.findOne({
-                where: { foodid },
+                where: { foodid }
             });
+
+            if (this.language == "en") {
+                result.dataValues["displayname_en"] = result.dataValues.displayname_en
+            } else {
+                result.dataValues["displayname_en"] = result.dataValues.displayname_fr
+            }
+            
+            delete result.dataValues.displayname_fr;
+
             return result;
         } catch (e) {
 
@@ -263,17 +273,14 @@ class GryphAPIS extends DataSource {
     // User.create({ username: 'fnord', job: 'omnomnom' })
 
     // get all restaurant names
-    async getAllRestaurants() {
+    async getAllRestaurants({ language }) {
         try {
             // console.log(this.config);
             // const fid = this.context.food.foodid;
+            this.language = language
             const result = await this.database.restaurant.findAll({
-                // include: [{
-                //     model: this.database.menu,
-                // }]
+                //attributes: { exclude: ['menu.menuitem.food.displayname_fr'] }
             });
-            // console.log(result)
-            // console.log(result);
             return result;
         } catch (e) {
             console.log(e.message);
@@ -372,6 +379,20 @@ class GryphAPIS extends DataSource {
             const result = await this.database.statictopping.findAll({
                 where: { foodgroup },
             });
+            //console.log(result[0].dataValues);
+            console.log("-------")
+
+            var i;
+            for (i = 0; i < result.length; i++) {
+                if (this.language == "en") {
+                    result[i].dataValues["displayname_en"] = result[i].dataValues.displayname_en
+                } else {
+                    result[i].dataValues["displayname_en"] = result[i].dataValues.displayname_fr
+                }
+                
+                delete result[i].dataValues.displayname_fr;
+            }
+
             return result;
         } catch (e) {
             console.log(e.message);
@@ -681,7 +702,7 @@ class GryphAPIS extends DataSource {
 
             var options = {
                 token: {
-                    key: "/home/cis4250-1/cis-4250-the-subway-squad/GryphEats/BackEnd/Apollo/src/datasources/AuthKey_R7H2UN93CJ.p8",
+                    key: "src/datasources/AuthKey_R7H2UN93CJ.p8",
                     keyId: "R7H2UN93CJ",
                     teamId: "667D8S5SPP"
                 },
@@ -711,20 +732,24 @@ class GryphAPIS extends DataSource {
                 const token = userNotif.dataValues.token;
                 //TODO: This token is currently hardcoded. What needs to be done is the following: Given the `orderid`, you need to figure out which user to send the push notification to.
                 // apnProvider.send(note, "0373d6d1cfc3ed2fe261460f541a9fa1cd5c966e5e8200c3777cb1e33e310333").then((result) => {
-                apnProvider.send(note, token).then((result) => {
+                apnProvider.send(note, "89b4b03c9c8077cc94e00df0f9c03f865c562650946560236b017831e4c95a1e").then((result) => {
                     console.log(result.failed);
+                    console.log("SENT")
                     apnProvider.shutdown();
                 }).catch((ex) => {
+                    console.log("FAILED")
                     apn.Provider.shutdown();
                 });
             }
             console.log(result);
             if (result) {
+                console.log("Order done")
                 return {
                     success: true,
                     message: 'Order update done',
                 };
             } else {
+                console.log("Order failed")
                 return {
                     success: false,
                     message: 'Order update failed',

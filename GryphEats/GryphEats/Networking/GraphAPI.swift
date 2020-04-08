@@ -169,6 +169,46 @@ public enum UserType: RawRepresentable, Equatable, Hashable, CaseIterable, Apoll
   }
 }
 
+public enum Language: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  case english
+  case french
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "english": self = .english
+      case "french": self = .french
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .english: return "english"
+      case .french: return "french"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: Language, rhs: Language) -> Bool {
+    switch (lhs, rhs) {
+      case (.english, .english): return true
+      case (.french, .french): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [Language] {
+    return [
+      .english,
+      .french,
+    ]
+  }
+}
+
 public final class PlaceOrderMutation: GraphQLMutation {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition =
@@ -1677,8 +1717,8 @@ public final class RestaurantMenusQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition =
     """
-    query RestaurantMenus {
-      restaurants {
+    query RestaurantMenus($language: Language!) {
+      restaurants(language: $language) {
         __typename
         ...RestaurantDetails
       }
@@ -1689,14 +1729,21 @@ public final class RestaurantMenusQuery: GraphQLQuery {
 
   public var queryDocument: String { return operationDefinition.appending(RestaurantDetails.fragmentDefinition).appending(FoodItemDetails.fragmentDefinition) }
 
-  public init() {
+  public var language: Language
+
+  public init(language: Language) {
+    self.language = language
+  }
+
+  public var variables: GraphQLMap? {
+    return ["language": language]
   }
 
   public struct Data: GraphQLSelectionSet {
     public static let possibleTypes = ["Query"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("restaurants", type: .nonNull(.list(.object(Restaurant.selections)))),
+      GraphQLField("restaurants", arguments: ["language": GraphQLVariable("language")], type: .nonNull(.list(.object(Restaurant.selections)))),
     ]
 
     public private(set) var resultMap: ResultMap
@@ -2241,7 +2288,7 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
             ingredient: statictopping {
               __typename
               id: toppingid
-              name: displayname
+              name: displayname_en
             }
           }
         }
@@ -2553,7 +2600,7 @@ public final class OrderUpdatedSubscription: GraphQLSubscription {
             public static let selections: [GraphQLSelection] = [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
               GraphQLField("toppingid", alias: "id", type: .nonNull(.scalar(GraphQLID.self))),
-              GraphQLField("displayname", alias: "name", type: .nonNull(.scalar(String.self))),
+              GraphQLField("displayname_en", alias: "name", type: .nonNull(.scalar(String.self))),
             ]
 
             public private(set) var resultMap: ResultMap
@@ -2696,13 +2743,13 @@ public struct FoodItemDetails: GraphQLFragment {
     fragment FoodItemDetails on Food {
       __typename
       id: foodid
-      name: displayname
+      name: displayname_en
       price
       inStock: isavailable
       ingredients: toppings {
         __typename
         id: toppingid
-        name: displayname
+        name: displayname_en
       }
     }
     """
@@ -2712,7 +2759,7 @@ public struct FoodItemDetails: GraphQLFragment {
   public static let selections: [GraphQLSelection] = [
     GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
     GraphQLField("foodid", alias: "id", type: .nonNull(.scalar(GraphQLID.self))),
-    GraphQLField("displayname", alias: "name", type: .nonNull(.scalar(String.self))),
+    GraphQLField("displayname_en", alias: "name", type: .nonNull(.scalar(String.self))),
     GraphQLField("price", type: .nonNull(.scalar(Double.self))),
     GraphQLField("isavailable", alias: "inStock", type: .nonNull(.scalar(Bool.self))),
     GraphQLField("toppings", alias: "ingredients", type: .list(.nonNull(.object(Ingredient.selections)))),
@@ -2788,7 +2835,7 @@ public struct FoodItemDetails: GraphQLFragment {
     public static let selections: [GraphQLSelection] = [
       GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
       GraphQLField("toppingid", alias: "id", type: .nonNull(.scalar(GraphQLID.self))),
-      GraphQLField("displayname", alias: "name", type: .nonNull(.scalar(String.self))),
+      GraphQLField("displayname_en", alias: "name", type: .nonNull(.scalar(String.self))),
     ]
 
     public private(set) var resultMap: ResultMap
@@ -3095,7 +3142,7 @@ public struct Toppings: GraphQLFragment {
       ingredient: statictopping {
         __typename
         id: toppingid
-        name: displayname
+        name: displayname_en
       }
     }
     """
@@ -3141,7 +3188,7 @@ public struct Toppings: GraphQLFragment {
     public static let selections: [GraphQLSelection] = [
       GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
       GraphQLField("toppingid", alias: "id", type: .nonNull(.scalar(GraphQLID.self))),
-      GraphQLField("displayname", alias: "name", type: .nonNull(.scalar(String.self))),
+      GraphQLField("displayname_en", alias: "name", type: .nonNull(.scalar(String.self))),
     ]
 
     public private(set) var resultMap: ResultMap

@@ -23,6 +23,6 @@ query UserOrders($userID: ID!) {
 fragment Toppings on Topping {
     ingredient: statictopping {
         id: toppingid
-        name: displayname
+        name: displayname_en
     }
 }

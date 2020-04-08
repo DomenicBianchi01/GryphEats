@@ -86,9 +86,9 @@ final class GraphClient {
     
     private lazy var webSocketTransport = WebSocketTransport(
         request: URLRequest(
-            url: URL(string: "ws://localhost:4000/graphql")!))
+            url: URL(string: "ws://Domenics-MacBook-Pro-3.local:4000/graphql")!))
     
-    private lazy var httpTransport = HTTPNetworkTransport(url: URL(string: "http://localhost:4000")!)
+    private lazy var httpTransport = HTTPNetworkTransport(url: URL(string: "http://Domenics-MacBook-Pro-3.local:4000")!)
     
     private lazy var splitNetworkTransport = SplitNetworkTransport(
         httpNetworkTransport: httpTransport,

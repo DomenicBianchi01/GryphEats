@@ -21,7 +21,7 @@ class RestStationsViewModel: ObservableObject {
     func fetchRestaurants() {
         self.loadingState = .loading
         
-        GraphClient.shared.fetch(query: RestaurantMenusQuery()) { result in
+        GraphClient.shared.fetch(query: RestaurantMenusQuery(language: .english)) { result in
             switch result {
             case .success(let data):
                 var restaurants: [Restaurant] = []

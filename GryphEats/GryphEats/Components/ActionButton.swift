@@ -15,7 +15,7 @@ struct ActionButton: View {
     // MARK: Lifecycle
     
     init(
-        text: String,
+        text: LocalizedStringKey,
         backgroundColor: Color = .guelphYellow,
         foregroundColor: Color = .black,
         isDisabled: Bool = false,
@@ -54,7 +54,7 @@ struct ActionButton: View {
     
     // MARK: Private
     
-    private let text: String
+    private let text: LocalizedStringKey
     private let backgroundColor: Color
     private let foregroundColor: Color
     private let isDisabled: Bool

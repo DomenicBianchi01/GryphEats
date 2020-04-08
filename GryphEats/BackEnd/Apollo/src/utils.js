@@ -26,7 +26,8 @@ module.exports.createDB = () => {
                 key: 'foodid', // key in Target model that we're referencing
             },
         },
-        displayname: SQL.STRING,
+        displayname_en: SQL.STRING,
+        displayname_fr: SQL.STRING,
         toppingtype: SQL.INTEGER,
         price: SQL.DECIMAL,
         restaurantid: SQL.INTEGER,
@@ -204,7 +205,8 @@ module.exports.createDB = () => {
             type: SQL.INTEGER,
             primaryKey: true
         },
-        displayname: SQL.STRING,
+        displayname_en: SQL.STRING,
+        displayname_fr: SQL.STRING,
         price: SQL.DECIMAL
     },
         {

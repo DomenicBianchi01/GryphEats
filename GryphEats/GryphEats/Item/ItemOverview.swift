@@ -64,7 +64,7 @@ struct ItemOverview: View, Dismissable {
                 isSlidingDisabled: !itemHasIngredients)
             {
                 VStack(alignment: .leading) {
-                    ActionButton(text: self.displayMode == .new ? "Add To Order" : "Update Item") {
+                    ActionButton(text: self.displayMode == .new ? self.addToOrder : self.updateItem) {
                         if self.displayMode == .new {
                             var mutableItem = self.item
                             mutableItem.selectedIngredients = self.ingredientsHolder.selectedIngredients
@@ -119,6 +119,9 @@ struct ItemOverview: View, Dismissable {
     
     @EnvironmentObject private var cart: Cart
     @ObservedObject private var imageLoader = ImageClient()
+    
+    private let addToOrder: LocalizedStringKey = "Add To Order"
+    private let updateItem: LocalizedStringKey = "Update Item"
     
     private let item: RestaurantFoodItem
     private let displayMode: DisplayMode

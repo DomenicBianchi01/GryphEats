@@ -16,7 +16,7 @@ struct SlideOverCard<V: View>: View {
     
     // MARK: Lifecycle
     
-    init(handleText: String, isSlidingDisabled: Bool = true, content: @escaping () -> V) {
+    init(handleText: LocalizedStringKey, isSlidingDisabled: Bool = true, content: @escaping () -> V) {
         self.handleText = handleText
         self.isSlidingDisabled = isSlidingDisabled
         self.content = content
@@ -60,7 +60,7 @@ struct SlideOverCard<V: View>: View {
     @State private var position: CGFloat = UIScreen.main.bounds.height - 150
     
     private let content: () -> V
-    private let handleText: String
+    private let handleText: LocalizedStringKey
     private let isSlidingDisabled: Bool
     
     private let maximumHeight: CGFloat = 145
@@ -127,7 +127,7 @@ private struct Handle: View {
     
     // MARK: Lifecycle
     
-    init(text: String) {
+    init(text: LocalizedStringKey) {
         self.text = text
     }
     
@@ -147,7 +147,7 @@ private struct Handle: View {
     // MARK: Private
     
     private let handleThickness: CGFloat = 5
-    private let text: String
+    private let text: LocalizedStringKey
     
 }
 

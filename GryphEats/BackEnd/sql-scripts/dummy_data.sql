@@ -28,23 +28,23 @@ select @restaurant_id2 := restaurantid from restaurant where description = 'Home
 insert into user values (null, 'Scott', 'Riva', '905123456', '10 Stone Rd', 'scott@mail.com' , '$2b$08$CX3U70uOW6EafdOfWdNOfe9pQeO1xi.zBrl0Fzs1nspX1/gTyLLnq', 0, '', '');
 insert into user values (null, 'Domenic', 'Bianchi', '519654321', '3 Gordon St', 'creelman@hospitality.ca' , '$2b$08$CX3U70uOW6EafdOfWdNOfe9pQeO1xi.zBrl0Fzs1nspX1/gTyLLnq', 1, '', '');
 
-insert into food values (null, 'Hamburger', 0, 8.49, @restaurant_id, 1, 'Plain Hamburger', 0, 'https://i.imgur.com/RGUwk0F.jpg');
-insert into food values (null, 'Cheeseburger', 0, 8.99, @restaurant_id, 1, 'Burger with cheese', 0, 'https://i.imgur.com/RGUwk0F.jpg');
-insert into food values (null, 'Bacon Cheeseburger', 0, 9.49, @restaurant_id, 1, 'Burger with bacon and cheese', 0, 'https://i.imgur.com/RGUwk0F.jpg');
-insert into food values (null, 'Fries', null, 1.99, @restaurant_id, 1, 'Side french fries', 99, 'https://i.imgur.com/pUqK8oX.jpg');
+insert into food values (null, 'Hamburger', 'Hamburger', 0, 8.49, @restaurant_id, 1, 'Plain Hamburger', 0, 'https://i.imgur.com/RGUwk0F.jpg');
+insert into food values (null, 'Cheeseburger', 'Burger au Fromage', 0, 8.99, @restaurant_id, 1, 'Burger with cheese', 0, 'https://i.imgur.com/RGUwk0F.jpg');
+insert into food values (null, 'Bacon Cheeseburger', 'Un Cheeseburger au Bacon', 0, 9.49, @restaurant_id, 1, 'Burger with bacon and cheese', 0, 'https://i.imgur.com/RGUwk0F.jpg');
+insert into food values (null, 'Fries', 'Frites', null, 1.99, @restaurant_id, 1, 'Side french fries', 99, 'https://i.imgur.com/pUqK8oX.jpg');
 
-insert into food values (null, 'Chicken fingers', 0, 4.49, @restaurant_id2, 1, 'chicken fingers with choice of sauce', 2, 'https://i.imgur.com/aq1MgbN.jpg');
-insert into food values (null, 'Pizza', 0, 6.99, @restaurant_id, 1, 'Penne with red sauce', 1, 'https://i.imgur.com/zNrFAVv.jpg');
-insert into food values (null, 'Chicken tenders', 0, 5.49, @restaurant_id, 1, 'chicken fingers with choice of sauce', 2, 'https://i.imgur.com/aq1MgbN.jpg');
+insert into food values (null, 'Chicken fingers', 'Doigts de Poulet', 0, 4.49, @restaurant_id2, 1, 'chicken fingers with choice of sauce', 2, 'https://i.imgur.com/aq1MgbN.jpg');
+insert into food values (null, 'Pizza', 'Pizza', 0, 6.99, @restaurant_id, 1, 'Penne with red sauce', 1, 'https://i.imgur.com/zNrFAVv.jpg');
+insert into food values (null, 'Chicken tenders', 'Offres de Poulet', 0, 5.49, @restaurant_id, 1, 'chicken fingers with choice of sauce', 2, 'https://i.imgur.com/aq1MgbN.jpg');
 
-select @food_id1 := foodid from food where displayname = 'Hamburger';
-select @food_id2 := foodid from food where displayname = 'Cheeseburger';
-select @food_id3 := foodid from food where displayname = 'Bacon Cheeseburger';
-select @food_id7 := foodid from food where displayname = 'Fries';
+select @food_id1 := foodid from food where displayname_en = 'Hamburger';
+select @food_id2 := foodid from food where displayname_en = 'Cheeseburger';
+select @food_id3 := foodid from food where displayname_en = 'Bacon Cheeseburger';
+select @food_id7 := foodid from food where displayname_en = 'Fries';
 
-select @food_id4 := foodid from food where displayname = 'Chicken fingers';
-select @food_id5 := foodid from food where displayname = 'Pizza';
-select @food_id6 := foodid from food where displayname = 'Chicken tenders';
+select @food_id4 := foodid from food where displayname_en = 'Chicken fingers';
+select @food_id5 := foodid from food where displayname_en = 'Pizza';
+select @food_id6 := foodid from food where displayname_en = 'Chicken tenders';
 
 /*
 insert into foodorder values (null, '2019-12-31 23:59:59', null, @restaurant_id, 0, @user_id, 'Peanut allergy!!!', 20, 'Thousand Mile Grill', 1);
