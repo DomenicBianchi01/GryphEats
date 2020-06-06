@@ -16,7 +16,7 @@
   "dependencies": {
     "@parse/node-apn": "^3.1.0",
     "apollo-datasource": "^0.6.3",
-    "apollo-server": "^2.9.6",
+    "apollo-server": "^2.14.2",
     "bcrypt": "^3.0.0",
     "dotenv": "^8.1.0",
     "graphql": "^14.5.8",
